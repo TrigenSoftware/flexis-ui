@@ -1,0 +1,23 @@
+
+.root {
+	-st-states: pseudoFocus, pseudoActive, pseudoDisabled, withIcon, flexIcon;
+	cursor: pointer;
+}
+
+.root:withIcon .iconGrid {
+	display: flex;
+}
+
+.root:withIcon .iconLabel {
+	align-self: center;
+}
+
+.root:flexIcon .iconGrid {
+	justify-content: space-between;
+}
+
+.icon {
+	-st-states: leftAlign, rightAlign;
+	align-self: center;
+	fill: currentColor;
+}
