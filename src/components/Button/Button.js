@@ -3,8 +3,25 @@ import PropTypes from 'prop-types';
 import {
 	stylable,
 	getHtmlProps
-} from '../../helpers';
+} from '../helpers';
+import * as config from '../config';
 import stylesheet from './Button.st.css';
+
+export const colors = [
+	...config.colors
+];
+
+export const sizes = [
+	...config.sizes
+];
+
+export const variants = [
+	'round',
+	'raised',
+	'outline',
+	'flat',
+	'fab'
+];
 
 @stylable(stylesheet)
 export default class Button extends PureComponent {
@@ -13,21 +30,22 @@ export default class Button extends PureComponent {
 		children:  PropTypes.any,
 		focus:     PropTypes.bool,
 		active:    PropTypes.bool,
-		disabled:  PropTypes.bool,
 		iconOnly:  PropTypes.bool,
 		icon:      PropTypes.element,
 		flexIcon:  PropTypes.bool,
-		alignIcon: PropTypes.oneOf(['left', 'right']),
-		color:     PropTypes.string,
-		size:      PropTypes.string,
-		variant:   PropTypes.string
+		alignIcon: PropTypes.oneOf([
+			'left',
+			'right'
+		]),
+		color:     PropTypes.oneOf(colors),
+		size:      PropTypes.oneOf(sizes),
+		variant:   PropTypes.oneOf(variants)
 	};
 
 	static defaultProps = {
 		children:  null,
 		focus:     false,
 		active:    false,
-		disabled:  false,
 		iconOnly:  false,
 		icon:      null,
 		flexIcon:  false,
@@ -43,7 +61,6 @@ export default class Button extends PureComponent {
 			children,
 			focus,
 			active,
-			disabled,
 			icon,
 			iconOnly,
 			alignIcon,
@@ -75,22 +92,20 @@ export default class Button extends PureComponent {
 		return (
 			<button
 				style-state={{
-					[`${color}Color`]:     color,
-					[`${size}Size`]:       size,
-					[`${variant}Variant`]: variant,
-					withIcon:              Boolean(buttonIcon),
-					pseudoFocus:           focus,
-					pseudoActive:          active,
-					pseudoDisabled:        disabled,
+					[`${color}Color`]: color,
+					[`${size}Size`]:   size,
+					[variant]:         variant,
+					withIcon:          Boolean(buttonIcon),
+					pseudoFocus:       focus,
+					pseudoActive:      active,
 					flexIcon
 				}}
-				disabled={disabled}
 				{...getHtmlProps(props)}
 			>
 				{buttonIcon ? (
-					<div className='iconGrid'>
+					<div className='iconContainer'>
 						{leftAligned && buttonIcon}
-						<span className='iconLabel'>{children}</span>
+						<span>{children}</span>
 						{!leftAligned && buttonIcon}
 					</div>
 				) : children}

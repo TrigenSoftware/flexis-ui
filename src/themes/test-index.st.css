@@ -1,0 +1,11 @@
+@namespace 'TestThemeIndex';
+
+:import {
+	-st-from: '../index.st.css';
+	-st-theme: true;
+}
+
+:import {
+	-st-from: './test.st.css';
+	-st-theme: true;
+}

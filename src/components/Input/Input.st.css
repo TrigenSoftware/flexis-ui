@@ -3,9 +3,7 @@
 	-st-states:
 		/* Basic states */
 		pseudoFocus,
-		pseudoActive,
 		withIcon,
-		flexIcon,
 		/* Color states */
 		primaryColor,
 		secondaryColor,
@@ -21,28 +19,19 @@
 		xsSize,
 		smSize,
 		lgSize,
-		xlSize,
-		/* Variant states */
-		round,
-		raised,
-		outline,
-		flat,
-		fab;
-	cursor: pointer;
-}
-
-.iconContainer {
-	display: flex;
+		xlSize;
+	display: inline-flex;
 	align-items: center;
-}
-
-.root:flexIcon .iconContainer {
-	justify-content: space-between;
 }
 
 .icon {
 	-st-states:
 		leftAlign,
 		rightAlign;
-	fill: currentColor;
+}
+
+.input {
+	display: block;
+	width: 100%;
+	height: 100%;
 }

@@ -1,0 +1,14 @@
+@namespace 'TestTheme';
+
+:import {
+	-st-from: '../components/Button/Button.st.css';
+	-st-default: Button;
+}
+
+Button:dangerColor {
+	color: red;
+}
+
+Button:xsSize {
+	font-size: .6em;
+}

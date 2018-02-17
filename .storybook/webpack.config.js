@@ -11,14 +11,25 @@ function configureStorybook(storybookBaseConfig) {
 	storybookBaseConfig.module.rules.unshift(
 		StylablePlugin.rule(),
 		{
+			enforce: 'pre',
+			test:    /(?!<\.st)\.css$/,
+			exclude: /node_modules/,
+			use:     [{
+				loader:  'postcss-loader',
+				options: {
+					plugins:   () => [
+						stylelint(),
+						postcssReporter({ clearReportedMessages: true })
+					]
+				}
+			}]
+		}, {
 			test: /(?!<\.st)\.css$/,
-			use: [{
+			use:  [{
 				loader:  'postcss-loader',
 				options: {
 					sourceMap: true,
 					plugins:   () => [
-						stylelint(),
-						postcssReporter({ clearReportedMessages: true }),
 						autoprefixer({
 							browsers
 						})
