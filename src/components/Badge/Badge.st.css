@@ -1,0 +1,21 @@
+
+.root {
+	-st-states:
+		/* Color states */
+		primaryColor,
+		secondaryColor,
+		successColor,
+		successAltColor,
+		infoColor,
+		infoAltColor,
+		warningColor,
+		warningAltColor,
+		dangerColor,
+		dangerAltColor,
+		/* Size states */
+		xsSize,
+		smSize,
+		lgSize,
+		xlSize;
+	display: inline-block;
+}

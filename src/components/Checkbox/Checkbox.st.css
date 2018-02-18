@@ -3,6 +3,8 @@
 	-st-states:
 		/* Basic states */
 		pseudoFocus,
+		pseudoHover,
+		pseudoActive,
 		/* Color states */
 		primaryColor,
 		secondaryColor,

@@ -19,6 +19,8 @@ const stylableApi = `
 Stylable API
 ---
 - :pseudoFocus
+- :pseudoHover
+- :pseudoActive
 - :withIcon
 ${colors.map(_ => `- :${_}Color`).join('\n')}
 ${sizes.map(_ => `- :${_}Size`).join('\n')}
@@ -26,6 +28,7 @@ ${sizes.map(_ => `- :${_}Size`).join('\n')}
 	- :leftAlign
 	- :rightAlign
 - ::input
+- ::border
 `;
 
 const events = {
@@ -114,6 +117,8 @@ storiesOf('Input', module)
 			<Input
 				placeholder={text('Placeholder', '')}
 				focus={boolean('Focus', false)}
+				hover={boolean('Hover', false)}
+				active={boolean('Active', false)}
 				disabled={boolean('Disabled', false)}
 				color={select('Color', colors, colors[0])}
 				size={select('Size', sizes, sizes[0])}
@@ -128,6 +133,8 @@ storiesOf('Input', module)
 			<Input
 				placeholder={text('Placeholder', '')}
 				focus={boolean('Focus', false)}
+				hover={boolean('Hover', false)}
+				active={boolean('Active', false)}
 				disabled={boolean('Disabled', false)}
 				color={select('Color', colors, colors[0])}
 				size={select('Size', sizes, sizes[0])}

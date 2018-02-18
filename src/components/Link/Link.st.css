@@ -24,12 +24,22 @@
 		lgSize,
 		xlSize,
 		/* Variant states */
-		round,
-		raised,
-		outline,
-		flat,
-		fab;
+		decorated,
+		disguised;
 	cursor: pointer;
+}
+
+.root:withIcon {
+	display: inline-block;
+}
+
+.root:disguised {
+	color: inherit;
+}
+
+.root:disguised:hover {
+	text-decoration: none;
+	color: inherit;
 }
 
 .iconContainer {

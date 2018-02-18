@@ -29,6 +29,8 @@ export default class Checkbox extends PureComponent {
 		checked:        PropTypes.bool,
 		defaultChecked: PropTypes.bool,
 		focus:          PropTypes.bool,
+		hover:          PropTypes.bool,
+		active:         PropTypes.bool,
 		color:          PropTypes.oneOf(colors),
 		size:           PropTypes.oneOf(sizes)
 	};
@@ -40,6 +42,8 @@ export default class Checkbox extends PureComponent {
 		checked:        null,
 		defaultChecked: null,
 		focus:          false,
+		hover:          false,
+		active:         false,
 		color:          null,
 		size:           null
 	};
@@ -53,6 +57,8 @@ export default class Checkbox extends PureComponent {
 			checked,
 			defaultChecked,
 			focus,
+			hover,
+			active,
 			color,
 			size,
 			...props
@@ -66,7 +72,9 @@ export default class Checkbox extends PureComponent {
 				style-state={{
 					[`${color}Color`]: color,
 					[`${size}Size`]:   size,
-					pseudoFocus:       focus
+					pseudoFocus:       focus,
+					pseudoHover:       hover,
+					pseudoActive:      active
 				}}
 				style={style}
 			>

@@ -33,6 +33,8 @@ export default class Input extends PureComponent {
 			PropTypes.number
 		]),
 		focus:          PropTypes.bool,
+		hover:          PropTypes.bool,
+		active:         PropTypes.bool,
 		icon:           PropTypes.element,
 		alignIcon:      PropTypes.oneOf([
 			'left',
@@ -53,6 +55,8 @@ export default class Input extends PureComponent {
 		value:          null,
 		defaultValue:   null,
 		focus:          false,
+		hover:          false,
+		active:         false,
 		icon:           null,
 		alignIcon:      'left',
 		mask:           null,
@@ -72,6 +76,8 @@ export default class Input extends PureComponent {
 			value,
 			defaultValue,
 			focus,
+			hover,
+			active,
 			icon,
 			alignIcon,
 			mask,
@@ -118,7 +124,9 @@ export default class Input extends PureComponent {
 					[`${color}Color`]: color,
 					[`${size}Size`]:   size,
 					withIcon:          Boolean(inputIcon),
-					pseudoFocus:       focus
+					pseudoFocus:       focus,
+					pseudoHover:       hover,
+					pseudoActive:      active
 				}}
 				style={style}
 			>
@@ -137,6 +145,7 @@ export default class Input extends PureComponent {
 					{...maskedInputProps}
 					{...getHtmlProps(props)}
 				/>
+				<div className='border'/>
 				{!leftAligned && inputIcon}
 			</span>
 		);

@@ -8,7 +8,7 @@ import {
 	getHtmlProps
 } from '../helpers';
 import * as config from '../config';
-import stylesheet from './Button.st.css';
+import stylesheet from './Link.st.css';
 
 export const colors = [
 	...config.colors
@@ -19,15 +19,15 @@ export const sizes = [
 ];
 
 export const variants = [
-	'round',
-	'raised',
-	'outline',
-	'flat',
-	'fab'
+	'decorated',
+	'disguised'
 ];
 
+let LinkElement = 'a',
+	linkElementCustomProps = [];
+
 @stylable(stylesheet)
-export default class Button extends PureComponent {
+export default class Link extends PureComponent {
 
 	static propTypes = {
 		children:  PropTypes.any,
@@ -79,10 +79,10 @@ export default class Button extends PureComponent {
 
 		const leftAligned = alignIcon == 'left';
 
-		let buttonIcon = null;
+		let linkIcon = null;
 
 		if (icon !== null) {
-			buttonIcon = {
+			linkIcon = {
 				...icon,
 				props: {
 					...icon.props,
@@ -96,27 +96,44 @@ export default class Button extends PureComponent {
 		}
 
 		return (
-			<button
+			<LinkElement
 				style-state={{
 					[`${color}Color`]: color,
 					[`${size}Size`]:   size,
 					[variant]:         variant,
-					withIcon:          Boolean(buttonIcon),
+					withIcon:          Boolean(linkIcon),
 					pseudoFocus:       focus,
 					pseudoHover:       hover,
 					pseudoActive:      active,
 					flexIcon
 				}}
 				{...getHtmlProps(props)}
+				{...getLinkElementCustomProps(props)}
 			>
-				{buttonIcon ? (
+				{linkIcon ? (
 					<div className='iconContainer'>
-						{leftAligned && buttonIcon}
+						{leftAligned && linkIcon}
 						<span>{children}</span>
-						{!leftAligned && buttonIcon}
+						{!leftAligned && linkIcon}
 					</div>
 				) : children}
-			</button>
+			</LinkElement>
 		);
 	}
+}
+
+export function setLinkElement(linkElement, customProps = []) {
+	LinkElement = linkElement;
+	linkElementCustomProps = customProps;
+}
+
+export function getLinkElement() {
+	return LinkElement;
+}
+
+function getLinkElementCustomProps(inputProps) {
+	return linkElementCustomProps.reduce((customProps, prop) => {
+		customProps[prop] = inputProps[prop];
+		return customProps;
+	}, {});
 }

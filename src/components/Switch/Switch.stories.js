@@ -7,7 +7,7 @@ import {
 	boolean,
 	select
 } from '@storybook/addon-knobs/react';
-import Checkbox, {
+import Switch, {
 	colors,
 	sizes
 } from './';
@@ -20,7 +20,7 @@ Stylable API
 - :pseudoActive
 ${colors.map(_ => `- :${_}Color`).join('\n')}
 ${sizes.map(_ => `- :${_}Size`).join('\n')}
-- ::checkbox
+- ::input
 - ::face
 `;
 
@@ -30,13 +30,14 @@ const events = {
 	onBlur:   action('blur')
 };
 
-storiesOf('Checkbox', module)
+storiesOf('Switch', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
 	.addDecorator(withKnobs)
 	.add(
 		'with default state',
 		() => (
-			<Checkbox
+			<Switch
+				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				defaultChecked={false}
 				{...events}
@@ -46,7 +47,8 @@ storiesOf('Checkbox', module)
 	.add(
 		'with default checked',
 		() => (
-			<Checkbox
+			<Switch
+				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				defaultChecked
 				{...events}
@@ -56,7 +58,8 @@ storiesOf('Checkbox', module)
 	.add(
 		'with unchecked state',
 		() => (
-			<Checkbox
+			<Switch
+				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', false)}
 				{...events}
@@ -66,7 +69,8 @@ storiesOf('Checkbox', module)
 	.add(
 		'with checked state',
 		() => (
-			<Checkbox
+			<Switch
+				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', true)}
 				{...events}
@@ -76,7 +80,8 @@ storiesOf('Checkbox', module)
 	.add(
 		'with custom styles',
 		() => (
-			<Checkbox
+			<Switch
+				type='checkbox'
 				focus={boolean('Focus', false)}
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}

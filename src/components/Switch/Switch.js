@@ -6,7 +6,7 @@ import {
 	valueOrNull
 } from '../helpers';
 import * as config from '../config';
-import stylesheet from './Radio.st.css';
+import stylesheet from './Switch.st.css';
 
 export const colors = [
 	...config.colors
@@ -17,10 +17,14 @@ export const sizes = [
 ];
 
 @stylable(stylesheet)
-export default class Radio extends PureComponent {
+export default class Switch extends PureComponent {
 
 	static propTypes = {
 		style:          PropTypes.object,
+		type:           PropTypes.oneOf([
+			'checkbox',
+			'radio'
+		]).isRequired,
 		onChange:       PropTypes.func,
 		value:          PropTypes.oneOfType([
 			PropTypes.string,
@@ -52,6 +56,7 @@ export default class Radio extends PureComponent {
 
 		const {
 			style,
+			type,
 			onChange,
 			value,
 			checked,
@@ -79,8 +84,8 @@ export default class Radio extends PureComponent {
 				style={style}
 			>
 				<input
-					className='radio'
-					type='radio'
+					className='input'
+					type={type}
 					onChange={(event) => {
 
 						if (withOnChange) {

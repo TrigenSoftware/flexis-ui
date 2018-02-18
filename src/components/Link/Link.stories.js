@@ -8,7 +8,7 @@ import {
 	boolean,
 	select
 } from '@storybook/addon-knobs/react';
-import Button, {
+import Link, {
 	colors,
 	sizes,
 	variants
@@ -39,86 +39,100 @@ const events = {
 	onBlur:  action('blur')
 };
 
-storiesOf('Button', module)
+storiesOf('Link', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
 	.addDecorator(withKnobs)
 	.add(
 		'with text',
 		() => (
-			<Button
-				disabled={boolean('Disabled', false)}
+			<Link
+				href='#'
 				{...events}
 			>
-				{text('Label', 'Button')}
-			</Button>
+				{text('Label', 'Link')}
+			</Link>
+		)
+	)
+	.add(
+		'with disguised variant',
+		() => (
+			<Link
+				href='#'
+				variant='disguised'
+				{...events}
+			>
+				<button>
+					{text('Label', 'Link')}
+				</button>
+			</Link>
 		)
 	)
 	.add(
 		'with icon',
 		() => (
-			<Button
-				disabled={boolean('Disabled', false)}
+			<Link
+				href='#'
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}
 				{...events}
 			>
-				{text('Label', 'Button')}
-			</Button>
+				{text('Label', 'Link')}
+			</Link>
 		)
 	)
 	.add(
 		'with right aligned icon',
 		() => (
-			<Button
-				disabled={boolean('Disabled', false)}
+			<Link
+				href='#'
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 				{...events}
 			>
-				{text('Label', 'Button')}
-			</Button>
+				{text('Label', 'Link')}
+			</Link>
 		)
 	)
 	.add(
 		'with flex icon',
 		() => (
-			<Button
+			<Link
 				style={{ width: '100px' }}
-				disabled={boolean('Disabled', false)}
+				href='#'
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 				flexIcon={boolean('Flex icon', true)}
 				{...events}
 			>
-				{text('Label', 'Button')}
-			</Button>
+				{text('Label', 'Link')}
+			</Link>
 		)
 	)
 	.add(
 		'with custom styles',
 		() => (
-			<Button
+			<Link
+				href='#'
 				focus={boolean('Focus', false)}
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
-				disabled={boolean('Disabled', false)}
 				color={select('Color', colors, colors[0])}
 				size={select('Size', sizes, sizes[0])}
 				variant={select('Variant', variants, variants[0])}
 				{...events}
 			>
-				{text('Label', 'Button')}
-			</Button>
+				{text('Label', 'Link')}
+			</Link>
 		)
 	)
 	.add(
 		'with custom styles and icon',
 		() => (
-			<Button
+			<Link
+				href='#'
 				focus={boolean('Focus', false)}
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
-				disabled={boolean('Disabled', false)}
 				color={select('Color', colors, colors[0])}
 				size={select('Size', sizes, sizes[0])}
 				variant={select('Variant', variants, variants[0])}
@@ -126,7 +140,7 @@ storiesOf('Button', module)
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}
 				{...events}
 			>
-				{text('Label', 'Button')}
-			</Button>
+				{text('Label', 'Link')}
+			</Link>
 		)
 	);
