@@ -68,7 +68,8 @@ export default class Checkbox extends PureComponent {
 			withOnChange = typeof onChange == 'function';
 
 		return (
-			<span
+			<label
+				style={style}
 				style-state={{
 					[`${color}Color`]: color,
 					[`${size}Size`]:   size,
@@ -76,7 +77,6 @@ export default class Checkbox extends PureComponent {
 					pseudoHover:       hover,
 					pseudoActive:      active
 				}}
-				style={style}
 			>
 				<input
 					className='checkbox'
@@ -98,7 +98,7 @@ export default class Checkbox extends PureComponent {
 					{...getHtmlProps(props)}
 				/>
 				<div className='face'/>
-			</span>
+			</label>
 		);
 	}
 }

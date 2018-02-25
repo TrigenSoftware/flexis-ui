@@ -23,29 +23,23 @@ export const sizes = [
 export default class Badge extends PureComponent {
 
 	static propTypes = {
-		label:     PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		]),
-		children:  PropTypes.any,
-		color:     PropTypes.oneOf(colors),
-		size:      PropTypes.oneOf(sizes)
+		color:    PropTypes.oneOf(colors),
+		size:     PropTypes.oneOf(sizes),
+		children: PropTypes.any
 	};
 
 	static defaultProps = {
-		label:     null,
-		children:  null,
-		color:     null,
-		size:      null
+		color:    null,
+		size:     null,
+		children: null
 	};
 
 	render() {
 
 		const {
-			label,
-			children,
 			color,
 			size,
+			children,
 			...props
 		} = this.props;
 
@@ -57,7 +51,7 @@ export default class Badge extends PureComponent {
 				}}
 				{...getHtmlProps(props)}
 			>
-				{label || children}
+				{children}
 			</label>
 		);
 	}

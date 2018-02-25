@@ -30,7 +30,6 @@ export const variants = [
 export default class Button extends PureComponent {
 
 	static propTypes = {
-		children:  PropTypes.any,
 		focus:     PropTypes.bool,
 		hover:     PropTypes.bool,
 		active:    PropTypes.bool,
@@ -43,11 +42,11 @@ export default class Button extends PureComponent {
 		]),
 		color:     PropTypes.oneOf(colors),
 		size:      PropTypes.oneOf(sizes),
-		variant:   PropTypes.oneOf(variants)
+		variant:   PropTypes.oneOf(variants),
+		children:  PropTypes.any
 	};
 
 	static defaultProps = {
-		children:  null,
 		focus:     false,
 		hover:     false,
 		active:    false,
@@ -57,13 +56,13 @@ export default class Button extends PureComponent {
 		alignIcon: 'left',
 		color:     null,
 		size:      null,
-		variant:   null
+		variant:   null,
+		children:  null
 	};
 
 	render() {
 
 		const {
-			children,
 			focus,
 			hover,
 			active,
@@ -74,6 +73,7 @@ export default class Button extends PureComponent {
 			color,
 			size,
 			variant,
+			children,
 			...props
 		} = this.props;
 

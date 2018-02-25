@@ -10,7 +10,6 @@ import stylesheet from './BadgeContainer.st.css';
 export default class BadgeContainer extends PureComponent {
 
 	static propTypes = {
-		children:  PropTypes.any.isRequired,
 		placement: PropTypes.oneOf([
 			'top',
 			'right',
@@ -21,7 +20,8 @@ export default class BadgeContainer extends PureComponent {
 			'start',
 			'center',
 			'end'
-		])
+		]),
+		children:  PropTypes.any.isRequired
 	};
 
 	static defaultProps = {
@@ -31,9 +31,9 @@ export default class BadgeContainer extends PureComponent {
 	render() {
 
 		const {
-			children,
 			placement,
 			align,
+			children,
 			...props
 		} = this.props;
 

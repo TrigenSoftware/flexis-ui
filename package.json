@@ -61,8 +61,8 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "stylelint": "^8.4.0",
-    "stylelint-config-trigen": "^1.9.0",
+    "stylelint": "^9.1.1",
+    "stylelint-config-trigen": "^1.9.2",
     "svg-react-loader": "^0.4.5"
   },
   "babel": {

@@ -73,7 +73,8 @@ export default class Switch extends PureComponent {
 			withOnChange = typeof onChange == 'function';
 
 		return (
-			<span
+			<label
+				style={style}
 				style-state={{
 					[`${color}Color`]: color,
 					[`${size}Size`]:   size,
@@ -81,7 +82,6 @@ export default class Switch extends PureComponent {
 					pseudoHover:       hover,
 					pseudoActive:      active
 				}}
-				style={style}
 			>
 				<input
 					className='input'
@@ -103,7 +103,7 @@ export default class Switch extends PureComponent {
 					{...getHtmlProps(props)}
 				/>
 				<div className='face'/>
-			</span>
+			</label>
 		);
 	}
 }

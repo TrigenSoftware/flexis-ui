@@ -65,6 +65,7 @@ function configureStorybook(storybookBaseConfig) {
 
 	storybookBaseConfig.plugins.push(
 		new StylablePlugin({
+			rootScope:       false,
 			injectBundleCss: true,
 			nsDelimiter:     '🦄'
 		})

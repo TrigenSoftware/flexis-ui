@@ -119,7 +119,8 @@ export default class Input extends PureComponent {
 		}
 
 		return (
-			<span
+			<label
+				style={style}
 				style-state={{
 					[`${color}Color`]: color,
 					[`${size}Size`]:   size,
@@ -128,7 +129,6 @@ export default class Input extends PureComponent {
 					pseudoHover:       hover,
 					pseudoActive:      active
 				}}
-				style={style}
 			>
 				{leftAligned && inputIcon}
 				<Input
@@ -147,7 +147,7 @@ export default class Input extends PureComponent {
 				/>
 				<div className='border'/>
 				{!leftAligned && inputIcon}
-			</span>
+			</label>
 		);
 	}
 }

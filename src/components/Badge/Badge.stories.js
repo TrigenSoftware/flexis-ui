@@ -34,9 +34,9 @@ storiesOf('Badge', module)
 	.add(
 		'with text',
 		() => (
-			<Badge
-				label={text('Label', 'Badge')}
-			/>
+			<Badge>
+				{text('Content', 'Badge')}
+			</Badge>
 		)
 	)
 	.add(
@@ -50,9 +50,9 @@ storiesOf('Badge', module)
 					width='32px'
 					height='32px'
 				/>
-				<Badge
-					label={text('Label', 'Badge')}
-				/>
+				<Badge>
+					{text('Content', 'Badge')}
+				</Badge>
 			</BadgeContainer>
 		)
 	)
@@ -62,7 +62,8 @@ storiesOf('Badge', module)
 			<Badge
 				color={select('Color', colors, colors[0])}
 				size={select('Size', sizes, sizes[0])}
-				label={text('Label', 'Badge')}
-			/>
+			>
+				{text('Content', 'Badge')}
+			</Badge>
 		)
 	);
