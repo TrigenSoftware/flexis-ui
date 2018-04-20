@@ -7,21 +7,7 @@ import {
 	stylable,
 	getHtmlProps
 } from '../helpers';
-import * as config from '../config';
 import stylesheet from './Link.st.css';
-
-export const colors = [
-	...config.colors
-];
-
-export const sizes = [
-	...config.sizes
-];
-
-export const variants = [
-	'decorated',
-	'disguised'
-];
 
 let LinkElement = 'a',
 	linkElementCustomProps = [];
@@ -40,9 +26,6 @@ export default class Link extends PureComponent {
 			'left',
 			'right'
 		]),
-		color:     PropTypes.oneOf(colors),
-		size:      PropTypes.oneOf(sizes),
-		variant:   PropTypes.oneOf(variants),
 		children:  PropTypes.any
 	};
 
@@ -54,9 +37,6 @@ export default class Link extends PureComponent {
 		icon:      null,
 		flexIcon:  false,
 		alignIcon: 'left',
-		color:     null,
-		size:      null,
-		variant:   null,
 		children:  null
 	};
 
@@ -70,9 +50,6 @@ export default class Link extends PureComponent {
 			iconOnly,
 			flexIcon,
 			alignIcon,
-			color,
-			size,
-			variant,
 			children,
 			...props
 		} = this.props;
@@ -98,13 +75,10 @@ export default class Link extends PureComponent {
 		return (
 			<LinkElement
 				style-state={{
-					[`${color}Color`]: color,
-					[`${size}Size`]:   size,
-					[variant]:         variant,
-					withIcon:          Boolean(linkIcon),
-					pseudoFocus:       focus,
-					pseudoHover:       hover,
-					pseudoActive:      active,
+					withIcon:     Boolean(linkIcon),
+					pseudoFocus:  focus,
+					pseudoHover:  hover,
+					pseudoActive: active,
 					flexIcon
 				}}
 				{...getHtmlProps(props)}

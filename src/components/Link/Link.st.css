@@ -6,40 +6,12 @@
 		pseudoHover,
 		pseudoActive,
 		withIcon,
-		flexIcon,
-		/* Color states */
-		primaryColor,
-		secondaryColor,
-		successColor,
-		successAltColor,
-		infoColor,
-		infoAltColor,
-		warningColor,
-		warningAltColor,
-		dangerColor,
-		dangerAltColor,
-		/* Size states */
-		xsSize,
-		smSize,
-		lgSize,
-		xlSize,
-		/* Variant states */
-		decorated,
-		disguised;
+		flexIcon;
 	cursor: pointer;
 }
 
 .root:withIcon {
 	display: inline-block;
-}
-
-.root:disguised {
-	color: inherit;
-}
-
-.root:disguised:hover {
-	text-decoration: none;
-	color: inherit;
 }
 
 .iconContainer {

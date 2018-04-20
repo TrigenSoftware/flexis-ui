@@ -1,5 +1,6 @@
 export { stylable } from 'wix-react-tools';
-export { default as getHtmlProps } from './get-html-props';
+export { default as getHtmlProps } from './getHtmlProps';
+export { default as hasFixedLineage } from './hasFixedLineage';
 
 export function valueOrNull(value) {
 	return value == null

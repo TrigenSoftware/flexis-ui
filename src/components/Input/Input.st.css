@@ -5,23 +5,7 @@
 		pseudoFocus,
 		pseudoHover,
 		pseudoActive,
-		withIcon,
-		/* Color states */
-		primaryColor,
-		secondaryColor,
-		successColor,
-		successAltColor,
-		infoColor,
-		infoAltColor,
-		warningColor,
-		warningAltColor,
-		dangerColor,
-		dangerAltColor,
-		/* Size states */
-		xsSize,
-		smSize,
-		lgSize,
-		xlSize;
+		withIcon;
 	display: inline-flex;
 	position: relative;
 	align-items: center;

@@ -4,13 +4,9 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import {
 	withKnobs,
-	boolean,
-	select
+	boolean
 } from '@storybook/addon-knobs/react';
-import Switch, {
-	colors,
-	sizes
-} from './';
+import Switch from './';
 
 const stylableApi = `
 Stylable API
@@ -18,8 +14,6 @@ Stylable API
 - :pseudoFocus
 - :pseudoHover
 - :pseudoActive
-${colors.map(_ => `- :${_}Color`).join('\n')}
-${sizes.map(_ => `- :${_}Size`).join('\n')}
 - ::input
 - ::face
 `;
@@ -86,8 +80,6 @@ storiesOf('Switch', module)
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
 				disabled={boolean('Disabled', false)}
-				color={select('Color', colors, colors[0])}
-				size={select('Size', sizes, sizes[0])}
 				checked={boolean('Checked', true)}
 				{...events}
 			/>

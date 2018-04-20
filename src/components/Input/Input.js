@@ -6,16 +6,7 @@ import {
 	getHtmlProps,
 	valueOrNull
 } from '../helpers';
-import * as config from '../config';
 import stylesheet from './Input.st.css';
-
-export const colors = [
-	...config.colors
-];
-
-export const sizes = [
-	...config.sizes
-];
 
 @stylable(stylesheet)
 export default class Input extends PureComponent {
@@ -43,9 +34,7 @@ export default class Input extends PureComponent {
 		mask:           PropTypes.string,
 		maskChar:       PropTypes.string,
 		formatChars:    PropTypes.object,
-		alwaysShowMask: PropTypes.bool,
-		color:          PropTypes.oneOf(colors),
-		size:           PropTypes.oneOf(sizes)
+		alwaysShowMask: PropTypes.bool
 	};
 
 	static defaultProps = {
@@ -62,9 +51,7 @@ export default class Input extends PureComponent {
 		mask:           null,
 		maskChar:       null,
 		formatChars:    null,
-		alwaysShowMask: true,
-		color:          null,
-		size:           null
+		alwaysShowMask: true
 	};
 
 	render() {
@@ -84,8 +71,6 @@ export default class Input extends PureComponent {
 			maskChar,
 			formatChars,
 			alwaysShowMask,
-			color,
-			size,
 			...props
 		} = this.props;
 
@@ -122,12 +107,10 @@ export default class Input extends PureComponent {
 			<label
 				style={style}
 				style-state={{
-					[`${color}Color`]: color,
-					[`${size}Size`]:   size,
-					withIcon:          Boolean(inputIcon),
-					pseudoFocus:       focus,
-					pseudoHover:       hover,
-					pseudoActive:      active
+					withIcon:     Boolean(inputIcon),
+					pseudoFocus:  focus,
+					pseudoHover:  hover,
+					pseudoActive: active
 				}}
 			>
 				{leftAligned && inputIcon}

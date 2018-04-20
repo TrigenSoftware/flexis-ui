@@ -8,10 +8,7 @@ import {
 	boolean,
 	select
 } from '@storybook/addon-knobs/react';
-import Input, {
-	colors,
-	sizes
-} from './';
+import Input from './';
 
 const { TestIcon } = global;
 
@@ -22,8 +19,6 @@ Stylable API
 - :pseudoHover
 - :pseudoActive
 - :withIcon
-${colors.map(_ => `- :${_}Color`).join('\n')}
-${sizes.map(_ => `- :${_}Size`).join('\n')}
 - ::icon
 	- :leftAlign
 	- :rightAlign
@@ -120,8 +115,6 @@ storiesOf('Input', module)
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
 				disabled={boolean('Disabled', false)}
-				color={select('Color', colors, colors[0])}
-				size={select('Size', sizes, sizes[0])}
 				value={text('Value', 'Value')}
 				{...events}
 			/>
@@ -136,8 +129,6 @@ storiesOf('Input', module)
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
 				disabled={boolean('Disabled', false)}
-				color={select('Color', colors, colors[0])}
-				size={select('Size', sizes, sizes[0])}
 				value={text('Value', 'Value')}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}

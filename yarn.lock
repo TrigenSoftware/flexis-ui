@@ -6861,9 +6861,9 @@ stylehacks@^2.3.2:
     text-table "^0.2.0"
     write-file-stdout "0.0.2"
 
-stylelint-config-trigen@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/stylelint-config-trigen/-/stylelint-config-trigen-1.9.2.tgz#d27719a609d60fdaff31898c7c41b742f3b951ff"
+stylelint-config-trigen@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/stylelint-config-trigen/-/stylelint-config-trigen-1.9.3.tgz#d88e90399f7b7ac40ac4343a7940935e95943fcd"
   dependencies:
     stylelint-csstree-validator "^1.2.2"
     stylelint-declaration-strict-value "^1.0.4"

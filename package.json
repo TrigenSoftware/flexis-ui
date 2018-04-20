@@ -62,7 +62,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "stylelint": "^9.1.1",
-    "stylelint-config-trigen": "^1.9.2",
+    "stylelint-config-trigen": "^1.9.3",
     "svg-react-loader": "^0.4.5"
   },
   "babel": {

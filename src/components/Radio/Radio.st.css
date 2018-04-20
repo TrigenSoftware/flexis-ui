@@ -4,23 +4,7 @@
 		/* Basic states */
 		pseudoFocus,
 		pseudoHover,
-		pseudoActive,
-		/* Color states */
-		primaryColor,
-		secondaryColor,
-		successColor,
-		successAltColor,
-		infoColor,
-		infoAltColor,
-		warningColor,
-		warningAltColor,
-		dangerColor,
-		dangerAltColor,
-		/* Size states */
-		xsSize,
-		smSize,
-		lgSize,
-		xlSize;
+		pseudoActive;
 	display: inline-block;
 	position: relative;
 	width: 1rem;

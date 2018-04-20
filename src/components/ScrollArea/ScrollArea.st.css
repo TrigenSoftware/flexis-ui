@@ -1,0 +1,57 @@
+
+.root {
+	position: relative;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.scroller {
+	-st-states:
+		hideXScrollbar
+		hideYScrollbar;
+	width: inherit;
+	min-width: inherit;
+	height: inherit;
+	min-height: inherit;
+	max-height: inherit;
+	overflow: auto;
+}
+
+.scroller:not(:hideYScrollbar) {
+	max-width: inherit;
+}
+
+.shadow {
+	-st-states:
+		active,
+		top,
+		right,
+		bottom,
+		left;
+	position: absolute;
+	z-index: 2;
+}
+
+.shadow:top {
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+.shadow:right {
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.shadow:bottom {
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.shadow:left {
+	top: 0;
+	bottom: 0;
+	left: 0;
+}

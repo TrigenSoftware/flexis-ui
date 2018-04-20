@@ -7,24 +7,7 @@ import {
 	stylable,
 	getHtmlProps
 } from '../helpers';
-import * as config from '../config';
 import stylesheet from './Button.st.css';
-
-export const colors = [
-	...config.colors
-];
-
-export const sizes = [
-	...config.sizes
-];
-
-export const variants = [
-	'round',
-	'raised',
-	'outline',
-	'flat',
-	'fab'
-];
 
 @stylable(stylesheet)
 export default class Button extends PureComponent {
@@ -40,9 +23,6 @@ export default class Button extends PureComponent {
 			'left',
 			'right'
 		]),
-		color:     PropTypes.oneOf(colors),
-		size:      PropTypes.oneOf(sizes),
-		variant:   PropTypes.oneOf(variants),
 		children:  PropTypes.any
 	};
 
@@ -54,9 +34,6 @@ export default class Button extends PureComponent {
 		icon:      null,
 		flexIcon:  false,
 		alignIcon: 'left',
-		color:     null,
-		size:      null,
-		variant:   null,
 		children:  null
 	};
 
@@ -70,9 +47,6 @@ export default class Button extends PureComponent {
 			iconOnly,
 			flexIcon,
 			alignIcon,
-			color,
-			size,
-			variant,
 			children,
 			...props
 		} = this.props;
@@ -98,13 +72,10 @@ export default class Button extends PureComponent {
 		return (
 			<button
 				style-state={{
-					[`${color}Color`]: color,
-					[`${size}Size`]:   size,
-					[variant]:         variant,
-					withIcon:          Boolean(buttonIcon),
-					pseudoFocus:       focus,
-					pseudoHover:       hover,
-					pseudoActive:      active,
+					withIcon:     Boolean(buttonIcon),
+					pseudoFocus:  focus,
+					pseudoHover:  hover,
+					pseudoActive: active,
 					flexIcon
 				}}
 				{...getHtmlProps(props)}

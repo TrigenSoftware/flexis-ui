@@ -6,19 +6,13 @@ import {
 	text,
 	select
 } from '@storybook/addon-knobs/react';
-import Badge, {
-	BadgeContainer,
-	colors,
-	sizes
-} from './';
+import Badge, { BadgeContainer } from './';
 
 const { TestIcon } = global;
 
 const stylableApi = `
 Stylable API
 ---
-${colors.map(_ => `- :${_}Color`).join('\n')}
-${sizes.map(_ => `- :${_}Size`).join('\n')}
 - BadgeContainer:topPlacement
 - BadgeContainer:rightPlacement
 - BadgeContainer:bottomPlacement
@@ -54,16 +48,5 @@ storiesOf('Badge', module)
 					{text('Content', 'Badge')}
 				</Badge>
 			</BadgeContainer>
-		)
-	)
-	.add(
-		'with custom styles',
-		() => (
-			<Badge
-				color={select('Color', colors, colors[0])}
-				size={select('Size', sizes, sizes[0])}
-			>
-				{text('Content', 'Badge')}
-			</Badge>
 		)
 	);

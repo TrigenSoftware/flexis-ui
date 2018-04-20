@@ -5,16 +5,7 @@ import {
 	getHtmlProps,
 	valueOrNull
 } from '../helpers';
-import * as config from '../config';
 import stylesheet from './Switch.st.css';
-
-export const colors = [
-	...config.colors
-];
-
-export const sizes = [
-	...config.sizes
-];
 
 @stylable(stylesheet)
 export default class Switch extends PureComponent {
@@ -34,9 +25,7 @@ export default class Switch extends PureComponent {
 		defaultChecked: PropTypes.bool,
 		focus:          PropTypes.bool,
 		hover:          PropTypes.bool,
-		active:         PropTypes.bool,
-		color:          PropTypes.oneOf(colors),
-		size:           PropTypes.oneOf(sizes)
+		active:         PropTypes.bool
 	};
 
 	static defaultProps = {
@@ -47,9 +36,7 @@ export default class Switch extends PureComponent {
 		defaultChecked: null,
 		focus:          false,
 		hover:          false,
-		active:         false,
-		color:          null,
-		size:           null
+		active:         false
 	};
 
 	render() {
@@ -64,8 +51,6 @@ export default class Switch extends PureComponent {
 			focus,
 			hover,
 			active,
-			color,
-			size,
 			...props
 		} = this.props;
 
@@ -76,11 +61,9 @@ export default class Switch extends PureComponent {
 			<label
 				style={style}
 				style-state={{
-					[`${color}Color`]: color,
-					[`${size}Size`]:   size,
-					pseudoFocus:       focus,
-					pseudoHover:       hover,
-					pseudoActive:      active
+					pseudoFocus:  focus,
+					pseudoHover:  hover,
+					pseudoActive: active
 				}}
 			>
 				<input

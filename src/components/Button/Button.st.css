@@ -6,29 +6,7 @@
 		pseudoHover,
 		pseudoActive,
 		withIcon,
-		flexIcon,
-		/* Color states */
-		primaryColor,
-		secondaryColor,
-		successColor,
-		successAltColor,
-		infoColor,
-		infoAltColor,
-		warningColor,
-		warningAltColor,
-		dangerColor,
-		dangerAltColor,
-		/* Size states */
-		xsSize,
-		smSize,
-		lgSize,
-		xlSize,
-		/* Variant states */
-		round,
-		raised,
-		outline,
-		flat,
-		fab;
+		flexIcon;
 	cursor: pointer;
 }
 

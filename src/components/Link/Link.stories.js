@@ -8,11 +8,7 @@ import {
 	boolean,
 	select
 } from '@storybook/addon-knobs/react';
-import Link, {
-	colors,
-	sizes,
-	variants
-} from './';
+import Link from './';
 
 const { TestIcon } = global;
 
@@ -24,9 +20,6 @@ Stylable API
 - :pseudoActive
 - :withIcon
 - :flexIcon
-${colors.map(_ => `- :${_}Color`).join('\n')}
-${sizes.map(_ => `- :${_}Size`).join('\n')}
-${variants.map(_ => `- :${_}`).join('\n')}
 - ::icon
 	- :leftAlign
 	- :rightAlign
@@ -116,9 +109,6 @@ storiesOf('Link', module)
 				focus={boolean('Focus', false)}
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
-				color={select('Color', colors, colors[0])}
-				size={select('Size', sizes, sizes[0])}
-				variant={select('Variant', variants, variants[0])}
 				{...events}
 			>
 				{text('Label', 'Link')}
@@ -133,9 +123,6 @@ storiesOf('Link', module)
 				focus={boolean('Focus', false)}
 				hover={boolean('Hover', false)}
 				active={boolean('Active', false)}
-				color={select('Color', colors, colors[0])}
-				size={select('Size', sizes, sizes[0])}
-				variant={select('Variant', variants, variants[0])}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}
 				{...events}
