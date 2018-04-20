@@ -1,4 +1,8 @@
-
+/**
+ * Has element or not parent with fixed position.
+ * @param  {HTMLElement} sourceElement - HTML element to check.
+ * @return {Boolean}     Result of search.
+ */
 export default function hasFixedLineage(sourceElement) {
 
 	const { getComputedStyle } = global;

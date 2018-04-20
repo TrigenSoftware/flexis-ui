@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps,
 	valueOrNull
 } from '../helpers';
 import stylesheet from './Radio.st.css';
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class Radio extends PureComponent {
 
 	static propTypes = {

@@ -4,12 +4,12 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps
 } from '../helpers';
 import stylesheet from './Button.st.css';
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class Button extends PureComponent {
 
 	static propTypes = {

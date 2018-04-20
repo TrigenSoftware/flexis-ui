@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps,
 	hasFixedLineage
 } from '../helpers';
 import stylesheet from './Tooltip.st.css';
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class Tooltip extends PureComponent {
 
 	static propTypes = {

@@ -465,6 +465,11 @@ const reactHtmlProps = [
 
 const dataAttribute = /^data-/;
 
+/**
+ * Get React-HTML props from props object.
+ * @param  {Object} inputProps - Props object.
+ * @return {Object} Object with React-HTML props.
+ */
 export default function getHtmlProps(inputProps) {
 
 	const htmlProps = {};

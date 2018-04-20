@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps
 } from '../helpers';
 import stylesheet from './ScrollArea.st.css';
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class ScrollArea extends PureComponent {
 
 	static propTypes = {

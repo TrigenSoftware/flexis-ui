@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps
 } from '../helpers';
 import stylesheet from './Badge.st.css';
@@ -10,7 +10,7 @@ export {
 	default as BadgeContainer
 } from './BadgeContainer';
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class Badge extends PureComponent {
 
 	static propTypes = {

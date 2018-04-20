@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps,
 	valueOrNull
 } from '../helpers';
 import stylesheet from './Input.st.css';
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class Input extends PureComponent {
 
 	static propTypes = {

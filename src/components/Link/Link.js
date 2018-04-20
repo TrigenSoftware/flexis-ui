@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	stylable,
+	Stylable,
 	getHtmlProps
 } from '../helpers';
 import stylesheet from './Link.st.css';
@@ -12,7 +12,7 @@ import stylesheet from './Link.st.css';
 let LinkElement = 'a',
 	linkElementCustomProps = [];
 
-@stylable(stylesheet)
+@Stylable(stylesheet)
 export default class Link extends PureComponent {
 
 	static propTypes = {
