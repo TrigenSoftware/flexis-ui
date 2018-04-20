@@ -74,6 +74,7 @@ export default class Link extends PureComponent {
 
 		return (
 			<LinkElement
+				{...getHtmlProps(props)}
 				style-state={{
 					withIcon:     Boolean(linkIcon),
 					pseudoFocus:  focus,
@@ -81,7 +82,6 @@ export default class Link extends PureComponent {
 					pseudoActive: active,
 					flexIcon
 				}}
-				{...getHtmlProps(props)}
 				{...getLinkElementCustomProps(props)}
 			>
 				{linkIcon ? (

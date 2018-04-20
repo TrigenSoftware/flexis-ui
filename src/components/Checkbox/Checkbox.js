@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Stylable,
+	Listener,
 	getHtmlProps,
-	valueOrNull
+	valueOrUndef
 } from '../helpers';
 import stylesheet from './Checkbox.st.css';
 
@@ -39,7 +40,6 @@ export default class Checkbox extends PureComponent {
 
 		const {
 			style,
-			onChange,
 			value,
 			checked,
 			defaultChecked,
@@ -48,9 +48,6 @@ export default class Checkbox extends PureComponent {
 			active,
 			...props
 		} = this.props;
-
-		const useValue = value != null,
-			withOnChange = typeof onChange == 'function';
 
 		return (
 			<label
@@ -62,26 +59,34 @@ export default class Checkbox extends PureComponent {
 				}}
 			>
 				<input
+					{...getHtmlProps(props)}
 					className='checkbox'
 					type='checkbox'
-					onChange={(event) => {
-
-						if (withOnChange) {
-							onChange(
-								useValue
-									? event.target.value
-									: event.target.checked,
-								event
-							);
-						}
-					}}
-					value={valueOrNull(value)}
-					checked={valueOrNull(checked)}
-					defaultChecked={valueOrNull(defaultChecked)}
-					{...getHtmlProps(props)}
+					value={valueOrUndef(value)}
+					checked={valueOrUndef(checked)}
+					defaultChecked={valueOrUndef(defaultChecked)}
+					onChange={this.onChange()}
 				/>
 				<div className='face'/>
 			</label>
 		);
+	}
+
+	@Listener()
+	onChange(event) {
+
+		const {
+			onChange,
+			value
+		} = this.props;
+
+		if (typeof onChange == 'function') {
+			onChange(
+				value != null
+					? event.target.value
+					: event.target.checked,
+				event
+			);
+		}
 	}
 }

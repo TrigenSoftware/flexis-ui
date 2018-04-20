@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Stylable,
+	Listener,
 	getHtmlProps
 } from '../helpers';
 import stylesheet from './ScrollArea.st.css';
@@ -66,11 +67,7 @@ export default class ScrollArea extends PureComponent {
 				{...getHtmlProps(props)}
 			>
 				<div
-					ref={(ref) => {
-						this.scroller = ref;
-						this.setShadow(ref);
-						this.hideScroll(ref);
-					}}
+					ref={this.onScrollerRef()}
 					className='scroller'
 					style-state={{
 						hideXScrollbar,
@@ -118,28 +115,33 @@ export default class ScrollArea extends PureComponent {
 		this.hideScroll(this.scroller);
 	}
 
-	onScroll() {
-		return ({ currentTarget }) => {
-			this.setShadow(currentTarget);
-		};
+	@Listener()
+	onScrollerRef(ref) {
+		this.scroller = ref;
+		this.setShadow(ref);
+		this.hideScroll(ref);
 	}
 
-	onWheel() {
-		return (event) => {
+	@Listener()
+	onScroll({ currentTarget }) {
+		this.setShadow(currentTarget);
+	}
 
-			const { isHiddenScrollbar } = this,
-				{ y2xScroll } = this.props;
+	@Listener()
+	onWheel(event) {
 
-			const {
-				deltaY,
-				currentTarget
-			} = event;
+		const { isHiddenScrollbar } = this,
+			{ y2xScroll } = this.props;
 
-			if (y2xScroll && !isHiddenScrollbar) {
-				event.preventDefault();
-				currentTarget.scrollLeft -= deltaY;
-			}
-		};
+		const {
+			deltaY,
+			currentTarget
+		} = event;
+
+		if (y2xScroll && !isHiddenScrollbar) {
+			event.preventDefault();
+			currentTarget.scrollLeft -= deltaY;
+		}
 	}
 
 	setShadow(element) {

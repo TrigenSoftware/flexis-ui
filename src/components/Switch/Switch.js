@@ -2,8 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Stylable,
+	Listener,
 	getHtmlProps,
-	valueOrNull
+	valueOrUndef
 } from '../helpers';
 import stylesheet from './Switch.st.css';
 
@@ -44,7 +45,6 @@ export default class Switch extends PureComponent {
 		const {
 			style,
 			type,
-			onChange,
 			value,
 			checked,
 			defaultChecked,
@@ -53,9 +53,6 @@ export default class Switch extends PureComponent {
 			active,
 			...props
 		} = this.props;
-
-		const useValue = value != null,
-			withOnChange = typeof onChange == 'function';
 
 		return (
 			<label
@@ -67,26 +64,34 @@ export default class Switch extends PureComponent {
 				}}
 			>
 				<input
+					{...getHtmlProps(props)}
 					className='input'
 					type={type}
-					onChange={(event) => {
-
-						if (withOnChange) {
-							onChange(
-								useValue
-									? event.target.value
-									: event.target.checked,
-								event
-							);
-						}
-					}}
-					value={valueOrNull(value)}
-					checked={valueOrNull(checked)}
-					defaultChecked={valueOrNull(defaultChecked)}
-					{...getHtmlProps(props)}
+					onChange={this.onChange()}
+					value={valueOrUndef(value)}
+					checked={valueOrUndef(checked)}
+					defaultChecked={valueOrUndef(defaultChecked)}
 				/>
 				<div className='face'/>
 			</label>
 		);
+	}
+
+	@Listener()
+	onChange(event) {
+
+		const {
+			onChange,
+			value
+		} = this.props;
+
+		if (typeof onChange == 'function') {
+			onChange(
+				value != null
+					? event.target.value
+					: event.target.checked,
+				event
+			);
+		}
 	}
 }

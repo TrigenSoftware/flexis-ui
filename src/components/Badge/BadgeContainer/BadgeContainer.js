@@ -39,11 +39,11 @@ export default class BadgeContainer extends PureComponent {
 
 		return (
 			<span
+				{...getHtmlProps(props)}
 				style-state={{
 					[`${placement}Placement`]: placement,
 					[`${align}Align`]:         align
 				}}
-				{...getHtmlProps(props)}
 			>
 				{children}
 			</span>

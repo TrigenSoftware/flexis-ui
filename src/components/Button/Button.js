@@ -71,6 +71,7 @@ export default class Button extends PureComponent {
 
 		return (
 			<button
+				{...getHtmlProps(props)}
 				style-state={{
 					withIcon:     Boolean(buttonIcon),
 					pseudoFocus:  focus,
@@ -78,7 +79,6 @@ export default class Button extends PureComponent {
 					pseudoActive: active,
 					flexIcon
 				}}
-				{...getHtmlProps(props)}
 			>
 				{buttonIcon ? (
 					<div className='iconContainer'>

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Stylable,
+	Listener,
 	getHtmlProps
 } from '../helpers';
 import stylesheet from './FileUpload.st.css';
@@ -25,7 +26,6 @@ export default class FileUpload extends PureComponent {
 
 		const {
 			style,
-			onChange,
 			children,
 			...props
 		} = this.props;
@@ -36,17 +36,24 @@ export default class FileUpload extends PureComponent {
 			>
 				{children}
 				<input
+					{...getHtmlProps(props)}
 					className='input'
 					type='file'
-					onChange={({ target: { files } }) => {
-
-						if (typeof onChange == 'function') {
-							onChange(Array.from(files));
-						}
-					}}
-					{...getHtmlProps(props)}
+					onChange={this.onChange()}
 				/>
 			</label>
 		);
+	}
+
+	@Listener()
+	onChange({ target: { files } }) {
+
+		const {
+			onChange
+		} = this.props;
+
+		if (typeof onChange == 'function') {
+			onChange(Array.from(files));
+		}
 	}
 }

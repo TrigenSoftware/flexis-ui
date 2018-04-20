@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
 	Stylable,
+	Listener,
 	getHtmlProps,
-	valueOrNull
+	valueOrUndef
 } from '../helpers';
 import stylesheet from './Input.st.css';
 
@@ -59,7 +60,6 @@ export default class Input extends PureComponent {
 		const {
 			style,
 			type,
-			onChange,
 			value,
 			defaultValue,
 			focus,
@@ -74,8 +74,7 @@ export default class Input extends PureComponent {
 			...props
 		} = this.props;
 
-		const withOnChange = typeof onChange == 'function',
-			leftAligned = alignIcon == 'left';
+		const leftAligned = alignIcon == 'left';
 
 		let Input = 'input',
 			maskedInputProps = {},
@@ -115,22 +114,29 @@ export default class Input extends PureComponent {
 			>
 				{leftAligned && inputIcon}
 				<Input
+					{...getHtmlProps(props)}
 					className='input'
 					type={type}
-					onChange={(event) => {
-
-						if (withOnChange) {
-							onChange(event.target.value, event);
-						}
-					}}
-					value={valueOrNull(value)}
-					defaultValue={valueOrNull(defaultValue)}
+					onChange={this.onChange()}
+					value={valueOrUndef(value)}
+					defaultValue={valueOrUndef(defaultValue)}
 					{...maskedInputProps}
-					{...getHtmlProps(props)}
 				/>
 				<div className='border'/>
 				{!leftAligned && inputIcon}
 			</label>
 		);
+	}
+
+	@Listener()
+	onChange(event) {
+
+		const {
+			onChange
+		} = this.props;
+
+		if (typeof onChange == 'function') {
+			onChange(event.target.value, event);
+		}
 	}
 }

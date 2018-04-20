@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
 	Stylable,
+	Listener,
 	getHtmlProps,
 	hasFixedLineage
 } from '../helpers';
@@ -77,13 +78,13 @@ export default class Tooltip extends PureComponent {
 						}}
 					>
 						<div
+							{...getHtmlProps(props)}
 							className='tooltip'
 							style-state={{
 								[`${placement}Placement`]: placement,
 								[`${align}Align`]:         align,
 								active
 							}}
-							{...getHtmlProps(props)}
 						>
 							{content}
 						</div>
@@ -93,42 +94,40 @@ export default class Tooltip extends PureComponent {
 		);
 	}
 
-	onShow() {
-		return ({ currentTarget }) => {
+	@Listener()
+	onShow({ currentTarget }) {
 
-			const {
-				top:  bodyTop,
-				left: bodyLeft
-			} = document.body.getBoundingClientRect();
+		const {
+			top:  bodyTop,
+			left: bodyLeft
+		} = document.body.getBoundingClientRect();
 
-			const {
-				top,
-				left,
-				width,
-				height
-			} = currentTarget.getBoundingClientRect();
+		const {
+			top,
+			left,
+			width,
+			height
+		} = currentTarget.getBoundingClientRect();
 
-			const withFixedLineage = hasFixedLineage(currentTarget);
+		const withFixedLineage = hasFixedLineage(currentTarget);
 
-			this.setState(() => ({
-				active:    true,
-				boxTop:    withFixedLineage
-					? top
-					: top - bodyTop,
-				boxLeft:   withFixedLineage
-					? left
-					: left - bodyLeft,
-				boxWidth:  width,
-				boxHeight: height
-			}));
-		};
+		this.setState(() => ({
+			active:    true,
+			boxTop:    withFixedLineage
+				? top
+				: top - bodyTop,
+			boxLeft:   withFixedLineage
+				? left
+				: left - bodyLeft,
+			boxWidth:  width,
+			boxHeight: height
+		}));
 	}
 
+	@Listener()
 	onHide() {
-		return () => {
-			this.setState(() => ({
-				active: false
-			}));
-		};
+		this.setState(() => ({
+			active: false
+		}));
 	}
 }
