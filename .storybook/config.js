@@ -6,14 +6,14 @@ import {
 	setAddon
 } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
-import { stylable } from '../src/components/helpers';
+import { Stylable } from '../src/components/helpers';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
 import testTheme from '../src/themes/test-index.st.css';
 
 global.TestIcon = TestIcon;
 
-addDecorator(story => stylable(testTheme)(() => (
+addDecorator(story => Stylable(testTheme)(() => (
 	<div style={{ padding: '12px' }}>
 		{story()}
 	</div>

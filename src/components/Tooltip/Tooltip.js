@@ -100,7 +100,7 @@ export default class Tooltip extends PureComponent {
 		const {
 			top:  bodyTop,
 			left: bodyLeft
-		} = document.body.getBoundingClientRect();
+		} = document.documentElement.getBoundingClientRect();
 
 		const {
 			top,
