@@ -1,5 +1,6 @@
 @namespace 'FlexisUI';
 
-:global(*) {
-	box-sizing: border-box;
+:import {
+	-st-from: './reboot.st.css';
+	-st-theme: true;
 }

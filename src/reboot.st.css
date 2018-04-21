@@ -1,0 +1,641 @@
+/*
+stylelint-disable
+	scale-unlimited/declaration-strict-value,
+	property-no-vendor-prefix,
+	at-rule-no-vendor-prefix,
+	comment-empty-line-before,
+	no-descending-specificity
+*/
+
+/**
+ * Reboot
+ *
+ * Normalization of HTML elements, manually forked from Normalize.css to remove
+ * styles targeting irrelevant browsers while applying new styles.
+ *
+ * Normalize is licensed MIT. https://github.com/necolas/normalize.css
+ */
+
+:import {
+	-st-from: './variables.st.css';
+	-st-named:
+		fontFamilyBase,
+		fontFamilySansSerif,
+		fontFamilyMonospace;
+}
+
+/**
+ * Document
+ *
+ * 1. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
+ * 2. Change the default font family in all browsers.
+ * 3. Correct the line height in all browsers.
+ * 4. Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.
+ * 5. Setting @viewport causes scrollbars to overlap content in IE11 and Edge, so
+ *    we force a non-overlapping, non-auto-hiding scrollbar to counteract.
+ * 6. Change the default tap highlight to be completely transparent in iOS.
+ */
+
+:global(
+	*,
+	*::before,
+	*::after
+) {
+	box-sizing: border-box; /* 1 */
+}
+
+:global(
+	html
+) {
+	line-height: 1.15; /* 3 */
+	font-family: sans-serif; /* 2 */
+	font-size: .625rem;
+	-webkit-text-size-adjust: 100%; /* 4 */
+	-ms-text-size-adjust: 100%; /* 4 */
+	-ms-overflow-style: scrollbar; /* 5 */
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 6 */
+}
+
+/**
+ * IE10+ doesn't honor `<meta name="viewport">` in some cases.
+ */
+
+@-ms-viewport {
+	width: device-width;
+}
+
+/**
+ * Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
+ */
+
+:global(
+	article,
+	aside,
+	figcaption,
+	figure,
+	footer,
+	header,
+	hgroup,
+	main,
+	nav,
+	section
+) {
+	display: block;
+}
+
+/**
+ * Body
+ *
+ * 1. Remove the margin in all browsers.
+ * 2. As a best practice, apply a default `background-color`.
+ * 3. Set an explicit initial text-align value so that we can later use the
+ *    the `inherit` value on things like `<th>` elements.
+ */
+
+:global(
+	body
+) {
+	margin: 0; /* 1 */
+	background-color: white; /* 2 */
+	text-align: left; /* 3 */
+	line-height: 1.5;
+	font-family: value(fontFamilyBase);
+	font-size: 1.6rem;
+	font-weight: normal;
+}
+
+/**
+ * Suppress the focus outline on elements that cannot be accessed via keyboard.
+ * This prevents an unwanted focus outline from appearing around elements that
+ * might still respond to pointer events.
+ *
+ * Credit: https://github.com/suitcss/base
+ */
+
+:global(
+	[tabindex=-1]:focus
+) {
+	outline: 0 !important;
+}
+
+/**
+ * Content grouping
+ *
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+:global(
+	hr
+) {
+	box-sizing: content-box; /* 1 */
+	height: 0; /* 1 */
+	overflow: visible; /* 2 */
+}
+
+/**
+ * Typography
+ */
+
+/**
+ * Remove top margins from headings
+ *
+ * By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+ * margin for easier control within type scales as it avoids margin collapsing.
+ */
+
+:global(
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+) {
+	margin-top: 0;
+	margin-bottom: .5rem;
+}
+
+/**
+ * Reset margins on paragraphs
+ *
+ * Similarly, the top margin on `<p>`s get reset. However, we also reset the
+ * bottom margin to use `rem` units instead of `em`.
+ */
+
+:global(
+	p
+) {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+/**
+ * Abbreviations
+ *
+ * 1. Remove the bottom border in Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ * 3. Add explicit cursor to indicate changed behavior.
+ * 4. Duplicate behavior to the data-* attribute for our tooltip plugin
+ */
+
+:global(
+	abbr[title]
+) {
+	border-bottom: 0; /* 1 */
+	cursor: help; /* 3 */
+	text-decoration: underline; /* 2 */
+	text-decoration: underline dotted; /* 2 */
+}
+
+:global(
+	address
+) {
+	margin-bottom: 1rem;
+	line-height: inherit;
+	font-style: normal;
+}
+
+:global(
+	ol,
+	ul,
+	dl
+) {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+:global(
+	ol ol,
+	ul ul,
+	ol ul,
+	ul ol
+) {
+	margin-bottom: 0;
+}
+
+:global(
+	dt
+) {
+	font-weight: bold;
+}
+
+:global(
+	dd
+) {
+	margin-bottom: .5rem;
+	/* Undo browser default */
+	margin-left: 0;
+}
+
+:global(
+	blockquote
+) {
+	margin: 0 0 1rem;
+}
+
+:global(
+	dfn
+) {
+	/* Add the correct font style in Android 4.3- */
+	font-style: italic;
+}
+
+:global(
+	b,
+	strong
+) {
+	/* Add the correct font weight in Chrome, Edge, and Safari */
+	font-weight: bolder;
+}
+
+:global(
+	small
+) {
+	/* Add the correct font size in all browsers */
+	font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+:global(
+	sub,
+	sup
+) {
+	position: relative;
+	vertical-align: baseline;
+	line-height: 0;
+	font-size: 75%;
+}
+
+:global(
+	sub
+) {
+	bottom: -.25em;
+}
+
+:global(
+	sup
+) {
+	top: -.5em;
+}
+
+/**
+ * Links
+ */
+
+:global(
+	a
+) {
+	/* Remove the gray background on active links in IE 10. */
+	background-color: transparent;
+	/* Remove gaps in links underline in iOS 8+ and Safari 8+. */
+	-webkit-text-decoration-skip: objects;
+}
+
+/**
+ * Code
+ */
+
+:global(
+	pre,
+	code,
+	kbd,
+	samp
+) {
+	/* Correct the inheritance and scaling of font size in all browsers. */
+	font-family: value(fontFamilyMonospace);
+	/* Correct the odd `em` font sizing in all browsers. */
+	font-size: 1em;
+}
+
+:global(
+	pre
+) {
+	/* Remove browser default top margin */
+	margin-top: 0;
+	/* Reset browser default of `1em` to use `rem`s */
+	margin-bottom: 1rem;
+	/* Don't allow content to break outside */
+	overflow: auto;
+	/* We have @viewport set which causes scrollbars to overlap content in IE11 and Edge, so
+	   we force a non-overlapping, non-auto-hiding scrollbar to counteract. */
+	-ms-overflow-style: scrollbar;
+}
+
+/**
+ * Figures
+ */
+
+:global(
+	figure
+) {
+	/* Apply a consistent margin strategy (matches our type styles). */
+	margin: 0 0 1rem;
+}
+
+/**
+ * Images and content
+ */
+
+:global(
+	img
+) {
+	/* Remove the border on images inside links in IE 10-. */
+	border-style: none;
+	vertical-align: middle;
+}
+
+:global(
+	svg:not(:root)
+) {
+	/* Hide the overflow in IE */
+	overflow: hidden;
+}
+
+/**
+ * Tables
+ */
+
+:global(
+	table
+) {
+	/* Prevent double borders */
+	border-collapse: collapse;
+}
+
+:global(
+	caption
+) {
+	caption-side: bottom;
+	text-align: left;
+}
+
+:global(
+	th
+) {
+	/* Matches default `<td>` alignment by inheriting from the `<body>`, or the
+	   closest parent with a set `text-align`. */
+	text-align: inherit;
+}
+
+/**
+ * Forms
+ */
+
+:global(
+	label
+) {
+	/* Allow labels to use `margin` for spacing. */
+	display: inline-block;
+}
+
+/**
+ * Remove the default `border-radius` that macOS Chrome adds.
+ *
+ * Details at https://github.com/twbs/bootstrap/issues/24093
+ */
+
+:global(
+	button
+) {
+	border-radius: 0;
+}
+
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ *
+ * Credit: https://github.com/suitcss/base/
+ */
+
+:global(
+	button:focus
+) {
+	outline: 1px dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+:global(
+	input,
+	button,
+	select,
+	optgroup,
+	textarea
+) {
+	/* Remove the margin in Firefox and Safari */
+	margin: 0;
+	line-height: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+:global(
+	button,
+	input
+) {
+	/* Show the overflow in Edge */
+	overflow: visible;
+}
+
+:global(
+	button,
+	selec
+)t {
+	/* Remove the inheritance of text transform in Firefox */
+	text-transform: none;
+}
+
+/**
+ * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *    controls in Android 4.
+ * 2. Correct the inability to style clickable types in iOS and Safari.
+ */
+
+:global(
+	button,
+	html [type=button], /* 1 */
+	[type=reset],
+	[type=submit]
+) {
+	-webkit-appearance: button; /* 2 */
+}
+
+/**
+ * Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
+ */
+
+:global(
+	button::-moz-focus-inner,
+	[type=button]::-moz-focus-inner,
+	[type=reset]::-moz-focus-inner,
+	[type=submit]::-moz-focus-inner
+) {
+	border-style: none;
+	padding: 0;
+}
+
+:global(
+	input[type=radio],
+	input[type=checkbox]
+) {
+	/* 1. Add the correct box sizing in IE 10- */
+	box-sizing: border-box;
+	/* 2. Remove the padding in IE 10- */
+	padding: 0;
+}
+
+:global(
+	input[type=date],
+	input[type=time],
+	input[type=datetime-local],
+	input[type=month]
+) {
+	/**
+	 * Remove the default appearance of temporal inputs to avoid a Mobile Safari
+	 * bug where setting a custom line-height prevents text from being vertically
+	 * centered within the input.
+	 * See https://bugs.webkit.org/show_bug.cgi?id=139848
+	 * and https://github.com/twbs/bootstrap/issues/11266
+	 */
+	-webkit-appearance: listbox;
+}
+
+:global(
+	textarea
+) {
+	/* Remove the default vertical scrollbar in IE. */
+	overflow: auto;
+	/* Textareas should really only resize vertically so they don't break their (horizontal) containers. */
+	resize: vertical;
+}
+
+:global(
+	fieldset
+) {
+	/**
+	 * Browsers set a default `min-width: min-content;` on fieldsets,
+	 * unlike e.g. `<div>`s, which have `min-width: 0;` by default.
+	 * So we reset that to ensure fieldsets behave more like a standard block element.
+	 * See https://github.com/twbs/bootstrap/issues/12359
+	 * and https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
+	 */
+	/* Reset the default outline behavior of fieldsets so they don't affect page layout. */
+	margin: 0;
+	border: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ */
+
+:global(
+	legend
+) {
+	display: block;
+	margin-bottom: .5rem;
+	padding: 0;
+	width: 100%;
+	max-width: 100%; /* 1 */
+	line-height: inherit;
+	white-space: normal; /* 1 */
+	color: inherit; /* 2 */
+	font-size: 1.5rem;
+}
+
+:global(
+	progress
+) {
+	/* Add the correct vertical alignment in Chrome, Firefox, and Opera. */
+	vertical-align: baseline;
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+:global(
+	[type=number]::-webkit-inner-spin-button,
+	[type=number]::-webkit-outer-spin-button
+) {
+	height: auto;
+}
+
+:global(
+	[type=search]
+) {
+	/**
+	 * This overrides the extra rounded corners on search inputs in iOS so that our
+	 * `.form-control` class can properly style them. Note that this cannot simply
+	 * be added to `.form-control` as it's not specific enough. For details, see
+	 * https://github.com/twbs/bootstrap/issues/11586.
+	 */
+	/* 2. Correct the outline style in Safari. */
+	-webkit-appearance: none;
+	outline-offset: -2px;
+}
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+
+:global(
+	[type=search]::-webkit-search-cancel-button,
+	[type=search]::-webkit-search-decoration
+) {
+	-webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+:global(
+	::-webkit-file-upload-button
+) {
+	-webkit-appearance: button; /* 1 */
+	font: inherit; /* 2 */
+}
+
+/**
+ * Correct element displays
+ */
+
+:global(
+	output
+) {
+	display: inline-block;
+}
+
+:global(
+	summary
+) {
+	/* Add the correct display in all browsers */
+	display: list-item;
+	cursor: pointer;
+}
+
+:global(
+	template
+) {
+	/* Add the correct display in IE */
+	display: none;
+}
+
+/**
+ * Always hide an element with the `hidden` HTML attribute (from PureCSS).
+ * Needed for proper display in IE 10-.
+ */
+
+:global(
+	[hidden]
+) {
+	display: none !important;
+}

@@ -7,7 +7,7 @@
 
 .scroller {
 	-st-states:
-		hideXScrollbar
+		hideXScrollbar,
 		hideYScrollbar;
 	width: inherit;
 	min-width: inherit;
