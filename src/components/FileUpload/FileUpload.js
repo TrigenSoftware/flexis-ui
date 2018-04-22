@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {
 	Stylable,
 	Listener,
-	getHtmlProps
+	getHtmlProps,
+	valueOrUndef
 } from '../helpers';
 import stylesheet from './FileUpload.st.css';
 
@@ -11,20 +12,23 @@ import stylesheet from './FileUpload.st.css';
 export default class FileUpload extends PureComponent {
 
 	static propTypes = {
-		style:    PropTypes.object,
-		onChange: PropTypes.func,
-		children: PropTypes.any
+		elementRef: PropTypes.func,
+		style:      PropTypes.object,
+		onChange:   PropTypes.func,
+		children:   PropTypes.any
 	};
 
 	static defaultProps = {
-		style:    null,
-		onChange: null,
-		children: null
+		elementRef: null,
+		style:      null,
+		onChange:   null,
+		children:   null
 	};
 
 	render() {
 
 		const {
+			elementRef,
 			style,
 			children,
 			...props
@@ -37,6 +41,7 @@ export default class FileUpload extends PureComponent {
 				{children}
 				<input
 					{...getHtmlProps(props)}
+					ref={valueOrUndef(elementRef)}
 					className='input'
 					type='file'
 					onChange={this.onChange()}

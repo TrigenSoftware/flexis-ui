@@ -12,6 +12,7 @@ import stylesheet from './Switch.st.css';
 export default class Switch extends PureComponent {
 
 	static propTypes = {
+		elementRef:     PropTypes.func,
 		style:          PropTypes.object,
 		type:           PropTypes.oneOf([
 			'checkbox',
@@ -30,6 +31,7 @@ export default class Switch extends PureComponent {
 	};
 
 	static defaultProps = {
+		elementRef:     null,
 		style:          null,
 		onChange:       null,
 		value:          null,
@@ -43,6 +45,7 @@ export default class Switch extends PureComponent {
 	render() {
 
 		const {
+			elementRef,
 			style,
 			type,
 			value,
@@ -65,6 +68,7 @@ export default class Switch extends PureComponent {
 			>
 				<input
 					{...getHtmlProps(props)}
+					ref={valueOrUndef(elementRef)}
 					className='input'
 					type={type}
 					onChange={this.onChange()}

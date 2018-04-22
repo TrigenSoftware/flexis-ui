@@ -12,6 +12,7 @@ import stylesheet from './Checkbox.st.css';
 export default class Checkbox extends PureComponent {
 
 	static propTypes = {
+		elementRef:     PropTypes.func,
 		style:          PropTypes.object,
 		onChange:       PropTypes.func,
 		value:          PropTypes.oneOfType([
@@ -26,6 +27,7 @@ export default class Checkbox extends PureComponent {
 	};
 
 	static defaultProps = {
+		elementRef:     null,
 		style:          null,
 		onChange:       null,
 		value:          null,
@@ -39,6 +41,7 @@ export default class Checkbox extends PureComponent {
 	render() {
 
 		const {
+			elementRef,
 			style,
 			value,
 			checked,
@@ -60,6 +63,7 @@ export default class Checkbox extends PureComponent {
 			>
 				<input
 					{...getHtmlProps(props)}
+					ref={valueOrUndef(elementRef)}
 					className='checkbox'
 					type='checkbox'
 					value={valueOrUndef(value)}

@@ -37,9 +37,9 @@
     "wix-react-tools": "^4.1.2"
   },
   "peerDependencies": {
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.12",
@@ -59,9 +59,9 @@
     "eslint-loader": "^1.9.0",
     "postcss-loader": "^2.1.0",
     "postcss-reporter": "^5.0.0",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "stylelint": "^9.1.1",
     "stylelint-config-trigen": "^1.9.4",
     "svg-react-loader": "^0.4.5"

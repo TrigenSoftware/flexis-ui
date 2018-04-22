@@ -1,11 +1,13 @@
 import React, {
 	PureComponent,
-	Children
+	Children,
+	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Stylable,
-	getHtmlProps
+	getHtmlProps,
+	valueOrUndef
 } from '../helpers';
 import stylesheet from './Link.st.css';
 
@@ -16,33 +18,36 @@ let LinkElement = 'a',
 export default class Link extends PureComponent {
 
 	static propTypes = {
-		focus:     PropTypes.bool,
-		hover:     PropTypes.bool,
-		active:    PropTypes.bool,
-		iconOnly:  PropTypes.bool,
-		icon:      PropTypes.element,
-		flexIcon:  PropTypes.bool,
-		alignIcon: PropTypes.oneOf([
+		elementRef: PropTypes.func,
+		focus:      PropTypes.bool,
+		hover:      PropTypes.bool,
+		active:     PropTypes.bool,
+		iconOnly:   PropTypes.bool,
+		icon:       PropTypes.element,
+		flexIcon:   PropTypes.bool,
+		alignIcon:  PropTypes.oneOf([
 			'left',
 			'right'
 		]),
-		children:  PropTypes.any
+		children:   PropTypes.any
 	};
 
 	static defaultProps = {
-		focus:     false,
-		hover:     false,
-		active:    false,
-		iconOnly:  false,
-		icon:      null,
-		flexIcon:  false,
-		alignIcon: 'left',
-		children:  null
+		elementRef: null,
+		focus:      false,
+		hover:      false,
+		active:     false,
+		iconOnly:   false,
+		icon:       null,
+		flexIcon:   false,
+		alignIcon:  'left',
+		children:   null
 	};
 
 	render() {
 
 		const {
+			elementRef,
 			focus,
 			hover,
 			active,
@@ -59,22 +64,20 @@ export default class Link extends PureComponent {
 		let linkIcon = null;
 
 		if (icon !== null) {
-			linkIcon = {
-				...icon,
-				props: {
-					...icon.props,
-					...stylesheet('icon', {
-						[`${alignIcon}Align`]: alignIcon
-							&& Children.count(children)
-							&& !iconOnly
-					}, icon.props)
-				}
-			};
+			linkIcon = cloneElement(
+				icon,
+				stylesheet('icon', {
+					[`${alignIcon}Align`]: alignIcon
+						&& Children.count(children)
+						&& !iconOnly
+				}, icon.props)
+			);
 		}
 
 		return (
 			<LinkElement
 				{...getHtmlProps(props)}
+				ref={valueOrUndef(elementRef)}
 				style-state={{
 					withIcon:     Boolean(linkIcon),
 					pseudoFocus:  focus,
@@ -107,7 +110,11 @@ export function getLinkElement() {
 
 function getLinkElementCustomProps(inputProps) {
 	return linkElementCustomProps.reduce((customProps, prop) => {
-		customProps[prop] = inputProps[prop];
+
+		if (inputProps.hasOwnProperty(prop)) {
+			customProps[prop] = inputProps[prop];
+		}
+
 		return customProps;
 	}, {});
 }

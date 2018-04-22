@@ -1,4 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, {
+	PureComponent,
+	cloneElement
+} from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
@@ -13,6 +16,7 @@ import stylesheet from './Input.st.css';
 export default class Input extends PureComponent {
 
 	static propTypes = {
+		elementRef:     PropTypes.func,
 		style:          PropTypes.object,
 		type:           PropTypes.string,
 		onChange:       PropTypes.func,
@@ -39,6 +43,7 @@ export default class Input extends PureComponent {
 	};
 
 	static defaultProps = {
+		elementRef:     null,
 		style:          null,
 		type:           'text',
 		onChange:       null,
@@ -58,6 +63,7 @@ export default class Input extends PureComponent {
 	render() {
 
 		const {
+			elementRef,
 			style,
 			type,
 			value,
@@ -91,15 +97,12 @@ export default class Input extends PureComponent {
 		}
 
 		if (icon !== null) {
-			inputIcon = {
-				...icon,
-				props: {
-					...icon.props,
-					...stylesheet('icon', {
-						[`${alignIcon}Align`]: alignIcon
-					}, icon.props)
-				}
-			};
+			inputIcon = cloneElement(
+				icon,
+				stylesheet('icon', {
+					[`${alignIcon}Align`]: alignIcon
+				}, icon.props)
+			);
 		}
 
 		return (
@@ -115,6 +118,7 @@ export default class Input extends PureComponent {
 				{leftAligned && inputIcon}
 				<Input
 					{...getHtmlProps(props)}
+					ref={valueOrUndef(elementRef && mapRef(elementRef))}
 					className='input'
 					type={type}
 					onChange={this.onChange()}
@@ -139,4 +143,12 @@ export default class Input extends PureComponent {
 			onChange(event.target.value, event);
 		}
 	}
+}
+
+function mapRef(elementRef) {
+	return ref => elementRef(
+		ref instanceof MaskedInput
+			? ref.input
+			: ref
+	);
 }

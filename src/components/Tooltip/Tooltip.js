@@ -13,6 +13,10 @@ import stylesheet from './Tooltip.st.css';
 export default class Tooltip extends PureComponent {
 
 	static propTypes = {
+		tabIndex:  PropTypes.oneOfType([
+			PropTypes.number,
+			PropTypes.string
+		]),
 		content:   PropTypes.any,
 		placement: PropTypes.oneOf([
 			'top',
@@ -29,8 +33,9 @@ export default class Tooltip extends PureComponent {
 	};
 
 	static defaultProps = {
-		content: null,
-		align:   'center'
+		tabIndex: 1,
+		content:  null,
+		align:    'center'
 	};
 
 	state = {
@@ -44,6 +49,7 @@ export default class Tooltip extends PureComponent {
 	render() {
 
 		const {
+			tabIndex,
 			content,
 			placement,
 			align,
@@ -65,6 +71,7 @@ export default class Tooltip extends PureComponent {
 				onFocus={this.onShow()}
 				onMouseLeave={this.onHide()}
 				onBlur={this.onHide()}
+				tabIndex={tabIndex}
 			>
 				{children}
 				{createPortal((
