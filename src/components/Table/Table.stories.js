@@ -14,6 +14,14 @@ import Table, {
 const stylableApi = `
 Stylable API
 ---
+- ::head
+- ::body
+- ::row
+- ::cell
+	- :head
+	- :orderNone
+	- :orderAsc
+	- :orderDesc
 `;
 
 const rowsCount = 10;
