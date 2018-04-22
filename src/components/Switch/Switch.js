@@ -5,7 +5,7 @@ import {
 	Listener,
 	getHtmlProps,
 	valueOrUndef
-} from '../helpers';
+} from '../../helpers';
 import stylesheet from './Switch.st.css';
 
 @Stylable(stylesheet)

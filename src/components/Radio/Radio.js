@@ -5,7 +5,7 @@ import {
 	Listener,
 	getHtmlProps,
 	valueOrUndef
-} from '../helpers';
+} from '../../helpers';
 import stylesheet from './Radio.st.css';
 
 @Stylable(stylesheet)

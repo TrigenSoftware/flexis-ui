@@ -9,7 +9,7 @@ import {
 	Listener,
 	getHtmlProps,
 	valueOrUndef
-} from '../helpers';
+} from '../../helpers';
 import stylesheet from './Input.st.css';
 
 @Stylable(stylesheet)

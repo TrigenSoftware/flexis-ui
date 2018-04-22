@@ -8,7 +8,7 @@ import {
 	Stylable,
 	getHtmlProps,
 	valueOrUndef
-} from '../helpers';
+} from '../../helpers';
 import stylesheet from './Button.st.css';
 
 @Stylable(stylesheet)

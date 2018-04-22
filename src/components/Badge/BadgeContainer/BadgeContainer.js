@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
 	Stylable,
 	getHtmlProps
-} from '../../helpers';
+} from '../../../helpers';
 import stylesheet from './BadgeContainer.st.css';
 
 @Stylable(stylesheet)

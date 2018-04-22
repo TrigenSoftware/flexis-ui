@@ -4,7 +4,7 @@ import {
 	Stylable,
 	Listener,
 	getHtmlProps
-} from '../helpers';
+} from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
 
 @Stylable(stylesheet)

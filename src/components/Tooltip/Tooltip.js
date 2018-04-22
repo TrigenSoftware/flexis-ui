@@ -6,7 +6,7 @@ import {
 	Listener,
 	getHtmlProps,
 	hasFixedLineage
-} from '../helpers';
+} from '../../helpers';
 import stylesheet from './Tooltip.st.css';
 
 @Stylable(stylesheet)
