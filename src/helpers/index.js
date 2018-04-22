@@ -6,3 +6,4 @@ export { default as getHtmlProps } from './getHtmlProps';
 export { default as hasFixedLineage } from './hasFixedLineage';
 export { default as textTruncate } from './textTruncate';
 export { default as valueOrUndef } from './valueOrUndef';
+export { default as onOutsideClick } from './onOutsideClick';
