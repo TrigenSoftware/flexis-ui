@@ -51,14 +51,17 @@ export default class FileUpload extends PureComponent {
 	}
 
 	@Listener()
-	onChange({ target: { files } }) {
+	onChange(event) {
 
 		const {
 			onChange
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(Array.from(files));
+			onChange(
+				Array.from(event.target.files),
+				event
+			);
 		}
 	}
 }

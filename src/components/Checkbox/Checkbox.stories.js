@@ -11,9 +11,6 @@ import Checkbox from './';
 const stylableApi = `
 Stylable API
 ---
-- :pseudoFocus
-- :pseudoHover
-- :pseudoActive
 - ::checkbox
 - ::face
 `;
@@ -61,19 +58,6 @@ storiesOf('Checkbox', module)
 		'with checked state',
 		() => (
 			<Checkbox
-				disabled={boolean('Disabled', false)}
-				checked={boolean('Checked', true)}
-				{...events}
-			/>
-		)
-	)
-	.add(
-		'with custom styles',
-		() => (
-			<Checkbox
-				focus={boolean('Focus', false)}
-				hover={boolean('Hover', false)}
-				active={boolean('Active', false)}
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', true)}
 				{...events}

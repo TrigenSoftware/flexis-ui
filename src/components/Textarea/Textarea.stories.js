@@ -5,22 +5,13 @@ import { action } from '@storybook/addon-actions';
 import {
 	withKnobs,
 	text,
-	boolean,
-	select
+	boolean
 } from '@storybook/addon-knobs/react';
-import Input from './';
-
-const { TestIcon } = global;
+import Textarea from './';
 
 const stylableApi = `
 Stylable API
 ---
-- :withIcon
-- ::icon
-	- :leftAlign
-	- :rightAlign
-- ::input
-- ::border
 `;
 
 const events = {
@@ -29,13 +20,13 @@ const events = {
 	onBlur:   action('blur')
 };
 
-storiesOf('Input', module)
+storiesOf('Textarea', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
 	.addDecorator(withKnobs)
 	.add(
 		'with default state',
 		() => (
-			<Input
+			<Textarea
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				defaultValue=''
@@ -46,7 +37,7 @@ storiesOf('Input', module)
 	.add(
 		'with default value',
 		() => (
-			<Input
+			<Textarea
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				defaultValue='Default value'
@@ -57,48 +48,10 @@ storiesOf('Input', module)
 	.add(
 		'with value',
 		() => (
-			<Input
+			<Textarea
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				value={text('Value', 'Value')}
-				{...events}
-			/>
-		)
-	)
-	.add(
-		'with mask',
-		() => (
-			<Input
-				placeholder={text('Placeholder', '')}
-				mask={text('Mask', '+7 (999) 999-99-99')}
-				disabled={boolean('Disabled', false)}
-				defaultValue='+7 (913) 421-04-04'
-				{...events}
-			/>
-		)
-	)
-	.add(
-		'with icon',
-		() => (
-			<Input
-				placeholder={text('Placeholder', '')}
-				disabled={boolean('Disabled', false)}
-				value={text('Value', 'Value')}
-				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'left')}
-				{...events}
-			/>
-		)
-	)
-	.add(
-		'with right aligned icon',
-		() => (
-			<Input
-				placeholder={text('Placeholder', '')}
-				disabled={boolean('Disabled', false)}
-				value={text('Value', 'Value')}
-				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 				{...events}
 			/>
 		)

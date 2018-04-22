@@ -1,10 +1,6 @@
 
 .root {
 	-st-states:
-		/* Basic states */
-		pseudoFocus,
-		pseudoHover,
-		pseudoActive,
 		withIcon,
 		flexIcon;
 	cursor: pointer;

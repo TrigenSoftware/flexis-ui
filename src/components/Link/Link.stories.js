@@ -100,34 +100,4 @@ storiesOf('Link', module)
 				{text('Label', 'Link')}
 			</Link>
 		)
-	)
-	.add(
-		'with custom styles',
-		() => (
-			<Link
-				href='#'
-				focus={boolean('Focus', false)}
-				hover={boolean('Hover', false)}
-				active={boolean('Active', false)}
-				{...events}
-			>
-				{text('Label', 'Link')}
-			</Link>
-		)
-	)
-	.add(
-		'with custom styles and icon',
-		() => (
-			<Link
-				href='#'
-				focus={boolean('Focus', false)}
-				hover={boolean('Hover', false)}
-				active={boolean('Active', false)}
-				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'left')}
-				{...events}
-			>
-				{text('Label', 'Link')}
-			</Link>
-		)
 	);

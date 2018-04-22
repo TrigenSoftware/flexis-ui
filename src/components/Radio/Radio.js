@@ -20,10 +20,7 @@ export default class Radio extends PureComponent {
 			PropTypes.number
 		]),
 		checked:        PropTypes.bool,
-		defaultChecked: PropTypes.bool,
-		focus:          PropTypes.bool,
-		hover:          PropTypes.bool,
-		active:         PropTypes.bool
+		defaultChecked: PropTypes.bool
 	};
 
 	static defaultProps = {
@@ -32,10 +29,7 @@ export default class Radio extends PureComponent {
 		onChange:       null,
 		value:          null,
 		checked:        null,
-		defaultChecked: null,
-		focus:          false,
-		hover:          false,
-		active:         false
+		defaultChecked: null
 	};
 
 	render() {
@@ -46,20 +40,12 @@ export default class Radio extends PureComponent {
 			value,
 			checked,
 			defaultChecked,
-			focus,
-			hover,
-			active,
 			...props
 		} = this.props;
 
 		return (
 			<label
 				style={style}
-				style-state={{
-					pseudoFocus:  focus,
-					pseudoHover:  hover,
-					pseudoActive: active
-				}}
 			>
 				<input
 					{...getHtmlProps(props)}

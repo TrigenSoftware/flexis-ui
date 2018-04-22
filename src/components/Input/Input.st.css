@@ -1,11 +1,6 @@
 
 .root {
-	-st-states:
-		/* Basic states */
-		pseudoFocus,
-		pseudoHover,
-		pseudoActive,
-		withIcon;
+	-st-states: withIcon;
 	display: inline-flex;
 	position: relative;
 	align-items: center;

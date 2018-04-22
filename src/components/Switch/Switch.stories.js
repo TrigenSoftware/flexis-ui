@@ -70,18 +70,4 @@ storiesOf('Switch', module)
 				{...events}
 			/>
 		)
-	)
-	.add(
-		'with custom styles',
-		() => (
-			<Switch
-				type='checkbox'
-				focus={boolean('Focus', false)}
-				hover={boolean('Hover', false)}
-				active={boolean('Active', false)}
-				disabled={boolean('Disabled', false)}
-				checked={boolean('Checked', true)}
-				{...events}
-			/>
-		)
 	);

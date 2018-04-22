@@ -15,9 +15,6 @@ const { TestIcon } = global;
 const stylableApi = `
 Stylable API
 ---
-- :pseudoFocus
-- :pseudoHover
-- :pseudoActive
 - :withIcon
 - :flexIcon
 - ::icon
@@ -81,36 +78,6 @@ storiesOf('Button', module)
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 				flexIcon={boolean('Flex icon', true)}
-				{...events}
-			>
-				{text('Label', 'Button')}
-			</Button>
-		)
-	)
-	.add(
-		'with custom styles',
-		() => (
-			<Button
-				focus={boolean('Focus', false)}
-				hover={boolean('Hover', false)}
-				active={boolean('Active', false)}
-				disabled={boolean('Disabled', false)}
-				{...events}
-			>
-				{text('Label', 'Button')}
-			</Button>
-		)
-	)
-	.add(
-		'with custom styles and icon',
-		() => (
-			<Button
-				focus={boolean('Focus', false)}
-				hover={boolean('Hover', false)}
-				active={boolean('Active', false)}
-				disabled={boolean('Disabled', false)}
-				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'left')}
 				{...events}
 			>
 				{text('Label', 'Button')}

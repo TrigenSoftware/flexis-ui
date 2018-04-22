@@ -28,9 +28,6 @@ export default class Input extends PureComponent {
 			PropTypes.string,
 			PropTypes.number
 		]),
-		focus:          PropTypes.bool,
-		hover:          PropTypes.bool,
-		active:         PropTypes.bool,
 		icon:           PropTypes.element,
 		alignIcon:      PropTypes.oneOf([
 			'left',
@@ -49,9 +46,6 @@ export default class Input extends PureComponent {
 		onChange:       null,
 		value:          null,
 		defaultValue:   null,
-		focus:          false,
-		hover:          false,
-		active:         false,
 		icon:           null,
 		alignIcon:      'left',
 		mask:           null,
@@ -68,9 +62,6 @@ export default class Input extends PureComponent {
 			type,
 			value,
 			defaultValue,
-			focus,
-			hover,
-			active,
 			icon,
 			alignIcon,
 			mask,
@@ -109,10 +100,7 @@ export default class Input extends PureComponent {
 			<label
 				style={style}
 				style-state={{
-					withIcon:     Boolean(inputIcon),
-					pseudoFocus:  focus,
-					pseudoHover:  hover,
-					pseudoActive: active
+					withIcon: Boolean(inputIcon)
 				}}
 			>
 				{leftAligned && inputIcon}
@@ -140,7 +128,10 @@ export default class Input extends PureComponent {
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(event.target.value, event);
+			onChange(
+				event.target.value,
+				event
+			);
 		}
 	}
 }

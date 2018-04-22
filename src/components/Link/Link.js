@@ -19,9 +19,6 @@ export default class Link extends PureComponent {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
-		focus:      PropTypes.bool,
-		hover:      PropTypes.bool,
-		active:     PropTypes.bool,
 		iconOnly:   PropTypes.bool,
 		icon:       PropTypes.element,
 		flexIcon:   PropTypes.bool,
@@ -34,9 +31,6 @@ export default class Link extends PureComponent {
 
 	static defaultProps = {
 		elementRef: null,
-		focus:      false,
-		hover:      false,
-		active:     false,
 		iconOnly:   false,
 		icon:       null,
 		flexIcon:   false,
@@ -48,9 +42,6 @@ export default class Link extends PureComponent {
 
 		const {
 			elementRef,
-			focus,
-			hover,
-			active,
 			icon,
 			iconOnly,
 			flexIcon,
@@ -79,10 +70,7 @@ export default class Link extends PureComponent {
 				{...getHtmlProps(props)}
 				ref={valueOrUndef(elementRef)}
 				style-state={{
-					withIcon:     Boolean(linkIcon),
-					pseudoFocus:  focus,
-					pseudoHover:  hover,
-					pseudoActive: active,
+					withIcon: Boolean(linkIcon),
 					flexIcon
 				}}
 				{...getLinkElementCustomProps(props)}

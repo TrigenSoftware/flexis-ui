@@ -1,10 +1,5 @@
 
 .root {
-	-st-states:
-		/* Basic states */
-		pseudoFocus,
-		pseudoHover,
-		pseudoActive;
 	display: inline-block;
 	position: relative;
 	width: 2rem;

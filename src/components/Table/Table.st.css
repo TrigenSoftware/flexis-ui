@@ -1,0 +1,31 @@
+
+.root {
+	width: 100%;
+}
+
+.cell {
+	-st-states:
+		head,
+		orderNone,
+		orderAsc,
+		orderDesc;
+}
+
+.cell:orderNone,
+.cell:orderAsc,
+.cell:orderDesc {
+	cursor: pointer;
+	user-select: none;
+}
+
+.cell:orderNone::after {
+	content: '\2013';
+}
+
+.cell:orderAsc::after {
+	content: '\25b2';
+}
+
+.cell:orderDesc::after {
+	content: '\25bc';
+}
