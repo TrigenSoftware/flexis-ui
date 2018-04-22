@@ -1,0 +1,51 @@
+
+.root {
+	-st-states:
+		disable,
+		active;
+	display: inline-block;
+}
+
+.box {
+	-st-states: active;
+	position: fixed;
+	z-index: 1;
+}
+
+.box:not(:active) {
+	pointer-events: none;
+	opacity: 0;
+}
+
+.content {
+	-st-states:
+		leftAlign,
+		centerAlign,
+		rightAlign;
+	position: absolute;
+	bottom: 0;
+}
+
+.content:leftAlign {
+	left: 0;
+}
+
+.content:centerAlign {
+	left: 50%;
+}
+
+.content:rightAlign {
+	right: 0;
+}
+
+.box:active .content:leftAlign {
+	transform: translate(0, 100%);
+}
+
+.box:active .content:centerAlign {
+	transform: translate(-50%, 100%);
+}
+
+.box:active .content:rightAlign {
+	transform: translate(0, 100%);
+}

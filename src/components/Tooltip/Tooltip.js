@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {
 	Stylable,
 	Listener,
-	getHtmlProps,
-	hasFixedLineage
+	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Tooltip.st.css';
 
@@ -17,7 +16,6 @@ export default class Tooltip extends PureComponent {
 			PropTypes.number,
 			PropTypes.string
 		]),
-		content:   PropTypes.any,
 		placement: PropTypes.oneOf([
 			'top',
 			'right',
@@ -29,12 +27,12 @@ export default class Tooltip extends PureComponent {
 			'center',
 			'end'
 		]),
+		content:   PropTypes.any.isRequired,
 		children:  PropTypes.any.isRequired
 	};
 
 	static defaultProps = {
 		tabIndex: 1,
-		content:  null,
 		align:    'center'
 	};
 
@@ -102,32 +100,13 @@ export default class Tooltip extends PureComponent {
 	}
 
 	@Listener()
-	onShow({ currentTarget }) {
+	onShow(event) {
 
-		const {
-			top:  bodyTop,
-			left: bodyLeft
-		} = document.documentElement.getBoundingClientRect();
-
-		const {
-			top,
-			left,
-			width,
-			height
-		} = currentTarget.getBoundingClientRect();
-
-		const withFixedLineage = hasFixedLineage(currentTarget);
+		const boxPosition = this.getBoxPosition(event.currentTarget);
 
 		this.setState(() => ({
-			active:    true,
-			boxTop:    withFixedLineage
-				? top
-				: top - bodyTop,
-			boxLeft:   withFixedLineage
-				? left
-				: left - bodyLeft,
-			boxWidth:  width,
-			boxHeight: height
+			active: true,
+			...boxPosition
 		}));
 	}
 
@@ -136,5 +115,26 @@ export default class Tooltip extends PureComponent {
 		this.setState(() => ({
 			active: false
 		}));
+	}
+
+	getBoxPosition(element) {
+
+		if (!element || !('getBoundingClientRect' in element)) {
+			return {};
+		}
+
+		const {
+			top,
+			left,
+			width,
+			height
+		} = element.getBoundingClientRect();
+
+		return {
+			boxTop:    top,
+			boxLeft:   left,
+			boxWidth:  width,
+			boxHeight: height
+		};
 	}
 }

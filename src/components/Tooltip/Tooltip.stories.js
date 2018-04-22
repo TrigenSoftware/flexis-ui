@@ -36,4 +36,58 @@ storiesOf('Tooltip', module)
 				Point mouse on me
 			</Tooltip>
 		)
+	)
+	.add(
+		'with scroll',
+		() => (
+			<div
+				style={{
+					padding: '100px 0 1200px'
+				}}
+			>
+				<Tooltip
+					placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
+					align={select('Align', ['start', 'center', 'end'], 'start')}
+					content={text('Content', 'Tooltip text')}
+				>
+					Point mouse on me
+				</Tooltip>
+			</div>
+		)
+	)
+	.add(
+		'with fixed block',
+		() => (
+			<div
+				style={{
+					padding: '100px 0 1200px'
+				}}
+			>
+				<div
+					style={{
+						position: 'fixed',
+						top:      '30px',
+						left:     '100px',
+						border:   '1px solid black',
+						width:    '300px',
+						height:   '200px',
+						overflow: 'auto'
+					}}
+				>
+					<div
+						style={{
+							padding: '100px 0 1200px'
+						}}
+					>
+						<Tooltip
+							placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
+							align={select('Align', ['start', 'center', 'end'], 'start')}
+							content={text('Content', 'Tooltip text')}
+						>
+							Point mouse on me
+						</Tooltip>
+					</div>
+				</div>
+			</div>
+		)
 	);
