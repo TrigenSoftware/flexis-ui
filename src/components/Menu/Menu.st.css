@@ -1,0 +1,15 @@
+
+.root {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.item > .root {
+	padding-left: 2rem;
+}
+
+.button {
+	display: block;
+	width: 100%;
+}
