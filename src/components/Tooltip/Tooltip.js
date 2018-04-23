@@ -37,12 +37,11 @@ export default class Tooltip extends PureComponent {
 	};
 
 	state = {
-		active:    false,
-		boxTop:    0,
-		boxLeft:   0,
-		boxWidth:  0,
-		boxHeight: 0
+		active: false
 	};
+
+	elementRef = null;
+	boxRef = null;
 
 	render() {
 
@@ -56,15 +55,12 @@ export default class Tooltip extends PureComponent {
 		} = this.props;
 
 		const {
-			active,
-			boxTop,
-			boxLeft,
-			boxWidth,
-			boxHeight
+			active
 		} = this.state;
 
 		return (
 			<span
+				ref={this.onElementRef()}
 				onMouseEnter={this.onShow()}
 				onFocus={this.onShow()}
 				onMouseLeave={this.onHide()}
@@ -74,13 +70,8 @@ export default class Tooltip extends PureComponent {
 				{children}
 				{createPortal((
 					<div
+						ref={this.onBoxRef()}
 						className='box'
-						style={{
-							top:    boxTop,
-							left:   boxLeft,
-							width:  boxWidth,
-							height: boxHeight
-						}}
 					>
 						<div
 							{...getHtmlProps(props)}
@@ -99,14 +90,31 @@ export default class Tooltip extends PureComponent {
 		);
 	}
 
+	componentDidUpdate(_, { active: prevActive }) {
+
+		const {
+			active
+		} = this.state;
+
+		if (!prevActive && active) {
+			this.setBoxPosition();
+		}
+	}
+
 	@Listener()
-	onShow(event) {
+	onElementRef(ref) {
+		this.elementRef = ref;
+	}
 
-		const boxPosition = this.getBoxPosition(event.currentTarget);
+	@Listener()
+	onBoxRef(ref) {
+		this.boxRef = ref;
+	}
 
+	@Listener()
+	onShow() {
 		this.setState(() => ({
-			active: true,
-			...boxPosition
+			active: true
 		}));
 	}
 
@@ -117,10 +125,18 @@ export default class Tooltip extends PureComponent {
 		}));
 	}
 
-	getBoxPosition(element) {
+	setBoxPosition() {
 
-		if (!element || !('getBoundingClientRect' in element)) {
-			return {};
+		const {
+			elementRef,
+			boxRef
+		} = this;
+
+		if (!elementRef
+			|| !boxRef
+			|| !('getBoundingClientRect' in elementRef)
+		) {
+			return;
 		}
 
 		const {
@@ -128,13 +144,15 @@ export default class Tooltip extends PureComponent {
 			left,
 			width,
 			height
-		} = element.getBoundingClientRect();
+		} = elementRef.getBoundingClientRect();
 
-		return {
-			boxTop:    top,
-			boxLeft:   left,
-			boxWidth:  width,
-			boxHeight: height
-		};
+		const {
+			style
+		} = boxRef;
+
+		style.top = `${top}px`;
+		style.left = `${left}px`;
+		style.width = `${width}px`;
+		style.height = `${height}px`;
 	}
 }

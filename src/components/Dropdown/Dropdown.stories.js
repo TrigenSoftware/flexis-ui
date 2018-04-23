@@ -4,22 +4,22 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import {
 	withKnobs,
-	select
+	select,
+	boolean
 } from '@storybook/addon-knobs/react';
 import Dropdown, { DropdownContent } from './';
 
 const stylableApi = `
 Stylable API
 ---
+- :active
+- :disable
 - ::box
-- ::tooltip:active
-- ::tooltip:topPlacement
-- ::tooltip:rightPlacement
-- ::tooltip:bottomPlacement
-- ::tooltip:leftPlacement
-- ::tooltip:startAlign
-- ::tooltip:centerAlign
-- ::tooltip:endAlign
+	- :active
+- ::content
+	- leftAlign
+	- centerAlign
+	- rightAlign
 `;
 
 storiesOf('Dropdown', module)
@@ -31,6 +31,54 @@ storiesOf('Dropdown', module)
 			<Dropdown
 				onToggle={action('toggle')}
 				align={select('Align', ['left', 'center', 'right'], 'left')}
+				disabled={boolean('Disabled', false)}
+			>
+				<button>
+					Click me!
+				</button>
+				<DropdownContent
+					style={{
+						padding:   '1rem',
+						width:     '12rem',
+						textAlign: 'center'
+					}}
+				>
+					Dropdown content.
+				</DropdownContent>
+			</Dropdown>
+		)
+	)
+	.add(
+		'with disabled state',
+		() => (
+			<Dropdown
+				onToggle={action('toggle')}
+				align={select('Align', ['left', 'center', 'right'], 'left')}
+				disabled={boolean('Disabled', true)}
+			>
+				<button>
+					Click me!
+				</button>
+				<DropdownContent
+					style={{
+						padding:   '1rem',
+						width:     '12rem',
+						textAlign: 'center'
+					}}
+				>
+					Dropdown content.
+				</DropdownContent>
+			</Dropdown>
+		)
+	)
+	.add(
+		'with active state',
+		() => (
+			<Dropdown
+				onToggle={action('toggle')}
+				align={select('Align', ['left', 'center', 'right'], 'left')}
+				disabled={boolean('Disabled', false)}
+				active={boolean('Active', true)}
 			>
 				<button>
 					Click me!
@@ -58,6 +106,7 @@ storiesOf('Dropdown', module)
 				<Dropdown
 					onToggle={action('toggle')}
 					align={select('Align', ['left', 'center', 'right'], 'left')}
+					disabled={boolean('Disabled', false)}
 				>
 					<button>
 						Click me!
@@ -102,6 +151,7 @@ storiesOf('Dropdown', module)
 						<Dropdown
 							onToggle={action('toggle')}
 							align={select('Align', ['left', 'center', 'right'], 'left')}
+							disabled={boolean('Disabled', false)}
 						>
 							<button>
 								Click me!

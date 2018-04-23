@@ -12,14 +12,15 @@ const stylableApi = `
 Stylable API
 ---
 - ::box
-- ::tooltip:active
-- ::tooltip:topPlacement
-- ::tooltip:rightPlacement
-- ::tooltip:bottomPlacement
-- ::tooltip:leftPlacement
-- ::tooltip:startAlign
-- ::tooltip:centerAlign
-- ::tooltip:endAlign
+- ::tooltip
+	- :active
+	- :topPlacement
+	- :rightPlacement
+	- :bottomPlacement
+	- :leftPlacement
+	- :startAlign
+	- :centerAlign
+	- :endAlign
 `;
 
 storiesOf('Tooltip', module)

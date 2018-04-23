@@ -40,26 +40,28 @@ export default class Dropdown extends PureComponent {
 		align:    'left'
 	};
 
-	static getDerivedStateFromProps({ active }, { active: prevActive }) {
+	static getDerivedStateFromProps({
+		active,
+		disabled
+	}, { active: prevActive }) {
 
-		if (active == prevActive) {
+		const nextActive = Boolean(active && !disabled);
+
+		if (nextActive == prevActive) {
 			return null;
 		}
 
 		return {
-			active
+			active: nextActive
 		};
 	}
 
 	state = {
-		active:    false,
-		boxTop:    0,
-		boxLeft:   0,
-		boxWidth:  0,
-		boxHeight: 0
+		active: false
 	};
 
 	elementRef = null;
+	boxRef = null;
 	unsubscribeFromOutsideClick = null;
 	unblockScroll = null;
 
@@ -73,11 +75,7 @@ export default class Dropdown extends PureComponent {
 		} = this.props;
 
 		const {
-			active,
-			boxTop,
-			boxLeft,
-			boxWidth,
-			boxHeight
+			active
 		} = this.state;
 
 		const [
@@ -98,13 +96,8 @@ export default class Dropdown extends PureComponent {
 				{toggler}
 				{createPortal((
 					<div
+						ref={this.onBoxRef()}
 						className='box'
-						style={{
-							top:    boxTop,
-							left:   boxLeft,
-							width:  boxWidth,
-							height: boxHeight
-						}}
 						style-state={{
 							active
 						}}
@@ -129,6 +122,7 @@ export default class Dropdown extends PureComponent {
 				this.toggleActiveState(false, event);
 			}
 		);
+		this.doDomUpdates();
 	}
 
 	componentWillUnmount() {
@@ -141,9 +135,25 @@ export default class Dropdown extends PureComponent {
 		}
 	}
 
+	componentDidUpdate(_, { active: prevActive }) {
+
+		const {
+			active
+		} = this.state;
+
+		if (prevActive != active) {
+			this.doDomUpdates();
+		}
+	}
+
 	@Listener()
 	onElementRef(ref) {
 		this.elementRef = ref;
+	}
+
+	@Listener()
+	onBoxRef(ref) {
+		this.boxRef = ref;
 	}
 
 	@Listener()
@@ -156,6 +166,8 @@ export default class Dropdown extends PureComponent {
 	toggleActiveState(forceState, event = null) {
 
 		const {
+			active: activeProp,
+			onToggle,
 			disabled
 		} = this.props;
 
@@ -175,35 +187,53 @@ export default class Dropdown extends PureComponent {
 			return;
 		}
 
-		const boxPosition = this.getBoxPosition(event && event.currentTarget);
-
-		this.setState(() => ({
-			active: nextActive,
-			...boxPosition
-		}), () => {
-
-			if (nextActive) {
-				this.unblockScroll = blockScroll(this.elementRef);
-			} else
-			if (typeof this.unblockScroll == 'function') {
-				this.unblockScroll();
-				this.unblockScroll = null;
-			}
-		});
-
-		const {
-			onToggle
-		} = this.props;
+		if (typeof activeProp != 'boolean') {
+			this.setState(() => ({
+				active: nextActive
+			}));
+		}
 
 		if (typeof onToggle == 'function') {
 			onToggle(nextActive, event);
 		}
 	}
 
-	getBoxPosition(element) {
+	doDomUpdates() {
 
-		if (!element || !('getBoundingClientRect' in element)) {
-			return {};
+		const {
+			active
+		} = this.state;
+
+		const scrollBlocked = typeof this.unblockScroll == 'function';
+
+		if (active) {
+
+			if (scrollBlocked) {
+				this.unblockScroll();
+			}
+
+			this.setBoxPosition();
+			this.unblockScroll = blockScroll(this.elementRef);
+
+		} else
+		if (scrollBlocked) {
+			this.unblockScroll();
+			this.unblockScroll = null;
+		}
+	}
+
+	setBoxPosition() {
+
+		const {
+			elementRef,
+			boxRef
+		} = this;
+
+		if (!elementRef
+			|| !boxRef
+			|| !('getBoundingClientRect' in elementRef)
+		) {
+			return;
 		}
 
 		const {
@@ -211,13 +241,15 @@ export default class Dropdown extends PureComponent {
 			left,
 			width,
 			height
-		} = element.getBoundingClientRect();
+		} = elementRef.getBoundingClientRect();
 
-		return {
-			boxTop:    top,
-			boxLeft:   left,
-			boxWidth:  width,
-			boxHeight: height
-		};
+		const {
+			style
+		} = boxRef;
+
+		style.top = `${top}px`;
+		style.left = `${left}px`;
+		style.width = `${width}px`;
+		style.height = `${height}px`;
 	}
 }

@@ -13,13 +13,14 @@ const { TestIcon } = global;
 const stylableApi = `
 Stylable API
 ---
-- BadgeContainer:topPlacement
-- BadgeContainer:rightPlacement
-- BadgeContainer:bottomPlacement
-- BadgeContainer:leftPlacement
-- BadgeContainer:startAlign
-- BadgeContainer:centerAlign
-- BadgeContainer:endAlign
+- BadgeContainer
+	- :topPlacement
+	- :rightPlacement
+	- :bottomPlacement
+	- :leftPlacement
+	- :startAlign
+	- :centerAlign
+	- :endAlign
 `;
 
 storiesOf('Badge', module)
