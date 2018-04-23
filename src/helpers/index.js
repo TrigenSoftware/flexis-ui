@@ -8,3 +8,4 @@ export { default as getHtmlProps } from './getHtmlProps';
 export { default as textTruncate } from './textTruncate';
 export { default as valueOrUndef } from './valueOrUndef';
 export { default as modulo } from './modulo';
+export { default as generateId } from './generateId';

@@ -61,7 +61,7 @@ storiesOf('Menu', module)
 					</MenuButton>
 				</MenuItem>
 				<MenuItem>
-					<Menu style={{ width: '10rem' }}>
+					<Menu style={{ width: '10rem', marginLeft: '4rem' }}>
 						<MenuItem>
 							<MenuButton {...events}>
 								Menu item #1

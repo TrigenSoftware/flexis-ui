@@ -73,7 +73,7 @@ export default class Checkbox extends PureComponent {
 		if (typeof onChange == 'function') {
 			onChange(
 				value != null
-					? event.target.value
+					? value
 					: event.target.checked,
 				event
 			);
