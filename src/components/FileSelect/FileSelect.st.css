@@ -1,5 +1,6 @@
 
 .root {
+	-st-states: disabled;
 	display: inline-block;
 	position: relative;
 }

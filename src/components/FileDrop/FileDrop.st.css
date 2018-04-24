@@ -1,4 +1,6 @@
 
 .root {
-	-st-states: dragOver;
+	-st-states:
+		disabled,
+		dragOver;
 }

@@ -12,11 +12,13 @@ export default class FileSelect extends PureComponent {
 
 	static propTypes = {
 		onChange: PropTypes.func,
+		disabled: PropTypes.bool,
 		children: PropTypes.any
 	};
 
 	static defaultProps = {
 		onChange: null,
+		disabled: false,
 		children: null
 	};
 
@@ -27,6 +29,7 @@ export default class FileSelect extends PureComponent {
 	render() {
 
 		const {
+			disabled,
 			children,
 			...props
 		} = this.props;
@@ -39,6 +42,7 @@ export default class FileSelect extends PureComponent {
 			<div
 				{...getHtmlProps(props, ['onChange'])}
 				style-state={{
+					disabled,
 					dragOver
 				}}
 				onDrag={this.onIgnoredEvent()}
@@ -87,6 +91,14 @@ export default class FileSelect extends PureComponent {
 
 		event.stopPropagation();
 		event.preventDefault();
+
+		const {
+			disabled
+		} = this.props;
+
+		if (disabled) {
+			return;
+		}
 
 		this.setState(() => ({
 			dragOver: false

@@ -15,6 +15,7 @@ export default class FileSelect extends PureComponent {
 		elementRef: PropTypes.func,
 		style:      PropTypes.object,
 		onChange:   PropTypes.func,
+		disabled:   PropTypes.bool,
 		children:   PropTypes.any
 	};
 
@@ -22,6 +23,7 @@ export default class FileSelect extends PureComponent {
 		elementRef: null,
 		style:      null,
 		onChange:   null,
+		disabled:   false,
 		children:   null
 	};
 
@@ -30,6 +32,7 @@ export default class FileSelect extends PureComponent {
 		const {
 			elementRef,
 			style,
+			disabled,
 			children,
 			...props
 		} = this.props;
@@ -37,6 +40,9 @@ export default class FileSelect extends PureComponent {
 		return (
 			<label
 				style={style}
+				style-state={{
+					disabled
+				}}
 			>
 				{children}
 				<input
@@ -45,6 +51,7 @@ export default class FileSelect extends PureComponent {
 					className='input'
 					type='file'
 					onChange={this.onChange()}
+					disabled={disabled}
 				/>
 			</label>
 		);
