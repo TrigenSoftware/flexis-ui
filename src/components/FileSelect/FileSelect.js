@@ -6,10 +6,10 @@ import {
 	getHtmlProps,
 	valueOrUndef
 } from '../../helpers';
-import stylesheet from './FileUpload.st.css';
+import stylesheet from './FileSelect.st.css';
 
 @Stylable(stylesheet)
-export default class FileUpload extends PureComponent {
+export default class FileSelect extends PureComponent {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
