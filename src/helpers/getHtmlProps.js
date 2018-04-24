@@ -467,14 +467,19 @@ const dataAttribute = /^data-/;
 
 /**
  * Get React-HTML props from props object.
- * @param  {Object} inputProps - Props object.
- * @return {Object} Object with React-HTML props.
+ * @param  {Object}        inputProps - Props object.
+ * @param  {Array<String>} withoutProps - Props to ignore.
+ * @return {Object}        Object with React-HTML props.
  */
-export default function getHtmlProps(inputProps) {
+export default function getHtmlProps(inputProps, withoutProps = []) {
 
 	const htmlProps = {};
 
 	for (const inputProp in inputProps) {
+
+		if (withoutProps.includes(inputProp)) {
+			continue;
+		}
 
 		if (dataAttribute.test(inputProp)
 			|| reactHtmlProps.includes(inputProp)

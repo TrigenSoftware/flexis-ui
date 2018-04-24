@@ -18,6 +18,10 @@ Stylable API
 - ::button
 `;
 
+const events = {
+	onChange: action('change')
+};
+
 const defaultValue = [2, 3]; // eslint-disable-line
 
 storiesOf('ToggleSelect', module)
@@ -27,8 +31,8 @@ storiesOf('ToggleSelect', module)
 		'with basic state',
 		() => (
 			<ToggleSelect
+				{...events}
 				style={{ width: '10rem' }}
-				onChange={action('change')}
 				disabled={boolean('Disabled', false)}
 			>
 				<ToggleSelectOption value={1}>
@@ -47,8 +51,8 @@ storiesOf('ToggleSelect', module)
 		'with disabled state',
 		() => (
 			<ToggleSelect
+				{...events}
 				style={{ width: '10rem' }}
-				onChange={action('change')}
 				disabled={boolean('Disabled', true)}
 			>
 				<ToggleSelectOption value={1}>
@@ -67,9 +71,9 @@ storiesOf('ToggleSelect', module)
 		'with default value',
 		() => (
 			<ToggleSelect
+				{...events}
 				style={{ width: '10rem' }}
 				name='select'
-				onChange={action('change')}
 				defaultValue={2}
 				disabled={boolean('Disabled', false)}
 			>
@@ -89,9 +93,9 @@ storiesOf('ToggleSelect', module)
 		'with value',
 		() => (
 			<ToggleSelect
+				{...events}
 				style={{ width: '10rem' }}
 				name='select'
-				onChange={action('change')}
 				value={2}
 				disabled={boolean('Disabled', false)}
 			>
@@ -111,9 +115,9 @@ storiesOf('ToggleSelect', module)
 		'with default multiple values',
 		() => (
 			<ToggleSelect
+				{...events}
 				style={{ width: '10rem' }}
 				name='select'
-				onChange={action('change')}
 				defaultValue={defaultValue}
 				disabled={boolean('Disabled', false)}
 				multiple
@@ -134,9 +138,9 @@ storiesOf('ToggleSelect', module)
 		'with multiple values',
 		() => (
 			<ToggleSelect
+				{...events}
 				style={{ width: '10rem' }}
 				name='select'
-				onChange={action('change')}
 				value={defaultValue}
 				disabled={boolean('Disabled', false)}
 				multiple
