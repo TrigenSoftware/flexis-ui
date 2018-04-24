@@ -20,24 +20,26 @@ export * from './DropdownContent';
 export default class Dropdown extends PureComponent {
 
 	static propTypes = {
-		onToggle: PropTypes.func,
-		active:   PropTypes.bool,
-		disabled: PropTypes.bool,
-		align:    PropTypes.oneOf([
+		onToggle:      PropTypes.func,
+		defaultActive: PropTypes.bool,
+		active:        PropTypes.bool,
+		disabled:      PropTypes.bool,
+		align:         PropTypes.oneOf([
 			'left',
 			'center',
 			'right'
 		]),
-		children: PropTypes.arrayOf(
+		children:      PropTypes.arrayOf(
 			PropTypes.element
 		).isRequired
 	};
 
 	static defaultProps = {
-		onToggle: null,
-		active:   null,
-		disabled: false,
-		align:    'left'
+		onToggle:      null,
+		defaultActive: false,
+		active:        null,
+		disabled:      false,
+		align:         'left'
 	};
 
 	static getDerivedStateFromProps({
@@ -45,7 +47,10 @@ export default class Dropdown extends PureComponent {
 		disabled
 	}, { active: prevActive }) {
 
-		const nextActive = Boolean(active && !disabled);
+		const nextActive = !disabled && (typeof active == 'boolean'
+			? active
+			: prevActive
+		);
 
 		if (nextActive == prevActive) {
 			return null;
@@ -56,14 +61,23 @@ export default class Dropdown extends PureComponent {
 		};
 	}
 
-	state = {
-		active: false
-	};
-
 	elementRef = null;
 	boxRef = null;
 	unsubscribeFromOutsideClick = null;
 	unblockScroll = null;
+
+	constructor(props) {
+
+		super(props);
+
+		const {
+			defaultActive
+		} = props;
+
+		this.state = {
+			active: defaultActive
+		};
+	}
 
 	render() {
 

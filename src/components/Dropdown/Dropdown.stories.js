@@ -49,6 +49,30 @@ storiesOf('Dropdown', module)
 		)
 	)
 	.add(
+		'with default active',
+		() => (
+			<Dropdown
+				onToggle={action('toggle')}
+				align={select('Align', ['left', 'center', 'right'], 'left')}
+				disabled={boolean('Disabled', false)}
+				defaultActive
+			>
+				<button>
+					Click me!
+				</button>
+				<DropdownContent
+					style={{
+						padding:   '1rem',
+						width:     '12rem',
+						textAlign: 'center'
+					}}
+				>
+					Dropdown content.
+				</DropdownContent>
+			</Dropdown>
+		)
+	)
+	.add(
 		'with disabled state',
 		() => (
 			<Dropdown

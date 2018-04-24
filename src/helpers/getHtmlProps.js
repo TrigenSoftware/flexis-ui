@@ -20,7 +20,7 @@ const reactHtmlProps = [
 	'challenge',
 	'charSet',
 	'checked',
-	'children',
+	// 'children', - Nope.
 	'cite',
 	'className',
 	'classID',

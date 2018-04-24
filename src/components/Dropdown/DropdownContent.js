@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
 	Listener,
 	getHtmlProps
@@ -6,17 +7,24 @@ import {
 
 export class DropdownContent extends PureComponent {
 
+	static propTypes = {
+		children: PropTypes.any.isRequired
+	}
+
 	render() {
 
 		const {
-			props
-		} = this;
+			children,
+			...props
+		} = this.props;
 
 		return (
 			<div
 				{...getHtmlProps(props)}
 				onClick={this.onClick()}
-			/>
+			>
+				{children}
+			</div>
 		);
 	}
 

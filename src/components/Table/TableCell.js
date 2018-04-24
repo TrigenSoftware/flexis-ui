@@ -20,13 +20,15 @@ export class TableCell extends PureComponent {
 	static propTypes = {
 		head:          PropTypes.bool,
 		onOrderChange: PropTypes.func,
-		order:         PropTypes.oneOf(orderValues)
+		order:         PropTypes.oneOf(orderValues),
+		children:      PropTypes.any
 	};
 
 	static defaultProps = {
 		head:          false,
 		onOrderChange: null,
-		order:         null
+		order:         null,
+		children:      null
 	};
 
 	render() {
@@ -34,6 +36,7 @@ export class TableCell extends PureComponent {
 		const {
 			head,
 			order,
+			children,
 			...props
 		} = this.props;
 
@@ -49,7 +52,9 @@ export class TableCell extends PureComponent {
 					orderDesc: head && order === -1
 				}, props)}
 				onClick={this.onOrderChange()}
-			/>
+			>
+				{children}
+			</Cell>
 		);
 	}
 

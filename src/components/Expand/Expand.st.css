@@ -1,0 +1,15 @@
+
+.root {
+	-st-states:
+		disabled,
+		active;
+}
+
+.title {
+	cursor: pointer;
+	user-select: none;
+}
+
+.root:not(:active) .content {
+	display: none;
+}

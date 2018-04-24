@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
 	Stylable,
 	getHtmlProps
@@ -13,11 +14,23 @@ export * from './TableCell';
 @Stylable(stylesheet)
 export default class Table extends PureComponent {
 
+	static propTypes = {
+		children: PropTypes.any.isRequired
+	}
+
 	render() {
+
+		const {
+			children,
+			...props
+		} = this.props;
+
 		return (
 			<table
-				{...getHtmlProps(this.props)}
-			/>
+				{...getHtmlProps(props)}
+			>
+				{children}
+			</table>
 		);
 	}
 }
