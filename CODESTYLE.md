@@ -9,13 +9,11 @@ const {
 	...props
 } = this.props;
 
-return (
-	<table
-		{...getHtmlProps(props)}
-	>
-		{children}
-	</table>
-);
+<table
+    {...getHtmlProps(props)}
+>
+    {children}
+</table>
 ```
 
 ### Be sure to pass `props` on.
