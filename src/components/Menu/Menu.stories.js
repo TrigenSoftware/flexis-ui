@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { withKnobs } from '@storybook/addon-knobs/react';
 import Menu, {
 	MenuItem,
+	MenuItemSeparator,
 	MenuButton
 } from './';
 
@@ -12,6 +13,7 @@ const stylableApi = `
 Stylable API
 ---
 - ::item
+- ::itemSeparator
 - ::button
 `;
 
@@ -33,6 +35,29 @@ storiesOf('Menu', module)
 						Menu item #1
 					</MenuButton>
 				</MenuItem>
+				<MenuItem>
+					<MenuButton {...events}>
+						Menu item #2
+					</MenuButton>
+				</MenuItem>
+				<MenuItem>
+					<MenuButton {...events}>
+						Menu item #3
+					</MenuButton>
+				</MenuItem>
+			</Menu>
+		)
+	)
+	.add(
+		'with separator',
+		() => (
+			<Menu style={{ width: '10rem' }}>
+				<MenuItem>
+					<MenuButton {...events}>
+						Menu item #1
+					</MenuButton>
+				</MenuItem>
+				<MenuItemSeparator style={{ minHeight: '1em' }}/>
 				<MenuItem>
 					<MenuButton {...events}>
 						Menu item #2

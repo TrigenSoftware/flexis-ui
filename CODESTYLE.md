@@ -1,9 +1,9 @@
 Components Code Style [WIP]
 ---
 
-## Pass `children` explicitly.
+### Pass `children` explicitly.
 
-```js
+```jsx
 const {
 	children,
 	...props
@@ -18,9 +18,9 @@ return (
 );
 ```
 
-## Be sure to pass `props` on.
+### Be sure to pass `props` on.
 
-```js
+```jsx
 export function MenuButton({
 	children,
 	...props
@@ -35,9 +35,9 @@ export function MenuButton({
 }
 ```
 
-## Pass `props` on before other props.
+### Pass `props` on before other props.
 
-```js
+```jsx
 <Button
     {/* Firstly */}
     {...props}
@@ -49,12 +49,40 @@ export function MenuButton({
 </Button>
 ```
 
-## Pass `props` on to HTML-elements with `getHtmlProps` helper.
+### Pass `props` on to HTML-elements with `getHtmlProps` helper.
 
-```js
+```jsx
 <table
     {...getHtmlProps(props)}
 >
     {children}
 </table>
+```
+
+### Do not pass excess props.
+
+```jsx
+const {
+    children,
+    ...props // with `onChange`
+} = this.props;
+
+<div
+    {...getHtmlProps(props, ['onChange'])}
+>
+    {children}
+</div>
+// or
+Reflect.deleteProperty(props, 'onChange');
+
+<Button
+    {...props}
+>
+    {children}
+</Button>
+// ...
+// `onChange` used in other place
+onChange(event) {
+    this.props.onChange(event.target.value);
+}
 ```

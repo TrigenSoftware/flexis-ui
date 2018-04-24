@@ -7,6 +7,7 @@ import {
 import stylesheet from './Menu.st.css';
 
 export * from './MenuItem';
+export * from './MenuItemSeparator';
 export * from './MenuButton';
 
 @Stylable(stylesheet)
