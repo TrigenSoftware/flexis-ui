@@ -94,7 +94,8 @@ export default class Expand extends PureComponent {
 				{cloneElement(
 					title,
 					{
-						onClick: this.onToggle()
+						onClick: this.onToggle(),
+						disabled
 					}
 				)}
 				{content}

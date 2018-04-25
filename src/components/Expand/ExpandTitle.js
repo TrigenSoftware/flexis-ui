@@ -4,14 +4,23 @@ import { getHtmlProps } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
 ExpandTitle.propTypes = {
+	tabIndex: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string
+	]),
+	disabled: PropTypes.bool,
 	children: PropTypes.any
 };
 
 ExpandTitle.defaultProps = {
+	tabIndex: 1,
+	disabled: false,
 	children: null
 };
 
 export function ExpandTitle({
+	tabIndex,
+	disabled,
 	children,
 	...props
 }) {
@@ -19,6 +28,7 @@ export function ExpandTitle({
 		<div
 			{...getHtmlProps(props)}
 			{...stylesheet('title', {}, props)}
+			tabIndex={disabled ? -1 : tabIndex}
 		>
 			{children}
 		</div>
