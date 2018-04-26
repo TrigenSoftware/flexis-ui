@@ -11,15 +11,13 @@
   "bugs": {
     "url": "https://github.com/TrigenSoftware/flexis-ui/issues"
   },
-  "main": "lib/index.js",
   "browsers": "> 1%, last 2 versions, iOS > 7, Android > 4.4, not OperaMini all",
   "scripts": {
     "lint:styles": "stylelint 'src/**/*.css'",
     "lint:scripts": "eslint --cache 'src/**/*.js'",
     "test": "npm run lint:styles && npm run lint:scripts",
-    "build": "babel ./src -d ./lib -s inline",
-    "watch": "babel ./src -w -d ./lib -s inline",
-    "prepublishOnly": "npm run build",
+    "build": "./scripts/buildPackage.sh",
+    "prepublishOnly": "if [ -f README.md ]; then exit 1; fi",
     "storybook": "start-storybook -p 3001 -c .storybook",
     "build-storybook": "NODE_ENV=production build-storybook -c .storybook -o storybook-build",
     "createComponent": "./scripts/createComponent.sh"
@@ -91,8 +89,5 @@
     "plugins": [
       "transform-decorators-legacy"
     ]
-  },
-  "files": [
-    "lib"
-  ]
+  }
 }
