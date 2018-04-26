@@ -17,25 +17,25 @@ const visiblePages = 7,
 export default class Paginator extends PureComponent {
 
 	static propTypes = {
-		tabIndex:     PropTypes.oneOfType([
+		tabIndex:    PropTypes.oneOfType([
 			PropTypes.number,
 			PropTypes.string
 		]),
-		name:         PropTypes.string,
-		onChange:     PropTypes.func,
-		defaultPage:  PropTypes.number,
-		page:         PropTypes.number,
-		total:        PropTypes.number.isRequired,
-		disabled:     PropTypes.bool
+		name:        PropTypes.string,
+		onChange:    PropTypes.func,
+		defaultPage: PropTypes.number,
+		page:        PropTypes.number,
+		total:       PropTypes.number.isRequired,
+		disabled:    PropTypes.bool
 	};
 
 	static defaultProps = {
-		tabIndex:     1,
-		name:         null,
-		onChange:     null,
-		defaultPage:  -1,
-		page:         null,
-		disabled:     false
+		tabIndex:    1,
+		name:        null,
+		onChange:    null,
+		defaultPage: -1,
+		page:        null,
+		disabled:    false
 	};
 
 	static getDerivedStateFromProps({ page }, { page: prevPage }) {
@@ -73,6 +73,10 @@ export default class Paginator extends PureComponent {
 			...props
 		} = this.props;
 
+		const {
+			page
+		} = this.state;
+
 		return (
 			<ul
 				{...getHtmlProps(props, [
@@ -84,6 +88,13 @@ export default class Paginator extends PureComponent {
 					disabled
 				}}
 			>
+				{name && (
+					<input
+						type='hidden'
+						nane={name}
+						value={page}
+					/>
+				)}
 				{this.pages()}
 			</ul>
 		);
