@@ -5,9 +5,9 @@ import {
 	valueOrUndef
 } from '../../helpers';
 import Button from '../Button';
-import stylesheet from './ToggleSelect.st.css';
+import stylesheet from './CustomSelect.st.css';
 
-export class ToggleSelectOption extends PureComponent {
+export class CustomSelectOption extends PureComponent {
 
 	static propTypes = {
 		type:     PropTypes.oneOf([
@@ -46,7 +46,7 @@ export class ToggleSelectOption extends PureComponent {
 
 		return (
 			<li
-				{...stylesheet('option')}
+				{...stylesheet('item')}
 			>
 				<input
 					{...stylesheet('input')}
@@ -59,6 +59,7 @@ export class ToggleSelectOption extends PureComponent {
 				/>
 				<Button
 					{...props}
+					{...stylesheet('button', {}, props)}
 					type='button'
 					disabled={disabled}
 					onClick={this.onButtonClick}

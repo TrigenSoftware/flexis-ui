@@ -40,7 +40,6 @@ export function MenuButton({
     {/* Firstly */}
     {...props}
     {/* Other props */}
-    {...stylesheet('button', {}, props)}
     type='button'
 >
     {children}
@@ -83,4 +82,18 @@ Reflect.deleteProperty(props, 'onChange');
 onChange(event) {
     this.props.onChange(event.target.value);
 }
+```
+
+### Use this pattern to provide internal element reference.
+
+```jsx
+propTypes = {
+    elementRef: PropTypes.func
+}
+// ...
+<input
+    {...getHtmlProps(props)}
+    ref={valueOrUndef(elementRef)}
+    {/* ... */}
+/>
 ```

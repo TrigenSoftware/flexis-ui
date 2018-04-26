@@ -14,16 +14,16 @@ import ToggleSelect, {
 const stylableApi = `
 Stylable API
 ---
-- ::item
+- Button
+- ::option
 - ::input
-- ::button
 `;
 
 const events = {
 	onChange: action('change')
 };
 
-const defaultValue = [2, 3]; // eslint-disable-line
+const defaultValue = [1, 2]; // eslint-disable-line
 
 storiesOf('ToggleSelect', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
@@ -36,13 +36,13 @@ storiesOf('ToggleSelect', module)
 				style={{ width: '10rem' }}
 				disabled={boolean('Disabled', false)}
 			>
-				<ToggleSelectOption value={1}>
+				<ToggleSelectOption value={0}>
 					Option #1
 				</ToggleSelectOption>
-				<ToggleSelectOption value={2}>
+				<ToggleSelectOption value={1}>
 					Option #2
 				</ToggleSelectOption>
-				<ToggleSelectOption value={3}>
+				<ToggleSelectOption value={2}>
 					Option #3
 				</ToggleSelectOption>
 			</ToggleSelect>
@@ -56,13 +56,13 @@ storiesOf('ToggleSelect', module)
 				style={{ width: '10rem' }}
 				disabled={boolean('Disabled', true)}
 			>
-				<ToggleSelectOption value={1}>
+				<ToggleSelectOption value={0}>
 					Option #1
 				</ToggleSelectOption>
-				<ToggleSelectOption value={2}>
+				<ToggleSelectOption value={1}>
 					Option #2
 				</ToggleSelectOption>
-				<ToggleSelectOption value={3}>
+				<ToggleSelectOption value={2}>
 					Option #3
 				</ToggleSelectOption>
 			</ToggleSelect>
@@ -75,16 +75,16 @@ storiesOf('ToggleSelect', module)
 				{...events}
 				style={{ width: '10rem' }}
 				name='select'
-				defaultValue={2}
+				defaultValue={1}
 				disabled={boolean('Disabled', false)}
 			>
-				<ToggleSelectOption value={1}>
+				<ToggleSelectOption value={0}>
 					Option #1
 				</ToggleSelectOption>
-				<ToggleSelectOption value={2}>
+				<ToggleSelectOption value={1}>
 					Option #2
 				</ToggleSelectOption>
-				<ToggleSelectOption value={3}>
+				<ToggleSelectOption value={2}>
 					Option #3
 				</ToggleSelectOption>
 			</ToggleSelect>
@@ -100,13 +100,13 @@ storiesOf('ToggleSelect', module)
 				value={number('Value', 1)}
 				disabled={boolean('Disabled', false)}
 			>
-				<ToggleSelectOption value={1}>
+				<ToggleSelectOption value={0}>
 					Option #1
 				</ToggleSelectOption>
-				<ToggleSelectOption value={2}>
+				<ToggleSelectOption value={1}>
 					Option #2
 				</ToggleSelectOption>
-				<ToggleSelectOption value={3}>
+				<ToggleSelectOption value={2}>
 					Option #3
 				</ToggleSelectOption>
 			</ToggleSelect>
@@ -123,13 +123,35 @@ storiesOf('ToggleSelect', module)
 				disabled={boolean('Disabled', false)}
 				multiple
 			>
-				<ToggleSelectOption value={1}>
+				<ToggleSelectOption value={0}>
 					Option #1
 				</ToggleSelectOption>
-				<ToggleSelectOption value={2}>
+				<ToggleSelectOption value={1}>
 					Option #2
 				</ToggleSelectOption>
-				<ToggleSelectOption value={3}>
+				<ToggleSelectOption value={2}>
+					Option #3
+				</ToggleSelectOption>
+			</ToggleSelect>
+		)
+	)
+	.add(
+		'with basic multiple state',
+		() => (
+			<ToggleSelect
+				{...events}
+				style={{ width: '10rem' }}
+				name='select'
+				disabled={boolean('Disabled', false)}
+				multiple
+			>
+				<ToggleSelectOption value={0}>
+					Option #1
+				</ToggleSelectOption>
+				<ToggleSelectOption value={1}>
+					Option #2
+				</ToggleSelectOption>
+				<ToggleSelectOption value={2}>
 					Option #3
 				</ToggleSelectOption>
 			</ToggleSelect>
@@ -146,13 +168,13 @@ storiesOf('ToggleSelect', module)
 				disabled={boolean('Disabled', false)}
 				multiple
 			>
-				<ToggleSelectOption value={1}>
+				<ToggleSelectOption value={0}>
 					Option #1
 				</ToggleSelectOption>
-				<ToggleSelectOption value={2}>
+				<ToggleSelectOption value={1}>
 					Option #2
 				</ToggleSelectOption>
-				<ToggleSelectOption value={3}>
+				<ToggleSelectOption value={2}>
 					Option #3
 				</ToggleSelectOption>
 			</ToggleSelect>

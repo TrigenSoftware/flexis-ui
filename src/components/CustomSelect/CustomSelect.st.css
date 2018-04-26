@@ -1,14 +1,18 @@
 
 .root {
+	/* empty block */
+}
+
+.options {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
 .option {
-	/* empty */
+	/* empty block */
 }
 
 .input {
-	/* empty */
+	/* empty block */
 }

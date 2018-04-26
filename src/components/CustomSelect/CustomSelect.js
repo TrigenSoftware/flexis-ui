@@ -7,31 +7,38 @@ import PropTypes from 'prop-types';
 import {
 	Stylable,
 	Listener,
-	getHtmlProps,
 	generateId
 } from '../../helpers';
-import stylesheet from './ToggleSelect.st.css';
+import Dropdown, { DropdownContent } from '../Dropdown';
+import stylesheet from './CustomSelect.st.css';
 
-export * from './ToggleSelectOption';
+export * from './CustomSelectFace';
+export * from './CustomSelectOption';
 
 @Stylable(stylesheet)
-export default class ToggleSelect extends PureComponent {
+export default class CustomSelect extends PureComponent {
 
 	static propTypes = {
+		elementRef:   PropTypes.func,
+		style:        PropTypes.object,
 		onChange:     PropTypes.func,
 		name:         PropTypes.string,
 		value:        PropTypes.any,
 		defaultValue: PropTypes.any,
+		placeholder:  PropTypes.string,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
 		children:     PropTypes.any.isRequired
 	};
 
 	static defaultProps = {
+		elementRef:   null,
+		style:        null,
 		onChange:     null,
 		name:         null,
 		value:        null,
 		defaultValue: null,
+		placeholder:  null,
 		multiple:     false,
 		disabled:     false
 	};
@@ -50,6 +57,8 @@ export default class ToggleSelect extends PureComponent {
 			value: nextValue
 		};
 	}
+
+	dropdownRef = null;
 
 	constructor(props) {
 
@@ -72,6 +81,7 @@ export default class ToggleSelect extends PureComponent {
 	render() {
 
 		const {
+			style,
 			name: nameProp,
 			multiple,
 			disabled,
@@ -85,10 +95,18 @@ export default class ToggleSelect extends PureComponent {
 
 		const name = nameProp || this.privateName;
 
+		let faceChild = null,
+			label = multiple ? [] : '';
+
 		const options = Children
 			.toArray(children)
 			.filter(Boolean)
-			.map((child) => {
+			.map((child, i) => {
+
+				if (i == 0) {
+					faceChild = child;
+					return null;
+				}
 
 				const {
 					value:    optionValue,
@@ -99,14 +117,25 @@ export default class ToggleSelect extends PureComponent {
 					? optionLabel
 					: optionValue;
 
+				const checked = this.isCurrentValue(value, option);
+
 				const props = {
 					type:     multiple ? 'checkbox' : 'radio',
-					checked:  this.isCurrentValue(value, option),
 					value:    option,
 					onChange: this.onChange(),
+					checked,
 					disabled,
 					name
 				};
+
+				if (checked) {
+
+					if (multiple) {
+						label.push(optionLabel);
+					} else {
+						label = optionLabel;
+					}
+				}
 
 				return cloneElement(
 					child,
@@ -114,13 +143,83 @@ export default class ToggleSelect extends PureComponent {
 				);
 			});
 
+		Reflect.deleteProperty(props, 'onChange');
+
 		return (
-			<ul
-				{...getHtmlProps(props, ['onChange'])}
+			<Dropdown
+				{...props}
+				ref={this.onDropdownRef()}
+				style={style}
+				disabled={disabled}
 			>
-				{options}
-			</ul>
+				{this.face(faceChild, label)}
+				<DropdownContent>
+					<ul
+						className='options'
+						onClick={this.onDropdownHide()}
+					>
+						{options}
+					</ul>
+				</DropdownContent>
+			</Dropdown>
 		);
+	}
+
+	face(faceChild, label) {
+
+		const {
+			multiple,
+			placeholder,
+			disabled
+		} = this.props;
+
+		const {
+			children,
+			...props
+		} = faceChild.props;
+
+		return children(
+			(multiple ? label.join(', ') : label)
+			|| placeholder && (
+				<span className='placeholder'>
+					{placeholder}
+				</span>
+			)
+			|| (
+				<i>&nbsp;</i>
+			),
+			{ ...props, disabled }
+		);
+	}
+
+	@Listener()
+	onDropdownRef(ref) {
+
+		const {
+			elementRef
+		} = this.props;
+
+		this.dropdownRef = ref;
+
+		if (typeof elementRef == 'function') {
+			elementRef(ref);
+		}
+	}
+
+	@Listener()
+	onDropdownHide(event) {
+
+		const {
+			multiple
+		} = this.props;
+
+		const {
+			dropdownRef
+		} = this;
+
+		if (!multiple && dropdownRef) {
+			dropdownRef.toggleActiveState(false, event);
+		}
 	}
 
 	@Listener()
