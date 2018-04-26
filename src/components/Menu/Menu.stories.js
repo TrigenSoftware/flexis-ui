@@ -12,9 +12,9 @@ import Menu, {
 const stylableApi = `
 Stylable API
 ---
+- Button
 - ::item
 - ::itemSeparator
-- ::button
 `;
 
 const events = {

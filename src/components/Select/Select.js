@@ -51,7 +51,7 @@ export default class Select extends PureComponent {
 			>
 				<select
 					{...getHtmlProps(props, ['multiple'])}
-					{...stylesheet('select')}
+					className='select'
 					onChange={this.onChange()}
 				>
 					{children}

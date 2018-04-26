@@ -15,9 +15,6 @@ const { TestIcon } = global;
 const stylableApi = `
 Stylable API
 ---
-- :pseudoFocus
-- :pseudoHover
-- :pseudoActive
 - :withIcon
 - :flexIcon
 - ::icon

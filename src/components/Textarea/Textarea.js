@@ -44,7 +44,6 @@ export default class Textarea extends PureComponent {
 			<textarea
 				{...getHtmlProps(props)}
 				ref={valueOrUndef(elementRef)}
-				className='input'
 				onChange={this.onChange()}
 				value={valueOrUndef(value)}
 				defaultValue={valueOrUndef(defaultValue)}

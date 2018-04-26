@@ -11,6 +11,7 @@ import FileDrop from './';
 const stylableApi = `
 Stylable API
 ---
+- :disabled
 - :dragOver
 `;
 

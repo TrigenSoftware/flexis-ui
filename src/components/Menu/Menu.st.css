@@ -5,7 +5,10 @@
 	list-style: none;
 }
 
-.button {
-	display: block;
-	width: 100%;
+.item {
+	/* empty block */
+}
+
+.itemSeparator {
+	/* empty block */
 }

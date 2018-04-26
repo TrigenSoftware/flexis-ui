@@ -19,77 +19,77 @@
 	position: relative;
 }
 
-.root .Badge {
+.root Badge {
 	position: absolute;
 }
 
-.root:topPlacement:startAlign .Badge {
+.root:topPlacement:startAlign Badge {
 	top: 0;
 	left: 0;
 	transform: translate(-50%, -50%);
 }
 
-.root:topPlacement:centerAlign .Badge {
+.root:topPlacement:centerAlign Badge {
 	top: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
-.root:topPlacement:endAlign .Badge {
+.root:topPlacement:endAlign Badge {
 	top: 0;
 	right: 0;
 	transform: translate(50%, -50%);
 }
 
-.root:rightPlacement:startAlign .Badge {
+.root:rightPlacement:startAlign Badge {
 	top: 0;
 	right: 0;
 	transform: translate(50%, -50%);
 }
 
-.root:rightPlacement:centerAlign .Badge {
+.root:rightPlacement:centerAlign Badge {
 	top: 50%;
 	right: 0;
 	transform: translate(50%, -50%);
 }
 
-.root:rightPlacement:endAlign .Badge {
+.root:rightPlacement:endAlign Badge {
 	right: 0;
 	bottom: 0;
 	transform: translate(50%, 50%);
 }
 
-.root:bottomPlacement:startAlign .Badge {
+.root:bottomPlacement:startAlign Badge {
 	bottom: 0;
 	left: 0;
 	transform: translate(-50%, 50%);
 }
 
-.root:bottomPlacement:centerAlign .Badge {
+.root:bottomPlacement:centerAlign Badge {
 	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, 50%);
 }
 
-.root:bottomPlacement:endAlign .Badge {
+.root:bottomPlacement:endAlign Badge {
 	right: 0;
 	bottom: 0;
 	transform: translate(50%, 50%);
 }
 
-.root:leftPlacement:startAlign .Badge {
+.root:leftPlacement:startAlign Badge {
 	top: 0;
 	left: 0;
 	transform: translate(-50%, -50%);
 }
 
-.root:leftPlacement:centerAlign .Badge {
+.root:leftPlacement:centerAlign Badge {
 	top: 50%;
 	left: 0;
 	transform: translate(-50%, -50%);
 }
 
-.root:leftPlacement:endAlign .Badge {
+.root:leftPlacement:endAlign Badge {
 	bottom: 0;
 	left: 0;
 	transform: translate(-50%, 50%);

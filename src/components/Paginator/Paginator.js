@@ -187,17 +187,18 @@ export default class Paginator extends PureComponent {
 		return (
 			<li
 				key={visiblePagePlace}
-				{...stylesheet('item')}
+				className='item'
 			>
 				{separate ? (
 					<span
-						{...stylesheet('separator')}
+						className='separator'
 					/>
 				) : (
 					<button
-						{...stylesheet('button', {
+						className='button'
+						style-state={{
 							active
-						})}
+						}}
 						type='button'
 						tabIndex={tabIndex}
 						onClick={this.onChange(number - 1)}

@@ -14,7 +14,7 @@ import Select, {
 const stylableApi = `
 Stylable API
 ---
-- ::input
+- ::select
 - ::border
 `;
 

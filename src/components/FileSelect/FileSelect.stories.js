@@ -12,7 +12,9 @@ import FileSelect from './';
 const stylableApi = `
 Stylable API
 ---
+- :disabled
 - ::input
+- ::border
 `;
 
 const events = {

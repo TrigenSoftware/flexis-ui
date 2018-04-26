@@ -11,9 +11,6 @@ import Switch from './';
 const stylableApi = `
 Stylable API
 ---
-- :pseudoFocus
-- :pseudoHover
-- :pseudoActive
 - ::input
 - ::face
 `;

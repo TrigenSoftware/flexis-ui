@@ -53,6 +53,7 @@ export default class FileSelect extends PureComponent {
 					onChange={this.onChange()}
 					disabled={disabled}
 				/>
+				<div className='border'/>
 			</label>
 		);
 	}

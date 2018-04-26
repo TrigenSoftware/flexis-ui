@@ -3,6 +3,18 @@
 	width: 100%;
 }
 
+.head {
+	/* empty block */
+}
+
+.body {
+	/* empty block */
+}
+
+.row {
+	/* empty block */
+}
+
 .cell {
 	-st-states:
 		head,

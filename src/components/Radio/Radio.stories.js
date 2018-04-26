@@ -11,9 +11,6 @@ import Radio from './';
 const stylableApi = `
 Stylable API
 ---
-- :pseudoFocus
-- :pseudoHover
-- :pseudoActive
 - ::radio
 - ::face
 `;

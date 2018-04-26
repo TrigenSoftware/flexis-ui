@@ -4,6 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import {
 	withKnobs,
+	text,
 	boolean,
 	number
 } from '@storybook/addon-knobs/react';
@@ -17,6 +18,7 @@ Stylable API
 ---
 - DropdownContent
 - Button
+- ::placeholder
 - ::options
 - ::option
 - ::input
@@ -36,6 +38,33 @@ storiesOf('CustomSelect', module)
 		() => (
 			<CustomSelect
 				{...events}
+				disabled={boolean('Disabled', false)}
+			>
+				<CustomSelectFace>
+					{(label, { disabled }) => (
+						<button disabled={disabled}>
+							{label}
+						</button>
+					)}
+				</CustomSelectFace>
+				<CustomSelectOption value={0}>
+					Option #1
+				</CustomSelectOption>
+				<CustomSelectOption value={1}>
+					Option #2
+				</CustomSelectOption>
+				<CustomSelectOption value={2}>
+					Option #3
+				</CustomSelectOption>
+			</CustomSelect>
+		)
+	)
+	.add(
+		'with placeholder',
+		() => (
+			<CustomSelect
+				{...events}
+				placeholder={text('Placeholder', 'Placeholder')}
 				disabled={boolean('Disabled', false)}
 			>
 				<CustomSelectFace>
