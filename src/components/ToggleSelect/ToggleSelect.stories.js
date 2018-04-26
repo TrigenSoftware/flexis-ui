@@ -4,7 +4,8 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import {
 	withKnobs,
-	boolean
+	boolean,
+	number
 } from '@storybook/addon-knobs/react';
 import ToggleSelect, {
 	ToggleSelectOption
@@ -96,7 +97,7 @@ storiesOf('ToggleSelect', module)
 				{...events}
 				style={{ width: '10rem' }}
 				name='select'
-				value={2}
+				value={number('Value', 1)}
 				disabled={boolean('Disabled', false)}
 			>
 				<ToggleSelectOption value={1}>

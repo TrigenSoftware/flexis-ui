@@ -1,0 +1,26 @@
+
+.root {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+}
+
+.select {
+	appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}
+
+.select:focus {
+	outline: none;
+}
+
+.border {
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
