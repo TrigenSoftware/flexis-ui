@@ -37,17 +37,13 @@ stylelint-disable
  * 6. Change the default tap highlight to be completely transparent in iOS.
  */
 
-:global(
-	*,
-	*::before,
-	*::after
-) {
+:global(*),
+:global(*::before),
+:global(*::after) {
 	box-sizing: border-box; /* 1 */
 }
 
-:global(
-	html
-) {
+:global(html) {
 	line-height: 1.15; /* 3 */
 	font-family: sans-serif; /* 2 */
 	font-size: .625rem;
@@ -69,18 +65,16 @@ stylelint-disable
  * Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
  */
 
-:global(
-	article,
-	aside,
-	figcaption,
-	figure,
-	footer,
-	header,
-	hgroup,
-	main,
-	nav,
-	section
-) {
+:global(article),
+:global(aside),
+:global(figcaption),
+:global(figure),
+:global(footer),
+:global(header),
+:global(hgroup),
+:global(main),
+:global(nav),
+:global(section) {
 	display: block;
 }
 
@@ -93,9 +87,7 @@ stylelint-disable
  *    the `inherit` value on things like `<th>` elements.
  */
 
-:global(
-	body
-) {
+:global(body) {
 	margin: 0; /* 1 */
 	background-color: white; /* 2 */
 	text-align: left; /* 3 */
@@ -113,9 +105,7 @@ stylelint-disable
  * Credit: https://github.com/suitcss/base
  */
 
-:global(
-	[tabindex=-1]:focus
-) {
+:global([tabindex=-1]:focus) {
 	outline: 0 !important;
 }
 
@@ -126,9 +116,7 @@ stylelint-disable
  * 2. Show the overflow in Edge and IE.
  */
 
-:global(
-	hr
-) {
+:global(hr) {
 	box-sizing: content-box; /* 1 */
 	height: 0; /* 1 */
 	overflow: visible; /* 2 */
@@ -145,14 +133,12 @@ stylelint-disable
  * margin for easier control within type scales as it avoids margin collapsing.
  */
 
-:global(
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6
-) {
+:global(h1),
+:global(h2),
+:global(h3),
+:global(h4),
+:global(h5),
+:global(h6) {
 	margin-top: 0;
 	margin-bottom: .5rem;
 }
@@ -164,9 +150,7 @@ stylelint-disable
  * bottom margin to use `rem` units instead of `em`.
  */
 
-:global(
-	p
-) {
+:global(p) {
 	margin-top: 0;
 	margin-bottom: 1rem;
 }
@@ -180,79 +164,59 @@ stylelint-disable
  * 4. Duplicate behavior to the data-* attribute for our tooltip plugin
  */
 
-:global(
-	abbr[title]
-) {
+:global(abbr[title]) {
 	border-bottom: 0; /* 1 */
 	cursor: help; /* 3 */
 	text-decoration: underline; /* 2 */
 	text-decoration: underline dotted; /* 2 */
 }
 
-:global(
-	address
-) {
+:global(address) {
 	margin-bottom: 1rem;
 	line-height: inherit;
 	font-style: normal;
 }
 
-:global(
-	ol,
-	ul,
-	dl
-) {
+:global(ol),
+:global(ul),
+:global(dl) {
 	margin-top: 0;
 	margin-bottom: 1rem;
 }
 
-:global(
-	ol ol,
-	ul ul,
-	ol ul,
-	ul ol
-) {
+:global(ol ol),
+:global(ul ul),
+:global(ol ul),
+:global(ul ol) {
 	margin-bottom: 0;
 }
 
-:global(
-	dt
-) {
+:global(dt) {
 	font-weight: bold;
 }
 
-:global(
-	dd
-) {
+:global(dd) {
 	margin-bottom: .5rem;
 	/* Undo browser default */
 	margin-left: 0;
 }
 
-:global(
-	blockquote
-) {
+:global(blockquote) {
 	margin: 0 0 1rem;
 }
 
-:global(
-	dfn
-) {
+:global(dfn) {
 	/* Add the correct font style in Android 4.3- */
 	font-style: italic;
 }
 
-:global(
-	b,
-	strong
-) {
+:global(b),
+:global(strong) {
 	/* Add the correct font weight in Chrome, Edge, and Safari */
 	font-weight: bolder;
 }
 
-:global(
-	small
-) {
+:global(small) {
 	/* Add the correct font size in all browsers */
 	font-size: 80%;
 }
@@ -262,25 +226,19 @@ stylelint-disable
  * all browsers.
  */
 
-:global(
-	sub,
-	sup
-) {
+:global(sub),
+:global(sup) {
 	position: relative;
 	vertical-align: baseline;
 	line-height: 0;
 	font-size: 75%;
 }
 
-:global(
-	sub
-) {
+:global(sub) {
 	bottom: -.25em;
 }
 
-:global(
-	sup
-) {
+:global(sup) {
 	top: -.5em;
 }
 
@@ -288,9 +246,7 @@ stylelint-disable
  * Links
  */
 
-:global(
-	a
-) {
+:global(a) {
 	/* Remove the gray background on active links in IE 10. */
 	background-color: transparent;
 	/* Remove gaps in links underline in iOS 8+ and Safari 8+. */
@@ -301,21 +257,17 @@ stylelint-disable
  * Code
  */
 
-:global(
-	pre,
-	code,
-	kbd,
-	samp
-) {
+:global(pre),
+:global(code),
+:global(kbd),
+:global(samp) {
 	/* Correct the inheritance and scaling of font size in all browsers. */
 	font-family: value(fontFamilyMonospace);
 	/* Correct the odd `em` font sizing in all browsers. */
 	font-size: 1em;
 }
 
-:global(
-	pre
-) {
+:global(pre) {
 	/* Remove browser default top margin */
 	margin-top: 0;
 	/* Reset browser default of `1em` to use `rem`s */
@@ -331,9 +283,7 @@ stylelint-disable
  * Figures
  */
 
-:global(
-	figure
-) {
+:global(figure) {
 	/* Apply a consistent margin strategy (matches our type styles). */
 	margin: 0 0 1rem;
 }
@@ -342,17 +292,13 @@ stylelint-disable
  * Images and content
  */
 
-:global(
-	img
-) {
+:global(img) {
 	/* Remove the border on images inside links in IE 10-. */
 	border-style: none;
 	vertical-align: middle;
 }
 
-:global(
-	svg:not(:root)
-) {
+:global(svg:not(:root)) {
 	/* Hide the overflow in IE */
 	overflow: hidden;
 }
@@ -361,23 +307,17 @@ stylelint-disable
  * Tables
  */
 
-:global(
-	table
-) {
+:global(table) {
 	/* Prevent double borders */
 	border-collapse: collapse;
 }
 
-:global(
-	caption
-) {
+:global(caption) {
 	caption-side: bottom;
 	text-align: left;
 }
 
-:global(
-	th
-) {
+:global(th) {
 	/* Matches default `<td>` alignment by inheriting from the `<body>`, or the
 	   closest parent with a set `text-align`. */
 	text-align: inherit;
@@ -387,9 +327,7 @@ stylelint-disable
  * Forms
  */
 
-:global(
-	label
-) {
+:global(label) {
 	/* Allow labels to use `margin` for spacing. */
 	display: inline-block;
 }
@@ -400,9 +338,7 @@ stylelint-disable
  * Details at https://github.com/twbs/bootstrap/issues/24093
  */
 
-:global(
-	button
-) {
+:global(button) {
 	border-radius: 0;
 }
 
@@ -413,20 +349,16 @@ stylelint-disable
  * Credit: https://github.com/suitcss/base/
  */
 
-:global(
-	button:focus
-) {
+:global(button:focus) {
 	outline: 1px dotted;
 	outline: 5px auto -webkit-focus-ring-color;
 }
 
-:global(
-	input,
-	button,
-	select,
-	optgroup,
-	textarea
-) {
+:global(input),
+:global(button),
+:global(select),
+:global(optgroup),
+:global(textarea) {
 	/* Remove the margin in Firefox and Safari */
 	margin: 0;
 	line-height: inherit;
@@ -434,18 +366,14 @@ stylelint-disable
 	font-size: inherit;
 }
 
-:global(
-	button,
-	input
-) {
+:global(button),
+:global(input) {
 	/* Show the overflow in Edge */
 	overflow: visible;
 }
 
-:global(
-	button,
-	selec
-)t {
+:global(button),
+:global(select) {
 	/* Remove the inheritance of text transform in Firefox */
 	text-transform: none;
 }
@@ -456,12 +384,10 @@ stylelint-disable
  * 2. Correct the inability to style clickable types in iOS and Safari.
  */
 
-:global(
-	button,
-	html [type=button], /* 1 */
-	[type=reset],
-	[type=submit]
-) {
+:global(button),
+:global(html [type=button]), /* 1 */
+:global([type=reset]),
+:global([type=submit]) {
 	-webkit-appearance: button; /* 2 */
 }
 
@@ -469,32 +395,26 @@ stylelint-disable
  * Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
  */
 
-:global(
-	button::-moz-focus-inner,
-	[type=button]::-moz-focus-inner,
-	[type=reset]::-moz-focus-inner,
-	[type=submit]::-moz-focus-inner
-) {
+:global(button::-moz-focus-inner),
+:global([type=button]::-moz-focus-inner),
+:global([type=reset]::-moz-focus-inner),
+:global([type=submit]::-moz-focus-inner) {
 	border-style: none;
 	padding: 0;
 }
 
-:global(
-	input[type=radio],
-	input[type=checkbox]
-) {
+:global(input[type=radio]),
+:global(input[type=checkbox]) {
 	/* 1. Add the correct box sizing in IE 10- */
 	box-sizing: border-box;
 	/* 2. Remove the padding in IE 10- */
 	padding: 0;
 }
 
-:global(
-	input[type=date],
-	input[type=time],
-	input[type=datetime-local],
-	input[type=month]
-) {
+:global(input[type=date]),
+:global(input[type=time]),
+:global(input[type=datetime-local]),
+:global(input[type=month]) {
 	/**
 	 * Remove the default appearance of temporal inputs to avoid a Mobile Safari
 	 * bug where setting a custom line-height prevents text from being vertically
@@ -505,18 +425,14 @@ stylelint-disable
 	-webkit-appearance: listbox;
 }
 
-:global(
-	textarea
-) {
+:global(textarea) {
 	/* Remove the default vertical scrollbar in IE. */
 	overflow: auto;
 	/* Textareas should really only resize vertically so they don't break their (horizontal) containers. */
 	resize: vertical;
 }
 
-:global(
-	fieldset
-) {
+:global(fieldset) {
 	/**
 	 * Browsers set a default `min-width: min-content;` on fieldsets,
 	 * unlike e.g. `<div>`s, which have `min-width: 0;` by default.
@@ -536,9 +452,7 @@ stylelint-disable
  * 2. Correct the color inheritance from `fieldset` elements in IE.
  */
 
-:global(
-	legend
-) {
+:global(legend) {
 	display: block;
 	margin-bottom: .5rem;
 	padding: 0;
@@ -550,9 +464,7 @@ stylelint-disable
 	font-size: 1.5rem;
 }
 
-:global(
-	progress
-) {
+:global(progress) {
 	/* Add the correct vertical alignment in Chrome, Firefox, and Opera. */
 	vertical-align: baseline;
 }
@@ -561,16 +473,12 @@ stylelint-disable
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-:global(
-	[type=number]::-webkit-inner-spin-button,
-	[type=number]::-webkit-outer-spin-button
-) {
+:global([type=number]::-webkit-inner-spin-button),
+:global([type=number]::-webkit-outer-spin-button) {
 	height: auto;
 }
 
-:global(
-	[type=search]
-) {
+:global([type=search]) {
 	/**
 	 * This overrides the extra rounded corners on search inputs in iOS so that our
 	 * `.form-control` class can properly style them. Note that this cannot simply
@@ -586,10 +494,8 @@ stylelint-disable
  * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
  */
 
-:global(
-	[type=search]::-webkit-search-cancel-button,
-	[type=search]::-webkit-search-decoration
-) {
+:global([type=search]::-webkit-search-cancel-button),
+:global([type=search]::-webkit-search-decoration) {
 	-webkit-appearance: none;
 }
 
@@ -598,9 +504,7 @@ stylelint-disable
  * 2. Change font properties to `inherit` in Safari.
  */
 
-:global(
-	::-webkit-file-upload-button
-) {
+:global(::-webkit-file-upload-button) {
 	-webkit-appearance: button; /* 1 */
 	font: inherit; /* 2 */
 }
@@ -609,23 +513,17 @@ stylelint-disable
  * Correct element displays
  */
 
-:global(
-	output
-) {
+:global(output) {
 	display: inline-block;
 }
 
-:global(
-	summary
-) {
+:global(summary) {
 	/* Add the correct display in all browsers */
 	display: list-item;
 	cursor: pointer;
 }
 
-:global(
-	template
-) {
+:global(template) {
 	/* Add the correct display in IE */
 	display: none;
 }
@@ -635,8 +533,6 @@ stylelint-disable
  * Needed for proper display in IE 10-.
  */
 
-:global(
-	[hidden]
-) {
+:global([hidden]) {
 	display: none !important;
 }
