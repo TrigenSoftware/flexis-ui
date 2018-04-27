@@ -1,0 +1,26 @@
+
+.root {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+}
+
+.window {
+	-st-states: centered;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.window:centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.closeButton {
+	/* empty block */
+}
