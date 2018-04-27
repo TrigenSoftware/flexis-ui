@@ -1,6 +1,7 @@
 import React, {
 	PureComponent,
 	Children,
+	Fragment,
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
@@ -152,7 +153,16 @@ export default class CustomSelect extends PureComponent {
 				style={style}
 				disabled={disabled}
 			>
-				{this.face(faceChild, label)}
+				<Fragment>
+					{this.face(faceChild, label)}
+					{nameProp && (
+						<input
+							type='hidden'
+							name={nameProp}
+							value={value}
+						/>
+					)}
+				</Fragment>
 				<DropdownContent>
 					<ul
 						className='options'
