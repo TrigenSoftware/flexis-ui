@@ -9,11 +9,11 @@ import { setOptions } from '@storybook/addon-options';
 import { Stylable } from '../src/helpers';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
-import testTheme from '../src/themes/test-index.st.css';
+import stylesheet from '../src/index.st.css';
 
 global.TestIcon = TestIcon;
 
-addDecorator(story => Stylable(testTheme)(() => (
+addDecorator(story => Stylable(stylesheet)(() => (
 	<div style={{ padding: '12px' }}>
 		{story()}
 	</div>
