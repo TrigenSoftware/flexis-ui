@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps,
 	valueOrUndef
 } from '../../helpers';
 import stylesheet from './Textarea.st.css';
 
-@Stylable(stylesheet)
 export default class Textarea extends PureComponent {
 
 	static propTypes = {
@@ -43,7 +41,8 @@ export default class Textarea extends PureComponent {
 		return (
 			<textarea
 				{...getHtmlProps(props)}
-				ref={valueOrUndef(elementRef)}
+				{...stylesheet('root', {}, props)}
+				ref={elementRef}
 				onChange={this.onChange()}
 				value={valueOrUndef(value)}
 				defaultValue={valueOrUndef(defaultValue)}

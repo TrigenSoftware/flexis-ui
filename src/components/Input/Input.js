@@ -5,14 +5,12 @@ import React, {
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps,
 	valueOrUndef
 } from '../../helpers';
 import stylesheet from './Input.st.css';
 
-@Stylable(stylesheet)
 export default class Input extends PureComponent {
 
 	static propTypes = {
@@ -98,23 +96,25 @@ export default class Input extends PureComponent {
 
 		return (
 			<label
-				style={style}
-				style-state={{
+				{...stylesheet('root', {
 					withIcon: Boolean(inputIcon)
-				}}
+				}, props)}
+				style={style}
 			>
 				{leftAligned && inputIcon}
 				<Input
 					{...getHtmlProps(props)}
-					ref={valueOrUndef(elementRef && mapRef(elementRef))}
-					className='input'
+					{...stylesheet('input')}
+					ref={elementRef && mapRef(elementRef)}
 					type={type}
 					onChange={this.onChange()}
 					value={valueOrUndef(value)}
 					defaultValue={valueOrUndef(defaultValue)}
 					{...maskedInputProps}
 				/>
-				<div className='border'/>
+				<div
+					{...stylesheet('border')}
+				/>
 				{!leftAligned && inputIcon}
 			</label>
 		);

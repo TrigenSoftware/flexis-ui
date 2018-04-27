@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps,
 	valueOrUndef
 } from '../../helpers';
 import stylesheet from './Switch.st.css';
 
-@Stylable(stylesheet)
 export default class Switch extends PureComponent {
 
 	static propTypes = {
@@ -50,19 +48,22 @@ export default class Switch extends PureComponent {
 
 		return (
 			<label
+				{...stylesheet('root', {}, props)}
 				style={style}
 			>
 				<input
 					{...getHtmlProps(props)}
-					ref={valueOrUndef(elementRef)}
-					className='input'
+					{...stylesheet('input')}
+					ref={elementRef}
 					type={type}
 					onChange={this.onChange()}
 					value={valueOrUndef(value)}
 					checked={valueOrUndef(checked)}
 					defaultChecked={valueOrUndef(defaultChecked)}
 				/>
-				<div className='face'/>
+				<div
+					{...stylesheet('face')}
+				/>
 			</label>
 		);
 	}

@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
 
-@Stylable(stylesheet)
 export default class ScrollArea extends PureComponent {
 
 	static propTypes = {
@@ -65,46 +63,42 @@ export default class ScrollArea extends PureComponent {
 		return (
 			<div
 				{...getHtmlProps(props)}
+				{...stylesheet('root', {}, props)}
 			>
 				<div
 					ref={this.onScrollerRef()}
-					className='scroller'
-					style-state={{
+					{...stylesheet('scroller', {
 						hideXScrollbar,
 						hideYScrollbar
-					}}
+					})}
 					onScroll={this.onScroll()}
 					onWheel={this.onWheel()}
 				>
 					{children}
 				</div>
 				<div
-					className='shadow'
-					style-state={{
+					{...stylesheet('shadow', {
 						'top':    true,
 						'active': topShadow && !ignoreTopShadow
-					}}
+					})}
 				/>
 				<div
-					className='shadow'
-					style-state={{
+					{...stylesheet('shadow', {
 						'right':  true,
 						'active': rightShadow && !ignoreRightShadow
-					}}
+					})}
 				/>
 				<div
-					className='shadow'
-					style-state={{
+					{...stylesheet('shadow', {
 						'bottom': true,
 						'active': bottomShadow && !ignoreBottomShadow
-					}}
+					})}
 				/>
 				<div
-					className='shadow'
-					style-state={{
+					{...stylesheet('shadow', {
 						'left':   true,
 						'active': leftShadow && !ignoreLeftShadow
-					}}
+					})}
 				/>
 			</div>
 		);

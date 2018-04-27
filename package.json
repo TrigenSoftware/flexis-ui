@@ -1,6 +1,6 @@
 {
   "name": "@flexis/ui",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Styleless React Components",
   "author": "dangreen",
   "license": "MIT",
@@ -31,8 +31,7 @@
     "react-input-mask": "^1.2.2",
     "stylable": "^5.3.4",
     "stylable-integration": "^6.1.1",
-    "throttle-debounce": "^1.0.1",
-    "wix-react-tools": "^4.1.2"
+    "throttle-debounce": "^1.0.1"
   },
   "peerDependencies": {
     "prop-types": "^15.6.1",

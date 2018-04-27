@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './FileDrop.st.css';
 
-@Stylable(stylesheet)
 export default class FileSelect extends PureComponent {
 
 	static propTypes = {
@@ -41,10 +39,10 @@ export default class FileSelect extends PureComponent {
 		return (
 			<div
 				{...getHtmlProps(props, ['onChange'])}
-				style-state={{
+				{...stylesheet('root', {
 					disabled,
 					dragOver
-				}}
+				}, props)}
 				onDrag={this.onIgnoredEvent()}
 				onDragStart={this.onIgnoredEvent()}
 				onDragOver={this.onDragOver()}

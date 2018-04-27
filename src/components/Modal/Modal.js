@@ -5,7 +5,6 @@ import React, {
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	blockScroll,
 	getHtmlProps
@@ -18,7 +17,6 @@ const defaultCloseButton = (
 	</button>
 );
 
-@Stylable(stylesheet)
 export default class Modal extends PureComponent {
 
 	static propTypes = {
@@ -51,15 +49,14 @@ export default class Modal extends PureComponent {
 
 		return !active ? null : createPortal((
 			<div
-				className='root'
+				{...stylesheet('root')}
 				onClick={onClose}
 			>
 				<div
 					{...getHtmlProps(props)}
-					className='window'
-					style-state={{
+					{...stylesheet('window', {
 						centered
-					}}
+					}, props)}
 					onClick={this.onIgnoredEvent()}
 				>
 					{closeButton && cloneElement(

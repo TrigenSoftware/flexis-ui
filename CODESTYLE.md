@@ -93,7 +93,7 @@ propTypes = {
 // ...
 <input
     {...getHtmlProps(props)}
-    ref={valueOrUndef(elementRef)}
+    ref={elementRef}
     {/* ... */}
 />
 ```

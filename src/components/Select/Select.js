@@ -4,7 +4,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -12,18 +11,19 @@ import stylesheet from './Select.st.css';
 
 export * from './SelectOption';
 
-@Stylable(stylesheet)
 export default class Select extends PureComponent {
 
 	static propTypes = {
-		style:    PropTypes.object,
-		onChange: PropTypes.func,
-		children: PropTypes.any.isRequired
+		elementRef: PropTypes.func,
+		style:      PropTypes.object,
+		onChange:   PropTypes.func,
+		children:   PropTypes.any.isRequired
 	};
 
 	static defaultProps = {
-		style:    null,
-		onChange: null
+		elementRef: null,
+		style:      null,
+		onChange:   null
 	};
 
 	originalValues = [];
@@ -31,6 +31,7 @@ export default class Select extends PureComponent {
 	render() {
 
 		const {
+			elementRef,
 			style,
 			children,
 			...props
@@ -47,16 +48,20 @@ export default class Select extends PureComponent {
 
 		return (
 			<span
+				{...stylesheet('root', {}, props)}
 				style={style}
 			>
 				<select
 					{...getHtmlProps(props, ['multiple'])}
-					className='select'
+					{...stylesheet('select')}
+					ref={elementRef}
 					onChange={this.onChange()}
 				>
 					{children}
 				</select>
-				<div className='border'/>
+				<div
+					{...stylesheet('border')}
+				/>
 			</span>
 		);
 	}

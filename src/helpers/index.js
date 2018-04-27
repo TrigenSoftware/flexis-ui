@@ -1,4 +1,3 @@
-export { stylable as Stylable } from 'wix-react-tools';
 export { default as Listener } from './Listener';
 export { default as Throttle } from './Throttle';
 export { default as Debounce } from './Debounce';

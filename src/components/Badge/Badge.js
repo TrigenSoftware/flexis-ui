@@ -1,39 +1,30 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {
-	Stylable,
-	getHtmlProps
-} from '../../helpers';
+import { getHtmlProps } from '../../helpers';
 import stylesheet from './Badge.st.css';
 
 export {
 	default as BadgeContainer
 } from './BadgeContainer';
 
-@Stylable(stylesheet)
-export default class Badge extends PureComponent {
+Badge.propTypes = {
+	children: PropTypes.any
+};
 
-	static propTypes = {
-		children: PropTypes.any
-	};
+Badge.defaultProps = {
+	children: null
+};
 
-	static defaultProps = {
-		children: null
-	};
-
-	render() {
-
-		const {
-			children,
-			...props
-		} = this.props;
-
-		return (
-			<label
-				{...getHtmlProps(props)}
-			>
-				{children}
-			</label>
-		);
-	}
+export default function Badge({
+	children,
+	...props
+}) {
+	return (
+		<label
+			{...getHtmlProps(props)}
+			{...stylesheet('root', {}, props)}
+		>
+			{children}
+		</label>
+	);
 }

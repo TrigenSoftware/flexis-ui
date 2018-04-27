@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps,
 	generateId
@@ -14,7 +13,6 @@ import stylesheet from './ToggleSelect.st.css';
 
 export * from './ToggleSelectOption';
 
-@Stylable(stylesheet)
 export default class ToggleSelect extends PureComponent {
 
 	static propTypes = {
@@ -117,6 +115,7 @@ export default class ToggleSelect extends PureComponent {
 		return (
 			<ul
 				{...getHtmlProps(props, ['onChange'])}
+				{...stylesheet('root', {}, props)}
 			>
 				{options}
 			</ul>

@@ -4,7 +4,7 @@
  * @return {Boolean} Result of check.
  */
 export default function valueOrUndef(value) {
-	return value == null
+	return value === null
 		? global.undefined
 		: value;
 }

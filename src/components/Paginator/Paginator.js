@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -13,7 +12,6 @@ const HALF = 2,
 const visiblePages = 7,
 	visiblePagesMid = Math.floor(visiblePages / HALF);
 
-@Stylable(stylesheet)
 export default class Paginator extends PureComponent {
 
 	static propTypes = {
@@ -84,9 +82,9 @@ export default class Paginator extends PureComponent {
 					'name',
 					'onChange'
 				])}
-				style-state={{
+				{...stylesheet('root', {
 					disabled
-				}}
+				}, props)}
 			>
 				{name && (
 					<input
@@ -187,18 +185,17 @@ export default class Paginator extends PureComponent {
 		return (
 			<li
 				key={visiblePagePlace}
-				className='item'
+				{...stylesheet('item')}
 			>
 				{separate ? (
 					<span
-						className='separator'
+						{...stylesheet('separator')}
 					/>
 				) : (
 					<button
-						className='button'
-						style-state={{
+						{...stylesheet('button', {
 							active
-						}}
+						})}
 						type='button'
 						tabIndex={tabIndex}
 						onClick={this.onChange(number - 1)}

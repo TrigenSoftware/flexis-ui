@@ -6,7 +6,6 @@ import React, {
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	subscribeEvent,
 	blockScroll,
@@ -16,7 +15,6 @@ import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
 
-@Stylable(stylesheet)
 export default class Dropdown extends PureComponent {
 
 	static propTypes = {
@@ -100,21 +98,20 @@ export default class Dropdown extends PureComponent {
 		return (
 			<span
 				{...getHtmlProps(props)}
-				ref={this.onElementRef()}
-				style-state={{
+				{...stylesheet('root', {
 					active,
 					disabled
-				}}
+				}, props)}
+				ref={this.onElementRef()}
 				onClick={this.onToggle()}
 			>
 				{toggler}
 				{createPortal((
 					<div
-						ref={this.onBoxRef()}
-						className='box'
-						style-state={{
+						{...stylesheet('box', {
 							active
-						}}
+						})}
+						ref={this.onBoxRef()}
 					>
 						{cloneElement(
 							content,

@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -14,7 +13,6 @@ import stylesheet from './Expand.st.css';
 export * from './ExpandTitle';
 export * from './ExpandContent';
 
-@Stylable(stylesheet)
 export default class Expand extends PureComponent {
 
 	static propTypes = {
@@ -86,10 +84,10 @@ export default class Expand extends PureComponent {
 		return (
 			<div
 				{...getHtmlProps(props)}
-				style-state={{
+				{...stylesheet('root', {
 					active,
 					disabled
-				}}
+				}, props)}
 			>
 				{cloneElement(
 					title,

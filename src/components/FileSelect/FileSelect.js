@@ -1,14 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
-	getHtmlProps,
-	valueOrUndef
+	getHtmlProps
 } from '../../helpers';
 import stylesheet from './FileSelect.st.css';
 
-@Stylable(stylesheet)
 export default class FileSelect extends PureComponent {
 
 	static propTypes = {
@@ -39,21 +36,23 @@ export default class FileSelect extends PureComponent {
 
 		return (
 			<label
-				style={style}
-				style-state={{
+				{...stylesheet('root', {
 					disabled
-				}}
+				}, props)}
+				style={style}
 			>
 				{children}
 				<input
 					{...getHtmlProps(props)}
-					ref={valueOrUndef(elementRef)}
-					className='input'
+					{...stylesheet('input')}
+					ref={elementRef}
 					type='file'
 					onChange={this.onChange()}
 					disabled={disabled}
 				/>
-				<div className='border'/>
+				<div
+					{...stylesheet('border')}
+				/>
 			</label>
 		);
 	}

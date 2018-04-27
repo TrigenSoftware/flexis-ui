@@ -16,8 +16,8 @@ import CustomSelect, {
 const stylableApi = `
 Stylable API
 ---
-- DropdownContent
-- Button
+- ::dropdownContent
+- ::button
 - ::placeholder
 - ::options
 - ::option

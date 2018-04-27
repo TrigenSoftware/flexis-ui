@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps,
 	valueOrUndef
 } from '../../helpers';
 import stylesheet from './Checkbox.st.css';
 
-@Stylable(stylesheet)
 export default class Checkbox extends PureComponent {
 
 	static propTypes = {
@@ -45,19 +43,22 @@ export default class Checkbox extends PureComponent {
 
 		return (
 			<label
+				{...stylesheet('root', {}, props)}
 				style={style}
 			>
 				<input
 					{...getHtmlProps(props)}
-					ref={valueOrUndef(elementRef)}
-					className='checkbox'
+					{...stylesheet('checkbox')}
+					ref={elementRef}
 					type='checkbox'
 					value={valueOrUndef(value)}
 					checked={valueOrUndef(checked)}
 					defaultChecked={valueOrUndef(defaultChecked)}
 					onChange={this.onChange()}
 				/>
-				<div className='face'/>
+				<div
+					{...stylesheet('face')}
+				/>
 			</label>
 		);
 	}

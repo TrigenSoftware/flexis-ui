@@ -2,13 +2,11 @@ import React, { PureComponent } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Tooltip.st.css';
 
-@Stylable(stylesheet)
 export default class Tooltip extends PureComponent {
 
 	static propTypes = {
@@ -60,6 +58,7 @@ export default class Tooltip extends PureComponent {
 
 		return (
 			<span
+				{...stylesheet('root', {}, props)}
 				ref={this.onElementRef()}
 				onMouseEnter={this.onShow()}
 				onFocus={this.onShow()}
@@ -70,17 +69,16 @@ export default class Tooltip extends PureComponent {
 				{children}
 				{createPortal((
 					<div
+						{...stylesheet('box')}
 						ref={this.onBoxRef()}
-						className='box'
 					>
 						<div
 							{...getHtmlProps(props)}
-							className='tooltip'
-							style-state={{
+							{...stylesheet('tooltip', {
 								[`${placement}Placement`]: placement,
 								[`${align}Align`]:         align,
 								active
-							}}
+							}, props)}
 						>
 							{content}
 						</div>

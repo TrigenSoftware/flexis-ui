@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	generateId
 } from '../../helpers';
@@ -16,7 +15,6 @@ import stylesheet from './CustomSelect.st.css';
 export * from './CustomSelectFace';
 export * from './CustomSelectOption';
 
-@Stylable(stylesheet)
 export default class CustomSelect extends PureComponent {
 
 	static propTypes = {
@@ -149,6 +147,7 @@ export default class CustomSelect extends PureComponent {
 		return (
 			<Dropdown
 				{...props}
+				{...stylesheet('root', {}, props)}
 				ref={this.onDropdownRef()}
 				style={style}
 				disabled={disabled}
@@ -163,9 +162,11 @@ export default class CustomSelect extends PureComponent {
 						/>
 					)}
 				</Fragment>
-				<DropdownContent>
+				<DropdownContent
+					{...stylesheet('dropdownContent')}
+				>
 					<ul
-						className='options'
+						{...stylesheet('options')}
 						onClick={this.onDropdownHide()}
 					>
 						{options}
@@ -191,7 +192,9 @@ export default class CustomSelect extends PureComponent {
 		return children(
 			(multiple ? label.join(', ') : label)
 			|| placeholder && (
-				<span className='placeholder'>
+				<span
+					{...stylesheet('placeholder')}
+				>
 					{placeholder}
 				</span>
 			)

@@ -59,6 +59,7 @@ export class CustomSelectOption extends PureComponent {
 				/>
 				<Button
 					{...props}
+					{...stylesheet('button', {}, props)}
 					type='button'
 					disabled={disabled}
 					onClick={this.onButtonClick}

@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-	Stylable,
 	Listener,
 	getHtmlProps,
 	valueOrUndef
 } from '../../helpers';
 import stylesheet from './Radio.st.css';
 
-@Stylable(stylesheet)
 export default class Radio extends PureComponent {
 
 	static propTypes = {
@@ -45,19 +43,22 @@ export default class Radio extends PureComponent {
 
 		return (
 			<label
+				{...stylesheet('root', {}, props)}
 				style={style}
 			>
 				<input
 					{...getHtmlProps(props)}
-					ref={valueOrUndef(elementRef)}
-					className='radio'
+					{...stylesheet('radio')}
+					ref={elementRef}
 					type='radio'
 					onChange={this.onChange()}
 					value={valueOrUndef(value)}
 					checked={valueOrUndef(checked)}
 					defaultChecked={valueOrUndef(defaultChecked)}
 				/>
-				<div className='face'/>
+				<div
+					{...stylesheet('face')}
+				/>
 			</label>
 		);
 	}

@@ -14,7 +14,7 @@ import ToggleSelect, {
 const stylableApi = `
 Stylable API
 ---
-- Button
+- ::button
 - ::option
 - ::input
 `;

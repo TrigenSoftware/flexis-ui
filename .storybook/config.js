@@ -13,11 +13,14 @@ import stylesheet from '../src/index.st.css';
 
 global.TestIcon = TestIcon;
 
-addDecorator(story => Stylable(stylesheet)(() => (
-	<div style={{ padding: '12px' }}>
+addDecorator(story => (
+	<div
+		{...stylesheet('root')}
+		style={{ padding: '12px' }}
+	>
 		{story()}
 	</div>
-))({}));
+));
 
 const stories = require.context(
 	'../src/',
