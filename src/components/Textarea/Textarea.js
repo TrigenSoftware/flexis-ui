@@ -11,6 +11,7 @@ export default class Textarea extends PureComponent {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
+		name:         PropTypes.string,
 		onChange:     PropTypes.func,
 		value:        PropTypes.oneOfType([
 			PropTypes.string,
@@ -24,6 +25,7 @@ export default class Textarea extends PureComponent {
 
 	static defaultProps = {
 		elementRef:   null,
+		name:         null,
 		onChange:     null,
 		value:        null,
 		defaultValue: null
@@ -54,14 +56,19 @@ export default class Textarea extends PureComponent {
 	onChange(event) {
 
 		const {
+			name,
 			onChange
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(
-				event.target.value,
-				event
-			);
+
+			const nextValue = event.target.value;
+
+			if (name) {
+				onChange(nextValue, name, event);
+			} else {
+				onChange(nextValue, event);
+			}
 		}
 	}
 }

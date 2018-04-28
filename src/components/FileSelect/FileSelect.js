@@ -11,6 +11,7 @@ export default class FileSelect extends PureComponent {
 	static propTypes = {
 		elementRef: PropTypes.func,
 		style:      PropTypes.object,
+		name:       PropTypes.string,
 		onChange:   PropTypes.func,
 		disabled:   PropTypes.bool,
 		children:   PropTypes.any
@@ -19,6 +20,7 @@ export default class FileSelect extends PureComponent {
 	static defaultProps = {
 		elementRef: null,
 		style:      null,
+		name:       null,
 		onChange:   null,
 		disabled:   false,
 		children:   null
@@ -61,14 +63,19 @@ export default class FileSelect extends PureComponent {
 	onChange(event) {
 
 		const {
+			name,
 			onChange
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(
-				Array.from(event.target.files),
-				event
-			);
+
+			const nextValue = Array.from(event.target.files);
+
+			if (name) {
+				onChange(nextValue, name, event);
+			} else {
+				onChange(nextValue, event);
+			}
 		}
 	}
 }

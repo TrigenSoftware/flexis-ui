@@ -1,5 +1,4 @@
 FormGroup
-trigger onChange with `name` if provided
 stylesheet -> st ?
 
 ProgressBar
@@ -8,5 +7,5 @@ CSSTransitionGroup for Stylable
 ConfirmModal
 Tooltip position fallbacks
 Dropdown position fallbacks
-commons methods with decorator
+commons methods with helpers and decorator
 aria attributes

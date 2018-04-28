@@ -16,6 +16,7 @@ export default class Switch extends PureComponent {
 			'checkbox',
 			'radio'
 		]).isRequired,
+		name:           PropTypes.string,
 		onChange:       PropTypes.func,
 		value:          PropTypes.oneOfType([
 			PropTypes.string,
@@ -28,6 +29,7 @@ export default class Switch extends PureComponent {
 	static defaultProps = {
 		elementRef:     null,
 		style:          null,
+		name:           null,
 		onChange:       null,
 		value:          null,
 		checked:        null,
@@ -72,17 +74,22 @@ export default class Switch extends PureComponent {
 	onChange(event) {
 
 		const {
+			name,
 			onChange,
 			value
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(
-				value != null
-					? value
-					: event.target.checked,
-				event
-			);
+
+			const nextValue = value != null
+				? value
+				: event.target.checked;
+
+			if (name) {
+				onChange(nextValue, name, event);
+			} else {
+				onChange(nextValue, event);
+			}
 		}
 	}
 }

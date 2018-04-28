@@ -16,8 +16,8 @@ export * from './ToggleSelectOption';
 export default class ToggleSelect extends PureComponent {
 
 	static propTypes = {
-		onChange:     PropTypes.func,
 		name:         PropTypes.string,
+		onChange:     PropTypes.func,
 		value:        PropTypes.any,
 		defaultValue: PropTypes.any,
 		multiple:     PropTypes.bool,
@@ -26,8 +26,8 @@ export default class ToggleSelect extends PureComponent {
 	};
 
 	static defaultProps = {
-		onChange:     null,
 		name:         null,
+		onChange:     null,
 		value:        null,
 		defaultValue: null,
 		multiple:     false,
@@ -127,6 +127,7 @@ export default class ToggleSelect extends PureComponent {
 
 		const {
 			value: valueProp,
+			name,
 			onChange,
 			disabled
 		} = this.props;
@@ -152,7 +153,12 @@ export default class ToggleSelect extends PureComponent {
 		}
 
 		if (typeof onChange == 'function') {
-			onChange(nextValue, event);
+
+			if (name) {
+				onChange(nextValue, name, event);
+			} else {
+				onChange(nextValue, event);
+			}
 		}
 	}
 

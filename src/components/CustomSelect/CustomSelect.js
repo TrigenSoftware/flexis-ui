@@ -20,8 +20,8 @@ export default class CustomSelect extends PureComponent {
 	static propTypes = {
 		elementRef:   PropTypes.func,
 		style:        PropTypes.object,
-		onChange:     PropTypes.func,
 		name:         PropTypes.string,
+		onChange:     PropTypes.func,
 		value:        PropTypes.any,
 		defaultValue: PropTypes.any,
 		placeholder:  PropTypes.string,
@@ -33,8 +33,8 @@ export default class CustomSelect extends PureComponent {
 	static defaultProps = {
 		elementRef:   null,
 		style:        null,
-		onChange:     null,
 		name:         null,
+		onChange:     null,
 		value:        null,
 		defaultValue: null,
 		placeholder:  null,
@@ -240,6 +240,7 @@ export default class CustomSelect extends PureComponent {
 
 		const {
 			value: valueProp,
+			name,
 			onChange,
 			disabled
 		} = this.props;
@@ -265,7 +266,12 @@ export default class CustomSelect extends PureComponent {
 		}
 
 		if (typeof onChange == 'function') {
-			onChange(nextValue, event);
+
+			if (name) {
+				onChange(nextValue, name, event);
+			} else {
+				onChange(nextValue, event);
+			}
 		}
 	}
 

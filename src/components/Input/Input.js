@@ -17,6 +17,7 @@ export default class Input extends PureComponent {
 		elementRef:     PropTypes.func,
 		style:          PropTypes.object,
 		type:           PropTypes.string,
+		name:           PropTypes.string,
 		onChange:       PropTypes.func,
 		value:          PropTypes.oneOfType([
 			PropTypes.string,
@@ -41,6 +42,7 @@ export default class Input extends PureComponent {
 		elementRef:     null,
 		style:          null,
 		type:           'text',
+		name:           null,
 		onChange:       null,
 		value:          null,
 		defaultValue:   null,
@@ -124,14 +126,24 @@ export default class Input extends PureComponent {
 	onChange(event) {
 
 		const {
+			name,
 			onChange
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(
-				event.target.value,
-				event
-			);
+
+			if (name) {
+				onChange(
+					event.target.value,
+					name,
+					event
+				);
+			} else {
+				onChange(
+					event.target.value,
+					event
+				);
+			}
 		}
 	}
 }

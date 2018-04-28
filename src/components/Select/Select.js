@@ -16,6 +16,7 @@ export default class Select extends PureComponent {
 	static propTypes = {
 		elementRef: PropTypes.func,
 		style:      PropTypes.object,
+		name:       PropTypes.string,
 		onChange:   PropTypes.func,
 		children:   PropTypes.any.isRequired
 	};
@@ -23,6 +24,7 @@ export default class Select extends PureComponent {
 	static defaultProps = {
 		elementRef: null,
 		style:      null,
+		name:       null,
 		onChange:   null
 	};
 
@@ -70,14 +72,19 @@ export default class Select extends PureComponent {
 	onChange(event) {
 
 		const {
+			name,
 			onChange
 		} = this.props;
 
 		if (typeof onChange == 'function') {
-			onChange(
-				this.originalValues[event.target.options.selectedIndex],
-				event
-			);
+
+			const nextValue = this.originalValues[event.target.options.selectedIndex];
+
+			if (name) {
+				onChange(nextValue, name, event);
+			} else {
+				onChange(nextValue, event);
+			}
 		}
 	}
 }

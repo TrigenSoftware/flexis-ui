@@ -67,6 +67,7 @@ export default class Paginator extends PureComponent {
 	render() {
 
 		const {
+			name,
 			disabled,
 			...props
 		} = this.props;
@@ -79,7 +80,6 @@ export default class Paginator extends PureComponent {
 			<ul
 				{...getHtmlProps(props, [
 					'tabIndex',
-					'name',
 					'onChange'
 				])}
 				{...stylesheet('root', {
@@ -217,6 +217,7 @@ export default class Paginator extends PureComponent {
 
 		const {
 			page: pageProp,
+			name,
 			onChange,
 			disabled
 		} = this.props;
@@ -240,7 +241,12 @@ export default class Paginator extends PureComponent {
 		}
 
 		if (typeof onChange == 'function') {
-			onChange(nextPage, event);
+
+			if (name) {
+				onChange(nextPage, name, event);
+			} else {
+				onChange(nextPage, event);
+			}
 		}
 	}
 }
