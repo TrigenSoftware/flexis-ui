@@ -104,4 +104,29 @@ storiesOf('Select', module)
 				</SelectOption>
 			</Select>
 		)
+	)
+	.add(
+		'with text around',
+		() => {
+
+			const select = (
+				<Select>
+					<SelectOption value={0}>
+						Option #1
+					</SelectOption>
+					<SelectOption value={1}>
+						Option #2
+					</SelectOption>
+					<SelectOption value={2}>
+						Option #3
+					</SelectOption>
+				</Select>
+			);
+
+			return (
+				<div>
+					Text {select} text
+				</div>
+			);
+		}
 	);
