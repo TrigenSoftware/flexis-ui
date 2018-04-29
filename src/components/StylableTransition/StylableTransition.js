@@ -75,7 +75,7 @@ export default class StylableTransition extends Component {
 
 		const props = { ...this.props };
 
-		Reflect.deleteProperty(props, 'classNames');
+		Reflect.deleteProperty(props, 'states');
 
 		return (
 			<Transition
