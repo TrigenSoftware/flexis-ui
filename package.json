@@ -29,6 +29,7 @@
   ],
   "dependencies": {
     "react-input-mask": "^1.2.2",
+    "react-transition-group": "^2.3.1",
     "stylable": "^5.3.4",
     "stylable-integration": "^6.1.1",
     "throttle-debounce": "^1.0.1"
