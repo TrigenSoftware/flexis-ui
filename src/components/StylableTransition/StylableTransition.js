@@ -21,7 +21,7 @@ export default class StylableTransition extends Component {
 		states:     PropTypes.oneOf([
 			PropTypes.func,
 			PropTypes.object
-		]),
+		]).isRequired,
 		onEnter:    PropTypes.func,
 		onEntering: PropTypes.func,
 		onEntered:  PropTypes.func,
@@ -31,7 +31,6 @@ export default class StylableTransition extends Component {
 	};
 
 	static defaultProps = {
-		states:     null,
 		onEnter:    null,
 		onEntering: null,
 		onEntered:  null,
@@ -65,7 +64,9 @@ export default class StylableTransition extends Component {
 				.toLowerCase()
 				.split(' ');
 
-			stylableStates[state][phase || 'state'] = value;
+			if (stylableStates.hasOwnProperty(state)) {
+				stylableStates[state][phase || 'state'] = value;
+			}
 		});
 
 		this.stylableStates = stylableStates;

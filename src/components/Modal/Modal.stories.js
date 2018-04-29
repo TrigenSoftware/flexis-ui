@@ -11,6 +11,14 @@ import Modal from './';
 const stylableApi = `
 Stylable API
 ---
+- :appear
+- :appearActive
+- :enter
+- :enterActive
+- :enterDone
+- :exit
+- :exitActive
+- :exitDone
 - ::window
 	- :centered
 - ::closeButton

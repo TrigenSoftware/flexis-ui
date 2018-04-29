@@ -9,6 +9,7 @@ import {
 	blockScroll,
 	getHtmlProps
 } from '../../helpers';
+import StylableTransition from '../StylableTransition';
 import stylesheet from './Modal.st.css';
 
 const defaultCloseButton = (
@@ -20,18 +21,20 @@ const defaultCloseButton = (
 export default class Modal extends PureComponent {
 
 	static propTypes = {
-		onClose:     PropTypes.func,
-		active:      PropTypes.bool,
-		centered:    PropTypes.bool,
-		closeButton: PropTypes.element,
-		children:    PropTypes.any.isRequired
+		onClose:            PropTypes.func,
+		active:             PropTypes.bool,
+		centered:           PropTypes.bool,
+		closeButton:        PropTypes.element,
+		children:           PropTypes.any.isRequired,
+		transitionDuration: PropTypes.number
 	};
 
 	static defaultProps = {
-		onClose:     null,
-		active:      false,
-		centered:    false,
-		closeButton: defaultCloseButton
+		onClose:            null,
+		active:             false,
+		centered:           false,
+		closeButton:        defaultCloseButton,
+		transitionDuration: 400
 	};
 
 	unblockScroll = null;
@@ -44,31 +47,39 @@ export default class Modal extends PureComponent {
 			centered,
 			closeButton,
 			children,
+			transitionDuration,
 			...props
 		} = this.props;
 
-		return !active ? null : createPortal((
-			<div
-				{...stylesheet('root')}
-				onClick={onClose}
+		return createPortal((
+			<StylableTransition
+				in={active}
+				states={stylesheet}
+				timeout={transitionDuration}
+				unmountOnExit
 			>
 				<div
-					{...getHtmlProps(props)}
-					{...stylesheet('window', {
-						centered
-					}, props)}
-					onClick={this.onIgnoredEvent()}
+					{...stylesheet('root')}
+					onClick={onClose}
 				>
-					{closeButton && cloneElement(
-						closeButton,
-						{
-							...stylesheet('closeButton', {}, closeButton.props),
-							onClick: onClose
-						}
-					)}
-					{children}
+					<div
+						{...getHtmlProps(props)}
+						{...stylesheet('window', {
+							centered
+						}, props)}
+						onClick={this.onIgnoredEvent()}
+					>
+						{closeButton && cloneElement(
+							closeButton,
+							{
+								...stylesheet('closeButton', {}, closeButton.props),
+								onClick: onClose
+							}
+						)}
+						{children}
+					</div>
 				</div>
-			</div>
+			</StylableTransition>
 		), document.body);
 	}
 

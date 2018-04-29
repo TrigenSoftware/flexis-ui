@@ -1,5 +1,14 @@
 
 .root {
+	-st-states:
+		appear,
+		appearActive,
+		enter,
+		enterActive,
+		enterDone,
+		exit,
+		exitActive,
+		exitDone;
 	position: fixed;
 	top: 0;
 	right: 0;
