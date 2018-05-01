@@ -8,12 +8,18 @@ import {
 export class DropdownContent extends PureComponent {
 
 	static propTypes = {
-		children: PropTypes.any.isRequired
-	}
+		elementRef: PropTypes.func,
+		children:   PropTypes.any.isRequired
+	};
+
+	static defaultProps = {
+		elementRef: null
+	};
 
 	render() {
 
 		const {
+			elementRef,
 			children,
 			...props
 		} = this.props;
@@ -21,6 +27,7 @@ export class DropdownContent extends PureComponent {
 		return (
 			<div
 				{...getHtmlProps(props)}
+				ref={elementRef}
 				onClick={this.onClick()}
 			>
 				{children}

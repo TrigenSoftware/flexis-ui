@@ -32,8 +32,8 @@ export default function BadgeContainer({
 		<span
 			{...getHtmlProps(props)}
 			{...stylesheet('root', {
-				[`${placement}Placement`]: placement,
-				[`${align}Align`]:         align
+				[`${placement}Placement`]: Boolean(placement),
+				[`${align}Align`]:         Boolean(align)
 			}, props)}
 		>
 			{children}

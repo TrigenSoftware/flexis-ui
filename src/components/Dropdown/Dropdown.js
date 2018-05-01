@@ -11,9 +11,12 @@ import {
 	blockScroll,
 	getHtmlProps
 } from '../../helpers';
+import setOverflowOffset from '../common/setOverflowOffset';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
+
+const half = 2;
 
 export default class Dropdown extends PureComponent {
 
@@ -60,7 +63,7 @@ export default class Dropdown extends PureComponent {
 	}
 
 	elementRef = null;
-	boxRef = null;
+	contentRef = null;
 	unsubscribeFromOutsideClick = null;
 	unblockScroll = null;
 
@@ -106,21 +109,19 @@ export default class Dropdown extends PureComponent {
 				onClick={this.onToggle()}
 			>
 				{toggler}
-				{createPortal((
-					<div
-						{...stylesheet('box', {
-							active
-						})}
-						ref={this.onBoxRef()}
-					>
-						{cloneElement(
-							content,
-							stylesheet('content', {
-								[`${align}Align`]: align
-							}, content.props)
-						)}
-					</div>
-				), document.body)}
+				{createPortal(
+					cloneElement(
+						content,
+						{
+							...stylesheet('content', {
+								[`${align}Align`]: Boolean(align),
+								active
+							}, content.props),
+							elementRef: this.onContentRef()
+						}
+					),
+					document.body
+				)}
 			</span>
 		);
 	}
@@ -163,8 +164,8 @@ export default class Dropdown extends PureComponent {
 	}
 
 	@Listener()
-	onBoxRef(ref) {
-		this.boxRef = ref;
+	onContentRef(ref) {
+		this.contentRef = ref;
 	}
 
 	@Listener()
@@ -223,7 +224,7 @@ export default class Dropdown extends PureComponent {
 				this.unblockScroll();
 			}
 
-			this.setBoxPosition();
+			this.setContentPosition();
 			this.unblockScroll = blockScroll(this.elementRef);
 
 		} else
@@ -233,34 +234,59 @@ export default class Dropdown extends PureComponent {
 		}
 	}
 
-	setBoxPosition() {
+	setContentPosition() {
 
 		const {
 			elementRef,
-			boxRef
+			contentRef
 		} = this;
 
-		if (!elementRef
-			|| !boxRef
-			|| !('getBoundingClientRect' in elementRef)
-		) {
+		if (!elementRef || !contentRef) {
 			return;
 		}
 
 		const {
-			top,
-			left,
-			width,
-			height
+			align
+		} = this.props;
+
+		const {
+			top:    elementTop,
+			left:   elementLeft,
+			width:  elementWidth,
+			height: elementHeight
 		} = elementRef.getBoundingClientRect();
 
 		const {
+			offsetWidth: tooltipWidth,
 			style
-		} = boxRef;
+		} = contentRef;
+
+		let top = 0,
+			left = 0;
+
+		top = elementTop + elementHeight;
+
+		switch (align) {
+
+			case 'left':
+				left = elementLeft;
+				break;
+
+			case 'center':
+				left = elementLeft + elementWidth / half;
+				break;
+
+			case 'end':
+				left = elementLeft + elementWidth - tooltipWidth;
+				break;
+
+			default:
+				break;
+		}
 
 		style.top = `${top}px`;
 		style.left = `${left}px`;
-		style.width = `${width}px`;
-		style.height = `${height}px`;
+
+		setOverflowOffset(contentRef, top, left);
 	}
 }

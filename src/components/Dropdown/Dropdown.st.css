@@ -6,46 +6,23 @@
 	display: inline-block;
 }
 
-.box {
-	-st-states: active;
+.content {
+	-st-states:
+		/* Basic states */
+		active,
+		/* Align states */
+		leftAlign,
+		centerAlign,
+		rightAlign;
 	position: fixed;
 	z-index: 1;
 }
 
-.box:not(:active) {
+.content:not(:active) {
 	pointer-events: none;
 	opacity: 0;
 }
 
-.content {
-	-st-states:
-		leftAlign,
-		centerAlign,
-		rightAlign;
-	position: absolute;
-	bottom: 0;
-}
-
-.content:leftAlign {
-	left: 0;
-}
-
 .content:centerAlign {
-	left: 50%;
-}
-
-.content:rightAlign {
-	right: 0;
-}
-
-.box:active .content:leftAlign {
-	transform: translate(0, 100%);
-}
-
-.box:active .content:centerAlign {
-	transform: translate(-50%, 100%);
-}
-
-.box:active .content:rightAlign {
-	transform: translate(0, 100%);
+	transform: translateX(-50%);
 }

@@ -5,6 +5,7 @@ import {
 	Listener,
 	getHtmlProps
 } from '../../helpers';
+import setOverflowOffset from '../common/setOverflowOffset';
 import stylesheet from './Tooltip.st.css';
 
 const half = 2;
@@ -73,8 +74,8 @@ export default class Tooltip extends PureComponent {
 					<div
 						{...getHtmlProps(props)}
 						{...stylesheet('tooltip', {
-							[`${placement}Placement`]: placement,
-							[`${align}Align`]:         align,
+							[`${placement}Placement`]: Boolean(placement),
+							[`${align}Align`]:         Boolean(align),
 							active
 						}, props)}
 						ref={this.onTooltipRef()}
@@ -128,10 +129,7 @@ export default class Tooltip extends PureComponent {
 			tooltipRef
 		} = this;
 
-		if (!elementRef
-			|| !tooltipRef
-			|| !('getBoundingClientRect' in elementRef)
-		) {
+		if (!elementRef || !tooltipRef) {
 			return;
 		}
 
@@ -247,52 +245,6 @@ export default class Tooltip extends PureComponent {
 		style.top = `${top}px`;
 		style.left = `${left}px`;
 
-		this.setOverflowOffset(top, left);
-	}
-
-	setOverflowOffset(positionTop, positionLeft) {
-
-		const {
-			tooltipRef
-		} = this;
-
-		if (!tooltipRef
-			|| !('getBoundingClientRect' in tooltipRef)
-		) {
-			return;
-		}
-
-		const {
-			clientWidth,
-			clientHeight
-		} = document.documentElement;
-
-		const {
-			style
-		} = tooltipRef;
-
-		const {
-			top,
-			left,
-			width,
-			height
-		} = tooltipRef.getBoundingClientRect();
-
-		const right = clientWidth - (left + width),
-			bottom = clientHeight - (top + height);
-
-		if (top < 0) {
-			style.top = `${positionTop - top}px`;
-		} else
-		if (bottom < 0) {
-			style.top = `${positionTop + bottom}px`;
-		}
-
-		if (right < 0) {
-			style.left = `${positionLeft + right}px`;
-		} else
-		if (left < 0) {
-			style.left = `${positionLeft - left}px`;
-		}
+		setOverflowOffset(tooltipRef, top, left);
 	}
 }

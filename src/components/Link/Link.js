@@ -48,7 +48,7 @@ export default function Link({
 		linkIcon = cloneElement(
 			icon,
 			stylesheet('icon', {
-				[`${alignIcon}Align`]: alignIcon
+				[`${alignIcon}Align`]: Boolean(alignIcon)
 					&& Children.count(children)
 					&& !iconOnly
 			}, icon.props)

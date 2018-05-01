@@ -91,7 +91,7 @@ export default class Input extends PureComponent {
 			inputIcon = cloneElement(
 				icon,
 				stylesheet('icon', {
-					[`${alignIcon}Align`]: alignIcon
+					[`${alignIcon}Align`]: Boolean(alignIcon)
 				}, icon.props)
 			);
 		}

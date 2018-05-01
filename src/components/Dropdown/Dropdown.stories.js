@@ -14,9 +14,8 @@ Stylable API
 ---
 - :active
 - :disable
-- ::box
-	- :active
 - ::content
+	- :active
 	- leftAlign
 	- centerAlign
 	- rightAlign

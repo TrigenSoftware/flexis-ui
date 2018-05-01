@@ -45,7 +45,7 @@ export default function Button({
 		buttonIcon = cloneElement(
 			icon,
 			stylesheet('icon', {
-				[`${alignIcon}Align`]: alignIcon
+				[`${alignIcon}Align`]: Boolean(alignIcon)
 					&& Children.count(children)
 					&& !iconOnly
 			}, icon.props)
