@@ -11,7 +11,6 @@ import Tooltip from './';
 const stylableApi = `
 Stylable API
 ---
-- ::box
 - ::tooltip
 	- :active
 	- :topPlacement

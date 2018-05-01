@@ -7,6 +7,8 @@ import {
 } from '../../helpers';
 import stylesheet from './Tooltip.st.css';
 
+const half = 2;
+
 export default class Tooltip extends PureComponent {
 
 	static propTypes = {
@@ -39,7 +41,7 @@ export default class Tooltip extends PureComponent {
 	};
 
 	elementRef = null;
-	boxRef = null;
+	tooltipRef = null;
 
 	render() {
 
@@ -69,19 +71,15 @@ export default class Tooltip extends PureComponent {
 				{children}
 				{createPortal((
 					<div
-						{...stylesheet('box')}
-						ref={this.onBoxRef()}
+						{...getHtmlProps(props)}
+						{...stylesheet('tooltip', {
+							[`${placement}Placement`]: placement,
+							[`${align}Align`]:         align,
+							active
+						}, props)}
+						ref={this.onTooltipRef()}
 					>
-						<div
-							{...getHtmlProps(props)}
-							{...stylesheet('tooltip', {
-								[`${placement}Placement`]: placement,
-								[`${align}Align`]:         align,
-								active
-							}, props)}
-						>
-							{content}
-						</div>
+						{content}
 					</div>
 				), document.body)}
 			</span>
@@ -95,7 +93,7 @@ export default class Tooltip extends PureComponent {
 		} = this.state;
 
 		if (!prevActive && active) {
-			this.setBoxPosition();
+			this.setTooltipPosition();
 		}
 	}
 
@@ -105,8 +103,8 @@ export default class Tooltip extends PureComponent {
 	}
 
 	@Listener()
-	onBoxRef(ref) {
-		this.boxRef = ref;
+	onTooltipRef(ref) {
+		this.tooltipRef = ref;
 	}
 
 	@Listener()
@@ -123,34 +121,178 @@ export default class Tooltip extends PureComponent {
 		}));
 	}
 
-	setBoxPosition() {
+	setTooltipPosition() {
 
 		const {
 			elementRef,
-			boxRef
+			tooltipRef
 		} = this;
 
 		if (!elementRef
-			|| !boxRef
+			|| !tooltipRef
 			|| !('getBoundingClientRect' in elementRef)
 		) {
 			return;
 		}
 
 		const {
+			placement,
+			align
+		} = this.props;
+
+		const {
+			top:    elementTop,
+			left:   elementLeft,
+			width:  elementWidth,
+			height: elementHeight
+		} = elementRef.getBoundingClientRect();
+
+		const {
+			offsetWidth:  tooltipWidth,
+			offsetHeight: tooltipHeight,
+			style
+		} = tooltipRef;
+
+		let top = 0,
+			left = 0;
+
+		switch (placement) {
+
+			case 'top':
+				top = elementTop;
+				break;
+
+			case 'right':
+				left = elementLeft + elementWidth - tooltipWidth;
+				break;
+
+			case 'bottom':
+				top = elementTop + elementHeight - tooltipHeight;
+				break;
+
+			case 'left':
+				left = elementLeft;
+				break;
+
+			default:
+				break;
+		}
+
+		switch (align) {
+
+			case 'start':
+
+				switch (placement) {
+
+					case 'top':
+					case 'bottom':
+						left = elementLeft;
+						break;
+
+					case 'right':
+					case 'left':
+						top = elementTop;
+						break;
+
+					default:
+						break;
+				}
+
+				break;
+
+			case 'center':
+
+				switch (placement) {
+
+					case 'top':
+					case 'bottom':
+						left = elementLeft + elementWidth / half;
+						break;
+
+					case 'right':
+					case 'left':
+						top = elementTop + elementHeight / half;
+						break;
+
+					default:
+						break;
+				}
+
+				break;
+
+			case 'end':
+
+				switch (placement) {
+
+					case 'top':
+					case 'bottom':
+						left = elementLeft + elementWidth - tooltipWidth;
+						break;
+
+					case 'right':
+					case 'left':
+						top = elementTop + elementHeight - tooltipHeight;
+						break;
+
+					default:
+						break;
+				}
+
+				break;
+
+			default:
+				break;
+		}
+
+		style.top = `${top}px`;
+		style.left = `${left}px`;
+
+		this.setOverflowOffset(top, left);
+	}
+
+	setOverflowOffset(positionTop, positionLeft) {
+
+		const {
+			tooltipRef
+		} = this;
+
+		if (!tooltipRef
+			|| !('getBoundingClientRect' in tooltipRef)
+		) {
+			return;
+		}
+
+		const {
+			clientWidth,
+			clientHeight
+		} = document.documentElement;
+
+		const {
+			style
+		} = tooltipRef;
+
+		const {
 			top,
 			left,
 			width,
 			height
-		} = elementRef.getBoundingClientRect();
+		} = tooltipRef.getBoundingClientRect();
 
-		const {
-			style
-		} = boxRef;
+		const right = clientWidth - (left + width),
+			bottom = clientHeight - (top + height);
 
-		style.top = `${top}px`;
-		style.left = `${left}px`;
-		style.width = `${width}px`;
-		style.height = `${height}px`;
+		if (top < 0) {
+			style.top = `${positionTop - top}px`;
+		} else
+		if (bottom < 0) {
+			style.top = `${positionTop + bottom}px`;
+		}
+
+		if (right < 0) {
+			style.left = `${positionLeft + right}px`;
+		} else
+		if (left < 0) {
+			style.left = `${positionLeft - left}px`;
+		}
 	}
 }

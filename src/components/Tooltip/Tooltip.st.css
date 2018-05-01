@@ -3,12 +3,6 @@
 	display: inline-block;
 }
 
-.box {
-	pointer-events: none;
-	position: fixed;
-	z-index: 1;
-}
-
 .tooltip {
 	-st-states:
 		/* Basic states */
@@ -22,81 +16,83 @@
 		startAlign,
 		centerAlign,
 		endAlign;
-	position: absolute;
+	position: fixed;
+	z-index: 1;
 }
 
 .tooltip:not(:active) {
+	pointer-events: none;
 	opacity: 0;
 }
 
 .tooltip:topPlacement:startAlign {
-	top: 0;
-	left: 0;
+	/* top: 0;
+	left: 0; */
 	transform: translate(0, -100%);
 }
 
 .tooltip:topPlacement:centerAlign {
-	top: 0;
-	left: 50%;
+	/* top: 0;
+	left: 50%; */
 	transform: translate(-50%, -100%);
 }
 
 .tooltip:topPlacement:endAlign {
-	top: 0;
-	right: 0;
+	/* top: 0;
+	right: 0; */
 	transform: translate(0, -100%);
 }
 
 .tooltip:rightPlacement:startAlign {
-	top: 0;
-	right: 0;
+	/* top: 0;
+	right: 0; */
 	transform: translate(100%, 0);
 }
 
 .tooltip:rightPlacement:centerAlign {
-	top: 50%;
-	right: 0;
+	/* top: 50%;
+	right: 0; */
 	transform: translate(100%, -50%);
 }
 
 .tooltip:rightPlacement:endAlign {
-	right: 0;
-	bottom: 0;
+	/* right: 0;
+	bottom: 0; */
 	transform: translate(100%, 0);
 }
 
 .tooltip:bottomPlacement:startAlign {
-	bottom: 0;
-	left: 0;
+	/* bottom: 0;
+	left: 0; */
 	transform: translate(0, 100%);
 }
 
 .tooltip:bottomPlacement:centerAlign {
-	bottom: 0;
-	left: 50%;
+	/* bottom: 0;
+	left: 50%; */
 	transform: translate(-50%, 100%);
 }
 
 .tooltip:bottomPlacement:endAlign {
-	right: 0;
-	bottom: 0;
+	/* right: 0;
+	bottom: 0; */
 	transform: translate(0, 100%);
 }
 
 .tooltip:leftPlacement:startAlign {
-	top: 0;
-	left: 0;
+	/* top: 0;
+	left: 0; */
 	transform: translate(-100%, 0);
 }
 
 .tooltip:leftPlacement:centerAlign {
-	top: 50%;
-	left: 0;
+	/* top: 50%;
+	left: 0; */
 	transform: translate(-100%, -50%);
 }
 
 .tooltip:leftPlacement:endAlign {
-	bottom: 0;
-	left: 0;
+	/* bottom: 0;
+	left: 0; */
 	transform: translate(-100%, 0);
 }
