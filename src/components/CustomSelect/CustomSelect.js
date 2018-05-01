@@ -9,6 +9,8 @@ import {
 	Listener,
 	generateId
 } from '../../helpers';
+import isCurrentValue from '../common/isCurrentValue';
+import getNextValue from '../common/getNextValue';
 import Dropdown, { DropdownContent } from '../Dropdown';
 import stylesheet from './CustomSelect.st.css';
 
@@ -116,7 +118,7 @@ export default class CustomSelect extends PureComponent {
 					? optionLabel
 					: optionValue;
 
-				const checked = this.isCurrentValue(value, option);
+				const checked = isCurrentValue(multiple, value, option);
 
 				const props = {
 					type:     multiple ? 'checkbox' : 'radio',
@@ -242,6 +244,7 @@ export default class CustomSelect extends PureComponent {
 			value: valueProp,
 			name,
 			onChange,
+			multiple,
 			disabled
 		} = this.props;
 
@@ -253,7 +256,7 @@ export default class CustomSelect extends PureComponent {
 			value
 		} = this.state;
 
-		const nextValue = this.getNextValue(inputNextValue);
+		const nextValue = getNextValue(multiple, value, inputNextValue);
 
 		if (nextValue === value) {
 			return;
@@ -273,49 +276,5 @@ export default class CustomSelect extends PureComponent {
 				onChange(nextValue, event);
 			}
 		}
-	}
-
-	isCurrentValue(value, option) {
-
-		const {
-			multiple
-		} = this.props;
-
-		if (multiple) {
-
-			if (Array.isArray(value)) {
-				return value.includes(option);
-			}
-
-			return false;
-		}
-
-		return value == option;
-	}
-
-	getNextValue(nextValue) {
-
-		const {
-			multiple
-		} = this.props;
-
-		const {
-			value
-		} = this.state;
-
-		if (!multiple) {
-			return nextValue;
-		}
-
-		const nextArrayValue = Array.isArray(value) ? [...value] : [],
-			index = nextArrayValue.indexOf(nextValue);
-
-		if (~index) {
-			nextArrayValue.splice(index, 1);
-		} else {
-			nextArrayValue.push(nextValue);
-		}
-
-		return nextArrayValue;
 	}
 }
