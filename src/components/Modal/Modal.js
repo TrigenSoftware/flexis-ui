@@ -6,9 +6,9 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
 	Listener,
-	blockScroll,
 	getHtmlProps
 } from '../../helpers';
+import toggleScrollBlock from '../common/toggleScrollBlock';
 import StylableTransition from '../StylableTransition';
 import stylesheet from './Modal.st.css';
 
@@ -117,20 +117,9 @@ export default class Modal extends PureComponent {
 			active
 		} = this.props;
 
-		const scrollBlocked = typeof this.unblockScroll == 'function';
-
-		if (active) {
-
-			if (scrollBlocked) {
-				this.unblockScroll();
-			}
-
-			this.unblockScroll = blockScroll(document.body);
-
-		} else
-		if (scrollBlocked) {
-			this.unblockScroll();
-			this.unblockScroll = null;
-		}
+		this.unblockScroll = toggleScrollBlock(
+			active,
+			this.unblockScroll
+		);
 	}
 }

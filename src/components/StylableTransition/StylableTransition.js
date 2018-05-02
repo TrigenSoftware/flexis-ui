@@ -18,7 +18,7 @@ export default class StylableTransition extends Component {
 
 	static propTypes = {
 		...Transition.propTypes,
-		states:     PropTypes.oneOf([
+		states:     PropTypes.oneOfType([
 			PropTypes.func,
 			PropTypes.object
 		]).isRequired,

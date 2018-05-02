@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 import {
 	Listener,
 	subscribeEvent,
-	blockScroll,
 	getHtmlProps
 } from '../../helpers';
 import setOverflowOffset from '../common/setOverflowOffset';
+import toggleScrollBlock from '../common/toggleScrollBlock';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
@@ -216,22 +216,14 @@ export default class Dropdown extends PureComponent {
 			active
 		} = this.state;
 
-		const scrollBlocked = typeof this.unblockScroll == 'function';
-
 		if (active) {
-
-			if (scrollBlocked) {
-				this.unblockScroll();
-			}
-
 			this.setContentPosition();
-			this.unblockScroll = blockScroll(this.elementRef);
-
-		} else
-		if (scrollBlocked) {
-			this.unblockScroll();
-			this.unblockScroll = null;
 		}
+
+		this.unblockScroll = toggleScrollBlock(
+			active,
+			this.unblockScroll
+		);
 	}
 
 	setContentPosition() {
