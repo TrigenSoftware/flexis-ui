@@ -1,5 +1,4 @@
-stylesheet -> st ?
-do not remove modal from dom
+helper for a11y props
 OptionsGroup for Select
 ProgressBar
 ProgressSteps
@@ -10,9 +9,9 @@ MediaQuery
 VissualyHidden
 TableCaption
 TableResponsiveContainer
-commons methods with helpers and decorator
-aria attributes
+commons methods
 
+aria attributes
 
 role=group
 role=tooltip + id + aria-describedby

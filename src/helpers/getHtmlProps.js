@@ -463,7 +463,8 @@ const reactHtmlProps = [
 	'onToggle'
 ];
 
-const dataAttribute = /^data-/;
+const dataAttribute = /^data-/,
+	ariaAttribute = /^aria-/;
 
 /**
  * Get React-HTML props from props object.
@@ -482,6 +483,7 @@ export default function getHtmlProps(inputProps, withoutProps = []) {
 		}
 
 		if (dataAttribute.test(inputProp)
+			|| ariaAttribute.test(inputProp)
 			|| reactHtmlProps.includes(inputProp)
 		) {
 			htmlProps[inputProp] = inputProps[inputProp];

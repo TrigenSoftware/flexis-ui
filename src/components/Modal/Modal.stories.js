@@ -6,7 +6,9 @@ import {
 	withKnobs,
 	boolean
 } from '@storybook/addon-knobs/react';
-import Modal from './';
+import Modal, { setAppElement } from './';
+
+setAppElement('#root');
 
 const stylableApi = `
 Stylable API

@@ -27,6 +27,11 @@ export default function blockScroll(element = document.body) {
 	currentElement = null;
 
 	return () => {
+
+		if (restore === null) {
+			return;
+		}
+
 		restore.forEach(([element, overflow]) => {
 			element.style.overflow = overflow;
 		});

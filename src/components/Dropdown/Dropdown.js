@@ -98,6 +98,15 @@ export default class Dropdown extends PureComponent {
 			content
 		] = Children.toArray(children);
 
+		// const {
+		// 	id: togglerId
+		// } = toggler.props;
+
+		// const contentLabelledByProps = togglerId ? {
+		// 	'role':            'region',
+		// 	'aria-labelledby': togglerId
+		// } : {};
+
 		return (
 			<span
 				{...getHtmlProps(props)}
@@ -108,18 +117,19 @@ export default class Dropdown extends PureComponent {
 				ref={this.onElementRef()}
 				onClick={this.onToggle()}
 			>
-				{toggler}
+				{cloneElement(toggler, {
+					'aria-haspopup': true,
+					'aria-expanded': active
+				})}
 				{createPortal(
-					cloneElement(
-						content,
-						{
-							...stylesheet('content', {
-								[`${align}Align`]: Boolean(align),
-								active
-							}, content.props),
-							elementRef: this.onContentRef()
-						}
-					),
+					cloneElement(content, {
+						...stylesheet('content', {
+							[`${align}Align`]: Boolean(align),
+							active
+						}, content.props),
+						'elementRef':  this.onContentRef(),
+						'aria-hidden': !active
+					}),
 					document.body
 				)}
 			</span>
@@ -134,17 +144,12 @@ export default class Dropdown extends PureComponent {
 				this.toggleActiveState(false, event);
 			}
 		);
-		this.doDomUpdates();
+		this.toggleEffects();
 	}
 
 	componentWillUnmount() {
-
 		this.unsubscribeFromOutsideClick();
-
-		if (typeof this.unblockScroll == 'function') {
-			this.unblockScroll();
-			this.unblockScroll = null;
-		}
+		this.removeEffects();
 	}
 
 	componentDidUpdate(_, { active: prevActive }) {
@@ -154,7 +159,7 @@ export default class Dropdown extends PureComponent {
 		} = this.state;
 
 		if (prevActive != active) {
-			this.doDomUpdates();
+			this.toggleEffects();
 		}
 	}
 
@@ -210,7 +215,11 @@ export default class Dropdown extends PureComponent {
 		}
 	}
 
-	doDomUpdates() {
+	toggleEffects() {
+
+		const {
+			elementRef
+		} = this;
 
 		const {
 			active
@@ -222,8 +231,17 @@ export default class Dropdown extends PureComponent {
 
 		this.unblockScroll = toggleScrollBlock(
 			active,
-			this.unblockScroll
+			this.unblockScroll,
+			elementRef
 		);
+	}
+
+	removeEffects() {
+
+		if (typeof this.unblockScroll == 'function') {
+			this.unblockScroll();
+			this.unblockScroll = null;
+		}
 	}
 
 	setContentPosition() {

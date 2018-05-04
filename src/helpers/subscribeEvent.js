@@ -10,7 +10,5 @@ export default function subscribeEvent(element, eventName, listener, useCapture 
 
 	element.addEventListener(eventName, listener, useCapture);
 
-	return () => {
-		element.removeEventListener(eventName, listener, useCapture);
-	};
+	return element.removeEventListener.bind(element, eventName, listener, useCapture);
 }

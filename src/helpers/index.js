@@ -3,6 +3,7 @@ export { default as Throttle } from './Throttle';
 export { default as Debounce } from './Debounce';
 export { default as subscribeEvent } from './subscribeEvent';
 export { default as blockScroll } from './blockScroll';
+export { default as ariaHide } from './ariaHide';
 export { default as getHtmlProps } from './getHtmlProps';
 export { default as textTruncate } from './textTruncate';
 export { default as valueOrUndef } from './valueOrUndef';

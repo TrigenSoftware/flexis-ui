@@ -9,6 +9,7 @@ import {
 	getHtmlProps
 } from '../../helpers';
 import toggleScrollBlock from '../common/toggleScrollBlock';
+import toggleAriaHide from '../common/toggleAriaHide';
 import StylableTransition from '../StylableTransition';
 import stylesheet from './Modal.st.css';
 
@@ -17,6 +18,14 @@ const defaultCloseButton = (
 		&times;
 	</button>
 );
+
+let appElement = null;
+
+export function setAppElement(appElementSource) {
+	appElement = typeof appElementSource == 'string'
+		? document.querySelector(appElementSource)
+		: appElementSource;
+}
 
 export default class Modal extends PureComponent {
 
@@ -38,6 +47,7 @@ export default class Modal extends PureComponent {
 	};
 
 	unblockScroll = null;
+	ariaShow = null;
 
 	render() {
 
@@ -64,6 +74,8 @@ export default class Modal extends PureComponent {
 					onClick={onClose}
 				>
 					<div
+						role='dialog'
+						aria-modal
 						{...getHtmlProps(props)}
 						{...stylesheet('window', {
 							centered
@@ -85,15 +97,11 @@ export default class Modal extends PureComponent {
 	}
 
 	componentDidMount() {
-		this.toggleScrollBlock();
+		this.toggleEffects();
 	}
 
 	componentWillUnmount() {
-
-		if (typeof this.unblockScroll == 'function') {
-			this.unblockScroll();
-			this.unblockScroll = null;
-		}
+		this.removeEffects();
 	}
 
 	componentDidUpdate({ active: prevActive }) {
@@ -103,7 +111,7 @@ export default class Modal extends PureComponent {
 		} = this.props;
 
 		if (prevActive != active) {
-			this.toggleScrollBlock();
+			this.toggleEffects();
 		}
 	}
 
@@ -112,7 +120,7 @@ export default class Modal extends PureComponent {
 		event.stopPropagation();
 	}
 
-	toggleScrollBlock() {
+	toggleEffects() {
 
 		const {
 			active
@@ -122,5 +130,26 @@ export default class Modal extends PureComponent {
 			active,
 			this.unblockScroll
 		);
+
+		if (appElement) {
+			this.ariaShow = toggleAriaHide(
+				active,
+				this.ariaShow,
+				appElement
+			);
+		}
+	}
+
+	removeEffects() {
+
+		if (typeof this.unblockScroll == 'function') {
+			this.unblockScroll();
+			this.unblockScroll = null;
+		}
+
+		if (typeof this.ariaShow == 'function') {
+			this.ariaShow();
+			this.ariaShow = null;
+		}
 	}
 }
