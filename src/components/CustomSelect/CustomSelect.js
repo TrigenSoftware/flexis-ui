@@ -5,10 +5,7 @@ import React, {
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-	Listener,
-	generateId
-} from '../../helpers';
+import { Listener } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
 import Dropdown, { DropdownContent } from '../Dropdown';
@@ -66,13 +63,8 @@ export default class CustomSelect extends PureComponent {
 		super(props);
 
 		const {
-			name,
 			defaultValue
 		} = props;
-
-		this.privateName = name
-			? false
-			: generateId();
 
 		this.state = {
 			value: defaultValue
@@ -83,7 +75,7 @@ export default class CustomSelect extends PureComponent {
 
 		const {
 			style,
-			name: nameProp,
+			name,
 			multiple,
 			disabled,
 			children,
@@ -93,8 +85,6 @@ export default class CustomSelect extends PureComponent {
 		const {
 			value
 		} = this.state;
-
-		const name = nameProp || this.privateName;
 
 		let faceChild = null,
 			label = multiple ? [] : '';
@@ -156,10 +146,10 @@ export default class CustomSelect extends PureComponent {
 			>
 				<Fragment>
 					{this.face(faceChild, label)}
-					{nameProp && (
+					{name && (
 						<input
 							type='hidden'
-							name={nameProp}
+							name={name}
 							value={value}
 						/>
 					)}

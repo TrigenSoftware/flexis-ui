@@ -6,8 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	Listener,
-	getHtmlProps,
-	generateId
+	getHtmlProps
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
@@ -56,13 +55,8 @@ export default class ToggleSelect extends PureComponent {
 		super(props);
 
 		const {
-			name,
 			defaultValue
 		} = props;
-
-		this.privateName = name
-			? false
-			: generateId();
 
 		this.state = {
 			value: defaultValue
@@ -72,7 +66,7 @@ export default class ToggleSelect extends PureComponent {
 	render() {
 
 		const {
-			name: nameProp,
+			name,
 			multiple,
 			disabled,
 			children,
@@ -82,8 +76,6 @@ export default class ToggleSelect extends PureComponent {
 		const {
 			value
 		} = this.state;
-
-		const name = nameProp || this.privateName;
 
 		const options = Children
 			.toArray(children)
