@@ -56,6 +56,7 @@ export default class Modal extends PureComponent {
 				in={active}
 				states={stylesheet}
 				timeout={transitionDuration}
+				appear
 				unmountOnExit
 			>
 				<div

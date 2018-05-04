@@ -47,6 +47,21 @@ storiesOf('Modal', module)
 		)
 	)
 	.add(
+		'with inactive state',
+		() => (
+			<Modal
+				{...events}
+				style={{
+					width:     '500px',
+					marginTop: '20px'
+				}}
+				active={boolean('Active', false)}
+			>
+				Modal content.
+			</Modal>
+		)
+	)
+	.add(
 		'with centered state',
 		() => (
 			<Modal

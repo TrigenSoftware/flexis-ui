@@ -23,4 +23,4 @@ role=menu and menuitem
 nav for pagination
 aria-current=page
 aria-disabled
-table scrope row col
+table scope row col
