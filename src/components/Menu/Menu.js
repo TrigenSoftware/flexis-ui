@@ -8,7 +8,7 @@ export * from './MenuItemSeparator';
 export * from './MenuButton';
 
 Menu.propTypes = {
-	children: PropTypes.any.isRequired
+	children: PropTypes.node.isRequired
 };
 
 export default function Menu({

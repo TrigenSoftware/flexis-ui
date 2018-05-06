@@ -8,7 +8,7 @@ export {
 } from './BadgeContainer';
 
 Badge.propTypes = {
-	children: PropTypes.any
+	children: PropTypes.node
 };
 
 Badge.defaultProps = {

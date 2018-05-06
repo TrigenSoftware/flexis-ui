@@ -4,7 +4,7 @@ import { getHtmlProps } from '../../helpers';
 import stylesheet from './Table.st.css';
 
 TableHead.propTypes = {
-	children: PropTypes.any.isRequired
+	children: PropTypes.node.isRequired
 };
 
 export function TableHead({

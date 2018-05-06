@@ -17,6 +17,7 @@ const stylableApi = `
 Stylable API
 ---
 - ::dropdownContent
+- ::label
 - ::button
 - ::placeholder
 - ::options
@@ -42,7 +43,10 @@ storiesOf('CustomSelect', module)
 			>
 				<CustomSelectFace>
 					{(label, { disabled }) => (
-						<button disabled={disabled}>
+						<button
+							id='customSelectFace'
+							disabled={disabled}
+						>
 							{label}
 						</button>
 					)}
@@ -69,7 +73,10 @@ storiesOf('CustomSelect', module)
 			>
 				<CustomSelectFace>
 					{(label, { disabled }) => (
-						<button disabled={disabled}>
+						<button
+							id='customSelectFace'
+							disabled={disabled}
+						>
 							{label}
 						</button>
 					)}

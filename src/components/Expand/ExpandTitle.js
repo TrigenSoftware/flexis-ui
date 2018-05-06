@@ -9,11 +9,11 @@ ExpandTitle.propTypes = {
 		PropTypes.string
 	]),
 	disabled: PropTypes.bool,
-	children: PropTypes.any
+	children: PropTypes.node
 };
 
 ExpandTitle.defaultProps = {
-	tabIndex: 1,
+	tabIndex: 0,
 	disabled: false,
 	children: null
 };

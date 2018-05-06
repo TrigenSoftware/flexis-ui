@@ -15,7 +15,7 @@ BadgeContainer.propTypes = {
 		'center',
 		'end'
 	]),
-	children:  PropTypes.any.isRequired
+	children:  PropTypes.node.isRequired
 };
 
 BadgeContainer.defaultProps = {

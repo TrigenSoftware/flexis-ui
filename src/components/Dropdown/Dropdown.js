@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import {
 	Listener,
 	subscribeEvent,
+	getAriaLabelProps,
 	getHtmlProps
 } from '../../helpers';
 import setOverflowOffset from '../common/setOverflowOffset';
@@ -16,7 +17,8 @@ import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
 
-const half = 2;
+const HALF = 2,
+	ESC_KEY = 27;
 
 export default class Dropdown extends PureComponent {
 
@@ -95,17 +97,9 @@ export default class Dropdown extends PureComponent {
 
 		const [
 			toggler,
-			content
+			content,
+			...misc
 		] = Children.toArray(children);
-
-		// const {
-		// 	id: togglerId
-		// } = toggler.props;
-
-		// const contentLabelledByProps = togglerId ? {
-		// 	'role':            'region',
-		// 	'aria-labelledby': togglerId
-		// } : {};
 
 		return (
 			<span
@@ -116,22 +110,31 @@ export default class Dropdown extends PureComponent {
 				}, props)}
 				ref={this.onElementRef()}
 				onClick={this.onToggle()}
+				aria-disabled={disabled}
 			>
 				{cloneElement(toggler, {
 					'aria-haspopup': true,
-					'aria-expanded': active
+					'aria-expanded': active,
+					'aria-disabled': disabled,
+					'disabled':      disabled
 				})}
 				{createPortal(
 					cloneElement(content, {
+						...getAriaLabelProps({
+							role:       'region',
+							labelledBy: toggler.props.id
+						}, content.props),
 						...stylesheet('content', {
 							[`${align}Align`]: Boolean(align),
 							active
 						}, content.props),
 						'elementRef':  this.onContentRef(),
+						'onKeyDown':   this.onEscPress(),
 						'aria-hidden': !active
 					}),
 					document.body
 				)}
+				{misc}
 			</span>
 		);
 	}
@@ -180,6 +183,15 @@ export default class Dropdown extends PureComponent {
 		this.toggleActiveState(null, event);
 	}
 
+	@Listener()
+	onEscPress(event) {
+
+		if (event.keyCode == ESC_KEY) {
+			event.stopPropagation();
+			this.toggleActiveState(false, event);
+		}
+	}
+
 	toggleActiveState(forceState, event = null) {
 
 		const {
@@ -218,7 +230,8 @@ export default class Dropdown extends PureComponent {
 	toggleEffects() {
 
 		const {
-			elementRef
+			elementRef,
+			contentRef
 		} = this;
 
 		const {
@@ -226,7 +239,10 @@ export default class Dropdown extends PureComponent {
 		} = this.state;
 
 		if (active) {
+			contentRef.focus();
 			this.setContentPosition();
+		} else {
+			elementRef.firstElementChild.focus();
 		}
 
 		this.unblockScroll = toggleScrollBlock(
@@ -283,7 +299,7 @@ export default class Dropdown extends PureComponent {
 				break;
 
 			case 'center':
-				left = elementLeft + elementWidth / half;
+				left = elementLeft + elementWidth / HALF;
 				break;
 
 			case 'end':

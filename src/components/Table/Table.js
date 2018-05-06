@@ -9,7 +9,7 @@ export * from './TableRow';
 export * from './TableCell';
 
 Table.propTypes = {
-	children: PropTypes.any.isRequired
+	children: PropTypes.node.isRequired
 };
 
 export default function Table({

@@ -18,7 +18,7 @@ Link.propTypes = {
 		'left',
 		'right'
 	]),
-	children:   PropTypes.any
+	children:   PropTypes.node
 };
 
 Link.defaultProps = {

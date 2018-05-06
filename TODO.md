@@ -1,4 +1,4 @@
-helper for a11y props
+CustomSelect aria-activedescendant and label for listbox
 OptionsGroup for Select
 ProgressBar
 ProgressSteps
@@ -18,6 +18,7 @@ role=tooltip + id + aria-describedby
 aria-expanded - on toggler
 aria-hidden - on content
 role=region - on content
+role=listbox and option
 role=menu and menuitem
 nav for pagination
 aria-current=page

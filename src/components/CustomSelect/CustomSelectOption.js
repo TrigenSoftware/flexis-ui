@@ -18,7 +18,7 @@ export class CustomSelectOption extends PureComponent {
 		value:    PropTypes.any,
 		checked:  PropTypes.bool,
 		disabled: PropTypes.bool,
-		children: PropTypes.any.isRequired
+		children: PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
@@ -46,26 +46,31 @@ export class CustomSelectOption extends PureComponent {
 
 		return (
 			<li
+				role='option'
 				{...stylesheet('option')}
 			>
-				<input
-					{...stylesheet('input')}
-					type={type}
-					name={valueOrUndef(name)}
-					checked={valueOrUndef(checked)}
-					onChange={this.onChange()}
-					value={value}
-					disabled={disabled}
-				/>
-				<Button
-					{...props}
-					{...stylesheet('button', {}, props)}
-					type='button'
-					disabled={disabled}
-					onClick={this.onButtonClick}
+				<label
+					{...stylesheet('label')}
 				>
-					{children}
-				</Button>
+					<input
+						{...stylesheet('input')}
+						type={type}
+						name={valueOrUndef(name)}
+						checked={valueOrUndef(checked)}
+						onChange={this.onChange()}
+						value={value}
+						disabled={disabled}
+					/>
+					<Button
+						{...props}
+						{...stylesheet('button', {}, props)}
+						type='button'
+						disabled={disabled}
+						onClick={this.onButtonClick}
+					>
+						{children}
+					</Button>
+				</label>
 			</li>
 		);
 	}

@@ -4,7 +4,7 @@ import { getHtmlProps } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
 ExpandContent.propTypes = {
-	children: PropTypes.any
+	children: PropTypes.node
 };
 
 ExpandContent.defaultProps = {

@@ -21,7 +21,7 @@ export class TableCell extends PureComponent {
 		head:          PropTypes.bool,
 		onOrderChange: PropTypes.func,
 		order:         PropTypes.oneOf(orderValues),
-		children:      PropTypes.any
+		children:      PropTypes.node
 	};
 
 	static defaultProps = {

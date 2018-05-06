@@ -1,11 +1,13 @@
 import React, {
 	PureComponent,
 	Children,
-	Fragment,
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
-import { Listener } from '../../helpers';
+import {
+	Listener,
+	getAriaLabelProps
+} from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
 import Dropdown, { DropdownContent } from '../Dropdown';
@@ -26,7 +28,7 @@ export default class CustomSelect extends PureComponent {
 		placeholder:  PropTypes.string,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
-		children:     PropTypes.any.isRequired
+		children:     PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
@@ -74,8 +76,11 @@ export default class CustomSelect extends PureComponent {
 	render() {
 
 		const {
+			'aria-labelledby': ariaLabelledBy,
+			'aria-label':      ariaLabel,
 			style,
 			name,
+			placeholder,
 			multiple,
 			disabled,
 			children,
@@ -136,6 +141,12 @@ export default class CustomSelect extends PureComponent {
 
 		Reflect.deleteProperty(props, 'onChange');
 
+		const ariaLabelProps = getAriaLabelProps({
+			role:       'listbox',
+			labelledby: ariaLabelledBy,
+			label:      ariaLabel || placeholder
+		});
+
 		return (
 			<Dropdown
 				{...props}
@@ -144,26 +155,27 @@ export default class CustomSelect extends PureComponent {
 				style={style}
 				disabled={disabled}
 			>
-				<Fragment>
-					{this.face(faceChild, label)}
-					{name && (
-						<input
-							type='hidden'
-							name={name}
-							value={value}
-						/>
-					)}
-				</Fragment>
+				{this.face(faceChild, label)}
 				<DropdownContent
+					{...ariaLabelProps}
 					{...stylesheet('dropdownContent')}
+					role='region'
 				>
 					<ul
+						{...ariaLabelProps}
 						{...stylesheet('options')}
 						onClick={this.onDropdownHide()}
 					>
 						{options}
 					</ul>
 				</DropdownContent>
+				{name && (
+					<input
+						type='hidden'
+						name={name}
+						value={value}
+					/>
+				)}
 			</Dropdown>
 		);
 	}

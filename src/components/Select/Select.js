@@ -18,7 +18,7 @@ export default class Select extends PureComponent {
 		style:      PropTypes.object,
 		name:       PropTypes.string,
 		onChange:   PropTypes.func,
-		children:   PropTypes.any.isRequired
+		children:   PropTypes.node.isRequired
 	};
 
 	static defaultProps = {

@@ -15,7 +15,7 @@ Button.propTypes = {
 		'left',
 		'right'
 	]),
-	children:   PropTypes.any
+	children:   PropTypes.node
 };
 
 Button.defaultProps = {

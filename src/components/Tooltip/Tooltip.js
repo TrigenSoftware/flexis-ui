@@ -8,7 +8,7 @@ import {
 import setOverflowOffset from '../common/setOverflowOffset';
 import stylesheet from './Tooltip.st.css';
 
-const half = 2;
+const HALF = 2;
 
 export default class Tooltip extends PureComponent {
 
@@ -28,12 +28,12 @@ export default class Tooltip extends PureComponent {
 			'center',
 			'end'
 		]),
-		content:   PropTypes.any.isRequired,
-		children:  PropTypes.any.isRequired
+		content:   PropTypes.node.isRequired,
+		children:  PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
-		tabIndex: 1,
+		tabIndex: 0,
 		align:    'center'
 	};
 
@@ -204,12 +204,12 @@ export default class Tooltip extends PureComponent {
 
 					case 'top':
 					case 'bottom':
-						left = elementLeft + elementWidth / half;
+						left = elementLeft + elementWidth / HALF;
 						break;
 
 					case 'right':
 					case 'left':
-						top = elementTop + elementHeight / half;
+						top = elementTop + elementHeight / HALF;
 						break;
 
 					default:

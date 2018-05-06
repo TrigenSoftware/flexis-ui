@@ -4,7 +4,7 @@ import { getHtmlProps } from '../../helpers';
 import stylesheet from './Menu.st.css';
 
 MenuItem.propTypes = {
-	children: PropTypes.any.isRequired
+	children: PropTypes.node.isRequired
 };
 
 export function MenuItem({

@@ -4,7 +4,7 @@ import { getHtmlProps } from '../../helpers';
 import stylesheet from './Menu.st.css';
 
 MenuItemSeparator.propTypes = {
-	children: PropTypes.any
+	children: PropTypes.node
 };
 
 MenuItemSeparator.defaultProps = {

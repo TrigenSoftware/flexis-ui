@@ -34,7 +34,7 @@ export default class Modal extends PureComponent {
 		active:             PropTypes.bool,
 		centered:           PropTypes.bool,
 		closeButton:        PropTypes.element,
-		children:           PropTypes.any.isRequired,
+		children:           PropTypes.node.isRequired,
 		transitionDuration: PropTypes.number
 	};
 

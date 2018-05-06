@@ -32,7 +32,7 @@ storiesOf('Dropdown', module)
 				align={select('Align', ['left', 'center', 'right'], 'left')}
 				disabled={boolean('Disabled', false)}
 			>
-				<button>
+				<button id='dropdownToggleButton'>
 					Click me!
 				</button>
 				<DropdownContent
@@ -42,7 +42,8 @@ storiesOf('Dropdown', module)
 						textAlign: 'center'
 					}}
 				>
-					Dropdown content.
+					Dropdown content.<br/>
+					<button>text</button>
 				</DropdownContent>
 			</Dropdown>
 		)

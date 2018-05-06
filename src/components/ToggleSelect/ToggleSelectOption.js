@@ -18,7 +18,7 @@ export class ToggleSelectOption extends PureComponent {
 		value:    PropTypes.any,
 		checked:  PropTypes.bool,
 		disabled: PropTypes.bool,
-		children: PropTypes.any.isRequired
+		children: PropTypes.node.isRequired
 	};
 
 	static defaultProps = {

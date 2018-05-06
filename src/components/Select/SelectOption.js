@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
 
 SelectOption.propTypes = {
-	children: PropTypes.any.isRequired
+	children: PropTypes.node.isRequired
 };
 
 export function SelectOption({

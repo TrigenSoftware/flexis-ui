@@ -28,7 +28,7 @@ export default class Paginator extends PureComponent {
 	};
 
 	static defaultProps = {
-		tabIndex:    1,
+		tabIndex:    0,
 		name:        null,
 		onChange:    null,
 		defaultPage: -1,

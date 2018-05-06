@@ -16,7 +16,7 @@ export default class ScrollArea extends PureComponent {
 		hideXScrollbar:     PropTypes.bool,
 		hideYScrollbar:     PropTypes.bool,
 		y2xScroll:          PropTypes.bool,
-		children:           PropTypes.any
+		children:           PropTypes.node
 	};
 
 	static defaultProps = {

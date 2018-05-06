@@ -11,7 +11,7 @@ export default class FileSelect extends PureComponent {
 	static propTypes = {
 		onChange: PropTypes.func,
 		disabled: PropTypes.bool,
-		children: PropTypes.any
+		children: PropTypes.node
 	};
 
 	static defaultProps = {

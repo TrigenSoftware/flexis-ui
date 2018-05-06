@@ -5,6 +5,7 @@ export { default as subscribeEvent } from './subscribeEvent';
 export { default as blockScroll } from './blockScroll';
 export { default as ariaHide } from './ariaHide';
 export { default as getHtmlProps } from './getHtmlProps';
+export { default as getAriaLabelProps } from './getAriaLabelProps';
 export { default as textTruncate } from './textTruncate';
 export { default as valueOrUndef } from './valueOrUndef';
 export { default as modulo } from './modulo';

@@ -8,7 +8,7 @@ FormGroup.propTypes = {
 		PropTypes.string,
 		PropTypes.element
 	]),
-	children: PropTypes.any.isRequired
+	children: PropTypes.node.isRequired
 };
 
 FormGroup.defaultProps = {

@@ -9,7 +9,7 @@ export class DropdownContent extends PureComponent {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
-		children:   PropTypes.any.isRequired
+		children:   PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
@@ -26,6 +26,7 @@ export class DropdownContent extends PureComponent {
 
 		return (
 			<div
+				tabIndex={0}
 				{...getHtmlProps(props)}
 				ref={elementRef}
 				onClick={this.onClick()}

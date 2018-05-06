@@ -2856,9 +2856,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-trigen@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-trigen/-/eslint-config-trigen-2.4.0.tgz#10e07e3eb5b4eab1c9825e502ec0ce1297450c50"
+eslint-config-trigen@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-trigen/-/eslint-config-trigen-2.5.1.tgz#ce720b02734c40b2e187d2867f33875451866b13"
   dependencies:
     babel-eslint "^8.0.1"
     eslint-plugin-import "^2.8.0"
