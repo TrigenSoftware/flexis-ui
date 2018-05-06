@@ -1,4 +1,3 @@
-CustomSelect aria-activedescendant and label for listbox
 OptionsGroup for Select
 ProgressBar
 ProgressSteps
@@ -24,3 +23,5 @@ nav for pagination
 aria-current=page
 aria-disabled
 table scope row col
+aria-required and required
+aria-selected

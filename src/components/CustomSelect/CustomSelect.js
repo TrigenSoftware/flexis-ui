@@ -20,6 +20,7 @@ export default class CustomSelect extends PureComponent {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
+		id:           PropTypes.string,
 		style:        PropTypes.object,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
@@ -33,6 +34,7 @@ export default class CustomSelect extends PureComponent {
 
 	static defaultProps = {
 		elementRef:   null,
+		id:           null,
 		style:        null,
 		name:         null,
 		onChange:     null,
@@ -78,6 +80,7 @@ export default class CustomSelect extends PureComponent {
 		const {
 			'aria-labelledby': ariaLabelledBy,
 			'aria-label':      ariaLabel,
+			id,
 			style,
 			name,
 			placeholder,
@@ -92,7 +95,8 @@ export default class CustomSelect extends PureComponent {
 		} = this.state;
 
 		let faceChild = null,
-			label = multiple ? [] : '';
+			label = multiple ? [] : '',
+			activeDescendant = null;
 
 		const options = Children
 			.toArray(children)
@@ -133,10 +137,16 @@ export default class CustomSelect extends PureComponent {
 					}
 				}
 
-				return cloneElement(
-					child,
-					props
-				);
+				if (typeof id == 'string') {
+
+					props.id = `${id}-option-${option}`;
+
+					if (checked) {
+						activeDescendant = props.id;
+					}
+				}
+
+				return cloneElement(child, props);
 			});
 
 		Reflect.deleteProperty(props, 'onChange');
@@ -165,6 +175,7 @@ export default class CustomSelect extends PureComponent {
 						{...ariaLabelProps}
 						{...stylesheet('options')}
 						onClick={this.onDropdownHide()}
+						aria-activedescendant={activeDescendant}
 					>
 						{options}
 					</ul>

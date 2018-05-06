@@ -68,6 +68,7 @@ storiesOf('CustomSelect', module)
 		() => (
 			<CustomSelect
 				{...events}
+				id='customSelect'
 				placeholder={text('Placeholder', 'Placeholder')}
 				disabled={boolean('Disabled', false)}
 			>

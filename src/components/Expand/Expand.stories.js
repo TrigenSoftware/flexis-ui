@@ -33,7 +33,7 @@ storiesOf('Expand', module)
 				onToggle={action('toggle')}
 				disabled={boolean('Disabled', false)}
 			>
-				<ExpandTitle>
+				<ExpandTitle id='expandTitle'>
 					Click me!
 				</ExpandTitle>
 				<ExpandContent

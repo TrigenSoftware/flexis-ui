@@ -128,9 +128,9 @@ export default class Dropdown extends PureComponent {
 							[`${align}Align`]: Boolean(align),
 							active
 						}, content.props),
-						'elementRef':  this.onContentRef(),
-						'onKeyDown':   this.onEscPress(),
-						'aria-hidden': !active
+						'elementRef':   this.onContentRef(),
+						'onKeyDown':    this.onEscPress(),
+						'aria-hidden':  !active
 					}),
 					document.body
 				)}

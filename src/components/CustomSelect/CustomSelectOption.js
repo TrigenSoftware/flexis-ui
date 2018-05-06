@@ -10,6 +10,7 @@ import stylesheet from './CustomSelect.st.css';
 export class CustomSelectOption extends PureComponent {
 
 	static propTypes = {
+		id:       PropTypes.string,
 		type:     PropTypes.oneOf([
 			'radio', 'checkbox'
 		]),
@@ -22,6 +23,7 @@ export class CustomSelectOption extends PureComponent {
 	};
 
 	static defaultProps = {
+		id:       null,
 		type:     null,
 		name:     null,
 		onChange: null,
@@ -33,6 +35,7 @@ export class CustomSelectOption extends PureComponent {
 	render() {
 
 		const {
+			id,
 			type,
 			name,
 			value,
@@ -46,6 +49,7 @@ export class CustomSelectOption extends PureComponent {
 
 		return (
 			<li
+				id={id}
 				role='option'
 				{...stylesheet('option')}
 			>

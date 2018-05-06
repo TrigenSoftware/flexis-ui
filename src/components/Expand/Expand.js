@@ -6,6 +6,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	Listener,
+	getAriaLabelProps,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Expand.st.css';
@@ -88,15 +89,22 @@ export default class Expand extends PureComponent {
 					active,
 					disabled
 				}, props)}
+				aria-disabled={disabled}
 			>
-				{cloneElement(
-					title,
-					{
-						onClick: this.onToggle(),
-						disabled
-					}
-				)}
-				{content}
+				{cloneElement(title, {
+					'onClick':       this.onToggle(),
+					'aria-haspopup': true,
+					'aria-expanded': active,
+					'aria-disabled': disabled,
+					'disabled':      disabled
+				})}
+				{cloneElement(content, {
+					...getAriaLabelProps({
+						role:       'region',
+						labelledBy: title.props.id
+					}, content.props),
+					'aria-hidden':  !active
+				})}
 			</div>
 		);
 	}
