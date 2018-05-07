@@ -1,4 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, {
+	PureComponent // ,
+	// cloneElement
+} from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
@@ -13,6 +16,7 @@ const HALF = 2;
 export default class Tooltip extends PureComponent {
 
 	static propTypes = {
+		id:        PropTypes.string,
 		tabIndex:  PropTypes.oneOfType([
 			PropTypes.number,
 			PropTypes.string
@@ -33,6 +37,7 @@ export default class Tooltip extends PureComponent {
 	};
 
 	static defaultProps = {
+		id:       null,
 		tabIndex: 0,
 		align:    'center'
 	};
@@ -47,6 +52,7 @@ export default class Tooltip extends PureComponent {
 	render() {
 
 		const {
+			id,
 			tabIndex,
 			content,
 			placement,
@@ -67,11 +73,14 @@ export default class Tooltip extends PureComponent {
 				onFocus={this.onShow()}
 				onMouseLeave={this.onHide()}
 				onBlur={this.onHide()}
-				tabIndex={tabIndex}
+				tabIndex={tabIndex}i
+				aria-describedby={id}
 			>
 				{children}
 				{createPortal((
 					<div
+						id={id}
+						role='tooltip'
 						{...getHtmlProps(props)}
 						{...stylesheet('tooltip', {
 							[`${placement}Placement`]: Boolean(placement),
@@ -79,6 +88,7 @@ export default class Tooltip extends PureComponent {
 							active
 						}, props)}
 						ref={this.onTooltipRef()}
+						aria-hidden={!active}
 					>
 						{content}
 					</div>

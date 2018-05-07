@@ -17,6 +17,7 @@ export default function Menu({
 }) {
 	return (
 		<ul
+			role='menu'
 			{...getHtmlProps(props)}
 			{...stylesheet('root', {}, props)}
 		>

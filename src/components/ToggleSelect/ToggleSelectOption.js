@@ -10,6 +10,7 @@ import stylesheet from './ToggleSelect.st.css';
 export class ToggleSelectOption extends PureComponent {
 
 	static propTypes = {
+		id:       PropTypes.string,
 		type:     PropTypes.oneOf([
 			'radio', 'checkbox'
 		]),
@@ -22,6 +23,7 @@ export class ToggleSelectOption extends PureComponent {
 	};
 
 	static defaultProps = {
+		id:       null,
 		type:     null,
 		name:     null,
 		onChange: null,
@@ -33,6 +35,7 @@ export class ToggleSelectOption extends PureComponent {
 	render() {
 
 		const {
+			id,
 			type,
 			name,
 			value,
@@ -46,26 +49,32 @@ export class ToggleSelectOption extends PureComponent {
 
 		return (
 			<li
+				id={id}
+				role='option'
 				{...stylesheet('option')}
 			>
-				<input
-					{...stylesheet('input')}
-					type={type}
-					name={valueOrUndef(name)}
-					checked={valueOrUndef(checked)}
-					onChange={this.onChange()}
-					value={value}
-					disabled={disabled}
-				/>
-				<Button
-					{...props}
-					{...stylesheet('button', {}, props)}
-					type='button'
-					disabled={disabled}
-					onClick={this.onButtonClick}
+				<label
+					{...stylesheet('label')}
 				>
-					{children}
-				</Button>
+					<input
+						{...stylesheet('input')}
+						type={type}
+						name={valueOrUndef(name)}
+						checked={valueOrUndef(checked)}
+						onChange={this.onChange()}
+						value={value}
+						disabled={disabled}
+					/>
+					<Button
+						{...props}
+						{...stylesheet('button', {}, props)}
+						type='button'
+						disabled={disabled}
+						onClick={this.onButtonClick}
+					>
+						{children}
+					</Button>
+				</label>
 			</li>
 		);
 	}

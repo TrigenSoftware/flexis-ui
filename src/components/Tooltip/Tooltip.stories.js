@@ -29,6 +29,7 @@ storiesOf('Tooltip', module)
 		'with text',
 		() => (
 			<Tooltip
+				id='tooltip'
 				placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
 				align={select('Align', ['start', 'center', 'end'], 'start')}
 				content={text('Content', 'Tooltip text')}

@@ -14,9 +14,10 @@ import ToggleSelect, {
 const stylableApi = `
 Stylable API
 ---
-- ::button
 - ::option
+- ::label
 - ::input
+- ::button
 `;
 
 const events = {
@@ -33,6 +34,7 @@ storiesOf('ToggleSelect', module)
 		() => (
 			<ToggleSelect
 				{...events}
+				id='toggleSelect'
 				style={{ width: '10rem' }}
 				disabled={boolean('Disabled', false)}
 			>

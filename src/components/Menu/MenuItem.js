@@ -13,6 +13,7 @@ export function MenuItem({
 }) {
 	return (
 		<li
+			role='menuitem'
 			{...getHtmlProps(props)}
 			{...stylesheet('item', {}, props)}
 		>

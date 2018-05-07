@@ -144,7 +144,14 @@ export default class Dropdown extends PureComponent {
 			document,
 			'click',
 			(event) => {
-				this.toggleActiveState(false, event);
+
+				const {
+					active
+				} = this.state;
+
+				if (active) {
+					this.toggleActiveState(false, event);
+				}
 			}
 		);
 		this.toggleEffects();

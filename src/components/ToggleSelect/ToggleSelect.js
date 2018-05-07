@@ -17,6 +17,7 @@ export * from './ToggleSelectOption';
 export default class ToggleSelect extends PureComponent {
 
 	static propTypes = {
+		id:           PropTypes.string,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
 		value:        PropTypes.any,
@@ -27,6 +28,7 @@ export default class ToggleSelect extends PureComponent {
 	};
 
 	static defaultProps = {
+		id:           null,
 		name:         null,
 		onChange:     null,
 		value:        null,
@@ -66,6 +68,7 @@ export default class ToggleSelect extends PureComponent {
 	render() {
 
 		const {
+			id,
 			name,
 			multiple,
 			disabled,
@@ -76,6 +79,8 @@ export default class ToggleSelect extends PureComponent {
 		const {
 			value
 		} = this.state;
+
+		let activeDescendant = null;
 
 		const options = Children
 			.toArray(children)
@@ -91,14 +96,25 @@ export default class ToggleSelect extends PureComponent {
 					? optionLabel
 					: optionValue;
 
+				const checked = isCurrentValue(multiple, value, option);
+
 				const props = {
 					type:     multiple ? 'checkbox' : 'radio',
-					checked:  isCurrentValue(multiple, value, option),
 					value:    option,
 					onChange: this.onChange(),
+					checked,
 					disabled,
 					name
 				};
+
+				if (typeof id == 'string') {
+
+					props.id = `${id}-option-${option}`;
+
+					if (checked) {
+						activeDescendant = props.id;
+					}
+				}
 
 				return cloneElement(
 					child,
@@ -108,8 +124,11 @@ export default class ToggleSelect extends PureComponent {
 
 		return (
 			<ul
+				role='listbox'
 				{...getHtmlProps(props, ['onChange'])}
 				{...stylesheet('root', {}, props)}
+				aria-activedescendant={activeDescendant}
+				aria-multiselectable={multiple}
 			>
 				{options}
 			</ul>

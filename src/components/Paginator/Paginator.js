@@ -15,25 +15,27 @@ const visiblePages = 7,
 export default class Paginator extends PureComponent {
 
 	static propTypes = {
-		tabIndex:    PropTypes.oneOfType([
+		tabIndex:      PropTypes.oneOfType([
 			PropTypes.number,
 			PropTypes.string
 		]),
-		name:        PropTypes.string,
-		onChange:    PropTypes.func,
-		defaultPage: PropTypes.number,
-		page:        PropTypes.number,
-		total:       PropTypes.number.isRequired,
-		disabled:    PropTypes.bool
+		name:          PropTypes.string,
+		onChange:      PropTypes.func,
+		defaultPage:   PropTypes.number,
+		page:          PropTypes.number,
+		total:         PropTypes.number.isRequired,
+		disabled:      PropTypes.bool,
+		mapPagesLabel: PropTypes.func
 	};
 
 	static defaultProps = {
-		tabIndex:    0,
-		name:        null,
-		onChange:    null,
-		defaultPage: -1,
-		page:        null,
-		disabled:    false
+		tabIndex:      0,
+		name:          null,
+		onChange:      null,
+		defaultPage:   -1,
+		page:          null,
+		disabled:      false,
+		mapPagesLabel: _ => _
 	};
 
 	static getDerivedStateFromProps({ page }, { page: prevPage }) {
@@ -77,7 +79,7 @@ export default class Paginator extends PureComponent {
 		} = this.state;
 
 		return (
-			<ul
+			<nav
 				{...getHtmlProps(props, [
 					'tabIndex',
 					'onChange'
@@ -85,7 +87,13 @@ export default class Paginator extends PureComponent {
 				{...stylesheet('root', {
 					disabled
 				}, props)}
+				aria-disabled={disabled}
 			>
+				<ul
+					{...stylesheet('list')}
+				>
+					{this.pages()}
+				</ul>
 				{name && (
 					<input
 						type='hidden'
@@ -93,8 +101,7 @@ export default class Paginator extends PureComponent {
 						value={page}
 					/>
 				)}
-				{this.pages()}
-			</ul>
+			</nav>
 		);
 	}
 
@@ -118,7 +125,8 @@ export default class Paginator extends PureComponent {
 		const {
 			tabIndex,
 			total,
-			disabled
+			disabled,
+			mapPagesLabel
 		} = this.props;
 
 		const {
@@ -200,8 +208,9 @@ export default class Paginator extends PureComponent {
 						tabIndex={tabIndex}
 						onClick={this.onChange(number - 1)}
 						disabled={disabled}
+						aria-current={active ? 'page' : null}
 					>
-						{text}
+						{mapPagesLabel(text)}
 					</button>
 				)}
 			</li>

@@ -6,12 +6,15 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
 	Listener,
+	subscribeEvent,
 	getHtmlProps
 } from '../../helpers';
 import toggleScrollBlock from '../common/toggleScrollBlock';
 import toggleAriaHide from '../common/toggleAriaHide';
 import StylableTransition from '../StylableTransition';
 import stylesheet from './Modal.st.css';
+
+const ESC_KEY = 27;
 
 const defaultCloseButton = (
 	<button type='button'>
@@ -47,6 +50,7 @@ export default class Modal extends PureComponent {
 	};
 
 	unblockScroll = null;
+	unsubscribeKeyDown = null;
 	ariaShow = null;
 
 	render() {
@@ -120,6 +124,21 @@ export default class Modal extends PureComponent {
 		event.stopPropagation();
 	}
 
+	@Listener()
+	onEscPress(event) {
+
+		const {
+			onClose
+		} = this.props;
+
+		if (event.keyCode == ESC_KEY
+			&& typeof onClose == 'function'
+		) {
+			event.stopPropagation();
+			onClose(event);
+		}
+	}
+
 	toggleEffects() {
 
 		const {
@@ -138,6 +157,23 @@ export default class Modal extends PureComponent {
 				appElement
 			);
 		}
+
+		const keyDownSubscribed = typeof this.unsubscribeKeyDown == 'function';
+
+		if (active) {
+
+			if (!keyDownSubscribed) {
+				this.unsubscribeKeyDown = subscribeEvent(
+					document,
+					'keydown',
+					this.onEscPress()
+				);
+			}
+		} else
+		if (keyDownSubscribed) {
+			this.unsubscribeKeyDown();
+			this.unsubscribeKeyDown = null;
+		}
 	}
 
 	removeEffects() {
@@ -150,6 +186,11 @@ export default class Modal extends PureComponent {
 		if (typeof this.ariaShow == 'function') {
 			this.ariaShow();
 			this.ariaShow = null;
+		}
+
+		if (typeof this.unsubscribeKeyDown == 'function') {
+			this.unsubscribeKeyDown();
+			this.unsubscribeKeyDown = null;
 		}
 	}
 }

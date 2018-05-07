@@ -170,6 +170,7 @@ export default class CustomSelect extends PureComponent {
 					{...ariaLabelProps}
 					{...stylesheet('dropdownContent')}
 					role='region'
+					aria-multiselectable={multiple}
 				>
 					<ul
 						{...ariaLabelProps}
