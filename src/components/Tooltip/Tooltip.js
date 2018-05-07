@@ -73,7 +73,7 @@ export default class Tooltip extends PureComponent {
 				onFocus={this.onShow()}
 				onMouseLeave={this.onHide()}
 				onBlur={this.onHide()}
-				tabIndex={tabIndex}i
+				tabIndex={tabIndex}
 				aria-describedby={id}
 			>
 				{children}
