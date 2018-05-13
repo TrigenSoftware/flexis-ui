@@ -5,6 +5,12 @@ import {
 	withKnobs,
 	boolean
 } from '@storybook/addon-knobs/react';
+import Table, {
+	TableHead,
+	TableBody,
+	TableRow,
+	TableCell
+} from '../Table';
 import ScrollArea from './';
 
 const stylableApi = `
@@ -20,6 +26,9 @@ Stylable API
 	- :bottom
 	- :left
 `;
+
+const colsCount = 20,
+	rowsCount = 50;
 
 storiesOf('ScrollArea', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
@@ -90,6 +99,35 @@ storiesOf('ScrollArea', module)
 				>
 					Content
 				</div>
+			</ScrollArea>
+		)
+	)
+	.add(
+		'with table',
+		() => (
+			<ScrollArea>
+				<Table>
+					<TableHead>
+						<TableRow>
+							{Array(colsCount).fill(true).map((_, i) => (
+								<TableCell key={i} head>
+									Heading
+								</TableCell>
+							))}
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{Array(rowsCount).fill(true).map((_, i) => (
+							<TableRow key={i}>
+								{Array(colsCount).fill(true).map((_, i) => (
+									<TableCell key={i}>
+										Cell
+									</TableCell>
+								))}
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
 			</ScrollArea>
 		)
 	);

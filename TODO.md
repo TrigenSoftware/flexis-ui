@@ -1,7 +1,5 @@
 remove valueOrUndef?
 VissualyHidden
-TableCaption
-TableResponsiveContainer
 
 MediaQuery
 Image
