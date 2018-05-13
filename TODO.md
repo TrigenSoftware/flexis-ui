@@ -1,15 +1,15 @@
 remove valueOrUndef?
-ConfirmModal
-Image
-MediaQuery
 VissualyHidden
 TableCaption
 TableResponsiveContainer
 
+MediaQuery
+Image
 OptionsGroup for Select
 ProgressBar
 ProgressSteps
 ContextMenu
+Slider
 
 aria attributes
 
