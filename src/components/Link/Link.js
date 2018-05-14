@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
 import stylesheet from './Link.st.css';
 
+const safeTargetBlankRel = 'noopener noreferrer';
+
 let LinkElement = 'a',
 	linkElementCustomProps = [];
 
@@ -18,6 +20,8 @@ Link.propTypes = {
 		'left',
 		'right'
 	]),
+	rel:        PropTypes.string,
+	target:     PropTypes.string,
 	children:   PropTypes.node
 };
 
@@ -27,6 +31,8 @@ Link.defaultProps = {
 	icon:       null,
 	flexIcon:   false,
 	alignIcon:  'left',
+	rel:        null,
+	target:     null,
 	children:   null
 };
 
@@ -36,6 +42,8 @@ export default function Link({
 	iconOnly,
 	flexIcon,
 	alignIcon,
+	rel,
+	target,
 	children,
 	...props
 }) {
@@ -64,6 +72,11 @@ export default function Link({
 			}, props)}
 			{...getLinkElementCustomProps(props)}
 			ref={elementRef}
+			target={target}
+			rel={target === '_blank' && rel === null
+				? safeTargetBlankRel
+				: rel
+			}
 		>
 			{linkIcon ? (
 				<div
