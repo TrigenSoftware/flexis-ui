@@ -7,6 +7,7 @@ import VisuallyHidden from './';
 const stylableApi = `
 Stylable API
 ---
+- :focusable
 `;
 
 storiesOf('VisuallyHidden', module)
@@ -17,6 +18,14 @@ storiesOf('VisuallyHidden', module)
 		() => (
 			<VisuallyHidden>
 				<h1>Very important but hidden title</h1>
+			</VisuallyHidden>
+		)
+	)
+	.add(
+		'with focusable state',
+		() => (
+			<VisuallyHidden focusable>
+				<button>Very important but hidden button</button>
 			</VisuallyHidden>
 		)
 	);

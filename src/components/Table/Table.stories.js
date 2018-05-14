@@ -47,7 +47,7 @@ storiesOf('Table', module)
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{Array(rowsCount).fill(true).map((_, i) => (
+					{Array.from({ length: rowsCount }).map((_, i) => (
 						<TableRow key={i}>
 							<TableCell>
 								user{i}@email.com
@@ -94,7 +94,7 @@ storiesOf('Table', module)
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{Array(rowsCount).fill(true).map((_, i) => (
+					{Array.from({ length: rowsCount }).map((_, i) => (
 						<TableRow key={i}>
 							<TableCell>
 								user{i}@email.com

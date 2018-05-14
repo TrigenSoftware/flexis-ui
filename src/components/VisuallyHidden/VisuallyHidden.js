@@ -3,12 +3,20 @@ import PropTypes from 'prop-types';
 import stylesheet from './VisuallyHidden.st.css';
 
 VisuallyHidden.propTypes = {
-	children: PropTypes.element.isRequired
+	focusable: PropTypes.bool,
+	children:  PropTypes.element.isRequired
+};
+
+VisuallyHidden.defaultProps = {
+	focusable: false
 };
 
 export default function VisuallyHidden({
+	focusable,
 	children,
 	...props
 }) {
-	return cloneElement(children, stylesheet('root', {}, props));
+	return cloneElement(children, stylesheet('root', {
+		focusable
+	}, props));
 }

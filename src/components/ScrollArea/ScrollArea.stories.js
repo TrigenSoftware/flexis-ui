@@ -109,7 +109,7 @@ storiesOf('ScrollArea', module)
 				<Table>
 					<TableHead>
 						<TableRow>
-							{Array(colsCount).fill(true).map((_, i) => (
+							{Array.from({ length: colsCount }).map((_, i) => (
 								<TableCell key={i} head>
 									Heading
 								</TableCell>
@@ -117,9 +117,9 @@ storiesOf('ScrollArea', module)
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{Array(rowsCount).fill(true).map((_, i) => (
+						{Array.from({ length: rowsCount }).map((_, i) => (
 							<TableRow key={i}>
-								{Array(colsCount).fill(true).map((_, i) => (
+								{Array.from({ length: colsCount }).map((_, i) => (
 									<TableCell key={i}>
 										Cell
 									</TableCell>
