@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
-	getHtmlProps,
-	valueOrUndef
+	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Textarea.st.css';
 
@@ -46,8 +45,8 @@ export default class Textarea extends PureComponent {
 				{...stylesheet('root', {}, props)}
 				ref={elementRef}
 				onChange={this.onChange()}
-				value={valueOrUndef(value)}
-				defaultValue={valueOrUndef(defaultValue)}
+				value={value}
+				defaultValue={defaultValue}
 			/>
 		);
 	}

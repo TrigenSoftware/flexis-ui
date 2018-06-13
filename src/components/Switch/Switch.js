@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
-	getHtmlProps,
-	valueOrUndef
+	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Switch.st.css';
 
@@ -59,9 +58,9 @@ export default class Switch extends PureComponent {
 					ref={elementRef}
 					type={type}
 					onChange={this.onChange()}
-					value={valueOrUndef(value)}
-					checked={valueOrUndef(checked)}
-					defaultChecked={valueOrUndef(defaultChecked)}
+					value={value}
+					checked={checked}
+					defaultChecked={defaultChecked}
 				/>
 				<div
 					{...stylesheet('face')}

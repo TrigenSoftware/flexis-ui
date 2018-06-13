@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
-	getHtmlProps,
-	valueOrUndef
+	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Checkbox.st.css';
 
@@ -53,9 +52,9 @@ export default class Checkbox extends PureComponent {
 					{...stylesheet('checkbox')}
 					ref={elementRef}
 					type='checkbox'
-					value={valueOrUndef(value)}
-					checked={valueOrUndef(checked)}
-					defaultChecked={valueOrUndef(defaultChecked)}
+					value={value}
+					checked={checked}
+					defaultChecked={defaultChecked}
 					onChange={this.onChange()}
 				/>
 				<div

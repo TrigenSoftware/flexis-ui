@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-	Listener,
-	valueOrUndef
-} from '../../helpers';
+import { Listener } from '../../helpers';
 import Button from '../Button';
 import stylesheet from './ToggleSelect.st.css';
 
@@ -59,8 +56,8 @@ export class ToggleSelectOption extends PureComponent {
 					<input
 						{...stylesheet('input')}
 						type={type}
-						name={valueOrUndef(name)}
-						checked={valueOrUndef(checked)}
+						name={name}
+						checked={checked}
 						onChange={this.onChange()}
 						value={value}
 						disabled={disabled}

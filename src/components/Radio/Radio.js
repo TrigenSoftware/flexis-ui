@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
-	getHtmlProps,
-	valueOrUndef
+	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Radio.st.css';
 
@@ -54,9 +53,9 @@ export default class Radio extends PureComponent {
 					ref={elementRef}
 					type='radio'
 					onChange={this.onChange()}
-					value={valueOrUndef(value)}
-					checked={valueOrUndef(checked)}
-					defaultChecked={valueOrUndef(defaultChecked)}
+					value={value}
+					checked={checked}
+					defaultChecked={defaultChecked}
 				/>
 				<div
 					{...stylesheet('face')}
