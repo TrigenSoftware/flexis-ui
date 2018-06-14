@@ -1,10 +1,10 @@
 /**
  * Truncate text by given length;
- * @param  {String} text - Text to truncate.
- * @param  {Number} length - Truncate length.
- * @return {String} Truncated string.
+ * @param  text - Text to truncate.
+ * @param  length - Truncate length.
+ * @return Truncated string.
  */
-export default function textTructate(text, length) {
+export default function textTructate(text: string, length: number) {
 
 	if (text.length <= length) {
 		return text;

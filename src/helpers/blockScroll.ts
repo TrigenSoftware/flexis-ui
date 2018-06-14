@@ -1,7 +1,7 @@
 /**
  * Block scroll.
- * @param  {HTMLElement} element - HTML-element to block scroll.
- * @return {Function}    Unblock scroll.
+ * @param  element - HTML-element to block scroll.
+ * @return Unblock scroll.
  */
 export default function blockScroll(element = document.body) {
 
@@ -9,8 +9,8 @@ export default function blockScroll(element = document.body) {
 		documentElement
 	} = document;
 
-	let currentElement = element,
-		restore = [];
+	let currentElement = element;
+	let restore: [HTMLElement, string][] = [];
 
 	do {
 
@@ -22,7 +22,7 @@ export default function blockScroll(element = document.body) {
 		currentElement.style.overflow = 'hidden';
 		currentElement = currentElement.parentElement;
 
-	} while (currentElement != documentElement);
+	} while (currentElement !== documentElement);
 
 	currentElement = null;
 

@@ -8,7 +8,9 @@ module.exports = configureStorybook;
 
 function configureStorybook(storybookBaseConfig) {
 
-	storybookBaseConfig.module.rules.unshift(
+	const storybookBaseConfigRules = storybookBaseConfig.module.rules;
+
+	storybookBaseConfigRules.unshift(
 		StylablePlugin.rule(),
 		{
 			enforce: 'pre',
@@ -43,11 +45,11 @@ function configureStorybook(storybookBaseConfig) {
 		}
 	);
 
-	storybookBaseConfig.module.rules.some((rule, i) => {
+	storybookBaseConfigRules.some((rule, i) => {
 
 		if (rule.loader && rule.loader.includes('babel-loader')) {
 
-			storybookBaseConfig.module.rules[i] = {
+			storybookBaseConfigRules[i] = {
 				test:    rule.test,
 				include: rule.include,
 				exclude: rule.exclude,
@@ -56,6 +58,23 @@ function configureStorybook(storybookBaseConfig) {
 					'eslint-loader'
 				]
 			};
+
+			storybookBaseConfigRules.push({
+				test:    /\.tsx?$/,
+				include: rule.include,
+				exclude: rule.exclude,
+				use:     [
+					{
+						loader:  'at-loader',
+						options: {
+							forceIsolatedModules: true,
+							useCache:             true,
+							reportFiles:          ['src/**/*.{ts,tsx}']
+						}
+					},
+					'tslint-loader'
+				]
+			});
 
 			return true;
 		}

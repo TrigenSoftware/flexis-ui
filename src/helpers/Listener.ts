@@ -1,14 +1,14 @@
 /**
  * Decortor for debouncify class method.
- * @param  {Number}   delay - Debounce delay in ms.
- * @param  {Boolean}  atBegin - Call at begin.
- * @return {Function} Method decorator.
+ * @param  delay - Debounce delay in ms.
+ * @param  atBegin - Call at begin.
+ * @return Method decorator.
  */
-export default function Listener() {
-	return (target, key, descriptor) => {
+export default function Listener(): MethodDecorator {
+	return (target, key, descriptor: PropertyDescriptor) => {
 
-		const listener = descriptor.value,
-			bindedListenerKey = `__bindedListener(${key})__`;
+		const listener = descriptor.value;
+		const bindedListenerKey = `__bindedListener(${String(key)})__`;
 
 		descriptor.value =
 		function listenerWrapper(...args) {
