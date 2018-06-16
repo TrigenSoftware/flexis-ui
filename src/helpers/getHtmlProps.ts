@@ -466,22 +466,18 @@ const reactHtmlProps = [
 const dataAttribute = /^data-/;
 const ariaAttribute = /^aria-/;
 
-interface IProps {
-	[prop: string]: string;
-}
-
 /**
  * Get React-HTML props from props object.
  * @param  inputProps - Props object.
  * @param  withoutProps - Props to ignore.
  * @return Object with React-HTML props.
  */
-export default function getHtmlProps(
-	inputProps: IProps,
+export function getHtmlProps(
+	inputProps,
 	withoutProps: string[] = []
 ) {
 
-	const htmlProps: IProps = {};
+	const htmlProps = {};
 
 	for (const inputProp in inputProps) {
 

@@ -4,7 +4,7 @@
  * @param  atBegin - Call at begin.
  * @return Method decorator.
  */
-export default function Listener(): MethodDecorator {
+export function Listener(): MethodDecorator {
 	return (target, key, descriptor: PropertyDescriptor) => {
 
 		const listener = descriptor.value;

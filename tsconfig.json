@@ -10,6 +10,7 @@
 		"experimentalDecorators": true,
 		"sourceMap": true,
 		"lib": [
+			"dom",
 			"es2017"
 		]
 	}

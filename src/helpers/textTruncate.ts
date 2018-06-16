@@ -4,7 +4,7 @@
  * @param  length - Truncate length.
  * @return Truncated string.
  */
-export default function textTructate(text: string, length: number) {
+export function textTructate(text: string, length: number) {
 
 	if (text.length <= length) {
 		return text;

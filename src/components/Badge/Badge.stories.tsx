@@ -8,7 +8,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import Badge, { BadgeContainer } from './';
 
-const { TestIcon } = global;
+const { TestIcon } = global as any;
 
 const stylableApi = `
 Stylable API

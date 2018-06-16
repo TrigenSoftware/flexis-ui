@@ -17,7 +17,7 @@ interface IAriaLabelProps {
  * @param  selfProps - Props to check aria-attributes.
  * @return Aria-label props.
  */
-export default function getAriaLabelProps(
+export function getAriaLabelProps(
 	{
 		role,
 		labelledBy,

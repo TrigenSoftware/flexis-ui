@@ -1,11 +1,14 @@
 /**
  * Move element from overflow.
- * @param  {HTMLElement} element - Element to set position.
- * @param  {Number}      positionTop - Top position of element.
- * @param  {Number}      positionLeft - Left position of element.
- * @return {void}
+ * @param  element - Element to set position.
+ * @param  positionTop - Top position of element.
+ * @param  positionLeft - Left position of element.
  */
-export default function setOverflowOffset(element, positionTop, positionLeft) {
+export default function setOverflowOffset(
+	element: HTMLElement,
+	positionTop: number,
+	positionLeft: number
+) {
 
 	const {
 		clientWidth,
@@ -23,8 +26,8 @@ export default function setOverflowOffset(element, positionTop, positionLeft) {
 		height
 	} = element.getBoundingClientRect();
 
-	const right = clientWidth - (left + width),
-		bottom = clientHeight - (top + height);
+	const right = clientWidth - (left + width);
+	const bottom = clientHeight - (top + height);
 
 	if (top < 0) {
 		style.top = `${positionTop - top}px`;

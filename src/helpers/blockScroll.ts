@@ -3,7 +3,7 @@
  * @param  element - HTML-element to block scroll.
  * @return Unblock scroll.
  */
-export default function blockScroll(element = document.body) {
+export function blockScroll(element = document.body) {
 
 	const {
 		documentElement

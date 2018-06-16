@@ -6,7 +6,7 @@
  * @param  useCapture - Capture phase or bubble.
  * @return Unsubscribe from event.
  */
-export default function subscribeEvent(
+export function subscribeEvent(
 	element: HTMLElement,
 	eventName: string,
 	listener: () => void,
