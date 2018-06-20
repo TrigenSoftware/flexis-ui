@@ -72,7 +72,7 @@
     "stylelint-config-trigen": "^1.9.4",
     "svg-react-loader": "^0.4.5",
     "tslint": "^5.10.0",
-    "tslint-config-trigen": "^3.0.2",
+    "tslint-config-trigen": "^3.0.3",
     "tslint-loader": "^3.6.0",
     "typescript": "^2.9.1"
   }
