@@ -1,3 +1,4 @@
+/* tslint:disable: no-magic-numbers */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
@@ -28,8 +29,6 @@ Stylable API
 const events = {
 	onChange: action('change')
 };
-
-const defaultValue = [1, 2]; // eslint-disable-line
 
 storiesOf('CustomSelect', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
@@ -182,7 +181,7 @@ storiesOf('CustomSelect', module)
 			<CustomSelect
 				{...events}
 				name='select'
-				defaultValue={defaultValue}
+				defaultValue={[1, 2]}
 				disabled={boolean('Disabled', false)}
 				multiple
 			>
@@ -239,7 +238,7 @@ storiesOf('CustomSelect', module)
 			<CustomSelect
 				{...events}
 				name='select'
-				value={defaultValue}
+				value={[1, 2]}
 				disabled={boolean('Disabled', false)}
 				multiple
 			>

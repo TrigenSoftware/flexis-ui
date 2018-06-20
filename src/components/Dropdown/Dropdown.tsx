@@ -18,7 +18,6 @@ import {
 } from '../../helpers';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
-import { IDropdownContentProps } from './DropdownContent';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';

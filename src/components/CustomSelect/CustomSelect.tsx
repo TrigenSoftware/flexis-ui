@@ -1,7 +1,6 @@
 import React, {
 	Ref,
 	ReactElement,
-	ReactNode,
 	CSSProperties,
 	MouseEvent,
 	ChangeEvent,
@@ -20,7 +19,6 @@ import Dropdown, {
 	IProps as IDropdownProps,
 	DropdownContent
 } from '../Dropdown';
-import { ICustomSelectOptionProps } from './CustomSelectOption';
 import stylesheet from './CustomSelect.st.css';
 
 export * from './CustomSelectFace';
@@ -36,7 +34,7 @@ interface ISelfProps {
 	placeholder?: string;
 	multiple?: boolean;
 	disabled?: boolean;
-	children: ReactNode;
+	children: ReactElement<any>|ReactElement<any>[];
 	onChange?(value, event: ChangeEvent): void;
 	onChange?(value, name: string, event: ChangeEvent): void;
 }
@@ -66,7 +64,10 @@ export default class CustomSelect extends PureComponent<IProps> {
 		placeholder:  PropTypes.string,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
-		children:     PropTypes.node.isRequired
+		children:     PropTypes.oneOf([
+			PropTypes.element,
+			PropTypes.arrayOf(PropTypes.element)
+		]).isRequired
 	};
 
 	static defaultProps = {

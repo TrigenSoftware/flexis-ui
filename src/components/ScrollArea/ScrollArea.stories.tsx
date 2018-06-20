@@ -27,8 +27,8 @@ Stylable API
 	- :left
 `;
 
-const colsCount = 20,
-	rowsCount = 50;
+const colsCount = 20;
+const rowsCount = 50;
 
 storiesOf('ScrollArea', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))

@@ -291,9 +291,7 @@ export default class StylableTransition extends Component<IProps> {
 		if (node) {
 			// This is for to force a repaint,
 			// which is necessary in order to transition styles when adding a class name.
-			/* eslint-disable no-unused-expressions */
 			// node.scrollTop;
-			/* eslint-enable no-unused-expressions */
 			node.setAttribute(stateAttribute, 'true');
 		}
 	}

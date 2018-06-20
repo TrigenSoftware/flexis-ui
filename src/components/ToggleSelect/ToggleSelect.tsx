@@ -25,8 +25,8 @@ interface ISelfProps {
 	multiple?: boolean;
 	disabled?: boolean;
 	children: ReactElement<any>|ReactElement<any>[];
-	onChange?(value: any, event: ChangeEvent);
-	onChange?(value: any, name: string, event: ChangeEvent);
+	onChange?(value, event: ChangeEvent);
+	onChange?(value, name: string, event: ChangeEvent);
 }
 
 interface IOptionProps {

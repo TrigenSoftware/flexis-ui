@@ -76,7 +76,7 @@ export class TableCell extends PureComponent<IProps> {
 	onOrderChange(event: MouseEvent<HTMLTableCellElement>) {
 
 		const {
-			onClick, // eslint-disable-line
+			onClick,
 			onOrderChange,
 			head,
 			order

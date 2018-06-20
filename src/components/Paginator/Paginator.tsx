@@ -4,10 +4,7 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-	Listener,
-	getHtmlProps
-} from '../../helpers';
+import { getHtmlProps } from '../../helpers';
 import stylesheet from './Paginator.st.css';
 
 interface ISelfProps {

@@ -1,9 +1,6 @@
 extra types
-check target/currentTarget
 edit CODESTYLE
-rm PropTypes
-do IProps
-check children
+tslint eslint comments
 
 MediaQuery
 Image

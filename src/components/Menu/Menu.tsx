@@ -1,6 +1,6 @@
 import React, {
 	AllHTMLAttributes,
-	ReactNode,
+	ReactElement,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ export * from './MenuItemSeparator';
 export * from './MenuButton';
 
 interface ISelfProps {
-	children: ReactNode;
+	children: ReactElement<any>|ReactElement<any>[];
 }
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLUListElement>;
@@ -20,7 +20,10 @@ export type IProps = ISelfProps & AllHTMLAttributes<HTMLUListElement>;
 export default class Menu extends PureComponent<IProps> {
 
 	static propTypes = {
-		children: PropTypes.node.isRequired
+		children: PropTypes.oneOf(
+			PropTypes.element,
+			PropTypes.arrayOf(PropTypes.element)
+		).isRequired
 	};
 
 	render() {
