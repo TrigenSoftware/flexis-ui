@@ -7,7 +7,7 @@ import throttle from 'throttle-debounce/throttle';
  * @return Method decorator.
  */
 export function Throttle(delay: number, noTrailing = false): MethodDecorator {
-	return (target, key, descriptor: PropertyDescriptor) => {
+	return (_, __, descriptor: PropertyDescriptor) => {
 		descriptor.value = throttle(delay, noTrailing, descriptor.value, false);
 	};
 }

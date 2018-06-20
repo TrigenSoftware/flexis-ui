@@ -5,7 +5,7 @@
  * @return Method decorator.
  */
 export function Listener(): MethodDecorator {
-	return (target, key, descriptor: PropertyDescriptor) => {
+	return (_, key, descriptor: PropertyDescriptor) => {
 
 		const listener = descriptor.value;
 		const bindedListenerKey = `__bindedListener(${String(key)})__`;

@@ -7,7 +7,7 @@ import debounce from 'throttle-debounce/debounce';
  * @return Method decorator.
  */
 export function Debounce(delay: number, atBegin = false): MethodDecorator {
-	return (target, key, descriptor: PropertyDescriptor) => {
+	return (_, __, descriptor: PropertyDescriptor) => {
 		descriptor.value = debounce(delay, atBegin, descriptor.value);
 	};
 }
