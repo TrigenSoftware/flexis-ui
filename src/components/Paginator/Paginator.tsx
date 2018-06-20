@@ -1,4 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	MouseEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,13 +10,27 @@ import {
 } from '../../helpers';
 import stylesheet from './Paginator.st.css';
 
-const HALF = 2,
-	PENULTIMATE_PAGE = -2;
+interface ISelfProps {
+	tabIndex?: number|string;
+	name?: string;
+	defaultPage?: number;
+	page?: number;
+	total: number;
+	disabled?: boolean;
+	mapPagesLabel?(label: string): string;
+	onChange?(page: number, event: MouseEvent);
+	onChange?(page: number, name: string, event: MouseEvent);
+}
 
-const visiblePages = 7,
-	visiblePagesMid = Math.floor(visiblePages / HALF);
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLElement>;
 
-export default class Paginator extends PureComponent {
+const HALF = 2;
+const PENULTIMATE_PAGE = -2;
+
+const visiblePages = 7;
+const visiblePagesMid = Math.floor(visiblePages / HALF);
+
+export default class Paginator extends PureComponent<IProps> {
 
 	static propTypes = {
 		tabIndex:      PropTypes.oneOfType([
@@ -40,11 +58,11 @@ export default class Paginator extends PureComponent {
 
 	static getDerivedStateFromProps({ page }, { page: prevPage }) {
 
-		const nextPage = typeof page == 'number'
+		const nextPage = typeof page === 'number'
 			? page
 			: prevPage;
 
-		if (nextPage == prevPage) {
+		if (nextPage === prevPage) {
 			return null;
 		}
 
@@ -52,6 +70,8 @@ export default class Paginator extends PureComponent {
 			page: nextPage
 		};
 	}
+
+	state: { page: number };
 
 	constructor(props) {
 
@@ -97,7 +117,7 @@ export default class Paginator extends PureComponent {
 				{name && (
 					<input
 						type='hidden'
-						nane={name}
+						name={name}
 						value={page}
 					/>
 				)}
@@ -112,8 +132,9 @@ export default class Paginator extends PureComponent {
 		} = this.props;
 
 		const pages = Array(Math.min(visiblePages, total));
+		const pagesLength = pages.length;
 
-		for (let i = 0, pagesLength = pages.length; i < pagesLength; i++) {
+		for (let i = 0; i < pagesLength; i++) {
 			pages[i] = this.page(i);
 		}
 
@@ -133,9 +154,9 @@ export default class Paginator extends PureComponent {
 			page
 		} = this.state;
 
-		let delta = 1,
-			doStartDots = false,
-			doEndDots = true;
+		let delta = 1;
+		let doStartDots = false;
+		let doEndDots = true;
 
 		if (total < visiblePages) {
 			doEndDots = false;
@@ -152,22 +173,22 @@ export default class Paginator extends PureComponent {
 			}
 		}
 
-		let separate = false,
-			number = visiblePagePlace + delta,
-			text = String(number);
+		let separate = false;
+		let num = visiblePagePlace + delta;
+		let text = String(num);
 
-		const active = number - 1 == page;
+		const active = num - 1 === page;
 
 		switch (visiblePagePlace) {
 
 			case 0:
 				text = '1';
-				number = 1;
+				num = 1;
 				break;
 
 			case visiblePages - 1:
 				text = String(total);
-				number = total;
+				num = total;
 				break;
 
 			case 1:
@@ -187,7 +208,6 @@ export default class Paginator extends PureComponent {
 				break;
 
 			default:
-				break;
 		}
 
 		return (
@@ -206,7 +226,7 @@ export default class Paginator extends PureComponent {
 						})}
 						type='button'
 						tabIndex={tabIndex}
-						onClick={this.onChange(number - 1)}
+						onClick={this.onChange(num - 1)}
 						disabled={disabled}
 						aria-current={active ? 'page' : null}
 					>
@@ -217,12 +237,13 @@ export default class Paginator extends PureComponent {
 		);
 	}
 
-	@Listener()
-	onChange(page, event) {
-		this.triggerNewPage(page, event);
+	onChange(page) {
+		return (event: MouseEvent) => {
+			this.triggerNewPage(page, event);
+		};
 	}
 
-	triggerNewPage(nextPage, event) {
+	triggerNewPage(nextPage, event: MouseEvent) {
 
 		const {
 			page: pageProp,
@@ -243,13 +264,13 @@ export default class Paginator extends PureComponent {
 			return;
 		}
 
-		if (typeof pageProp != 'number') {
+		if (typeof pageProp !== 'number') {
 			this.setState(() => ({
 				page: nextPage
 			}));
 		}
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
 			if (name) {
 				onChange(nextPage, name, event);

@@ -1,4 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	UIEvent,
+	WheelEvent,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,7 +12,20 @@ import {
 } from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
 
-export default class ScrollArea extends PureComponent {
+interface ISelfProps {
+	ignoreTopShadow?: boolean;
+	ignoreRightShadow?: boolean;
+	ignoreBottomShadow?: boolean;
+	ignoreLeftShadow?: boolean;
+	hideXScrollbar?: boolean;
+	hideYScrollbar?: boolean;
+	y2xScroll?: boolean;
+	children?: ReactNode;
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+
+export default class ScrollArea extends PureComponent<IProps> {
 
 	static propTypes = {
 		ignoreTopShadow:    PropTypes.bool,
@@ -66,13 +85,13 @@ export default class ScrollArea extends PureComponent {
 				{...stylesheet('root', {}, props)}
 			>
 				<div
-					ref={this.onScrollerRef()}
+					ref={this.onScrollerRef}
 					{...stylesheet('scroller', {
 						hideXScrollbar,
 						hideYScrollbar
 					})}
-					onScroll={this.onScroll()}
-					onWheel={this.onWheel()}
+					onScroll={this.onScroll}
+					onWheel={this.onWheel}
 				>
 					{children}
 				</div>
@@ -117,15 +136,19 @@ export default class ScrollArea extends PureComponent {
 	}
 
 	@Listener()
-	onScroll({ currentTarget }) {
+	onScroll({ currentTarget }: UIEvent<HTMLDivElement>) {
 		this.setShadow(currentTarget);
 	}
 
 	@Listener()
-	onWheel(event) {
+	onWheel(event: WheelEvent<HTMLDivElement>) {
 
-		const { isHiddenScrollbar } = this,
-			{ y2xScroll } = this.props;
+		const {
+			isHiddenScrollbar
+		} = this;
+		const {
+			y2xScroll
+		} = this.props;
 
 		const {
 			deltaY,
@@ -172,8 +195,8 @@ export default class ScrollArea extends PureComponent {
 			hideYScrollbar
 		} = this.props;
 
-		const xOffset = element.offsetHeight - element.clientHeight,
-			yOffset = element.offsetWidth - element.clientWidth;
+		const xOffset = element.offsetHeight - element.clientHeight;
+		const yOffset = element.offsetWidth - element.clientWidth;
 
 		this.isHiddenScrollbar = !xOffset;
 

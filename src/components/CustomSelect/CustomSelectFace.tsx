@@ -1,9 +1,17 @@
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-CustomSelectFace.propTypes = {
-	children: PropTypes.func.isRequired
-};
+export interface ICustomSelectFaceProps {
+	children(...args): any;
+}
 
-export function CustomSelectFace() {
-	return null;
+export class CustomSelectFace extends PureComponent<ICustomSelectFaceProps> {
+
+	static propTypes = {
+		children: PropTypes.func.isRequired
+	};
+
+	render() {
+		return null;
+	}
 }

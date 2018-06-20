@@ -1,20 +1,40 @@
-import React from 'react';
+import React, {
+	AllHTMLAttributes,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
 
-SelectOption.propTypes = {
-	children: PropTypes.node.isRequired
-};
+interface ISelfProps {
+	value?: any;
+	children: ReactNode;
+}
 
-export function SelectOption({
-	children,
-	...props
-}) {
-	return (
-		<option
-			{...getHtmlProps(props)}
-		>
-			{children}
-		</option>
-	);
+export type ISelectOptionProps = ISelfProps & AllHTMLAttributes<HTMLOptionElement>;
+
+export class SelectOption extends PureComponent<ISelectOptionProps> {
+
+	static propTypes = {
+		value:    PropTypes.any,
+		children: PropTypes.node.isRequired
+	};
+
+	render() {
+
+		const {
+			value,
+			children,
+			...props
+		} = this.props;
+
+		return (
+			<option
+				{...getHtmlProps(props)}
+				value={String(value)}
+			>
+				{children}
+			</option>
+		);
+	}
 }

@@ -1,4 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	DragEvent,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,7 +11,15 @@ import {
 } from '../../helpers';
 import stylesheet from './FileDrop.st.css';
 
-export default class FileSelect extends PureComponent {
+interface ISelfProps {
+	disabled?: boolean;
+	children?: ReactNode;
+	onChange?(files: File[], event: DragEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+
+export default class FileSelect extends PureComponent<IProps> {
 
 	static propTypes = {
 		onChange: PropTypes.func,
@@ -43,13 +56,13 @@ export default class FileSelect extends PureComponent {
 					disabled,
 					dragOver
 				}, props)}
-				onDrag={this.onIgnoredEvent()}
-				onDragStart={this.onIgnoredEvent()}
-				onDragOver={this.onDragOver()}
-				onDragEnter={this.onDragOver()}
-				onDragLeave={this.onDragLeave()}
-				onDragEnd={this.onDragLeave()}
-				onDrop={this.onChange()}
+				onDrag={this.onIgnoredEvent}
+				onDragStart={this.onIgnoredEvent}
+				onDragOver={this.onDragOver}
+				onDragEnter={this.onDragOver}
+				onDragLeave={this.onDragLeave}
+				onDragEnd={this.onDragLeave}
+				onDrop={this.onChange}
 			>
 				{children}
 			</div>
@@ -85,7 +98,7 @@ export default class FileSelect extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: DragEvent) {
 
 		event.stopPropagation();
 		event.preventDefault();
@@ -106,7 +119,7 @@ export default class FileSelect extends PureComponent {
 			onChange
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 			onChange(
 				Array.from(event.dataTransfer.files),
 				event

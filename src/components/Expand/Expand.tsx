@@ -1,4 +1,8 @@
 import React, {
+	AllHTMLAttributes,
+	SyntheticEvent,
+	MouseEvent,
+	ReactElement,
 	PureComponent,
 	Children,
 	cloneElement
@@ -14,7 +18,17 @@ import stylesheet from './Expand.st.css';
 export * from './ExpandTitle';
 export * from './ExpandContent';
 
-export default class Expand extends PureComponent {
+interface ISelfProps {
+	defaultActive?: boolean;
+	active?: boolean;
+	disabled?: boolean;
+	children: ReactElement<any>[];
+	onToggle?(active: boolean, event: Event|SyntheticEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+
+export default class Expand extends PureComponent<IProps> {
 
 	static propTypes = {
 		onToggle:      PropTypes.func,
@@ -33,17 +47,20 @@ export default class Expand extends PureComponent {
 		disabled:      false
 	};
 
-	static getDerivedStateFromProps({
-		active,
-		disabled
-	}, { active: prevActive }) {
+	static getDerivedStateFromProps(
+		{
+			active,
+			disabled
+		},
+		{ active: prevActive }
+	) {
 
-		const nextActive = !disabled && (typeof active == 'boolean'
+		const nextActive = !disabled && (typeof active === 'boolean'
 			? active
 			: prevActive
 		);
 
-		if (nextActive == prevActive) {
+		if (nextActive === prevActive) {
 			return null;
 		}
 
@@ -51,6 +68,8 @@ export default class Expand extends PureComponent {
 			active: nextActive
 		};
 	}
+
+	state: { active: boolean };
 
 	constructor(props) {
 
@@ -80,7 +99,7 @@ export default class Expand extends PureComponent {
 		const [
 			title,
 			content
-		] = Children.toArray(children);
+		] = Children.toArray(children) as ReactElement<any>[];
 
 		return (
 			<div
@@ -92,7 +111,7 @@ export default class Expand extends PureComponent {
 				aria-disabled={disabled}
 			>
 				{cloneElement(title, {
-					'onClick':       this.onToggle(),
+					'onClick':       this.onToggle,
 					'aria-haspopup': true,
 					'aria-expanded': active,
 					'aria-disabled': disabled,
@@ -110,11 +129,11 @@ export default class Expand extends PureComponent {
 	}
 
 	@Listener()
-	onToggle(event) {
+	onToggle(event: MouseEvent) {
 		this.toggleActiveState(null, event);
 	}
 
-	toggleActiveState(forceState, event = null) {
+	toggleActiveState(forceState, event: Event|SyntheticEvent = null) {
 
 		const {
 			active: activeProp,
@@ -130,7 +149,7 @@ export default class Expand extends PureComponent {
 			active
 		} = this.state;
 
-		const nextActive = typeof forceState == 'boolean'
+		const nextActive = typeof forceState === 'boolean'
 			? forceState
 			: !active;
 
@@ -138,13 +157,13 @@ export default class Expand extends PureComponent {
 			return;
 		}
 
-		if (typeof activeProp != 'boolean') {
+		if (typeof activeProp !== 'boolean') {
 			this.setState(() => ({
 				active: nextActive
 			}));
 		}
 
-		if (typeof onToggle == 'function') {
+		if (typeof onToggle === 'function') {
 			onToggle(nextActive, event);
 		}
 	}

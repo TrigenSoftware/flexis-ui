@@ -1,4 +1,10 @@
 import React, {
+	Ref,
+	ReactElement,
+	ReactNode,
+	CSSProperties,
+	MouseEvent,
+	ChangeEvent,
 	PureComponent,
 	Children,
 	cloneElement
@@ -10,13 +16,44 @@ import {
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
-import Dropdown, { DropdownContent } from '../Dropdown';
+import Dropdown, {
+	IProps as IDropdownProps,
+	DropdownContent
+} from '../Dropdown';
+import { ICustomSelectOptionProps } from './CustomSelectOption';
 import stylesheet from './CustomSelect.st.css';
 
 export * from './CustomSelectFace';
 export * from './CustomSelectOption';
 
-export default class CustomSelect extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<Dropdown>;
+	id?: string;
+	style?: CSSProperties;
+	name?: string;
+	value?: any;
+	defaultValue?: any;
+	placeholder?: string;
+	multiple?: boolean;
+	disabled?: boolean;
+	children: ReactNode;
+	onChange?(value, event: ChangeEvent): void;
+	onChange?(value, name: string, event: ChangeEvent): void;
+}
+
+interface IOptionProps {
+	type: string;
+	value: any;
+	checked: boolean;
+	disabled: boolean;
+	name: string;
+	id?: string;
+	onChange(value, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & IDropdownProps;
+
+export default class CustomSelect extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
@@ -24,8 +61,8 @@ export default class CustomSelect extends PureComponent {
 		style:        PropTypes.object,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
-		value:        PropTypes.any,
 		defaultValue: PropTypes.any,
+		value:        PropTypes.any,
 		placeholder:  PropTypes.string,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
@@ -38,8 +75,8 @@ export default class CustomSelect extends PureComponent {
 		style:        null,
 		name:         null,
 		onChange:     null,
-		value:        null,
 		defaultValue: null,
+		value:        null,
 		placeholder:  null,
 		multiple:     false,
 		disabled:     false
@@ -51,7 +88,7 @@ export default class CustomSelect extends PureComponent {
 			? prevValue
 			: value;
 
-		if (nextValue == prevValue) {
+		if (nextValue === prevValue) {
 			return null;
 		}
 
@@ -60,7 +97,8 @@ export default class CustomSelect extends PureComponent {
 		};
 	}
 
-	dropdownRef = null;
+	state: { value: any };
+	dropdownRef: Dropdown = null;
 
 	constructor(props) {
 
@@ -79,7 +117,7 @@ export default class CustomSelect extends PureComponent {
 
 		const {
 			'aria-labelledby': ariaLabelledBy,
-			'aria-label':      ariaLabel,
+			'aria-label': ariaLabel,
 			id,
 			style,
 			name,
@@ -94,35 +132,35 @@ export default class CustomSelect extends PureComponent {
 			value
 		} = this.state;
 
-		let faceChild = null,
-			label = multiple ? [] : '',
-			activeDescendant = null;
+		let faceChild = null;
+		let label = multiple ? [] : '';
+		let activeDescendant = null;
 
 		const options = Children
 			.toArray(children)
 			.filter(Boolean)
-			.map((child, i) => {
+			.map((child: ReactElement<any>, i) => {
 
-				if (i == 0) {
+				if (i === 0) {
 					faceChild = child;
 					return null;
 				}
 
 				const {
-					value:    optionValue,
+					value: optionValue,
 					children: optionLabel
 				} = child.props;
 
-				const option = typeof optionValue == 'undefined'
+				const option = typeof optionValue === 'undefined'
 					? optionLabel
 					: optionValue;
 
 				const checked = isCurrentValue(multiple, value, option);
 
-				const props = {
+				const props: IOptionProps = {
 					type:     multiple ? 'checkbox' : 'radio',
 					value:    option,
-					onChange: this.onChange(),
+					onChange: this.onChange,
 					checked,
 					disabled,
 					name
@@ -131,13 +169,13 @@ export default class CustomSelect extends PureComponent {
 				if (checked) {
 
 					if (multiple) {
-						label.push(optionLabel);
+						(label as string[]).push(optionLabel);
 					} else {
 						label = optionLabel;
 					}
 				}
 
-				if (typeof id == 'string') {
+				if (typeof id === 'string') {
 
 					props.id = `${id}-option-${option}`;
 
@@ -153,7 +191,7 @@ export default class CustomSelect extends PureComponent {
 
 		const ariaLabelProps = getAriaLabelProps({
 			role:       'listbox',
-			labelledby: ariaLabelledBy,
+			labelledBy: ariaLabelledBy,
 			label:      ariaLabel || placeholder
 		});
 
@@ -161,7 +199,7 @@ export default class CustomSelect extends PureComponent {
 			<Dropdown
 				{...props}
 				{...stylesheet('root', {}, props)}
-				ref={this.onDropdownRef()}
+				ref={this.onDropdownRef}
 				style={style}
 				disabled={disabled}
 			>
@@ -175,7 +213,7 @@ export default class CustomSelect extends PureComponent {
 					<ul
 						{...ariaLabelProps}
 						{...stylesheet('options')}
-						onClick={this.onDropdownHide()}
+						onClick={this.onDropdownHide}
 						aria-activedescendant={activeDescendant}
 					>
 						{options}
@@ -192,7 +230,7 @@ export default class CustomSelect extends PureComponent {
 		);
 	}
 
-	face(faceChild, label) {
+	face(faceChild: ReactElement<any>, label: string|string[]) {
 
 		const {
 			multiple,
@@ -206,7 +244,7 @@ export default class CustomSelect extends PureComponent {
 		} = faceChild.props;
 
 		return children(
-			(multiple ? label.join(', ') : label)
+			(multiple ? (label as string[]).join(', ') : label)
 			|| placeholder && (
 				<span
 					{...stylesheet('placeholder')}
@@ -230,13 +268,13 @@ export default class CustomSelect extends PureComponent {
 
 		this.dropdownRef = ref;
 
-		if (typeof elementRef == 'function') {
+		if (typeof elementRef === 'function') {
 			elementRef(ref);
 		}
 	}
 
 	@Listener()
-	onDropdownHide(event) {
+	onDropdownHide(event: MouseEvent) {
 
 		const {
 			multiple
@@ -252,7 +290,7 @@ export default class CustomSelect extends PureComponent {
 	}
 
 	@Listener()
-	onChange(inputNextValue, event) {
+	onChange(inputNextValue, event: ChangeEvent) {
 
 		const {
 			value: valueProp,
@@ -282,7 +320,7 @@ export default class CustomSelect extends PureComponent {
 			}));
 		}
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
 			if (name) {
 				onChange(nextValue, name, event);

@@ -1,4 +1,9 @@
 import React, {
+	AllHTMLAttributes,
+	MouseEvent,
+	KeyboardEvent,
+	SyntheticEvent,
+	ReactElement,
 	PureComponent,
 	Children,
 	cloneElement
@@ -13,14 +18,26 @@ import {
 } from '../../helpers';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
+import { IDropdownContentProps } from './DropdownContent';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
 
-const HALF = 2,
-	ESC_KEY = 27;
+interface ISelfProps {
+	active?: boolean;
+	defaultActive?: boolean;
+	disabled?: boolean;
+	align?: 'left'|'center'|'right';
+	children: ReactElement<any>[];
+	onToggle?(active: boolean, event: Event|SyntheticEvent);
+}
 
-export default class Dropdown extends PureComponent {
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLSpanElement>;
+
+const HALF = 2;
+const ESC_KEY = 27;
+
+export default class Dropdown extends PureComponent<IProps> {
 
 	static propTypes = {
 		onToggle:      PropTypes.func,
@@ -45,17 +62,20 @@ export default class Dropdown extends PureComponent {
 		align:         'left'
 	};
 
-	static getDerivedStateFromProps({
-		active,
-		disabled
-	}, { active: prevActive }) {
+	static getDerivedStateFromProps(
+		{
+			active,
+			disabled
+		},
+		{ active: prevActive }
+	) {
 
-		const nextActive = !disabled && (typeof active == 'boolean'
+		const nextActive = !disabled && (typeof active === 'boolean'
 			? active
 			: prevActive
 		);
 
-		if (nextActive == prevActive) {
+		if (nextActive === prevActive) {
 			return null;
 		}
 
@@ -64,6 +84,7 @@ export default class Dropdown extends PureComponent {
 		};
 	}
 
+	state: { active: boolean };
 	elementRef = null;
 	contentRef = null;
 	unsubscribeFromOutsideClick = null;
@@ -99,7 +120,7 @@ export default class Dropdown extends PureComponent {
 			toggler,
 			content,
 			...misc
-		] = Children.toArray(children);
+		] = Children.toArray(children) as ReactElement<any>[];
 
 		return (
 			<span
@@ -108,8 +129,8 @@ export default class Dropdown extends PureComponent {
 					active,
 					disabled
 				}, props)}
-				ref={this.onElementRef()}
-				onClick={this.onToggle()}
+				ref={this.onElementRef}
+				onClick={this.onToggle}
 				aria-disabled={disabled}
 			>
 				{cloneElement(toggler, {
@@ -128,8 +149,8 @@ export default class Dropdown extends PureComponent {
 							[`${align}Align`]: Boolean(align),
 							active
 						}, content.props),
-						'elementRef':   this.onContentRef(),
-						'onKeyDown':    this.onEscPress(),
+						'elementRef':   this.onContentRef,
+						'onKeyDown':    this.onEscPress,
 						'aria-hidden':  !active
 					}),
 					document.body
@@ -168,7 +189,7 @@ export default class Dropdown extends PureComponent {
 			active
 		} = this.state;
 
-		if (prevActive != active) {
+		if (prevActive !== active) {
 			this.toggleEffects();
 		}
 	}
@@ -184,22 +205,22 @@ export default class Dropdown extends PureComponent {
 	}
 
 	@Listener()
-	onToggle(event) {
+	onToggle(event: MouseEvent<HTMLSpanElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
 		this.toggleActiveState(null, event);
 	}
 
 	@Listener()
-	onEscPress(event) {
+	onEscPress(event: KeyboardEvent) {
 
-		if (event.keyCode == ESC_KEY) {
+		if (event.keyCode === ESC_KEY) {
 			event.stopPropagation();
 			this.toggleActiveState(false, event);
 		}
 	}
 
-	toggleActiveState(forceState, event = null) {
+	toggleActiveState(forceState, event: Event|SyntheticEvent = null) {
 
 		const {
 			active: activeProp,
@@ -215,7 +236,7 @@ export default class Dropdown extends PureComponent {
 			active
 		} = this.state;
 
-		const nextActive = typeof forceState == 'boolean'
+		const nextActive = typeof forceState === 'boolean'
 			? forceState
 			: !active;
 
@@ -223,13 +244,13 @@ export default class Dropdown extends PureComponent {
 			return;
 		}
 
-		if (typeof activeProp != 'boolean') {
+		if (typeof activeProp !== 'boolean') {
 			this.setState(() => ({
 				active: nextActive
 			}));
 		}
 
-		if (typeof onToggle == 'function') {
+		if (typeof onToggle === 'function') {
 			onToggle(nextActive, event);
 		}
 	}
@@ -261,7 +282,7 @@ export default class Dropdown extends PureComponent {
 
 	removeEffects() {
 
-		if (typeof this.unblockScroll == 'function') {
+		if (typeof this.unblockScroll === 'function') {
 			this.unblockScroll();
 			this.unblockScroll = null;
 		}
@@ -283,9 +304,9 @@ export default class Dropdown extends PureComponent {
 		} = this.props;
 
 		const {
-			top:    elementTop,
-			left:   elementLeft,
-			width:  elementWidth,
+			top: elementTop,
+			left: elementLeft,
+			width: elementWidth,
 			height: elementHeight
 		} = elementRef.getBoundingClientRect();
 
@@ -294,8 +315,8 @@ export default class Dropdown extends PureComponent {
 			style
 		} = contentRef;
 
-		let top = 0,
-			left = 0;
+		let top = 0;
+		let left = 0;
 
 		top = elementTop + elementHeight;
 
@@ -309,12 +330,11 @@ export default class Dropdown extends PureComponent {
 				left = elementLeft + elementWidth / HALF;
 				break;
 
-			case 'end':
+			case 'right':
 				left = elementLeft + elementWidth - tooltipWidth;
 				break;
 
 			default:
-				break;
 		}
 
 		style.top = `${top}px`;

@@ -5,6 +5,8 @@
 		"moduleResolution": "node",
 		"target": "esnext",
 		"jsx": "react",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"noImplicitAny": false,
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,

@@ -1,4 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	Ref,
+	ChangeEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,17 +11,28 @@ import {
 } from '../../helpers';
 import stylesheet from './Textarea.st.css';
 
-export default class Textarea extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLTextAreaElement>;
+	name?: string;
+	defaultValue?: string|number;
+	value?: string|number;
+	onChange?(value: string, event: ChangeEvent);
+	onChange?(value: string, name: string, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLTextAreaElement>;
+
+export default class Textarea extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
-		value:        PropTypes.oneOfType([
+		defaultValue: PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
 		]),
-		defaultValue: PropTypes.oneOfType([
+		value:        PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
 		])
@@ -26,8 +42,8 @@ export default class Textarea extends PureComponent {
 		elementRef:   null,
 		name:         null,
 		onChange:     null,
-		value:        null,
-		defaultValue: null
+		defaultValue: null,
+		value:        null
 	};
 
 	render() {
@@ -44,7 +60,7 @@ export default class Textarea extends PureComponent {
 				{...getHtmlProps(props)}
 				{...stylesheet('root', {}, props)}
 				ref={elementRef}
-				onChange={this.onChange()}
+				onChange={this.onChange}
 				value={value}
 				defaultValue={defaultValue}
 			/>
@@ -52,16 +68,16 @@ export default class Textarea extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent<HTMLTextAreaElement>) {
 
 		const {
 			name,
 			onChange
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
-			const nextValue = event.target.value;
+			const nextValue = event.currentTarget.value;
 
 			if (name) {
 				onChange(nextValue, name, event);

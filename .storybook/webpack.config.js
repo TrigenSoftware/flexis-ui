@@ -2,7 +2,6 @@ const StylablePlugin = require('stylable-integration/webpack-plugin');
 const stylelint = require('stylelint');
 const postcssReporter = require('postcss-reporter');
 const autoprefixer = require('autoprefixer');
-const { browsers } = require('../package.json');
 
 module.exports = configureStorybook;
 
@@ -32,9 +31,7 @@ function configureStorybook(storybookBaseConfig) {
 				options: {
 					sourceMap: true,
 					plugins:   () => [
-						autoprefixer({
-							browsers
-						})
+						autoprefixer()
 					]
 				}
 			}]

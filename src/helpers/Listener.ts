@@ -10,12 +10,9 @@ export function Listener(): MethodDecorator {
 		const listener = descriptor.value;
 		const bindedListenerKey = `__bindedListener(${String(key)})__`;
 
-		descriptor.value =
-		function listenerWrapper(...args) {
-
-			if (args.length) {
-				return listener.bind(this, ...args);
-			}
+		descriptor.value = null;
+		descriptor.get =
+		function listenerWrapper() {
 
 			if (this.hasOwnProperty(bindedListenerKey)) {
 				return this[bindedListenerKey];

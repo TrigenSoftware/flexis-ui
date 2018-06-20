@@ -1,21 +1,29 @@
-import React from 'react';
-import Button from '../Button';
+import React, { PureComponent } from 'react';
+import Button, { IProps as IButtonProps } from '../Button';
 import stylesheet from './Menu.st.css';
 
-MenuButton.propTypes = Button.propTypes;
-MenuButton.defaultProps = Button.defaultProps;
+export type IMenuButtonProps = IButtonProps;
 
-export function MenuButton({
-	children,
-	...props
-}) {
-	return (
-		<Button
-			{...props}
-			{...stylesheet('button', {}, props)}
-			type='button'
-		>
-			{children}
-		</Button>
-	);
+export class MenuButton extends PureComponent<IMenuButtonProps> {
+
+	static propTypes = Button.propTypes;
+	static defaultProps = Button.defaultProps;
+
+	render() {
+
+		const {
+			children,
+			...props
+		} = this.props;
+
+		return (
+			<Button
+				{...props}
+				{...stylesheet('button', {}, props)}
+				type='button'
+			>
+				{children}
+			</Button>
+		);
+	}
 }

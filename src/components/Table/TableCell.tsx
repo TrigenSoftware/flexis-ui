@@ -1,4 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	ReactNode,
+	MouseEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -7,15 +12,24 @@ import {
 } from '../../helpers';
 import stylesheet from './Table.st.css';
 
-export const Order = {
-	None: 0,
-	Asc:  1,
-	Desc: -1
-};
+export enum Order {
+	None = 0,
+	Asc = 1,
+	Desc = -1
+}
 
-const orderValues = Object.values(Order);
+interface ISelfProps {
+	head?: boolean;
+	order?: Order;
+	children?: ReactNode;
+	onOrderChange?(order: Order, event: MouseEvent);
+}
 
-export class TableCell extends PureComponent {
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLTableCellElement>;
+
+const orderValues: number[] = Object.values(Order);
+
+export class TableCell extends PureComponent<IProps> {
 
 	static propTypes = {
 		head:          PropTypes.bool,
@@ -51,7 +65,7 @@ export class TableCell extends PureComponent {
 					orderAsc:  head && order === 1,
 					orderDesc: head && order === -1
 				}, props)}
-				onClick={this.onOrderChange()}
+				onClick={this.onOrderChange}
 			>
 				{children}
 			</Cell>
@@ -59,7 +73,7 @@ export class TableCell extends PureComponent {
 	}
 
 	@Listener()
-	onOrderChange(event) {
+	onOrderChange(event: MouseEvent<HTMLTableCellElement>) {
 
 		const {
 			onClick, // eslint-disable-line
@@ -69,8 +83,8 @@ export class TableCell extends PureComponent {
 		} = this.props;
 
 		if (head
-			&& typeof order == 'number'
-			&& typeof onOrderChange == 'function'
+			&& typeof order === 'number'
+			&& typeof onOrderChange === 'function'
 		) {
 			onOrderChange(
 				orderValues[modulo(
@@ -81,7 +95,7 @@ export class TableCell extends PureComponent {
 			);
 		}
 
-		if (typeof onClick == 'function') {
+		if (typeof onClick === 'function') {
 			onClick(event);
 		}
 	}

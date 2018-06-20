@@ -10,7 +10,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import Input from './';
 
-const { TestIcon } = global;
+const { TestIcon } = global as any;
 
 const stylableApi = `
 Stylable API

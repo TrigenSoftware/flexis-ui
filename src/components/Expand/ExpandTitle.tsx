@@ -1,36 +1,54 @@
-import React from 'react';
+import React, {
+	AllHTMLAttributes,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
-ExpandTitle.propTypes = {
-	tabIndex: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.string
-	]),
-	disabled: PropTypes.bool,
-	children: PropTypes.node
-};
+interface ISelfProps {
+	tabIndex?: number|string;
+	disabled?: boolean;
+	children?: ReactNode;
+}
 
-ExpandTitle.defaultProps = {
-	tabIndex: 0,
-	disabled: false,
-	children: null
-};
+export type IExpandTitleProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
 
-export function ExpandTitle({
-	tabIndex,
-	disabled,
-	children,
-	...props
-}) {
-	return (
-		<div
-			{...getHtmlProps(props)}
-			{...stylesheet('title', {}, props)}
-			tabIndex={disabled ? -1 : tabIndex}
-		>
-			{children}
-		</div>
-	);
+export class ExpandTitle extends PureComponent<IExpandTitleProps> {
+
+	static propTypes = {
+		tabIndex: PropTypes.oneOfType([
+			PropTypes.number,
+			PropTypes.string
+		]),
+		disabled: PropTypes.bool,
+		children: PropTypes.node
+	};
+
+	static defaultProps = {
+		tabIndex: 0,
+		disabled: false,
+		children: null
+	};
+
+	render() {
+
+		const {
+			tabIndex,
+			disabled,
+			children,
+			...props
+		} = this.props;
+
+		return (
+			<div
+				{...getHtmlProps(props)}
+				{...stylesheet('title', {}, props)}
+				tabIndex={disabled ? -1 : tabIndex}
+			>
+				{children}
+			</div>
+		);
+	}
 }

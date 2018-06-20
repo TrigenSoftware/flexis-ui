@@ -1134,6 +1134,18 @@
   version "10.3.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.3.tgz#8798d9e39af2fa604f715ee6a6b19796528e46c3"
 
+"@types/react-transition-group@^2.0.11":
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-2.0.11.tgz#feb274676a39383fffaa0dff710958d2251abefb"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*":
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.1.tgz#c53bbfb4a78933db587da085ac60dbf5fcf73f8f"
+  dependencies:
+    csstype "^2.2.0"
+
 "@types/react@^16.0.18":
   version "16.0.36"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.36.tgz#ceb5639013bdb92a94147883052e69bb2c22c69b"
@@ -1143,6 +1155,17 @@
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.18.tgz#bf195aed4d77dc86f06e4c9bb760214a3b822b8d"
   dependencies:
     csstype "^2.2.0"
+
+"@types/storybook__react@^3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-3.0.7.tgz#2ca6ab78e5fe777737aa5880b0bb5228f564e137"
+  dependencies:
+    "@types/react" "*"
+    "@types/webpack-env" "*"
+
+"@types/webpack-env@*":
+  version "1.13.6"
+  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
 
 JSONStream@^0.8.4:
   version "0.8.4"
@@ -8722,9 +8745,9 @@ tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.2.tgz#8be0cc9a1f6dc7727c38deb16c2ebd1a2892988e"
 
-tslint-config-trigen@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/tslint-config-trigen/-/tslint-config-trigen-3.0.0.tgz#12151adde76bc4746ec722e711f796e521139318"
+tslint-config-trigen@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/tslint-config-trigen/-/tslint-config-trigen-3.0.1.tgz#15e46b1cf8aa2088cdb8b7f1e00fa282d6b61e48"
   dependencies:
     tslint-eslint-rules "^5.3.1"
     tslint-react "^3.6.0"

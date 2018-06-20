@@ -1,4 +1,9 @@
 import React, {
+	AllHTMLAttributes,
+	Ref,
+	CSSProperties,
+	ReactElement,
+	ChangeEvent,
 	PureComponent,
 	cloneElement
 } from 'react';
@@ -10,7 +15,26 @@ import {
 } from '../../helpers';
 import stylesheet from './Input.st.css';
 
-export default class Input extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLInputElement>;
+	style?: CSSProperties;
+	type?: string;
+	name?: string;
+	defaultValue?: string|number;
+	value?: string|number;
+	icon?: ReactElement<any>;
+	alignIcon?: 'left'|'right';
+	mask?: string;
+	maskChar?: string;
+	formatChars?: any;
+	alwaysShowMask?: boolean;
+	onChange?(value: string, event: ChangeEvent);
+	onChange?(value: string, name: string, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+
+export default class Input extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:     PropTypes.func,
@@ -18,11 +42,11 @@ export default class Input extends PureComponent {
 		type:           PropTypes.string,
 		name:           PropTypes.string,
 		onChange:       PropTypes.func,
-		value:          PropTypes.oneOfType([
+		defaultValue:   PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
 		]),
-		defaultValue:   PropTypes.oneOfType([
+		value:          PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
 		]),
@@ -43,8 +67,8 @@ export default class Input extends PureComponent {
 		type:           'text',
 		name:           null,
 		onChange:       null,
-		value:          null,
 		defaultValue:   null,
+		value:          null,
 		icon:           null,
 		alignIcon:      'left',
 		mask:           null,
@@ -70,13 +94,13 @@ export default class Input extends PureComponent {
 			...props
 		} = this.props;
 
-		const leftAligned = alignIcon == 'left';
+		const leftAligned = alignIcon === 'left';
 
-		let Input = 'input',
-			maskedInputProps = {},
-			inputIcon = null;
+		let Input = 'input';
+		let maskedInputProps = {};
+		let inputIcon = null;
 
-		if (typeof mask == 'string') {
+		if (typeof mask === 'string') {
 			Input = MaskedInput;
 			maskedInputProps = {
 				mask,
@@ -108,7 +132,7 @@ export default class Input extends PureComponent {
 					{...stylesheet('input')}
 					ref={elementRef && mapRef(elementRef)}
 					type={type}
-					onChange={this.onChange()}
+					onChange={this.onChange}
 					value={value}
 					defaultValue={defaultValue}
 					{...maskedInputProps}
@@ -122,24 +146,24 @@ export default class Input extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
 			name,
 			onChange
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
 			if (name) {
 				onChange(
-					event.target.value,
+					event.currentTarget.value,
 					name,
 					event
 				);
 			} else {
 				onChange(
-					event.target.value,
+					event.currentTarget.value,
 					event
 				);
 			}

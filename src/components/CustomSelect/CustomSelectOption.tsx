@@ -1,15 +1,34 @@
-import React, { PureComponent } from 'react';
+import React, {
+	ReactNode,
+	ChangeEvent,
+	MouseEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import { Listener } from '../../helpers';
-import Button from '../Button';
+import Button, { IProps as IButtonProps } from '../Button';
 import stylesheet from './CustomSelect.st.css';
 
-export class CustomSelectOption extends PureComponent {
+interface ISelfProps {
+	id?: string;
+	type?: 'radio'|'checkbox';
+	name?: string;
+	value?: any;
+	checked?: boolean;
+	disabled?: boolean;
+	children: ReactNode;
+	onChange?(value, event: ChangeEvent);
+}
+
+export type ICustomSelectOptionProps = ISelfProps & IButtonProps;
+
+export class CustomSelectOption extends PureComponent<ICustomSelectOptionProps> {
 
 	static propTypes = {
 		id:       PropTypes.string,
 		type:     PropTypes.oneOf([
-			'radio', 'checkbox'
+			'radio',
+			'checkbox'
 		]),
 		name:     PropTypes.string,
 		onChange: PropTypes.func,
@@ -58,12 +77,12 @@ export class CustomSelectOption extends PureComponent {
 						type={type}
 						name={name}
 						checked={checked}
-						onChange={this.onChange()}
+						onChange={this.onChange}
 						value={value}
 						disabled={disabled}
 					/>
 					<Button
-						{...props}
+						{...props as IButtonProps}
 						{...stylesheet('button', {}, props)}
 						type='button'
 						disabled={disabled}
@@ -77,14 +96,14 @@ export class CustomSelectOption extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent) {
 
 		const {
 			onChange,
 			value
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 			onChange(
 				value,
 				event
@@ -92,7 +111,10 @@ export class CustomSelectOption extends PureComponent {
 		}
 	}
 
-	onButtonClick(event) {
-		event.target.previousElementSibling.click();
+	onButtonClick(event: MouseEvent<HTMLButtonElement>) {
+
+		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
+
+		input.click();
 	}
 }

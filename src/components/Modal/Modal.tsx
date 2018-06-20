@@ -1,4 +1,9 @@
 import React, {
+	AllHTMLAttributes,
+	MouseEvent,
+	SyntheticEvent,
+	ReactElement,
+	ReactNode,
 	PureComponent,
 	cloneElement
 } from 'react';
@@ -14,6 +19,17 @@ import toggleAriaHide from '../common/toggleAriaHide';
 import StylableTransition from '../StylableTransition';
 import stylesheet from './Modal.st.css';
 
+interface ISelfProps {
+	active?: boolean;
+	centered?: boolean;
+	closeButton?: ReactElement<any>;
+	transitionDuration?: number;
+	children: ReactNode;
+	onClose?(event: SyntheticEvent|KeyboardEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+
 const ESC_KEY = 27;
 
 const defaultCloseButton = (
@@ -25,12 +41,12 @@ const defaultCloseButton = (
 let appElement = null;
 
 export function setAppElement(appElementSource) {
-	appElement = typeof appElementSource == 'string'
+	appElement = typeof appElementSource === 'string'
 		? document.querySelector(appElementSource)
 		: appElementSource;
 }
 
-export default class Modal extends PureComponent {
+export default class Modal extends PureComponent<IProps> {
 
 	static propTypes = {
 		onClose:            PropTypes.func,
@@ -84,7 +100,7 @@ export default class Modal extends PureComponent {
 						{...stylesheet('window', {
 							centered
 						}, props)}
-						onClick={this.onIgnoredEvent()}
+						onClick={this.onIgnoredEvent}
 					>
 						{closeButton && cloneElement(
 							closeButton,
@@ -108,31 +124,31 @@ export default class Modal extends PureComponent {
 		this.removeEffects();
 	}
 
-	componentDidUpdate({ active: prevActive }) {
+	componentDidUpdate({ active: prevActive }: ISelfProps) {
 
 		const {
 			active
 		} = this.props;
 
-		if (prevActive != active) {
+		if (prevActive !== active) {
 			this.toggleEffects();
 		}
 	}
 
 	@Listener()
-	onIgnoredEvent(event) {
+	onIgnoredEvent(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 	}
 
 	@Listener()
-	onEscPress(event) {
+	onEscPress(event: KeyboardEvent) {
 
 		const {
 			onClose
 		} = this.props;
 
-		if (event.keyCode == ESC_KEY
-			&& typeof onClose == 'function'
+		if (event.keyCode === ESC_KEY
+			&& typeof onClose === 'function'
 		) {
 			event.stopPropagation();
 			onClose(event);
@@ -158,7 +174,7 @@ export default class Modal extends PureComponent {
 			);
 		}
 
-		const keyDownSubscribed = typeof this.unsubscribeKeyDown == 'function';
+		const keyDownSubscribed = typeof this.unsubscribeKeyDown === 'function';
 
 		if (active) {
 
@@ -166,7 +182,7 @@ export default class Modal extends PureComponent {
 				this.unsubscribeKeyDown = subscribeEvent(
 					document,
 					'keydown',
-					this.onEscPress()
+					this.onEscPress
 				);
 			}
 		} else
@@ -178,17 +194,17 @@ export default class Modal extends PureComponent {
 
 	removeEffects() {
 
-		if (typeof this.unblockScroll == 'function') {
+		if (typeof this.unblockScroll === 'function') {
 			this.unblockScroll();
 			this.unblockScroll = null;
 		}
 
-		if (typeof this.ariaShow == 'function') {
+		if (typeof this.ariaShow === 'function') {
 			this.ariaShow();
 			this.ariaShow = null;
 		}
 
-		if (typeof this.unsubscribeKeyDown == 'function') {
+		if (typeof this.unsubscribeKeyDown === 'function') {
 			this.unsubscribeKeyDown();
 			this.unsubscribeKeyDown = null;
 		}

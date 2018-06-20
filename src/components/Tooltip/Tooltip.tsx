@@ -1,4 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	ReactNode,
+	PureComponent
+} from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
@@ -8,9 +12,20 @@ import {
 import setOverflowOffset from '../common/setOverflowOffset';
 import stylesheet from './Tooltip.st.css';
 
+interface ISelfProps {
+	id?: string;
+	tabIndex?: number|string;
+	placement: 'top'|'right'|'bottom'|'left';
+	align?: 'start'|'center'|'end';
+	content: ReactNode;
+	children: ReactNode;
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+
 const HALF = 2;
 
-export default class Tooltip extends PureComponent {
+export default class Tooltip extends PureComponent<IProps> {
 
 	static propTypes = {
 		id:        PropTypes.string,
@@ -65,11 +80,11 @@ export default class Tooltip extends PureComponent {
 		return (
 			<span
 				{...stylesheet('root', {}, props)}
-				ref={this.onElementRef()}
-				onMouseEnter={this.onShow()}
-				onFocus={this.onShow()}
-				onMouseLeave={this.onHide()}
-				onBlur={this.onHide()}
+				ref={this.onElementRef}
+				onMouseEnter={this.onShow}
+				onFocus={this.onShow}
+				onMouseLeave={this.onHide}
+				onBlur={this.onHide}
 				tabIndex={tabIndex}
 				aria-describedby={id}
 			>
@@ -84,7 +99,7 @@ export default class Tooltip extends PureComponent {
 							[`${align}Align`]:         Boolean(align),
 							active
 						}, props)}
-						ref={this.onTooltipRef()}
+						ref={this.onTooltipRef}
 						aria-hidden={!active}
 					>
 						{content}
@@ -146,20 +161,20 @@ export default class Tooltip extends PureComponent {
 		} = this.props;
 
 		const {
-			top:    elementTop,
-			left:   elementLeft,
-			width:  elementWidth,
+			top: elementTop,
+			left: elementLeft,
+			width: elementWidth,
 			height: elementHeight
 		} = elementRef.getBoundingClientRect();
 
 		const {
-			offsetWidth:  tooltipWidth,
+			offsetWidth: tooltipWidth,
 			offsetHeight: tooltipHeight,
 			style
 		} = tooltipRef;
 
-		let top = 0,
-			left = 0;
+		let top = 0;
+		let left = 0;
 
 		switch (placement) {
 
@@ -180,7 +195,6 @@ export default class Tooltip extends PureComponent {
 				break;
 
 			default:
-				break;
 		}
 
 		switch (align) {
@@ -200,7 +214,6 @@ export default class Tooltip extends PureComponent {
 						break;
 
 					default:
-						break;
 				}
 
 				break;
@@ -220,7 +233,6 @@ export default class Tooltip extends PureComponent {
 						break;
 
 					default:
-						break;
 				}
 
 				break;
@@ -240,13 +252,11 @@ export default class Tooltip extends PureComponent {
 						break;
 
 					default:
-						break;
 				}
 
 				break;
 
 			default:
-				break;
 		}
 
 		style.top = `${top}px`;

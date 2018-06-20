@@ -1,9 +1,15 @@
-import React, { PureComponent } from 'react';
+import React, {
+	FormEvent,
+	MouseEvent,
+	PureComponent
+} from 'react';
 import { Listener } from '../../helpers';
-import Modal from '../Modal';
+import Modal, { IProps as IModalProps } from '../Modal';
 import stylesheet from './ConfirmModal.st.css';
 
-export default class ConfirmModal extends PureComponent {
+export type IProps = IModalProps;
+
+export default class ConfirmModal extends PureComponent<IProps> {
 
 	static propTypes = {
 		...Modal.propTypes
@@ -35,13 +41,13 @@ export default class ConfirmModal extends PureComponent {
 			<Modal
 				{...props}
 				{...stylesheet('root', {}, props)}
-				onClose={this.onClose()}
+				onClose={this.onClose}
 				active={active}
 			>
 				<form
 					{...stylesheet('form')}
-					onSubmit={this.onSubmit()}
-					onClick={this.onClick()}
+					onSubmit={this.onSubmit}
+					onClick={this.onClick}
 				>
 					{children}
 				</form>
@@ -50,7 +56,7 @@ export default class ConfirmModal extends PureComponent {
 	}
 
 	@Listener()
-	async onSubmit(event) {
+	async onSubmit(event: FormEvent) {
 		event.preventDefault();
 		event.stopPropagation();
 		await this.setActiveState(false);
@@ -58,7 +64,9 @@ export default class ConfirmModal extends PureComponent {
 	}
 
 	@Listener()
-	onClick({ target }) {
+	onClick(
+		{ target }: MouseEvent<HTMLFormElement> & { target: HTMLButtonElement }
+	) {
 
 		if (target.type === 'reset') {
 			this.hide();
@@ -76,7 +84,7 @@ export default class ConfirmModal extends PureComponent {
 			resolver
 		} = this;
 
-		if (typeof resolver == 'function') {
+		if (typeof resolver === 'function') {
 			resolver(state);
 			this.resolver = null;
 			this.promise = null;

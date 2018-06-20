@@ -1,8 +1,8 @@
 
 interface ILabelProps {
-	role: string;
-	labelledBy: string;
-	label: string;
+	role?: string;
+	labelledBy?: string;
+	label?: string;
 }
 
 interface IAriaLabelProps {

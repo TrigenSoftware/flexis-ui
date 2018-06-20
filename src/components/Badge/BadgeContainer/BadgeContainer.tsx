@@ -1,15 +1,19 @@
 import React, {
-	HTMLAttributes,
+	AllHTMLAttributes,
+	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../../helpers';
 import stylesheet from './BadgeContainer.st.css';
 
-interface IProps extends HTMLAttributes<HTMLSpanElement> {
-	placement: string;
-	align?: string;
+interface ISelfProps {
+	placement: 'top'|'right'|'bottom'|'left';
+	align?: 'start'|'center'|'end';
+	children: ReactNode;
 }
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLSpanElement>;
 
 export default class BadgeContainer extends PureComponent<IProps> {
 

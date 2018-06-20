@@ -1,26 +1,42 @@
-import React from 'react';
+import React, {
+	AllHTMLAttributes,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
-ExpandContent.propTypes = {
-	children: PropTypes.node
-};
+interface ISelfProps {
+	children?: ReactNode;
+}
 
-ExpandContent.defaultProps = {
-	children: null
-};
+export type IExpandContentProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
 
-export function ExpandContent({
-	children,
-	...props
-}) {
-	return (
-		<div
-			{...getHtmlProps(props)}
-			{...stylesheet('content', {}, props)}
-		>
-			{children}
-		</div>
-	);
+export class ExpandContent extends PureComponent<IExpandContentProps> {
+
+	static propTypes = {
+		children: PropTypes.node
+	};
+
+	static defaultProps = {
+		children: null
+	};
+
+	render() {
+
+		const {
+			children,
+			...props
+		} = this.props;
+
+		return (
+			<div
+				{...getHtmlProps(props)}
+				{...stylesheet('content', {}, props)}
+			>
+				{children}
+			</div>
+		);
+	}
 }

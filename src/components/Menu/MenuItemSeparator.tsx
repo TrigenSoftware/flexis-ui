@@ -1,26 +1,42 @@
-import React from 'react';
+import React, {
+	AllHTMLAttributes,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
 import stylesheet from './Menu.st.css';
 
-MenuItemSeparator.propTypes = {
-	children: PropTypes.node
-};
+interface ISelfProps {
+	children?: ReactNode;
+}
 
-MenuItemSeparator.defaultProps = {
-	children: null
-};
+export type IMenuItemSeparatorProps = ISelfProps & AllHTMLAttributes<HTMLLIElement>;
 
-export function MenuItemSeparator({
-	children,
-	...props
-}) {
-	return (
-		<li
-			{...getHtmlProps(props)}
-			{...stylesheet('itemSeparator', {}, props)}
-		>
-			{children}
-		</li>
-	);
+export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
+
+	static propTypes = {
+		children: PropTypes.node
+	};
+
+	static defaultProps = {
+		children: null
+	};
+
+	render() {
+
+		const {
+			children,
+			...props
+		} = this.props;
+
+		return (
+			<li
+				{...getHtmlProps(props)}
+				{...stylesheet('itemSeparator', {}, props)}
+			>
+				{children}
+			</li>
+		);
+	}
 }

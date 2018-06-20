@@ -1,5 +1,6 @@
 import React, {
-	HTMLAttributes,
+	AllHTMLAttributes,
+	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
@@ -10,7 +11,11 @@ export {
 	default as BadgeContainer
 } from './BadgeContainer';
 
-interface IProps extends HTMLAttributes<HTMLLabelElement> {}
+interface ISelfProps {
+	children?: ReactNode;
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLLabelElement>;
 
 export default class Badge extends PureComponent<IProps> {
 

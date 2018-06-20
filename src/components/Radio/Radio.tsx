@@ -1,4 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	Ref,
+	CSSProperties,
+	ChangeEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,7 +12,20 @@ import {
 } from '../../helpers';
 import stylesheet from './Radio.st.css';
 
-export default class Radio extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLInputElement>;
+	style?: CSSProperties;
+	name?: string;
+	value?: string|number;
+	defaultChecked?: boolean;
+	checked?: boolean;
+	onChange?(value: string|number|boolean, event: ChangeEvent): void;
+	onChange?(value: string|number|boolean, name: string, event: ChangeEvent): void;
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+
+export default class Radio extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:     PropTypes.func,
@@ -17,8 +36,8 @@ export default class Radio extends PureComponent {
 			PropTypes.string,
 			PropTypes.number
 		]),
-		checked:        PropTypes.bool,
-		defaultChecked: PropTypes.bool
+		defaultChecked: PropTypes.bool,
+		checked:        PropTypes.bool
 	};
 
 	static defaultProps = {
@@ -27,8 +46,8 @@ export default class Radio extends PureComponent {
 		name:           null,
 		onChange:       null,
 		value:          null,
-		checked:        null,
-		defaultChecked: null
+		defaultChecked: null,
+		checked:        null
 	};
 
 	render() {
@@ -52,7 +71,7 @@ export default class Radio extends PureComponent {
 					{...stylesheet('radio')}
 					ref={elementRef}
 					type='radio'
-					onChange={this.onChange()}
+					onChange={this.onChange}
 					value={value}
 					checked={checked}
 					defaultChecked={defaultChecked}
@@ -65,7 +84,7 @@ export default class Radio extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
 			name,
@@ -73,11 +92,11 @@ export default class Radio extends PureComponent {
 			value
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
-			const nextValue = value != null
+			const nextValue = value !== null
 				? value
-				: event.target.checked;
+				: event.currentTarget.checked;
 
 			if (name) {
 				onChange(nextValue, name, event);

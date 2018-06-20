@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
     "@types/react": "^16.3.18",
+    "@types/react-transition-group": "^2.0.11",
     "react-input-mask": "^1.2.2",
     "react-transition-group": "^2.3.1",
     "stylable": "^5.3.5",
@@ -55,6 +56,7 @@
     "@storybook/addons": "^3.4.7",
     "@storybook/react": "^3.3.12",
     "@types/node": "^10.3.3",
+    "@types/storybook__react": "^3.0.7",
     "autoprefixer": "^8.0.0",
     "awesome-typescript-loader": "^5.0.0",
     "eslint": "^4.19.1",
@@ -70,7 +72,7 @@
     "stylelint-config-trigen": "^1.9.4",
     "svg-react-loader": "^0.4.5",
     "tslint": "^5.10.0",
-    "tslint-config-trigen": "^3.0.0",
+    "tslint-config-trigen": "^3.0.1",
     "tslint-loader": "^3.6.0",
     "typescript": "^2.9.1"
   }

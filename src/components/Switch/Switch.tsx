@@ -1,4 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	Ref,
+	CSSProperties,
+	ChangeEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,7 +12,21 @@ import {
 } from '../../helpers';
 import stylesheet from './Switch.st.css';
 
-export default class Switch extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLInputElement>;
+	style?: CSSProperties;
+	type: 'checkbox'|'radius';
+	name?: string;
+	value?: string|number;
+	defaultChecked?: boolean;
+	checked?: boolean;
+	onChange?(value: string|number|boolean, event: ChangeEvent);
+	onChange?(value: string|number|boolean, name: string, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+
+export default class Switch extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:     PropTypes.func,
@@ -21,8 +41,8 @@ export default class Switch extends PureComponent {
 			PropTypes.string,
 			PropTypes.number
 		]),
-		checked:        PropTypes.bool,
-		defaultChecked: PropTypes.bool
+		defaultChecked: PropTypes.bool,
+		checked:        PropTypes.bool
 	};
 
 	static defaultProps = {
@@ -31,8 +51,8 @@ export default class Switch extends PureComponent {
 		name:           null,
 		onChange:       null,
 		value:          null,
-		checked:        null,
-		defaultChecked: null
+		defaultChecked: null,
+		checked:        null
 	};
 
 	render() {
@@ -57,7 +77,7 @@ export default class Switch extends PureComponent {
 					{...stylesheet('input')}
 					ref={elementRef}
 					type={type}
-					onChange={this.onChange()}
+					onChange={this.onChange}
 					value={value}
 					checked={checked}
 					defaultChecked={defaultChecked}
@@ -70,7 +90,7 @@ export default class Switch extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
 			name,
@@ -78,11 +98,11 @@ export default class Switch extends PureComponent {
 			value
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
-			const nextValue = value != null
+			const nextValue = value !== null
 				? value
-				: event.target.checked;
+				: event.currentTarget.checked;
 
 			if (name) {
 				onChange(nextValue, name, event);

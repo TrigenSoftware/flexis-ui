@@ -1,3 +1,10 @@
+extra types
+check target/currentTarget
+edit CODESTYLE
+rm PropTypes
+do IProps
+check children
+
 MediaQuery
 Image
 OptionsGroup for Select

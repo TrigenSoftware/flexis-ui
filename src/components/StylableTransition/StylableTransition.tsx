@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Transition from 'react-transition-group/Transition';
+import Transition, { TransitionProps } from 'react-transition-group/Transition';
 import { Listener } from '../../helpers';
 
-const defaultStylableStates = {
+export interface ITransitionState {
+	appear?: string;
+	appearActive?: string;
+	enter?: string;
+	enterActive?: string;
+	enterDone?: string;
+	exit?: string;
+	exitActive?: string;
+	exitDone?: string;
+}
+
+interface ISelfProps {
+	states: RuntimeStylesheet|ITransitionState;
+}
+
+export type IProps = ISelfProps & TransitionProps;
+
+const defaultStylableStates: ITransitionState = {
 	appear:       'appear',
 	appearActive: 'appearActive',
 	enter:        'enter',
@@ -14,10 +31,10 @@ const defaultStylableStates = {
 	exitDone:     'exitDone'
 };
 
-export default class StylableTransition extends Component {
+export default class StylableTransition extends Component<IProps> {
 
 	static propTypes = {
-		...Transition.propTypes,
+		...(Transition as any).propTypes,
 		states:     PropTypes.oneOfType([
 			PropTypes.func,
 			PropTypes.object
@@ -39,6 +56,12 @@ export default class StylableTransition extends Component {
 		onExited:   null
 	};
 
+	stylableStates: {
+		appear: { [phase: string]: string },
+		enter: { [phase: string]: string },
+		exit: { [phase: string]: string }
+	};
+
 	constructor(props) {
 
 		super(props);
@@ -47,7 +70,7 @@ export default class StylableTransition extends Component {
 			states
 		} = props;
 
-		const stylableStatesSource = typeof states == 'function'
+		const stylableStatesSource = typeof states === 'function'
 			? states('root', defaultStylableStates)
 			: states;
 
@@ -57,10 +80,10 @@ export default class StylableTransition extends Component {
 			exit:   {}
 		};
 
-		Object.entries(stylableStatesSource).forEach(([value, key]) => {
+		Object.entries(stylableStatesSource).forEach(([value, key]: [string, string]) => {
 
 			const [state, phase] = key
-				.replace(/([AD])/, ' $1')
+				.replace(/(Active|Done)/, ' $1')
 				.toLowerCase()
 				.split(' ');
 
@@ -81,12 +104,12 @@ export default class StylableTransition extends Component {
 		return (
 			<Transition
 				{...props}
-				onEnter={this.onEnter()}
-				onEntered={this.onEntered()}
-				onEntering={this.onEntering()}
-				onExit={this.onExit()}
-				onExiting={this.onExiting()}
-				onExited={this.onExited()}
+				onEnter={this.onEnter}
+				onEntered={this.onEntered}
+				onEntering={this.onEntering}
+				onExit={this.onExit}
+				onExiting={this.onExiting}
+				onExited={this.onExited}
 			/>
 		);
 	}
@@ -110,8 +133,8 @@ export default class StylableTransition extends Component {
 			onEnter
 		} = this.props;
 
-		if (typeof onEnter == 'function') {
-			onEnter(node);
+		if (typeof onEnter === 'function') {
+			onEnter(node, appearing);
 		}
 	}
 
@@ -133,8 +156,8 @@ export default class StylableTransition extends Component {
 			onEntering
 		} = this.props;
 
-		if (typeof onEntering == 'function') {
-			onEntering(node);
+		if (typeof onEntering === 'function') {
+			onEntering(node, appearing);
 		}
 	}
 
@@ -161,8 +184,8 @@ export default class StylableTransition extends Component {
 			onEntered
 		} = this.props;
 
-		if (typeof onEntered == 'function') {
-			onEntered(node);
+		if (typeof onEntered === 'function') {
+			onEntered(node, appearing);
 		}
 	}
 
@@ -182,7 +205,7 @@ export default class StylableTransition extends Component {
 			onExit
 		} = this.props;
 
-		if (typeof onExit == 'function') {
+		if (typeof onExit === 'function') {
 			onExit(node);
 		}
 	}
@@ -200,7 +223,7 @@ export default class StylableTransition extends Component {
 			onExiting
 		} = this.props;
 
-		if (typeof onExiting == 'function') {
+		if (typeof onExiting === 'function') {
 			onExiting(node);
 		}
 	}
@@ -220,7 +243,7 @@ export default class StylableTransition extends Component {
 			onExited
 		} = this.props;
 
-		if (typeof onExited == 'function') {
+		if (typeof onExited === 'function') {
 			onExited(node);
 		}
 	}
@@ -245,9 +268,9 @@ export default class StylableTransition extends Component {
 		}
 
 		const {
-			state:  stateAttr,
+			state: stateAttr,
 			active: activePhaseAttr,
-			done:   donePhaseAttr
+			done: donePhaseAttr
 		} = phases;
 
 		if (stateAttr) {

@@ -1,4 +1,9 @@
 import React, {
+	AllHTMLAttributes,
+	Ref,
+	ReactElement,
+	CSSProperties,
+	ChangeEvent,
 	PureComponent,
 	Children
 } from 'react';
@@ -11,14 +16,32 @@ import stylesheet from './Select.st.css';
 
 export * from './SelectOption';
 
-export default class Select extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLSelectElement>;
+	style?: CSSProperties;
+	name?: string;
+	defaultValue?: any;
+	value?: any;
+	children: ReactElement<any>|ReactElement<any>[];
+	onChange?(value: any, event: ChangeEvent);
+	onChange?(value: any, name: string, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLSelectElement>;
+
+export default class Select extends PureComponent<IProps> {
 
 	static propTypes = {
-		elementRef: PropTypes.func,
-		style:      PropTypes.object,
-		name:       PropTypes.string,
-		onChange:   PropTypes.func,
-		children:   PropTypes.node.isRequired
+		elementRef:   PropTypes.func,
+		style:        PropTypes.object,
+		name:         PropTypes.string,
+		defaultValue: PropTypes.any,
+		value:        PropTypes.any,
+		onChange:     PropTypes.func,
+		children:     PropTypes.oneOf([
+			PropTypes.element,
+			PropTypes.arrayOf(PropTypes.element)
+		]).isRequired
 	};
 
 	static defaultProps = {
@@ -42,8 +65,8 @@ export default class Select extends PureComponent {
 		this.originalValues = Children
 			.toArray(children)
 			.filter(Boolean)
-			.map(({ props: { value, children } }) => (
-				typeof value == 'undefined'
+			.map(({ props: { value, children } }: ReactElement<any>) => (
+				typeof value === 'undefined'
 					? children
 					: value
 			));
@@ -57,7 +80,7 @@ export default class Select extends PureComponent {
 					{...getHtmlProps(props, ['multiple'])}
 					{...stylesheet('select')}
 					ref={elementRef}
-					onChange={this.onChange()}
+					onChange={this.onChange}
 				>
 					{children}
 				</select>
@@ -69,16 +92,19 @@ export default class Select extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent<HTMLSelectElement>) {
 
 		const {
 			name,
 			onChange
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
-			const nextValue = this.originalValues[event.target.options.selectedIndex];
+			const {
+				selectedIndex
+			} = event.currentTarget.options;
+			const nextValue = this.originalValues[selectedIndex];
 
 			if (name) {
 				onChange(nextValue, name, event);

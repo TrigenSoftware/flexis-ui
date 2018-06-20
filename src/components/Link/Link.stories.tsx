@@ -10,7 +10,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import Link from './';
 
-const { TestIcon } = global;
+const { TestIcon } = global as any;
 
 const stylableApi = `
 Stylable API
@@ -40,20 +40,6 @@ storiesOf('Link', module)
 				{...events}
 			>
 				{text('Label', 'Link')}
-			</Link>
-		)
-	)
-	.add(
-		'with disguised variant',
-		() => (
-			<Link
-				href='#'
-				variant='disguised'
-				{...events}
-			>
-				<button>
-					{text('Label', 'Link')}
-				</button>
 			</Link>
 		)
 	)

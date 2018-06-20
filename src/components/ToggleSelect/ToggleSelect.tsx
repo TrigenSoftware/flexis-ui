@@ -1,4 +1,7 @@
 import React, {
+	AllHTMLAttributes,
+	ReactElement,
+	ChangeEvent,
 	PureComponent,
 	Children,
 	cloneElement
@@ -14,25 +17,52 @@ import stylesheet from './ToggleSelect.st.css';
 
 export * from './ToggleSelectOption';
 
-export default class ToggleSelect extends PureComponent {
+interface ISelfProps {
+	id?: string;
+	name?: string;
+	defaultValue?: any;
+	value?: any;
+	multiple?: boolean;
+	disabled?: boolean;
+	children: ReactElement<any>|ReactElement<any>[];
+	onChange?(value: any, event: ChangeEvent);
+	onChange?(value: any, name: string, event: ChangeEvent);
+}
+
+interface IOptionProps {
+	type: string;
+	value: any;
+	checked: boolean;
+	disabled: boolean;
+	name: string;
+	id?: string;
+	onChange(value, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLUListElement>;
+
+export default class ToggleSelect extends PureComponent<IProps> {
 
 	static propTypes = {
 		id:           PropTypes.string,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
-		value:        PropTypes.any,
 		defaultValue: PropTypes.any,
+		value:        PropTypes.any,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
-		children:     PropTypes.node.isRequired
+		children:     PropTypes.oneOf([
+			PropTypes.element,
+			PropTypes.arrayOf(PropTypes.element)
+		]).isRequired
 	};
 
 	static defaultProps = {
 		id:           null,
 		name:         null,
 		onChange:     null,
-		value:        null,
 		defaultValue: null,
+		value:        null,
 		multiple:     false,
 		disabled:     false
 	};
@@ -43,7 +73,7 @@ export default class ToggleSelect extends PureComponent {
 			? prevValue
 			: value;
 
-		if (nextValue == prevValue) {
+		if (nextValue === prevValue) {
 			return null;
 		}
 
@@ -51,6 +81,8 @@ export default class ToggleSelect extends PureComponent {
 			value: nextValue
 		};
 	}
+
+	state: { value: any };
 
 	constructor(props) {
 
@@ -85,29 +117,29 @@ export default class ToggleSelect extends PureComponent {
 		const options = Children
 			.toArray(children)
 			.filter(Boolean)
-			.map((child) => {
+			.map((child: ReactElement<any>) => {
 
 				const {
-					value:    optionValue,
+					value: optionValue,
 					children: optionLabel
 				} = child.props;
 
-				const option = typeof optionValue == 'undefined'
+				const option = typeof optionValue === 'undefined'
 					? optionLabel
 					: optionValue;
 
 				const checked = isCurrentValue(multiple, value, option);
 
-				const props = {
+				const props: IOptionProps = {
 					type:     multiple ? 'checkbox' : 'radio',
 					value:    option,
-					onChange: this.onChange(),
+					onChange: this.onChange,
 					checked,
 					disabled,
 					name
 				};
 
-				if (typeof id == 'string') {
+				if (typeof id === 'string') {
 
 					props.id = `${id}-option-${option}`;
 
@@ -136,7 +168,7 @@ export default class ToggleSelect extends PureComponent {
 	}
 
 	@Listener()
-	onChange(inputNextValue, event) {
+	onChange(inputNextValue, event: ChangeEvent) {
 
 		const {
 			value: valueProp,
@@ -166,7 +198,7 @@ export default class ToggleSelect extends PureComponent {
 			}));
 		}
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
 			if (name) {
 				onChange(nextValue, name, event);

@@ -1,22 +1,38 @@
-import { cloneElement } from 'react';
+import {
+	ReactElement,
+	PureComponent,
+	cloneElement
+} from 'react';
 import PropTypes from 'prop-types';
 import stylesheet from './VisuallyHidden.st.css';
 
-VisuallyHidden.propTypes = {
-	focusable: PropTypes.bool,
-	children:  PropTypes.element.isRequired
-};
+export interface IProps {
+	focusable?: boolean;
+	children: ReactElement<any>;
+	[prop: string]: any;
+}
 
-VisuallyHidden.defaultProps = {
-	focusable: false
-};
+export default class VisuallyHidden extends PureComponent<IProps> {
 
-export default function VisuallyHidden({
-	focusable,
-	children,
-	...props
-}) {
-	return cloneElement(children, stylesheet('root', {
-		focusable
-	}, props));
+	static propTypes = {
+		focusable: PropTypes.bool,
+		children:  PropTypes.element.isRequired
+	};
+
+	static defaultProps = {
+		focusable: false
+	};
+
+	render() {
+
+		const {
+			focusable,
+			children,
+			...props
+		} = this.props;
+
+		return cloneElement(children, stylesheet('root', {
+			focusable
+		}, props));
+	}
 }

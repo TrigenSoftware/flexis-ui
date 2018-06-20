@@ -20,8 +20,8 @@ Stylable API
 	- :disabled
 `;
 
-const totalPagesCount = 30,
-	defaultPage = 15;
+const totalPagesCount = 30;
+const defaultPage = 15;
 
 storiesOf('Paginator', module)
 	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))

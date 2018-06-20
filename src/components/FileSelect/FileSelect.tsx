@@ -1,4 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	Ref,
+	CSSProperties,
+	ChangeEvent,
+	ReactNode,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
@@ -6,7 +13,19 @@ import {
 } from '../../helpers';
 import stylesheet from './FileSelect.st.css';
 
-export default class FileSelect extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLInputElement>;
+	style?: CSSProperties;
+	name?: string;
+	disabled?: boolean;
+	children?: ReactNode;
+	onChange?(files: File[], event: ChangeEvent);
+	onChange?(files: File[], name: string, event: ChangeEvent);
+}
+
+export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+
+export default class FileSelect extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
@@ -49,7 +68,7 @@ export default class FileSelect extends PureComponent {
 					{...stylesheet('input')}
 					ref={elementRef}
 					type='file'
-					onChange={this.onChange()}
+					onChange={this.onChange}
 					disabled={disabled}
 				/>
 				<div
@@ -60,16 +79,16 @@ export default class FileSelect extends PureComponent {
 	}
 
 	@Listener()
-	onChange(event) {
+	onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
 			name,
 			onChange
 		} = this.props;
 
-		if (typeof onChange == 'function') {
+		if (typeof onChange === 'function') {
 
-			const nextValue = Array.from(event.target.files);
+			const nextValue = Array.from(event.currentTarget.files);
 
 			if (name) {
 				onChange(nextValue, name, event);

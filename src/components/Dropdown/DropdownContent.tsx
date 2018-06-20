@@ -1,11 +1,24 @@
-import React, { PureComponent } from 'react';
+import React, {
+	AllHTMLAttributes,
+	Ref,
+	ReactNode,
+	MouseEvent,
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 import {
 	Listener,
 	getHtmlProps
 } from '../../helpers';
 
-export class DropdownContent extends PureComponent {
+interface ISelfProps {
+	elementRef?: Ref<HTMLDivElement>;
+	children: ReactNode;
+}
+
+export type IDropdownContentProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+
+export class DropdownContent extends PureComponent<IDropdownContentProps> {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
@@ -29,7 +42,7 @@ export class DropdownContent extends PureComponent {
 				tabIndex={0}
 				{...getHtmlProps(props)}
 				ref={elementRef}
-				onClick={this.onClick()}
+				onClick={this.onClick}
 			>
 				{children}
 			</div>
@@ -37,7 +50,7 @@ export class DropdownContent extends PureComponent {
 	}
 
 	@Listener()
-	onClick(event) {
+	onClick(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
 	}

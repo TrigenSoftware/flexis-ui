@@ -2,11 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import {
 	configure,
-	addDecorator,
-	setAddon
+	addDecorator
 } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
-import { Stylable } from '../src/helpers';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
 import stylesheet from '../src/index.st.css';
@@ -25,7 +23,7 @@ addDecorator(story => (
 const stories = require.context(
 	'../src/',
 	true,
-	/\.stories\.js$/
+	/\.stories\.tsx$/
 );
 
 function loadStories() {
