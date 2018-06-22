@@ -61,7 +61,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 	static getDerivedStateFromProps(
 		{ page }: IProps,
 		{ page: prevPage }: IState
-	) {
+	): IState {
 
 		const nextPage = typeof page === 'number'
 			? page

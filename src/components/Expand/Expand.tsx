@@ -57,7 +57,7 @@ export default class Expand extends PureComponent<IProps, IState> {
 			disabled
 		}: IProps,
 		{ active: prevActive }: IState
-	) {
+	): IState {
 
 		const nextActive = !disabled && (typeof active === 'boolean'
 			? active

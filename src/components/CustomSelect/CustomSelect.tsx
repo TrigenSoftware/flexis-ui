@@ -90,7 +90,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 	static getDerivedStateFromProps(
 		{ value }: IProps,
 		{ value: prevValue }: IState
-	) {
+	): IState {
 
 		const nextValue = value === null
 			? prevValue

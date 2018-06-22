@@ -74,7 +74,7 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 	static getDerivedStateFromProps(
 		{ value }: IProps,
 		{ value: prevValue }: IState
-	) {
+	): IState {
 
 		const nextValue = value === null
 			? prevValue
