@@ -19,7 +19,11 @@ interface ISelfProps {
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
 
-export default class FileSelect extends PureComponent<IProps> {
+interface IState {
+	dragOver: boolean;
+}
+
+export default class FileSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		onChange: PropTypes.func,
@@ -70,13 +74,13 @@ export default class FileSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onIgnoredEvent(event) {
+	private onIgnoredEvent(event: DragEvent) {
 		event.stopPropagation();
 		event.preventDefault();
 	}
 
 	@Listener()
-	onDragOver(event) {
+	private onDragOver(event: DragEvent) {
 
 		event.stopPropagation();
 		event.preventDefault();
@@ -87,7 +91,7 @@ export default class FileSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onDragLeave(event) {
+	private onDragLeave(event: DragEvent) {
 
 		event.stopPropagation();
 		event.preventDefault();
@@ -98,7 +102,7 @@ export default class FileSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(event: DragEvent) {
+	private onChange(event: DragEvent) {
 
 		event.stopPropagation();
 		event.preventDefault();

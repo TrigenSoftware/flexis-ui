@@ -84,7 +84,7 @@ export default class Checkbox extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(event: ChangeEvent<HTMLInputElement>) {
+	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
 			name,

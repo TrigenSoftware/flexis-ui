@@ -9,7 +9,11 @@ import stylesheet from './ConfirmModal.st.css';
 
 export type IProps = IModalProps;
 
-export default class ConfirmModal extends PureComponent<IProps> {
+interface IState {
+	active: boolean;
+}
+
+export default class ConfirmModal extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		...Modal.propTypes
@@ -19,12 +23,8 @@ export default class ConfirmModal extends PureComponent<IProps> {
 		...Modal.defaultProps
 	};
 
-	state = {
-		active: false
-	};
-
-	resolver = null;
-	promise = null;
+	private resolver: (state: boolean) => void = null;
+	private promise: Promise<boolean> = null;
 
 	render() {
 
@@ -56,7 +56,7 @@ export default class ConfirmModal extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	async onSubmit(event: FormEvent) {
+	private async onSubmit(event: FormEvent) {
 		event.preventDefault();
 		event.stopPropagation();
 		await this.setActiveState(false);
@@ -64,7 +64,7 @@ export default class ConfirmModal extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onClick(
+	private onClick(
 		{ target }: MouseEvent<HTMLFormElement> & { target: HTMLButtonElement }
 	) {
 
@@ -74,11 +74,11 @@ export default class ConfirmModal extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onClose() {
+	private onClose() {
 		this.hide();
 	}
 
-	resolve(state) {
+	resolve(state: boolean) {
 
 		const {
 			resolver
@@ -91,7 +91,7 @@ export default class ConfirmModal extends PureComponent<IProps> {
 		}
 	}
 
-	setActiveState(active) {
+	setActiveState(active: boolean) {
 		return new Promise((resolve) => {
 			this.setState(() => ({
 				active
@@ -102,7 +102,7 @@ export default class ConfirmModal extends PureComponent<IProps> {
 	show() {
 
 		if (!this.promise) {
-			this.promise = new Promise((resolve) => {
+			this.promise = new Promise<boolean>((resolve) => {
 				this.resolver = resolve;
 				this.setActiveState(true);
 			});

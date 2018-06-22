@@ -56,7 +56,7 @@ export default class StylableTransition extends Component<IProps> {
 		onExited:   null
 	};
 
-	stylableStates: {
+	private stylableStates: {
 		appear: { [phase: string]: string },
 		enter: { [phase: string]: string },
 		exit: { [phase: string]: string }
@@ -115,7 +115,7 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	onEnter(node, appearing) {
+	private onEnter(node, appearing) {
 
 		const stateAttribute = this.getStateAttribute(
 			appearing
@@ -139,7 +139,7 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	onEntering(node, appearing) {
+	private onEntering(node, appearing) {
 
 		const stateAttribute = this.getStateAttribute(
 			appearing
@@ -162,7 +162,7 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	onEntered(node, appearing) {
+	private onEntered(node, appearing) {
 
 		const stateAttribute = this.getStateAttribute(
 			'enter',
@@ -190,7 +190,7 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	onExit(node) {
+	private onExit(node) {
 
 		const stateAttribute = this.getStateAttribute('exit');
 
@@ -211,7 +211,7 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	onExiting(node) {
+	private onExiting(node) {
 
 		const stateAttribute = this.getStateAttribute('exit', 'active');
 
@@ -229,7 +229,7 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	onExited(node) {
+	private onExited(node) {
 
 		const stateAttribute = this.getStateAttribute('exit', 'done');
 
@@ -248,7 +248,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	getStateAttribute(state, phase = 'state') {
+	private getStateAttribute(state, phase = 'state') {
 
 		const phases = this.stylableStates[state];
 
@@ -259,7 +259,7 @@ export default class StylableTransition extends Component<IProps> {
 		return phases[phase] || false;
 	}
 
-	removeStateAttributes(node, state) {
+	private removeStateAttributes(node, state) {
 
 		const phases = this.stylableStates[state];
 
@@ -286,7 +286,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	reflowAndAddStateAttribute(node, stateAttribute) {
+	private reflowAndAddStateAttribute(node, stateAttribute) {
 
 		if (node) {
 			// This is for to force a repaint,

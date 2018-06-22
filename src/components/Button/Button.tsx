@@ -59,7 +59,7 @@ export default class Button extends PureComponent<IProps> {
 
 		const leftAligned = alignIcon === 'left';
 
-		let buttonIcon = null;
+		let buttonIcon: ReactElement<any> = null;
 
 		if (icon !== null) {
 			buttonIcon = cloneElement(

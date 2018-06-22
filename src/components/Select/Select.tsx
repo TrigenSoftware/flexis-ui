@@ -51,7 +51,7 @@ export default class Select extends PureComponent<IProps> {
 		onChange:   null
 	};
 
-	originalValues = [];
+	private originalValues = [];
 
 	render() {
 

@@ -68,7 +68,7 @@ export default class Textarea extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(event: ChangeEvent<HTMLTextAreaElement>) {
+	private onChange(event: ChangeEvent<HTMLTextAreaElement>) {
 
 		const {
 			name,

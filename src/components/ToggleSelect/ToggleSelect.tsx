@@ -41,7 +41,11 @@ interface IOptionProps {
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLUListElement>;
 
-export default class ToggleSelect extends PureComponent<IProps> {
+interface IState {
+	value: any;
+}
+
+export default class ToggleSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		id:           PropTypes.string,
@@ -67,7 +71,10 @@ export default class ToggleSelect extends PureComponent<IProps> {
 		disabled:     false
 	};
 
-	static getDerivedStateFromProps({ value }, { value: prevValue }) {
+	static getDerivedStateFromProps(
+		{ value }: IProps,
+		{ value: prevValue }: IState
+	) {
 
 		const nextValue = value === null
 			? prevValue
@@ -81,8 +88,6 @@ export default class ToggleSelect extends PureComponent<IProps> {
 			value: nextValue
 		};
 	}
-
-	state: { value: any };
 
 	constructor(props) {
 
@@ -112,7 +117,7 @@ export default class ToggleSelect extends PureComponent<IProps> {
 			value
 		} = this.state;
 
-		let activeDescendant = null;
+		let activeDescendant: string = null;
 
 		const options = Children
 			.toArray(children)
@@ -168,7 +173,7 @@ export default class ToggleSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(inputNextValue, event: ChangeEvent) {
+	private onChange(inputNextValue, event: ChangeEvent) {
 
 		const {
 			value: valueProp,

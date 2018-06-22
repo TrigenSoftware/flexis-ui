@@ -3,10 +3,10 @@ import React, {
 	Ref,
 	ReactElement,
 	ReactNode,
+	ReactType,
 	PureComponent,
 	Children,
-	cloneElement,
-	ReactType
+	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
 import { getHtmlProps } from '../../helpers';
@@ -77,7 +77,7 @@ export default class Link extends PureComponent<IProps> {
 		} = this.props;
 
 		const leftAligned = alignIcon === 'left';
-		let linkIcon = null;
+		let linkIcon: ReactElement<any> = null;
 
 		if (icon !== null) {
 			linkIcon = cloneElement(

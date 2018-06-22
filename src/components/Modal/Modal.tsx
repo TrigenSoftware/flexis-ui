@@ -65,9 +65,9 @@ export default class Modal extends PureComponent<IProps> {
 		transitionDuration: 400
 	};
 
-	unblockScroll = null;
-	unsubscribeKeyDown = null;
-	ariaShow = null;
+	private unblockScroll: () => void = null;
+	private unsubscribeKeyDown: () => void = null;
+	private ariaShow: () => void = null;
 
 	render() {
 
@@ -124,7 +124,7 @@ export default class Modal extends PureComponent<IProps> {
 		this.removeEffects();
 	}
 
-	componentDidUpdate({ active: prevActive }: ISelfProps) {
+	componentDidUpdate({ active: prevActive }: IProps) {
 
 		const {
 			active
@@ -136,12 +136,12 @@ export default class Modal extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onIgnoredEvent(event: MouseEvent<HTMLDivElement>) {
+	private onIgnoredEvent(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 	}
 
 	@Listener()
-	onEscPress(event: KeyboardEvent) {
+	private onEscPress(event: KeyboardEvent) {
 
 		const {
 			onClose
@@ -155,7 +155,7 @@ export default class Modal extends PureComponent<IProps> {
 		}
 	}
 
-	toggleEffects() {
+	private toggleEffects() {
 
 		const {
 			active
@@ -192,7 +192,7 @@ export default class Modal extends PureComponent<IProps> {
 		}
 	}
 
-	removeEffects() {
+	private removeEffects() {
 
 		if (typeof this.unblockScroll === 'function') {
 			this.unblockScroll();

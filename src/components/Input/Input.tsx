@@ -4,6 +4,7 @@ import React, {
 	CSSProperties,
 	ReactElement,
 	ChangeEvent,
+	ReactType,
 	PureComponent,
 	cloneElement
 } from 'react';
@@ -96,9 +97,9 @@ export default class Input extends PureComponent<IProps> {
 
 		const leftAligned = alignIcon === 'left';
 
-		let Input = 'input';
+		let Input: ReactType = 'input';
 		let maskedInputProps = {};
-		let inputIcon = null;
+		let inputIcon: ReactElement<any> = null;
 
 		if (typeof mask === 'string') {
 			Input = MaskedInput;
@@ -146,7 +147,7 @@ export default class Input extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(event: ChangeEvent<HTMLInputElement>) {
+	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
 			name,

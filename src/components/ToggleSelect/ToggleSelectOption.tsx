@@ -96,7 +96,7 @@ export class ToggleSelectOption extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(event: ChangeEvent) {
+	private onChange(event: ChangeEvent) {
 
 		const {
 			onChange,
@@ -111,7 +111,7 @@ export class ToggleSelectOption extends PureComponent<IProps> {
 		}
 	}
 
-	onButtonClick(event: MouseEvent<HTMLButtonElement>) {
+	private onButtonClick(event: MouseEvent<HTMLButtonElement>) {
 
 		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
 

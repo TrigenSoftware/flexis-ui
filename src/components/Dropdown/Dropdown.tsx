@@ -33,10 +33,14 @@ interface ISelfProps {
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLSpanElement>;
 
+interface IState {
+	active: boolean;
+}
+
 const HALF = 2;
 const ESC_KEY = 27;
 
-export default class Dropdown extends PureComponent<IProps> {
+export default class Dropdown extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		onToggle:      PropTypes.func,
@@ -65,8 +69,8 @@ export default class Dropdown extends PureComponent<IProps> {
 		{
 			active,
 			disabled
-		},
-		{ active: prevActive }
+		}: IProps,
+		{ active: prevActive }: IState
 	) {
 
 		const nextActive = !disabled && (typeof active === 'boolean'
@@ -83,11 +87,10 @@ export default class Dropdown extends PureComponent<IProps> {
 		};
 	}
 
-	state: { active: boolean };
-	elementRef = null;
-	contentRef = null;
-	unsubscribeFromOutsideClick = null;
-	unblockScroll = null;
+	private elementRef: HTMLSpanElement = null;
+	private contentRef: HTMLElement = null;
+	private unsubscribeFromOutsideClick: () => void = null;
+	private unblockScroll: () => void = null;
 
 	constructor(props) {
 
@@ -182,7 +185,7 @@ export default class Dropdown extends PureComponent<IProps> {
 		this.removeEffects();
 	}
 
-	componentDidUpdate(_, { active: prevActive }) {
+	componentDidUpdate(_, { active: prevActive }: IState) {
 
 		const {
 			active
@@ -194,24 +197,24 @@ export default class Dropdown extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onElementRef(ref) {
+	private onElementRef(ref: HTMLSpanElement) {
 		this.elementRef = ref;
 	}
 
 	@Listener()
-	onContentRef(ref) {
+	private onContentRef(ref: HTMLElement) {
 		this.contentRef = ref;
 	}
 
 	@Listener()
-	onToggle(event: MouseEvent<HTMLSpanElement>) {
+	private onToggle(event: MouseEvent<HTMLSpanElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
 		this.toggleActiveState(null, event);
 	}
 
 	@Listener()
-	onEscPress(event: KeyboardEvent) {
+	private onEscPress(event: KeyboardEvent) {
 
 		if (event.keyCode === ESC_KEY) {
 			event.stopPropagation();
@@ -219,7 +222,7 @@ export default class Dropdown extends PureComponent<IProps> {
 		}
 	}
 
-	toggleActiveState(forceState, event: Event|SyntheticEvent = null) {
+	toggleActiveState(forceState?: boolean, event: Event|SyntheticEvent = null) {
 
 		const {
 			active: activeProp,
@@ -254,7 +257,7 @@ export default class Dropdown extends PureComponent<IProps> {
 		}
 	}
 
-	toggleEffects() {
+	private toggleEffects() {
 
 		const {
 			elementRef,
@@ -269,7 +272,7 @@ export default class Dropdown extends PureComponent<IProps> {
 			contentRef.focus();
 			this.setContentPosition();
 		} else {
-			elementRef.firstElementChild.focus();
+			(elementRef.firstElementChild as HTMLElement).focus();
 		}
 
 		this.unblockScroll = toggleScrollBlock(
@@ -279,7 +282,7 @@ export default class Dropdown extends PureComponent<IProps> {
 		);
 	}
 
-	removeEffects() {
+	private removeEffects() {
 
 		if (typeof this.unblockScroll === 'function') {
 			this.unblockScroll();
@@ -287,7 +290,7 @@ export default class Dropdown extends PureComponent<IProps> {
 		}
 	}
 
-	setContentPosition() {
+	private setContentPosition() {
 
 		const {
 			elementRef,

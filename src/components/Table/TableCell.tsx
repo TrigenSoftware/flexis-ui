@@ -73,7 +73,7 @@ export class TableCell extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onOrderChange(event: MouseEvent<HTMLTableCellElement>) {
+	private onOrderChange(event: MouseEvent<HTMLTableCellElement>) {
 
 		const {
 			onClick,

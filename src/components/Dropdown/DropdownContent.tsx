@@ -50,7 +50,7 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 	}
 
 	@Listener()
-	onClick(event: MouseEvent<HTMLDivElement>) {
+	private onClick(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();
 	}

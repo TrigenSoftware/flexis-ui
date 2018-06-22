@@ -1,6 +1,4 @@
-extra types
 edit CODESTYLE
-tslint eslint comments
 
 MediaQuery
 Image

@@ -96,7 +96,7 @@ export class CustomSelectOption extends PureComponent<ICustomSelectOptionProps> 
 	}
 
 	@Listener()
-	onChange(event: ChangeEvent) {
+	private onChange(event: ChangeEvent) {
 
 		const {
 			onChange,
@@ -111,7 +111,7 @@ export class CustomSelectOption extends PureComponent<ICustomSelectOptionProps> 
 		}
 	}
 
-	onButtonClick(event: MouseEvent<HTMLButtonElement>) {
+	private onButtonClick(event: MouseEvent<HTMLButtonElement>) {
 
 		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
 

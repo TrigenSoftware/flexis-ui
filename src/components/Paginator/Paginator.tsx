@@ -1,6 +1,7 @@
 import React, {
 	AllHTMLAttributes,
 	MouseEvent,
+	ReactElement,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
@@ -21,13 +22,17 @@ interface ISelfProps {
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLElement>;
 
+interface IState {
+	page: number;
+}
+
 const HALF = 2;
 const PENULTIMATE_PAGE = -2;
 
 const visiblePages = 7;
 const visiblePagesMid = Math.floor(visiblePages / HALF);
 
-export default class Paginator extends PureComponent<IProps> {
+export default class Paginator extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		tabIndex:      PropTypes.oneOfType([
@@ -53,7 +58,10 @@ export default class Paginator extends PureComponent<IProps> {
 		mapPagesLabel: _ => _
 	};
 
-	static getDerivedStateFromProps({ page }, { page: prevPage }) {
+	static getDerivedStateFromProps(
+		{ page }: IProps,
+		{ page: prevPage }: IState
+	) {
 
 		const nextPage = typeof page === 'number'
 			? page
@@ -67,8 +75,6 @@ export default class Paginator extends PureComponent<IProps> {
 			page: nextPage
 		};
 	}
-
-	state: { page: number };
 
 	constructor(props) {
 
@@ -122,13 +128,13 @@ export default class Paginator extends PureComponent<IProps> {
 		);
 	}
 
-	pages() {
+	private pages() {
 
 		const {
 			total
 		} = this.props;
 
-		const pages = Array(Math.min(visiblePages, total));
+		const pages: ReactElement<any>[] = Array(Math.min(visiblePages, total));
 		const pagesLength = pages.length;
 
 		for (let i = 0; i < pagesLength; i++) {
@@ -138,7 +144,7 @@ export default class Paginator extends PureComponent<IProps> {
 		return pages;
 	}
 
-	page(visiblePagePlace) {
+	private page(visiblePagePlace) {
 
 		const {
 			tabIndex,
@@ -234,13 +240,13 @@ export default class Paginator extends PureComponent<IProps> {
 		);
 	}
 
-	onChange(page) {
+	private onChange(page: number) {
 		return (event: MouseEvent) => {
 			this.triggerNewPage(page, event);
 		};
 	}
 
-	triggerNewPage(nextPage, event: MouseEvent) {
+	private triggerNewPage(nextPage: number, event: MouseEvent) {
 
 		const {
 			page: pageProp,

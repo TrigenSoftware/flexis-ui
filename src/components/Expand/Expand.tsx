@@ -22,13 +22,17 @@ interface ISelfProps {
 	defaultActive?: boolean;
 	active?: boolean;
 	disabled?: boolean;
-	children: ReactElement<any>[];
+	children: [ReactElement<any>, ReactElement<any>];
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
 }
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
 
-export default class Expand extends PureComponent<IProps> {
+interface IState {
+	active: boolean;
+}
+
+export default class Expand extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		onToggle:      PropTypes.func,
@@ -51,8 +55,8 @@ export default class Expand extends PureComponent<IProps> {
 		{
 			active,
 			disabled
-		},
-		{ active: prevActive }
+		}: IProps,
+		{ active: prevActive }: IState
 	) {
 
 		const nextActive = !disabled && (typeof active === 'boolean'
@@ -68,8 +72,6 @@ export default class Expand extends PureComponent<IProps> {
 			active: nextActive
 		};
 	}
-
-	state: { active: boolean };
 
 	constructor(props) {
 
@@ -129,11 +131,11 @@ export default class Expand extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onToggle(event: MouseEvent) {
+	private onToggle(event: MouseEvent) {
 		this.toggleActiveState(null, event);
 	}
 
-	toggleActiveState(forceState, event: Event|SyntheticEvent = null) {
+	toggleActiveState(forceState?: boolean, event: Event|SyntheticEvent = null) {
 
 		const {
 			active: activeProp,

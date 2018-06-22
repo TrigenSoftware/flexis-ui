@@ -23,9 +23,13 @@ interface ISelfProps {
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
 
+interface IState {
+	active: boolean;
+}
+
 const HALF = 2;
 
-export default class Tooltip extends PureComponent<IProps> {
+export default class Tooltip extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		id:        PropTypes.string,
@@ -58,8 +62,8 @@ export default class Tooltip extends PureComponent<IProps> {
 		active: false
 	};
 
-	elementRef = null;
-	tooltipRef = null;
+	private elementRef: HTMLSpanElement = null;
+	private tooltipRef: HTMLDivElement = null;
 
 	render() {
 
@@ -109,7 +113,7 @@ export default class Tooltip extends PureComponent<IProps> {
 		);
 	}
 
-	componentDidUpdate(_, { active: prevActive }) {
+	componentDidUpdate(_, { active: prevActive }: IState) {
 
 		const {
 			active
@@ -121,30 +125,30 @@ export default class Tooltip extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onElementRef(ref) {
+	private onElementRef(ref: HTMLSpanElement) {
 		this.elementRef = ref;
 	}
 
 	@Listener()
-	onTooltipRef(ref) {
+	private onTooltipRef(ref: HTMLDivElement) {
 		this.tooltipRef = ref;
 	}
 
 	@Listener()
-	onShow() {
+	private onShow() {
 		this.setState(() => ({
 			active: true
 		}));
 	}
 
 	@Listener()
-	onHide() {
+	private onHide() {
 		this.setState(() => ({
 			active: false
 		}));
 	}
 
-	setTooltipPosition() {
+	private setTooltipPosition() {
 
 		const {
 			elementRef,

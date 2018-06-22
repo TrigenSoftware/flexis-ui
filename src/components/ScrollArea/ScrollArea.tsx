@@ -25,7 +25,14 @@ interface ISelfProps {
 
 export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
 
-export default class ScrollArea extends PureComponent<IProps> {
+interface IState {
+	topShadow: boolean;
+	rightShadow: boolean;
+	bottomShadow: boolean;
+	leftShadow: boolean;
+}
+
+export default class ScrollArea extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		ignoreTopShadow:    PropTypes.bool,
@@ -56,8 +63,8 @@ export default class ScrollArea extends PureComponent<IProps> {
 		leftShadow:   false
 	};
 
-	isHiddenScrollbar = false;
-	scroller = null;
+	private isHiddenScrollbar = false;
+	private scroller: HTMLDivElement = null;
 
 	render() {
 
@@ -129,19 +136,19 @@ export default class ScrollArea extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onScrollerRef(ref) {
+	private onScrollerRef(ref: HTMLDivElement) {
 		this.scroller = ref;
 		this.setShadow(ref);
 		this.hideScroll(ref);
 	}
 
 	@Listener()
-	onScroll({ currentTarget }: UIEvent<HTMLDivElement>) {
+	private onScroll({ currentTarget }: UIEvent<HTMLDivElement>) {
 		this.setShadow(currentTarget);
 	}
 
 	@Listener()
-	onWheel(event: WheelEvent<HTMLDivElement>) {
+	private onWheel(event: WheelEvent<HTMLDivElement>) {
 
 		const {
 			isHiddenScrollbar
@@ -161,7 +168,7 @@ export default class ScrollArea extends PureComponent<IProps> {
 		}
 	}
 
-	setShadow(element) {
+	private setShadow(element: HTMLDivElement) {
 
 		if (!element) {
 			return;
@@ -184,7 +191,7 @@ export default class ScrollArea extends PureComponent<IProps> {
 		}));
 	}
 
-	hideScroll(element) {
+	private hideScroll(element: HTMLDivElement) {
 
 		if (!element) {
 			return;
@@ -203,13 +210,13 @@ export default class ScrollArea extends PureComponent<IProps> {
 		if (hideXScrollbar) {
 			element.style.marginBottom = `-${xOffset}px`;
 		} else {
-			element.style.marginBottom = 0;
+			element.style.marginBottom = '0';
 		}
 
 		if (hideYScrollbar) {
 			element.style.marginRight = `-${yOffset}px`;
 		} else {
-			element.style.marginRight = 0;
+			element.style.marginRight = '0';
 		}
 	}
 }

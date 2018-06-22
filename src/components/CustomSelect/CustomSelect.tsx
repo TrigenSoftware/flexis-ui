@@ -51,7 +51,11 @@ interface IOptionProps {
 
 export type IProps = ISelfProps & IDropdownProps;
 
-export default class CustomSelect extends PureComponent<IProps> {
+interface IState {
+	value: any;
+}
+
+export default class CustomSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
@@ -83,7 +87,10 @@ export default class CustomSelect extends PureComponent<IProps> {
 		disabled:     false
 	};
 
-	static getDerivedStateFromProps({ value }, { value: prevValue }) {
+	static getDerivedStateFromProps(
+		{ value }: IProps,
+		{ value: prevValue }: IState
+	) {
 
 		const nextValue = value === null
 			? prevValue
@@ -98,8 +105,7 @@ export default class CustomSelect extends PureComponent<IProps> {
 		};
 	}
 
-	state: { value: any };
-	dropdownRef: Dropdown = null;
+	private dropdownRef: Dropdown = null;
 
 	constructor(props) {
 
@@ -133,9 +139,9 @@ export default class CustomSelect extends PureComponent<IProps> {
 			value
 		} = this.state;
 
-		let faceChild = null;
+		let faceChild: ReactElement<any> = null;
 		let label = multiple ? [] : '';
-		let activeDescendant = null;
+		let activeDescendant: string = null;
 
 		const options = Children
 			.toArray(children)
@@ -231,7 +237,7 @@ export default class CustomSelect extends PureComponent<IProps> {
 		);
 	}
 
-	face(faceChild: ReactElement<any>, label: string|string[]) {
+	private face(faceChild: ReactElement<any>, label: string|string[]) {
 
 		const {
 			multiple,
@@ -261,7 +267,7 @@ export default class CustomSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onDropdownRef(ref) {
+	private onDropdownRef(ref: Dropdown) {
 
 		const {
 			elementRef
@@ -275,7 +281,7 @@ export default class CustomSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onDropdownHide(event: MouseEvent) {
+	private onDropdownHide(event: MouseEvent) {
 
 		const {
 			multiple
@@ -291,7 +297,7 @@ export default class CustomSelect extends PureComponent<IProps> {
 	}
 
 	@Listener()
-	onChange(inputNextValue, event: ChangeEvent) {
+	private onChange(inputNextValue, event: ChangeEvent) {
 
 		const {
 			value: valueProp,
