@@ -5,10 +5,15 @@
 	-st-default: Tooltip, tooltip;
 }
 
+:vars {
+	greenColor: green;
+	redColor: red;
+}
+
 Tooltip {
-	color: green;
+	color: value(greenColor);
 }
 
 .tooltip {
-	color: red;
+	color: value(redColor);
 }

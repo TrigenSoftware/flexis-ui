@@ -4,31 +4,31 @@
 
 type StateValue = boolean | number | string;
 
-interface StateMap {
+interface IStateMap {
 	[stateName: string]: StateValue;
 }
 
-interface AttributeMap {
-	className?: string
-	[attributeName: string]: StateValue | undefined
+interface IAttributeMap {
+	className?: string;
+	[attributeName: string]: StateValue | undefined;
 }
 
-interface InheritedAttributes {
-	className?: string
-	[props: string]: any
+interface IInheritedAttributes {
+	className?: string;
+	[props: string]: any;
 }
 
 type RuntimeStylesheet = {
-	(className: string, states?: StateMap, inheritedAttributes?: InheritedAttributes): AttributeMap
-	$root: string,
-	$namespace: string,
-	$depth: number,
-	$id: string | number,
-	$css?: string,
+	(className: string, states?: IStateMap, IInheritedAttributes?: IInheritedAttributes): IAttributeMap;
+	$root: string;
+	$namespace: string;
+	$depth: number;
+	$id: string | number;
+	$css?: string;
 
 	$get(localName: string): string | undefined;
-	$cssStates(stateMapping?: StateMap | null): StateMap;
-} & { [localName: string]: string }
+	$cssStates(IStateMapping?: IStateMap | null): IStateMap;
+} & { [localName: string]: string };
 
 declare module '*.st.css' {
 	const stylesheet: RuntimeStylesheet;

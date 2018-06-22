@@ -144,7 +144,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 		return pages;
 	}
 
-	private page(visiblePagePlace) {
+	private page(visiblePagePlace: number) {
 
 		const {
 			tabIndex,

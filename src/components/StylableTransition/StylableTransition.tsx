@@ -56,7 +56,7 @@ export default class StylableTransition extends Component<IProps> {
 		onExited:   null
 	};
 
-	private stylableStates: {
+	private readonly stylableStates: {
 		appear: { [phase: string]: string },
 		enter: { [phase: string]: string },
 		exit: { [phase: string]: string }

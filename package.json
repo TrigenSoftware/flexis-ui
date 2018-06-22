@@ -14,7 +14,7 @@
   "browsers": "> 1%, last 2 versions, iOS > 7, Android > 4.4, not OperaMini all",
   "scripts": {
     "lint:styles": "stylelint 'src/**/*.css'",
-    "lint:scripts": "tslint 'src/**/*.{ts,tsx}'",
+    "lint:scripts": "tslint -p . -t stylish 'src/**/*.{ts,tsx}'",
     "test": "npm run lint:styles && npm run lint:scripts",
     "storybook": "start-storybook -p 3001 -c .storybook",
     "build:storybook": "NODE_ENV=production build-storybook -c .storybook -o storybook-build",
@@ -59,9 +59,6 @@
     "@types/storybook__react": "^3.0.7",
     "autoprefixer": "^8.0.0",
     "awesome-typescript-loader": "^5.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-trigen": "^3.0.0",
-    "eslint-loader": "^2.0.0",
     "postcss-loader": "^2.1.0",
     "postcss-reporter": "^5.0.0",
     "prop-types": "^15.6.1",
