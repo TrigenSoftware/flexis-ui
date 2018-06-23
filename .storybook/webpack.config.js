@@ -44,16 +44,13 @@ function configureStorybook(storybookBaseConfig) {
 
 	storybookBaseConfigRules.some((rule, i) => {
 
-		if (rule.loader && rule.loader.includes('babel-loader')) {
+		if (String(rule.test) == '/\\.jsx?$/') {
 
 			storybookBaseConfigRules[i] = {
 				test:    rule.test,
 				include: rule.include,
 				exclude: rule.exclude,
-				use:     [
-					'babel-loader',
-					'eslint-loader'
-				]
+				loader:  require.resolve('babel-loader')
 			};
 
 			storybookBaseConfigRules.push({
@@ -62,14 +59,19 @@ function configureStorybook(storybookBaseConfig) {
 				exclude: rule.exclude,
 				use:     [
 					{
-						loader:  'at-loader',
+						loader:  'awesome-typescript-loader',
 						options: {
 							forceIsolatedModules: true,
 							useCache:             true,
 							reportFiles:          ['src/**/*.{ts,tsx}']
 						}
 					},
-					'tslint-loader'
+					{
+						loader:  'tslint-loader',
+						options: {
+							configFile: './tsconfig.json'
+						}
+					}
 				]
 			});
 

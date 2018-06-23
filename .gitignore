@@ -38,6 +38,7 @@ node_modules
 
 # Some caches
 .eslintcache
+.awcache
 
 # Compiled dist
 package
