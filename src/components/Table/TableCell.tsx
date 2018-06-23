@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps,
 	modulo
@@ -25,11 +26,14 @@ interface ISelfProps {
 	onOrderChange?(order: Order, event: MouseEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLTableCellElement>;
+export type ITableCellProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLTableCellElement>
+>;
 
 const orderValues: number[] = Object.values(Order);
 
-export class TableCell extends PureComponent<IProps> {
+export class TableCell extends PureComponent<ITableCellProps> {
 
 	static propTypes = {
 		head:          PropTypes.bool,

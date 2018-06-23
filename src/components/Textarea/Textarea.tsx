@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -20,7 +21,10 @@ interface ISelfProps {
 	onChange?(value: string, name: string, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLTextAreaElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLTextAreaElement>
+>;
 
 export default class Textarea extends PureComponent<IProps> {
 
@@ -61,8 +65,8 @@ export default class Textarea extends PureComponent<IProps> {
 				{...stylesheet('root', {}, props)}
 				ref={elementRef}
 				onChange={this.onChange}
-				value={value}
-				defaultValue={defaultValue}
+				value={String(value)}
+				defaultValue={String(defaultValue)}
 			/>
 		);
 	}

@@ -1,4 +1,4 @@
-import throttle from 'throttle-debounce/throttle';
+import { throttle } from 'throttle-debounce';
 
 /**
  * Decortor for throttlify class method.

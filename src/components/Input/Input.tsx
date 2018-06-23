@@ -11,6 +11,7 @@ import React, {
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -33,7 +34,10 @@ interface ISelfProps {
 	onChange?(value: string, name: string, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLInputElement>
+>;
 
 export default class Input extends PureComponent<IProps> {
 

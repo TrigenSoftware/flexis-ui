@@ -5,7 +5,10 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { Listener } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	Listener
+} from '../../helpers';
 import Button, { IProps as IButtonProps } from '../Button';
 import stylesheet from './ToggleSelect.st.css';
 
@@ -20,9 +23,12 @@ interface ISelfProps {
 	onChange?(value: any, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & IButtonProps;
+export type IToggleSelectOptionProps = CombinePropsAndAttributes<
+	ISelfProps,
+	IButtonProps
+>;
 
-export class ToggleSelectOption extends PureComponent<IProps> {
+export class ToggleSelectOption extends PureComponent<IToggleSelectOptionProps> {
 
 	static propTypes = {
 		id:       PropTypes.string,
@@ -82,7 +88,7 @@ export class ToggleSelectOption extends PureComponent<IProps> {
 						disabled={disabled}
 					/>
 					<Button
-						{...props}
+						{...props as IButtonProps}
 						{...stylesheet('button', {}, props)}
 						type='button'
 						disabled={disabled}

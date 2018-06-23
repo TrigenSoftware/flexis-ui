@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Transition, { TransitionProps } from 'react-transition-group/Transition';
-import { Listener } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	Listener
+} from '../../helpers';
 
 export interface ITransitionState {
 	appear?: string;
@@ -18,7 +21,10 @@ interface ISelfProps {
 	states: RuntimeStylesheet|ITransitionState;
 }
 
-export type IProps = ISelfProps & TransitionProps;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	TransitionProps
+>;
 
 const defaultStylableStates: ITransitionState = {
 	appear:       'appear',
@@ -103,7 +109,7 @@ export default class StylableTransition extends Component<IProps> {
 
 		return (
 			<Transition
-				{...props}
+				{...props as any}
 				onEnter={this.onEnter}
 				onEntered={this.onEntered}
 				onEntering={this.onEntering}

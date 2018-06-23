@@ -4,14 +4,20 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Menu.st.css';
 
 interface ISelfProps {
 	children?: ReactNode;
 }
 
-export type IMenuItemSeparatorProps = ISelfProps & AllHTMLAttributes<HTMLLIElement>;
+export type IMenuItemSeparatorProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLLIElement>
+>;
 
 export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
 

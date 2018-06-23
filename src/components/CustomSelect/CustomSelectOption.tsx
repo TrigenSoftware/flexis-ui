@@ -5,7 +5,10 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { Listener } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	Listener
+} from '../../helpers';
 import Button, { IProps as IButtonProps } from '../Button';
 import stylesheet from './CustomSelect.st.css';
 
@@ -20,7 +23,10 @@ interface ISelfProps {
 	onChange?(value, event: ChangeEvent);
 }
 
-export type ICustomSelectOptionProps = ISelfProps & IButtonProps;
+export type ICustomSelectOptionProps = CombinePropsAndAttributes<
+	ISelfProps,
+	IButtonProps
+>;
 
 export class CustomSelectOption extends PureComponent<ICustomSelectOptionProps> {
 

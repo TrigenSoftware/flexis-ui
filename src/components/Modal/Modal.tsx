@@ -10,6 +10,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	subscribeEvent,
 	getHtmlProps
@@ -28,7 +29,10 @@ interface ISelfProps {
 	onClose?(event: SyntheticEvent|KeyboardEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 const ESC_KEY = 27;
 

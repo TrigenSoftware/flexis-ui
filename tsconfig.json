@@ -10,7 +10,7 @@
 		"noImplicitAny": false,
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
-		"sourceMap": true,
+		"inlineSourceMap": true,
 		"lib": [
 			"dom",
 			"es2017"

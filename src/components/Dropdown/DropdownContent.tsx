@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -16,7 +17,10 @@ interface ISelfProps {
 	children: ReactNode;
 }
 
-export type IDropdownContentProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IDropdownContentProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 export class DropdownContent extends PureComponent<IDropdownContentProps> {
 

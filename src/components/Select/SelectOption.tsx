@@ -4,14 +4,20 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 
 interface ISelfProps {
 	value?: any;
 	children: ReactNode;
 }
 
-export type ISelectOptionProps = ISelfProps & AllHTMLAttributes<HTMLOptionElement>;
+export type ISelectOptionProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLOptionElement>
+>;
 
 export class SelectOption extends PureComponent<ISelectOptionProps> {
 

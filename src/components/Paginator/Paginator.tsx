@@ -5,11 +5,14 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Paginator.st.css';
 
 interface ISelfProps {
-	tabIndex?: number|string;
+	tabIndex?: number;
 	name?: string;
 	defaultPage?: number;
 	page?: number;
@@ -20,7 +23,10 @@ interface ISelfProps {
 	onChange?(page: number, name: string, event: MouseEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLElement>
+>;
 
 interface IState {
 	page: number;

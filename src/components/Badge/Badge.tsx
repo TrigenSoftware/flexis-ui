@@ -4,7 +4,10 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Badge.st.css';
 
 export {
@@ -15,7 +18,10 @@ interface ISelfProps {
 	children?: ReactNode;
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLLabelElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLLabelElement>
+>;
 
 export default class Badge extends PureComponent<IProps> {
 

@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -17,7 +18,10 @@ interface ISelfProps {
 	onChange?(files: File[], event: DragEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 interface IState {
 	dragOver: boolean;

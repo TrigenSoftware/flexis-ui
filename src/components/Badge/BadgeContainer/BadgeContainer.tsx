@@ -4,7 +4,10 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../../helpers';
 import stylesheet from './BadgeContainer.st.css';
 
 interface ISelfProps {
@@ -13,7 +16,10 @@ interface ISelfProps {
 	children: ReactNode;
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLSpanElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLSpanElement>
+>;
 
 export default class BadgeContainer extends PureComponent<IProps> {
 

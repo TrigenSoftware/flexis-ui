@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -23,7 +24,10 @@ interface ISelfProps {
 	onChange?(value: string|number|boolean, name: string, event: ChangeEvent): void;
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLInputElement>
+>;
 
 export default class Checkbox extends PureComponent<IProps> {
 

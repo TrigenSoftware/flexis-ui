@@ -5,7 +5,10 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './FormGroup.st.css';
 
 interface ISelfProps {
@@ -13,7 +16,10 @@ interface ISelfProps {
 	children: ReactNode;
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 export default class FormGroup extends PureComponent<IProps> {
 

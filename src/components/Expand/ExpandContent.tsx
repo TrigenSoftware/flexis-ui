@@ -4,14 +4,20 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Expand.st.css';
 
 interface ISelfProps {
 	children?: ReactNode;
 }
 
-export type IExpandContentProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IExpandContentProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 export class ExpandContent extends PureComponent<IExpandContentProps> {
 

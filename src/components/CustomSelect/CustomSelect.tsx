@@ -10,6 +10,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getAriaLabelProps
 } from '../../helpers';
@@ -49,7 +50,10 @@ interface IOptionProps {
 	onChange(value, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & IDropdownProps;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	IDropdownProps
+>;
 
 interface IState {
 	value: any;
@@ -68,7 +72,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		placeholder:  PropTypes.string,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
-		children:     PropTypes.oneOf([
+		children:     PropTypes.oneOfType([
 			PropTypes.element,
 			PropTypes.arrayOf(PropTypes.element)
 		]).isRequired
@@ -204,7 +208,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 
 		return (
 			<Dropdown
-				{...props}
+				{...props as IDropdownProps}
 				{...stylesheet('root', {}, props)}
 				ref={this.onDropdownRef}
 				style={style}

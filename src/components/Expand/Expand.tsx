@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getAriaLabelProps,
 	getHtmlProps
@@ -22,11 +23,14 @@ interface ISelfProps {
 	defaultActive?: boolean;
 	active?: boolean;
 	disabled?: boolean;
-	children: [ReactElement<any>, ReactElement<any>];
+	children: ReactElement<any>[];
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 interface IState {
 	active: boolean;

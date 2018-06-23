@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -27,7 +28,10 @@ interface ISelfProps {
 	onChange?(value, name: string, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLSelectElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLSelectElement>
+>;
 
 export default class Select extends PureComponent<IProps> {
 
@@ -38,7 +42,7 @@ export default class Select extends PureComponent<IProps> {
 		defaultValue: PropTypes.any,
 		value:        PropTypes.any,
 		onChange:     PropTypes.func,
-		children:     PropTypes.oneOf([
+		children:     PropTypes.oneOfType([
 			PropTypes.element,
 			PropTypes.arrayOf(PropTypes.element)
 		]).isRequired

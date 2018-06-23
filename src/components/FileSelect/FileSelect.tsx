@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -23,7 +24,10 @@ interface ISelfProps {
 	onChange?(files: File[], name: string, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLInputElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLInputElement>
+>;
 
 export default class FileSelect extends PureComponent<IProps> {
 

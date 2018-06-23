@@ -11,6 +11,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	subscribeEvent,
 	getAriaLabelProps,
@@ -31,7 +32,10 @@ interface ISelfProps {
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLSpanElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLSpanElement>
+>;
 
 interface IState {
 	active: boolean;

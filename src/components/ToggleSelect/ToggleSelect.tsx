@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -39,7 +40,10 @@ interface IOptionProps {
 	onChange(value, event: ChangeEvent);
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLUListElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLUListElement>
+>;
 
 interface IState {
 	value: any;
@@ -55,7 +59,7 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 		value:        PropTypes.any,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
-		children:     PropTypes.oneOf([
+		children:     PropTypes.oneOfType([
 			PropTypes.element,
 			PropTypes.arrayOf(PropTypes.element)
 		]).isRequired

@@ -6,6 +6,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
+	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
@@ -14,14 +15,17 @@ import stylesheet from './Tooltip.st.css';
 
 interface ISelfProps {
 	id?: string;
-	tabIndex?: number|string;
+	tabIndex?: number;
 	placement: 'top'|'right'|'bottom'|'left';
 	align?: 'start'|'center'|'end';
 	content: ReactNode;
 	children: ReactNode;
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLDivElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLDivElement>
+>;
 
 interface IState {
 	active: boolean;

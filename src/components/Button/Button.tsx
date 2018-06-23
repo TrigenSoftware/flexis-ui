@@ -8,7 +8,10 @@ import React, {
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Button.st.css';
 
 interface ISelfProps {
@@ -20,7 +23,10 @@ interface ISelfProps {
 	children?: ReactNode;
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLButtonElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLButtonElement>
+>;
 
 export default class Button extends PureComponent<IProps> {
 

@@ -4,7 +4,10 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Menu.st.css';
 
 export * from './MenuItem';
@@ -15,15 +18,18 @@ interface ISelfProps {
 	children: ReactElement<any>|ReactElement<any>[];
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLUListElement>;
+export type IProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLUListElement>
+>;
 
 export default class Menu extends PureComponent<IProps> {
 
 	static propTypes = {
-		children: PropTypes.oneOf(
+		children: PropTypes.oneOfType([
 			PropTypes.element,
 			PropTypes.arrayOf(PropTypes.element)
-		).isRequired
+		]).isRequired
 	};
 
 	render() {

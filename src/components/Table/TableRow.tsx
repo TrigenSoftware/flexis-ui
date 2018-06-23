@@ -4,19 +4,25 @@ import React, {
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
-import { getHtmlProps } from '../../helpers';
+import {
+	CombinePropsAndAttributes,
+	getHtmlProps
+} from '../../helpers';
 import stylesheet from './Table.st.css';
 
 interface ISelfProps {
 	children: ReactElement<any>|ReactElement<any>[];
 }
 
-export type IProps = ISelfProps & AllHTMLAttributes<HTMLTableRowElement>;
+export type ITableRowProps = CombinePropsAndAttributes<
+	ISelfProps,
+	AllHTMLAttributes<HTMLTableRowElement>
+>;
 
-export class TableRow extends PureComponent<IProps> {
+export class TableRow extends PureComponent<ITableRowProps> {
 
 	static propTypes = {
-		children: PropTypes.oneOf([
+		children: PropTypes.oneOfType([
 			PropTypes.element,
 			PropTypes.arrayOf(PropTypes.element)
 		]).isRequired
