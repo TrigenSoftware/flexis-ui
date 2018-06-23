@@ -4,7 +4,10 @@ stylelint-disable
 	property-no-vendor-prefix,
 	at-rule-no-vendor-prefix,
 	comment-empty-line-before,
-	no-descending-specificity
+	no-descending-specificity,
+	a11y/no-outline-none,
+	a11y/no-display-none,
+	a11y/line-height-is-vertical-rhythmed
 */
 
 /**

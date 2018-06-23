@@ -60,7 +60,7 @@
     "autoprefixer": "^8.6.3",
     "awesome-typescript-loader": "^5.2.0",
     "eslint": "^5.0.0",
-    "eslint-config-trigen": "^3.0.0",
+    "eslint-config-trigen": "^3.1.0",
     "husky": "^1.0.0-rc.9",
     "npm-check": "^5.7.1",
     "postcss-loader": "^2.1.5",
@@ -70,10 +70,10 @@
     "react-dom": "^16.4.1",
     "rimraf": "^2.6.2",
     "stylelint": "^9.3.0",
-    "stylelint-config-trigen": "^1.9.4",
+    "stylelint-config-trigen": "^2.0.0",
     "svg-react-loader": "^0.4.5",
     "tslint": "^5.10.0",
-    "tslint-config-trigen": "^3.0.3",
+    "tslint-config-trigen": "^3.0.5",
     "tslint-loader": "^3.6.0",
     "typescript": "2.9.1"
   }

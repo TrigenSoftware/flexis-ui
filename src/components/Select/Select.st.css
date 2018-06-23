@@ -14,9 +14,10 @@
 	height: 100%;
 }
 
+/* stylelint-disable a11y/no-outline-none */
 .select:focus {
 	outline: none;
-}
+} /* stylelint-enable */
 
 .border {
 	pointer-events: none;
