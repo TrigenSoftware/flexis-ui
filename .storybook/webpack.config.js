@@ -66,7 +66,10 @@ function configureStorybook(storybookBaseConfig) {
 						options: Object.assign({
 							forceIsolatedModules: true,
 							useCache:             true,
-							reportFiles:          ['src/**/*.{ts,tsx}']
+							reportFiles:          [
+								'src/**/*.{ts,tsx}',
+								'!src/globals.d.ts'
+							]
 						}, atLoaderOptions)
 					},
 					{

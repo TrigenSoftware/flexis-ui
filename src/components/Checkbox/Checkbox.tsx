@@ -49,9 +49,9 @@ export default class Checkbox extends PureComponent<IProps> {
 		style:          null,
 		name:           null,
 		onChange:       null,
-		value:          null,
-		defaultChecked: null,
-		checked:        null
+		value:          undefined,
+		defaultChecked: undefined,
+		checked:        undefined
 	};
 
 	render() {

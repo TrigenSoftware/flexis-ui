@@ -18,7 +18,7 @@
     "test": "npm run checkDeps && npm run lint:styles && npm run lint:scripts",
     "storybook": "start-storybook -p 3001 -c .storybook",
     "build:storybook": "NODE_ENV=production build-storybook -c .storybook -o storybook-build",
-    "build": "./scripts/buildPackage.sh",
+    "build": "npm run test && ./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f README.md ]; then exit 1; fi",
     "createComponent": "./scripts/createComponent.sh"
   },

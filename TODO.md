@@ -1,4 +1,3 @@
-check react input mask
 check a11y dropdowns display
 edit CODESTYLE
 

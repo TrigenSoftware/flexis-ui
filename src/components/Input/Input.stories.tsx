@@ -38,7 +38,6 @@ storiesOf('Input', module)
 			<Input
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
-				defaultValue=''
 				{...events}
 			/>
 		)

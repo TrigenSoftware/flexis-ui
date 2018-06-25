@@ -49,8 +49,8 @@ export class ToggleSelectOption extends PureComponent<IToggleSelectOptionProps> 
 		type:     null,
 		name:     null,
 		onChange: null,
-		value:    null,
-		checked:  null,
+		value:    undefined,
+		checked:  false,
 		disabled: false
 	};
 

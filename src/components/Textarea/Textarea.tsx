@@ -46,8 +46,8 @@ export default class Textarea extends PureComponent<IProps> {
 		elementRef:   null,
 		name:         null,
 		onChange:     null,
-		defaultValue: null,
-		value:        null
+		defaultValue: undefined,
+		value:        undefined
 	};
 
 	render() {

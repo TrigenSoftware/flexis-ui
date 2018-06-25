@@ -50,7 +50,7 @@ export class CustomSelectOption extends PureComponent<ICustomSelectOptionProps> 
 		name:     null,
 		onChange: null,
 		value:    null,
-		checked:  null,
+		checked:  false,
 		disabled: false
 	};
 
