@@ -2,10 +2,13 @@ const StylablePlugin = require('stylable-integration/webpack-plugin');
 const stylelint = require('stylelint');
 const postcssReporter = require('postcss-reporter');
 const autoprefixer = require('autoprefixer');
+const { atLoaderOptions } = require('../tsconfig.json');
 
 module.exports = configureStorybook;
 
 function configureStorybook(storybookBaseConfig) {
+
+	storybookBaseConfig.resolve.extensions.push('.ts', '.tsx');
 
 	const storybookBaseConfigRules = storybookBaseConfig.module.rules;
 
@@ -60,11 +63,11 @@ function configureStorybook(storybookBaseConfig) {
 				use:     [
 					{
 						loader:  'awesome-typescript-loader',
-						options: {
+						options: Object.assign({
 							forceIsolatedModules: true,
 							useCache:             true,
 							reportFiles:          ['src/**/*.{ts,tsx}']
-						}
+						}, atLoaderOptions)
 					},
 					{
 						loader:  'tslint-loader',

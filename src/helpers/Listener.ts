@@ -10,7 +10,9 @@ export function Listener(): MethodDecorator {
 		const listener = descriptor.value;
 		const bindedListenerKey = `__bindedListener(${String(key)})__`;
 
-		descriptor.value = null;
+		Reflect.deleteProperty(descriptor, 'value');
+		Reflect.deleteProperty(descriptor, 'writable');
+
 		descriptor.get =
 		function listenerWrapper() {
 
@@ -24,5 +26,7 @@ export function Listener(): MethodDecorator {
 
 			return bindedListener;
 		};
+
+		return descriptor;
 	};
 }
