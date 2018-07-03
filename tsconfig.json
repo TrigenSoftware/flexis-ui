@@ -14,7 +14,7 @@
 		"inlineSourceMap": true,
 		"lib": [
 			"dom",
-			"es2017"
+			"esnext"
 		]
 	},
 	"atLoaderOptions": {
@@ -32,7 +32,7 @@
 		"inlineSourceMap": false,
 		"lib": [
 			"dom",
-			"es2017"
+			"esnext"
 		]
 	},
 	"exclude": [

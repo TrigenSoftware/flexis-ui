@@ -1,5 +1,1 @@
-> 1%
-last 2 versions
-iOS > 7
-Android > 4.4
-not dead
+extends browserslist-config-trigen
