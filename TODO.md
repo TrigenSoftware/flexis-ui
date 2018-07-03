@@ -8,6 +8,7 @@ ProgressBar
 ProgressSteps
 ContextMenu
 Slider
+subscribe-ui-event mod
 
 aria attributes
 
