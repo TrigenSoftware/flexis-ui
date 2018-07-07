@@ -18,10 +18,11 @@ Styleless React Components.
 ## Install
 
 ```sh
-npm i -S @flexis/ui
+npm i @flexis/ui
 # or
 yarn add @flexis/ui
 ```
 
----
-[![NPM](https://nodei.co/npm/@flexis/ui.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@flexis/ui/)
+# API
+
+- [Storybook](https://trigensoftware.github.io/flexis-ui/index.html)
