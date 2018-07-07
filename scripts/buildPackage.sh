@@ -9,3 +9,4 @@ del 'package/**/*.{ts,tsx}' '!package/**/*.d.ts'
 babel ./package -d ./package -s inline
 cp LICENSE package
 cp package.json package
+cp README.md package
