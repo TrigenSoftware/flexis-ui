@@ -1,15 +1,17 @@
 :vars {
 	fontFamilySansSerif:
+		/* Safari for OS X and iOS (San Francisco) */
 		-apple-system,
+		/* Chrome < 56 for OS X (San Francisco) */
 		BlinkMacSystemFont,
+		/* Windows */
 		'Segoe UI',
+		/* Android */
 		Roboto,
-		'Helvetica Neue',
-		Arial,
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji',
-		'Segoe UI Symbol' /* https://github.com/wix/stylable/issues/306 */;
+		/* Basic web fallback */
+		'Helvetica Neue', Arial, sans-serif,
+		/* Emoji fonts */
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' /* https://github.com/wix/stylable/issues/306 */;
 	fontFamilyMonospace:
 		SFMono-Regular,
 		Menlo,

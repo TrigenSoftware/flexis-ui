@@ -68,7 +68,7 @@ function configureStorybook(storybookBaseConfig) {
 							useCache:             true,
 							reportFiles:          [
 								'src/**/*.{ts,tsx}',
-								'!src/globals.d.ts'
+								'!globals.d.ts'
 							]
 						}, atLoaderOptions)
 					},
