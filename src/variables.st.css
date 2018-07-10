@@ -9,9 +9,13 @@
 		/* Android */
 		Roboto,
 		/* Basic web fallback */
-		'Helvetica Neue', Arial, sans-serif,
+		'Helvetica Neue',
+		Arial,
+		sans-serif,
 		/* Emoji fonts */
-		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' /* https://github.com/wix/stylable/issues/306 */;
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol' /* https://github.com/wix/stylable/issues/306 */;
 	fontFamilyMonospace:
 		SFMono-Regular,
 		Menlo,

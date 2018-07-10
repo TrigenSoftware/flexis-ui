@@ -75,7 +75,8 @@ function configureStorybook(storybookBaseConfig) {
 					{
 						loader:  'tslint-loader',
 						options: {
-							configFile: './tsconfig.json'
+							emitErrors: true,
+							typeCheck:  true
 						}
 					}
 				]
