@@ -10,6 +10,7 @@
 		"noUnusedParameters": true,
 		"noImplicitAny": false,
 		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"inlineSourceMap": true,
 		"lib": [
@@ -28,6 +29,7 @@
 		"noUnusedParameters": true,
 		"noImplicitAny": false,
 		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
 		"experimentalDecorators": true,
 		"inlineSourceMap": false,
 		"lib": [
