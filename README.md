@@ -25,4 +25,5 @@ yarn add @flexis/ui
 
 # API
 
-- [Storybook](https://trigensoftware.github.io/flexis-ui/index.html)
+- [Storybook](https://trigensoftware.github.io/flexis-ui/)
+- [Docs](https://trigensoftware.github.io/flexis-ui/docs/)
