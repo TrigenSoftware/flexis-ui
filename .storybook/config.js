@@ -3,6 +3,8 @@ import {
 	configure,
 	addDecorator
 } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs } from '@storybook/addon-knobs/react';
 import { setOptions } from '@storybook/addon-options';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
@@ -18,6 +20,8 @@ addDecorator(story => (
 		{story()}
 	</div>
 ));
+addDecorator(withInfo);
+addDecorator(withKnobs);
 
 const stories = require.context(
 	'../src/',

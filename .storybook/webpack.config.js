@@ -1,10 +1,17 @@
-const StylablePlugin = require('stylable-integration/webpack-plugin');
-const stylelint = require('stylelint');
-const postcssReporter = require('postcss-reporter');
-const autoprefixer = require('autoprefixer');
+const StylablePlugin = require('stylable-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
+const postcss = require('postcss');
+const postcssrc = require('../.postcssrc');
 const { atLoaderOptions } = require('../tsconfig.json');
 
 module.exports = configureStorybook;
+
+const stylesProcessor = postcss(postcssrc().plugins);
+
+function postProcessor(stylableResult) {
+	stylesProcessor.process(stylableResult.meta.outputAst).sync();
+	return stylableResult;
+}
 
 function configureStorybook(storybookBaseConfig) {
 
@@ -12,49 +19,15 @@ function configureStorybook(storybookBaseConfig) {
 
 	const storybookBaseConfigRules = storybookBaseConfig.module.rules;
 
-	storybookBaseConfigRules.unshift(
-		StylablePlugin.rule(),
-		{
-			enforce: 'pre',
-			test:    /(?!<\.st)\.css$/,
-			exclude: /node_modules/,
-			use:     [{
-				loader:  'postcss-loader',
-				options: {
-					plugins:   () => [
-						stylelint(),
-						postcssReporter({ clearReportedMessages: true })
-					]
-				}
-			}]
-		}, {
-			test: /(?!<\.st)\.css$/,
-			use:  [{
-				loader:  'postcss-loader',
-				options: {
-					sourceMap: true,
-					plugins:   () => [
-						autoprefixer()
-					]
-				}
-			}]
-		}, {
-			test:    /\.svg$/,
-			exclude: /node_modules/,
-			loader:  'svg-react-loader'
-		}
-	);
+	storybookBaseConfigRules.unshift({
+		test:    /\.svg$/,
+		exclude: /node_modules/,
+		loader:  'svg-react-loader'
+	});
 
-	storybookBaseConfigRules.some((rule, i) => {
+	storybookBaseConfigRules.some((rule) => {
 
 		if (String(rule.test) == '/\\.jsx?$/') {
-
-			storybookBaseConfigRules[i] = {
-				test:    rule.test,
-				include: rule.include,
-				exclude: rule.exclude,
-				loader:  require.resolve('babel-loader')
-			};
 
 			storybookBaseConfigRules.push({
 				test:    /\.tsx?$/,
@@ -69,7 +42,9 @@ function configureStorybook(storybookBaseConfig) {
 							reportFiles:          [
 								'src/**/*.{ts,tsx}',
 								'!globals.d.ts'
-							]
+							],
+							useBabel:             true,
+							babelCore:            '@babel/core'
 						}, atLoaderOptions)
 					},
 					{
@@ -89,10 +64,12 @@ function configureStorybook(storybookBaseConfig) {
 	});
 
 	storybookBaseConfig.plugins.push(
+		new StylelintPlugin({
+			files: 'src/**/*.st.css'
+		}),
 		new StylablePlugin({
-			rootScope:       false,
-			injectBundleCss: true,
-			nsDelimiter:     '🦄'
+			rootScope:      false,
+			transformHooks: { postProcessor }
 		})
 	);
 

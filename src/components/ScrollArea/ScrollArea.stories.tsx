@@ -1,8 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import {
-	withKnobs,
 	boolean
 } from '@storybook/addon-knobs/react';
 import Table, {
@@ -31,8 +29,10 @@ const colsCount = 20;
 const rowsCount = 50;
 
 storiesOf('ScrollArea', module)
-	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
-	.addDecorator(withKnobs)
+	// @ts-ignore
+	.addParameters({
+		info: stylableApi
+	})
 	.add(
 		'with scroll content',
 		() => (

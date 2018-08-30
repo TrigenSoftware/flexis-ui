@@ -23,6 +23,10 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 		...Modal.defaultProps
 	};
 
+	state = {
+		active: false
+	};
+
 	private resolver: (state: boolean) => void = null;
 	private promise: Promise<boolean> = null;
 

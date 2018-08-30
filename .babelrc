@@ -1,14 +1,8 @@
 {
 	"exclude": "node_modules/**",
 	"presets": [
-		["@babel/preset-env", { "modules": false }],
-		["@babel/preset-stage-0", {
-			"decoratorsLegacy": true,
-			"pipelineProposal": "minimal"
-		}],
-		"@babel/preset-react"
-	],
-	"plugins": [
-		"@babel/plugin-transform-runtime"
+		["babel-preset-trigen", {
+			"react": true
+		}]
 	]
 }

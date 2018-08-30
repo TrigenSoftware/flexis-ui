@@ -1,9 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import {
-	withKnobs,
 	text,
 	boolean
 } from '@storybook/addon-knobs/react';
@@ -21,8 +19,10 @@ const events = {
 };
 
 storiesOf('Textarea', module)
-	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
-	.addDecorator(withKnobs)
+	// @ts-ignore
+	.addParameters({
+		info: stylableApi
+	})
 	.add(
 		'with default state',
 		() => (

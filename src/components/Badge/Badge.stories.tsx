@@ -1,8 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import {
-	withKnobs,
 	text,
 	select
 } from '@storybook/addon-knobs/react';
@@ -24,8 +22,10 @@ Stylable API
 `;
 
 storiesOf('Badge', module)
-	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
-	.addDecorator(withKnobs)
+	// @ts-ignore
+	.addParameters({
+		info: stylableApi
+	})
 	.add(
 		'with text',
 		() => (

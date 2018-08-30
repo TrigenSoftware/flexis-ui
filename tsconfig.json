@@ -21,21 +21,7 @@
 	"atLoaderOptions": {
 		"declaration": false,
 		"declarationMap": false,
-		"module": "esnext",
-		"moduleResolution": "node",
-		"target": "es5",
-		"jsx": "react",
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitAny": false,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"inlineSourceMap": false,
-		"lib": [
-			"dom",
-			"esnext"
-		]
+		"inlineSourceMap": false
 	},
 	"exclude": [
 		"package/**/*"

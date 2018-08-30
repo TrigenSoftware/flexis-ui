@@ -1,10 +1,8 @@
 /* tslint:disable: no-magic-numbers */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import {
-	withKnobs,
 	boolean,
 	number
 } from '@storybook/addon-knobs/react';
@@ -24,8 +22,10 @@ const events = {
 };
 
 storiesOf('Select', module)
-	.addDecorator((story, context) => withInfo(stylableApi)(story)(context))
-	.addDecorator(withKnobs)
+	// @ts-ignore
+	.addParameters({
+		info: stylableApi
+	})
 	.add(
 		'with basic state',
 		() => (
