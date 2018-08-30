@@ -1,6 +1,1 @@
 @namespace 'FlexisUI';
-
-:import {
-	-st-from: './reboot.st.css';
-	-st-theme: true;
-}

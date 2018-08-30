@@ -8,7 +8,7 @@ import { withKnobs } from '@storybook/addon-knobs/react';
 import { setOptions } from '@storybook/addon-options';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
-import stylesheet from '../src/index.st.css';
+import stylesheet from '../src/reboot.st.css';
 
 global.TestIcon = TestIcon;
 
