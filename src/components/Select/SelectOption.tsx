@@ -37,7 +37,7 @@ export class SelectOption extends PureComponent<ISelectOptionProps> {
 		return (
 			<option
 				{...getHtmlProps(props)}
-				value={String(value)}
+				value={value}
 			>
 				{children}
 			</option>

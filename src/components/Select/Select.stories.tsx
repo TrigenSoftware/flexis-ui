@@ -130,4 +130,23 @@ storiesOf('Select', module)
 				</div>
 			);
 		}
+	)
+	.add(
+		'without values',
+		() => (
+			<Select
+				{...events}
+				disabled={boolean('Disabled', false)}
+			>
+				<SelectOption>
+					Option #1
+				</SelectOption>
+				<SelectOption>
+					Option #2
+				</SelectOption>
+				<SelectOption>
+					Option #3
+				</SelectOption>
+			</Select>
+		)
 	);

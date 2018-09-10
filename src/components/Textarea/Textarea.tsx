@@ -65,8 +65,8 @@ export default class Textarea extends PureComponent<IProps> {
 				{...stylesheet('root', {}, props)}
 				ref={elementRef}
 				onChange={this.onChange}
-				value={String(value)}
-				defaultValue={String(defaultValue)}
+				value={value}
+				defaultValue={defaultValue as string}
 			/>
 		);
 	}
