@@ -5,7 +5,7 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		"target": "esnext",
-		"jsx": "react",
+		"jsx": "preserve",
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noImplicitAny": false,
