@@ -1,4 +1,4 @@
-const StylablePlugin = require('stylable-webpack-plugin');
+const StylablePlugin = require('@stylable/webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const postcss = require('postcss');
 const postcssrc = require('../.postcssrc');
@@ -68,7 +68,6 @@ function configureStorybook(storybookBaseConfig) {
 			files: 'src/**/*.st.css'
 		}),
 		new StylablePlugin({
-			rootScope:      false,
 			transformHooks: { postProcessor }
 		})
 	);

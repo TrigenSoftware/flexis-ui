@@ -4,8 +4,8 @@ import {
 	addDecorator
 } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs } from '@storybook/addon-knobs/react';
-import { setOptions } from '@storybook/addon-options';
+import { withKnobs } from '@storybook/addon-knobs';
+import { withOptions } from '@storybook/addon-options';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
 import stylesheet from '../src/reboot.st.css';
@@ -22,6 +22,13 @@ addDecorator(story => (
 ));
 addDecorator(withInfo);
 addDecorator(withKnobs);
+addDecorator(
+	withOptions({
+		name:              'Flexis UI',
+		url:               pkg.repository.url.replace(/(^git\+)|(\.git$)/g, ''),
+		addonPanelInRight: true
+	})
+);
 
 const stories = require.context(
 	'../src/',
@@ -34,11 +41,5 @@ function loadStories() {
 		stories(filename)
 	);
 }
-
-setOptions({
-	name:              'Flexis UI',
-	url:               pkg.repository.url.replace(/(^git\+)|(\.git$)/g, ''),
-	addonPanelInRight: true
-});
 
 configure(loadStories, module);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Transition, { TransitionProps } from 'react-transition-group/Transition';
+import { RuntimeStylesheet } from '@stylable/runtime';
 import {
 	CombinePropsAndAttributes,
 	Listener

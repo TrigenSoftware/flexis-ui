@@ -8,8 +8,6 @@
     <link rel="shortcut icon" href="favicon.ico?v=1" />
 
     
-  
-    
       <base target="_parent">
 
 <style>
@@ -67,14 +65,32 @@
 </style>
 
 <script>
-  if (window.parent !== window) {
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+  try {
+    if (window.parent !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+      window.__VUE_DEVTOOLS_GLOBAL_HOOK__ = window.parent.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+    }
+  } catch (e) {
+    console.warn('unable to connect to parent frame for connecting dev tools');
   }
 </script>
 
     
-  
+      
+    
+
+    
+      
+    
+      
+    
+      
+    
+      
+        <link href="iframe.bundle.css" rel="stylesheet" />
+      
+    
+    
 </head>
 <body>
     
@@ -106,20 +122,20 @@
     
       
     
-  
+
     
       
-        <script src="static/runtime~iframe.7161ffe0bb3d969a0dda.bundle.js" defer></script>
-      
-    
-      
-        <script src="static/vendors~iframe.2bf6afcca7d86c5a5967.bundle.js" defer></script>
+        <script src="static/runtime~iframe.7789ccd1257cae547516.bundle.js" defer></script>
       
     
       
-        <script src="static/iframe.f24c317bf5ab4c752c12.bundle.js" defer></script>
+        <script src="static/vendors~iframe.46157f4fadca16c397d5.bundle.js" defer></script>
       
-        <script src="iframe.bundle.css" defer></script>
+    
+      
+        <script src="static/iframe.09644402d72666d9d04b.bundle.js" defer></script>
+      
+    
       
     
   
