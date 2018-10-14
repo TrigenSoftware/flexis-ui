@@ -5,7 +5,25 @@
 }
 
 .head {
-	/* empty block */
+	-st-states: hidden;
+}
+
+.foot {
+	-st-states: hidden;
+}
+
+.head:hidden td,
+.foot:hidden td {
+	border: none;
+	padding: 0;
+	height: 0;
+}
+
+.head:hidden td::before,
+.foot:hidden td::before {
+	display: block;
+	margin: -100%;
+	content: '';
 }
 
 .body {

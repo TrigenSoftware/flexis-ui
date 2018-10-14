@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Table, {
 	TableHead,
 	TableBody,
+	TableFoot,
 	TableRow,
 	TableCell,
 	Order
@@ -23,6 +24,7 @@ Stylable API
 `;
 
 const rowsCount = 10;
+const columnsCount = 3;
 
 storiesOf('Table', module)
 	// @ts-ignore
@@ -61,6 +63,13 @@ storiesOf('Table', module)
 						</TableRow>
 					))}
 				</TableBody>
+				<TableFoot>
+					<TableRow>
+						<TableCell colSpan={columnsCount}>
+							Footer
+						</TableCell>
+					</TableRow>
+				</TableFoot>
 			</Table>
 		)
 	)

@@ -19,7 +19,7 @@
     "lint": "npm run lint:styles && npm run lint:scripts",
     "test": "npm run checkDeps && npm run lint",
     "storybook": "start-storybook -p 3001 -c .storybook",
-    "build:storybook": "build-storybook -c .storybook -o storybook-build",
+    "build:storybook": "NODE_ENV=development build-storybook -c .storybook -o storybook-build",
     "build": "npm run test && ./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
     "createComponent": "./scripts/createComponent.sh"
@@ -37,6 +37,7 @@
     "@types/react-transition-group": "^2.0.13",
     "react-input-mask": "^2.0.3",
     "react-transition-group": "^2.4.0",
+    "resize-observer": "^1.0.0-alpha.1",
     "throttle-debounce": "^2.0.1"
   },
   "peerDependencies": {

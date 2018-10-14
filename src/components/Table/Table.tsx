@@ -12,6 +12,7 @@ import stylesheet from './Table.st.css';
 
 export * from './TableHead';
 export * from './TableBody';
+export * from './TableFoot';
 export * from './TableRow';
 export * from './TableCell';
 
