@@ -60,6 +60,7 @@ export class ColumnsSyncObserver {
 	destroy() {
 		this.ro.disconnect();
 		this.ro = null;
+		this.callback = null;
 		this.source = null;
 		this.target = null;
 	}
