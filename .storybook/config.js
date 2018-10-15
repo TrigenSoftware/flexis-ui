@@ -6,6 +6,7 @@ import {
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withOptions } from '@storybook/addon-options';
+import { checkA11y } from '@storybook/addon-a11y';
 import pkg from '../package.json';
 import TestIcon from './star.svg';
 import stylesheet from '../src/reboot.st.css';
@@ -22,6 +23,7 @@ addDecorator(story => (
 ));
 addDecorator(withInfo);
 addDecorator(withKnobs);
+addDecorator(checkA11y);
 addDecorator(
 	withOptions({
 		name:              'Flexis UI',

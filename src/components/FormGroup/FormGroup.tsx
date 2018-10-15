@@ -1,8 +1,8 @@
 import React, {
 	AllHTMLAttributes,
 	ReactElement,
-	ReactNode,
-	PureComponent
+	PureComponent,
+	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -12,8 +12,9 @@ import {
 import stylesheet from './FormGroup.st.css';
 
 interface ISelfProps {
+	id?: string;
 	label?: string|ReactElement<any>;
-	children: ReactNode;
+	children: ReactElement<any>;
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -24,6 +25,7 @@ export type IProps = CombinePropsAndAttributes<
 export default class FormGroup extends PureComponent<IProps> {
 
 	static propTypes = {
+		id:       PropTypes.string,
 		label:    PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.element
@@ -32,12 +34,14 @@ export default class FormGroup extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
+		id:    null,
 		label: null
 	};
 
 	render() {
 
 		const {
+			id,
 			label,
 			children,
 			...props
@@ -51,11 +55,15 @@ export default class FormGroup extends PureComponent<IProps> {
 				{typeof label !== 'string' ? label : (
 					<label
 						{...stylesheet('label')}
+						htmlFor={id}
 					>
 						{label}
 					</label>
 				)}
-				{children}
+				{cloneElement(
+					children,
+					{ id: id || children.props.id }
+				)}
 			</div>
 		);
 	}

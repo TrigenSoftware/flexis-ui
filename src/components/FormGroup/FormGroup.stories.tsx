@@ -28,6 +28,7 @@ storiesOf('FormGroup', module)
 		'with text label',
 		() => (
 			<FormGroup
+				id='input-id'
 				label={text('Label', 'Text label')}
 			>
 				<Input
@@ -41,6 +42,7 @@ storiesOf('FormGroup', module)
 		'with custom label',
 		() => (
 			<FormGroup
+				id='input-id'
 				label={(
 					<b>
 						{text('Label', 'Custom label')}

@@ -50,7 +50,7 @@ export default class Link extends PureComponent<IProps> {
 		target:                 PropTypes.string,
 		children:               PropTypes.node,
 		linkElement:            PropTypes.any,
-		linkElementCustomProps: PropTypes.arrayOf(PropTypes.string)
+		linkElementCustomProps: PropTypes.object
 	};
 
 	static defaultProps = {
