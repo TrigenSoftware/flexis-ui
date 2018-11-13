@@ -23,7 +23,7 @@ npm i @flexis/ui
 yarn add @flexis/ui
 ```
 
-# API
+## API
 
 - [Storybook](https://trigensoftware.github.io/flexis-ui/)
 - [Docs](https://trigensoftware.github.io/flexis-ui/docs/)
