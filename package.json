@@ -12,16 +12,17 @@
     "url": "https://github.com/TrigenSoftware/flexis-ui/issues"
   },
   "scripts": {
+    "createComponent": "./scripts/createComponent.sh",
     "generateDocs": "./scripts/generateDocs.sh",
     "lint:styles": "stylelint 'src/**/*.css'",
     "lint:scripts": "tslint -p . -t stylish 'src/**/*.{ts,tsx}'",
     "lint": "npm run lint:styles && npm run lint:scripts",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run build",
     "storybook": "start-storybook -p 3001 -c .storybook",
     "build:storybook": "NODE_ENV=development build-storybook -c .storybook -o storybook-build",
-    "build": "npm run test && ./scripts/buildPackage.sh",
+    "build": "./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
-    "createComponent": "./scripts/createComponent.sh"
+    "cleanPublish": "npm run test && cd package && clean-publish"
   },
   "keywords": [
     "react-components",
@@ -67,6 +68,7 @@
     "babel-loader": "^8.0.0",
     "babel-preset-trigen": "^1.7.1",
     "browserslist-config-trigen": "^1.1.0",
+    "clean-publish": "^1.1.0",
     "del-cli": "^1.1.0",
     "eslint": "^5.4.0",
     "eslint-config-trigen": "^3.2.0",
