@@ -1,5 +1,7 @@
 # @flexis/ui
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg)](https://greenkeeper.io/)
+
 [![NPM version][npm]][npm-url]
 [![Peer dependency status][peer-deps]][peer-deps-url]
 [![Dependency status][deps]][deps-url]
