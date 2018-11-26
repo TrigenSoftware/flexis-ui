@@ -1,10 +1,9 @@
 # @flexis/ui
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg)](https://greenkeeper.io/)
-
 [![NPM version][npm]][npm-url]
 [![Peer dependency status][peer-deps]][peer-deps-url]
 [![Dependency status][deps]][deps-url]
+[![Greenkeeper badge][greenkeeper]][greenkeeper-url]
 
 [npm]: https://img.shields.io/npm/v/@flexis/ui.svg
 [npm-url]: https://npmjs.com/package/@flexis/ui
@@ -14,6 +13,9 @@
 
 [deps]: https://david-dm.org/TrigenSoftware/@flexis/ui.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/@flexis/ui
+
+[greenkeeper]: https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg
+[greenkeeper-url]: https://greenkeeper.io/
 
 Styleless React Components.
 
