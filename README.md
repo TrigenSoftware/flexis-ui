@@ -5,14 +5,14 @@
 [![Dependency status][deps]][deps-url]
 [![Greenkeeper badge][greenkeeper]][greenkeeper-url]
 
-[npm]: https://img.shields.io/npm/v/@flexis/ui.svg
+[npm]: https://img.shields.io/npm/v/%40flexis/ui.svg
 [npm-url]: https://npmjs.com/package/@flexis/ui
 
-[peer-deps]: https://david-dm.org/TrigenSoftware/@flexis/ui/peer-status.svg
-[peer-deps-url]: https://david-dm.org/TrigenSoftware/@flexis/ui?type=peer
+[peer-deps]: https://david-dm.org/TrigenSoftware/flexis-ui/peer-status.svg
+[peer-deps-url]: https://david-dm.org/TrigenSoftware/flexis-ui?type=peer
 
-[deps]: https://david-dm.org/TrigenSoftware/@flexis/ui.svg
-[deps-url]: https://david-dm.org/TrigenSoftware/@flexis/ui
+[deps]: https://david-dm.org/TrigenSoftware/flexis-ui.svg
+[deps-url]: https://david-dm.org/TrigenSoftware/flexis-ui
 
 [greenkeeper]: https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg
 [greenkeeper-url]: https://greenkeeper.io/
