@@ -3,6 +3,7 @@
 [![NPM version][npm]][npm-url]
 [![Peer dependency status][peer-deps]][peer-deps-url]
 [![Dependency status][deps]][deps-url]
+[![Build status][build]][build-url]
 [![Greenkeeper badge][greenkeeper]][greenkeeper-url]
 
 [npm]: https://img.shields.io/npm/v/%40flexis/ui.svg
@@ -13,6 +14,9 @@
 
 [deps]: https://david-dm.org/TrigenSoftware/flexis-ui.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/flexis-ui
+
+[build]: http://img.shields.io/travis/TrigenSoftware/flexis-ui.svg
+[build-url]: https://travis-ci.org/TrigenSoftware/flexis-ui
 
 [greenkeeper]: https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg
 [greenkeeper-url]: https://greenkeeper.io/
