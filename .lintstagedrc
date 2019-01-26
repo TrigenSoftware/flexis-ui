@@ -1,0 +1,4 @@
+{
+	"src/**/*.css": ["stylelint", "git add"],
+	"src/**/*.{ts,tsx}": ["tslint -p . -t stylish", "git add"]
+}

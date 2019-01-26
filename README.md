@@ -15,8 +15,8 @@
 [deps]: https://david-dm.org/TrigenSoftware/flexis-ui.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/flexis-ui
 
-[build]: http://img.shields.io/travis/TrigenSoftware/flexis-ui.svg
-[build-url]: https://travis-ci.org/TrigenSoftware/flexis-ui
+[build]: http://img.shields.io/travis/com/TrigenSoftware/flexis-ui.svg
+[build-url]: https://travis-ci.com/TrigenSoftware/flexis-ui
 
 [greenkeeper]: https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg
 [greenkeeper-url]: https://greenkeeper.io/
