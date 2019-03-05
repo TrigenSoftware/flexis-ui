@@ -52,7 +52,7 @@
     "@storybook/addon-actions": "^5.0.0",
     "@storybook/addon-info": "^5.0.0",
     "@storybook/addon-knobs": "^5.0.0",
-    "@storybook/addon-options": "^4.0.0-alpha.18",
+    "@storybook/addon-options": "^5.0.0",
     "@storybook/addons": "^5.0.0",
     "@storybook/react": "^5.0.0",
     "@stylable/core": "^0.1.10",
