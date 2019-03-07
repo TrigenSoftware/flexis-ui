@@ -51,7 +51,7 @@ function configureStorybook(storybookBaseConfig) {
 						loader:  'tslint-loader',
 						options: {
 							emitErrors: true,
-							typeCheck:  true
+							typeCheck:  false // speed up
 						}
 					}
 				]
