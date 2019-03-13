@@ -150,6 +150,10 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		const options = Children
 			.map(children, (child: ReactElement<any>, i) => {
 
+				if (!child) {
+					return null;
+				}
+
 				if (i === 0) {
 					faceChild = child;
 					return null;

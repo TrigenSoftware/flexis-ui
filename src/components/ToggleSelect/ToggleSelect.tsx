@@ -123,43 +123,46 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 
 		let activeDescendant: string = null;
 
-		const options = Children
-			.map(children, (child: ReactElement<any>) => {
+		const options = Children.map(children, (child: ReactElement<any>) => {
 
-				const {
-					value: optionValue,
-					children: optionLabel
-				} = child.props;
+			if (!child) {
+				return null;
+			}
 
-				const option = typeof optionValue === 'undefined'
-					? optionLabel
-					: optionValue;
+			const {
+				value: optionValue,
+				children: optionLabel
+			} = child.props;
 
-				const checked = isCurrentValue(multiple, value, option);
+			const option = typeof optionValue === 'undefined'
+				? optionLabel
+				: optionValue;
 
-				const props: IOptionProps = {
-					type:     multiple ? 'checkbox' : 'radio',
-					value:    option,
-					onChange: this.onChange,
-					checked,
-					disabled,
-					name
-				};
+			const checked = isCurrentValue(multiple, value, option);
 
-				if (typeof id === 'string') {
+			const props: IOptionProps = {
+				type:     multiple ? 'checkbox' : 'radio',
+				value:    option,
+				onChange: this.onChange,
+				checked,
+				disabled,
+				name
+			};
 
-					props.id = `${id}-option-${option}`;
+			if (typeof id === 'string') {
 
-					if (checked) {
-						activeDescendant = props.id;
-					}
+				props.id = `${id}-option-${option}`;
+
+				if (checked) {
+					activeDescendant = props.id;
 				}
+			}
 
-				return cloneElement(
-					child,
-					props
-				);
-			});
+			return cloneElement(
+				child,
+				props
+			);
+		});
 
 		return (
 			<ul
