@@ -124,9 +124,7 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 		let activeDescendant: string = null;
 
 		const options = Children
-			.toArray(children)
-			.filter(Boolean)
-			.map((child: ReactElement<any>) => {
+			.map(children, (child: ReactElement<any>) => {
 
 				const {
 					value: optionValue,

@@ -148,9 +148,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		let activeDescendant: string = null;
 
 		const options = Children
-			.toArray(children)
-			.filter(Boolean)
-			.map((child: ReactElement<any>, i) => {
+			.map(children, (child: ReactElement<any>, i) => {
 
 				if (i === 0) {
 					faceChild = child;
