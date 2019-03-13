@@ -17,7 +17,7 @@
     "lint:scripts": "tslint -p . -t stylish 'src/**/*.{ts,tsx}'",
     "lint": "npm run lint:styles && npm run lint:scripts",
     "test": "npm run lint && npm run build",
-    "storybook": "start-storybook -p 3001 -c .storybook",
+    "storybook": "start-storybook --ci -p 3001 -c .storybook",
     "build:docs": "./scripts/generateDocs.sh",
     "build:storybook": "NODE_ENV=development build-storybook -c .storybook -o storybook-build",
     "build": "./scripts/buildPackage.sh",

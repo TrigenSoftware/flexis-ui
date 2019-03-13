@@ -27,7 +27,7 @@ function configureStorybook(storybookBaseConfig) {
 
 	storybookBaseConfigRules.some((rule) => {
 
-		if (String(rule.test) == '/\\.jsx?$/') {
+		if (~String(rule.test).indexOf('jsx')) {
 
 			storybookBaseConfigRules.push({
 				test:    /\.tsx?$/,
