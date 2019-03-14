@@ -23,7 +23,7 @@ interface ISelfProps {
 	name?: string;
 	defaultValue?: any;
 	value?: any;
-	children: ReactElement<any>|ReactElement<any>[];
+	children: ReactElement<any> | ReactElement<any>[];
 	onChange?(value, event: ChangeEvent);
 	onChange?(value, name: string, event: ChangeEvent);
 }
@@ -36,13 +36,13 @@ export type IProps = CombinePropsAndAttributes<
 export default class Select extends PureComponent<IProps> {
 
 	static propTypes = {
-		elementRef:   PropTypes.func,
-		style:        PropTypes.object,
-		name:         PropTypes.string,
+		elementRef: PropTypes.func,
+		style: PropTypes.object,
+		name: PropTypes.string,
 		defaultValue: PropTypes.any,
-		value:        PropTypes.any,
-		onChange:     PropTypes.func,
-		children:     PropTypes.oneOfType([
+		value: PropTypes.any,
+		onChange: PropTypes.func,
+		children: PropTypes.oneOfType([
 			PropTypes.element,
 			PropTypes.arrayOf(PropTypes.element)
 		]).isRequired
@@ -50,9 +50,9 @@ export default class Select extends PureComponent<IProps> {
 
 	static defaultProps = {
 		elementRef: null,
-		style:      null,
-		name:       null,
-		onChange:   null
+		style: null,
+		name: null,
+		onChange: null
 	};
 
 	private originalValues = [];
@@ -69,14 +69,16 @@ export default class Select extends PureComponent<IProps> {
 		this.originalValues = Children.map(children, ({
 			props: {
 				value,
-				children,
-				child
+				children
 			}
-		}: ReactElement<any>) => child && (
-				typeof value === 'undefined'
-					? children
-					: value
-		));
+		}: ReactElement<any>) => {
+			if (children === false && value === false) {
+				return null;
+			}
+			return typeof value === 'undefined'
+				? children
+				: value;
+		});
 
 		return (
 			<span
