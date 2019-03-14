@@ -143,18 +143,19 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			value
 		} = this.state;
 
-		let faceChild: ReactElement<any> = null;
 		let label = multiple ? [] : '';
 		let activeDescendant: string = null;
 
-		const options = Children.map(children, (child: ReactElement<any>, i) => {
-
-			if (!child) {
-				return null;
-			}
+		const [
+			selectFace,
+			...options
+		] = Children.map(children, (child: ReactElement<any>, i) => {
 
 			if (i === 0) {
-				faceChild = child;
+				return child;
+			}
+
+			if (!child) {
 				return null;
 			}
 
@@ -215,7 +216,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 				style={style}
 				disabled={disabled}
 			>
-				{this.face(faceChild, label)}
+				{this.face(selectFace, label)}
 				<DropdownContent
 					{...ariaLabelProps}
 					{...stylesheet('dropdownContent')}
