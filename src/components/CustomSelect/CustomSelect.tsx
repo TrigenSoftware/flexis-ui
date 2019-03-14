@@ -143,60 +143,62 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			value
 		} = this.state;
 
-		let faceChild: ReactElement<any> = null;
 		let label = multiple ? [] : '';
 		let activeDescendant: string = null;
 
-		const options = Children
-			.toArray(children)
-			.filter(Boolean)
-			.map((child: ReactElement<any>, i) => {
+		const [
+			selectFace,
+			...options
+		] = Children.map(children, (child: ReactElement<any>, i) => {
 
-				if (i === 0) {
-					faceChild = child;
-					return null;
+			if (i === 0) {
+				return child;
+			}
+
+			if (!child) {
+				return null;
+			}
+
+			const {
+				value: optionValue,
+				children: optionLabel
+			} = child.props;
+
+			const option = typeof optionValue === 'undefined'
+				? optionLabel
+				: optionValue;
+
+			const checked = isCurrentValue(multiple, value, option);
+
+			const props: IOptionProps = {
+				type:     multiple ? 'checkbox' : 'radio',
+				value:    option,
+				onChange: this.onChange,
+				checked,
+				disabled,
+				name
+			};
+
+			if (checked) {
+
+				if (multiple) {
+					(label as string[]).push(optionLabel);
+				} else {
+					label = optionLabel;
 				}
+			}
 
-				const {
-					value: optionValue,
-					children: optionLabel
-				} = child.props;
+			if (typeof id === 'string') {
 
-				const option = typeof optionValue === 'undefined'
-					? optionLabel
-					: optionValue;
-
-				const checked = isCurrentValue(multiple, value, option);
-
-				const props: IOptionProps = {
-					type:     multiple ? 'checkbox' : 'radio',
-					value:    option,
-					onChange: this.onChange,
-					checked,
-					disabled,
-					name
-				};
+				props.id = `${id}-option-${option}`;
 
 				if (checked) {
-
-					if (multiple) {
-						(label as string[]).push(optionLabel);
-					} else {
-						label = optionLabel;
-					}
+					activeDescendant = props.id;
 				}
+			}
 
-				if (typeof id === 'string') {
-
-					props.id = `${id}-option-${option}`;
-
-					if (checked) {
-						activeDescendant = props.id;
-					}
-				}
-
-				return cloneElement(child, props);
-			});
+			return cloneElement(child, props);
+		});
 
 		Reflect.deleteProperty(props, 'onChange');
 
@@ -214,7 +216,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 				style={style}
 				disabled={disabled}
 			>
-				{this.face(faceChild, label)}
+				{this.face(selectFace, label)}
 				<DropdownContent
 					{...ariaLabelProps}
 					{...stylesheet('dropdownContent')}

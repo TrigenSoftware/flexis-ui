@@ -66,14 +66,16 @@ export default class Select extends PureComponent<IProps> {
 			...props
 		} = this.props;
 
-		this.originalValues = Children
-			.toArray(children)
-			.filter(Boolean)
-			.map(({ props: { value, children } }: ReactElement<any>) => (
-				typeof value === 'undefined'
-					? children
-					: value
-			));
+		this.originalValues = Children.toArray(children).map(({
+			props: {
+				value,
+				children
+			}
+		}: ReactElement<any>) => (
+			typeof value === 'undefined'
+				? children
+				: value
+		));
 
 		return (
 			<span
