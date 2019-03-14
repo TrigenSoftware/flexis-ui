@@ -37,10 +37,10 @@ export default class Select extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
-		style:        PropTypes.object,
-		name:         PropTypes.string,
+		style: 		  PropTypes.object,
+		name: 		  PropTypes.string,
 		defaultValue: PropTypes.any,
-		value:        PropTypes.any,
+		value:		  PropTypes.any,
 		onChange:     PropTypes.func,
 		children:     PropTypes.oneOfType([
 			PropTypes.element,
@@ -50,9 +50,9 @@ export default class Select extends PureComponent<IProps> {
 
 	static defaultProps = {
 		elementRef: null,
-		style:      null,
-		name:       null,
-		onChange:   null
+		style: 		null,
+		name: 		null,
+		onChange: 	null
 	};
 
 	private originalValues = [];
