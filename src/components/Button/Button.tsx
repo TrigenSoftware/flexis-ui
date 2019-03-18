@@ -16,7 +16,6 @@ import stylesheet from './Button.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLButtonElement>;
-	iconOnly?: boolean;
 	icon?: ReactElement<any>;
 	flexIcon?: boolean;
 	alignIcon?: 'left'|'right';
@@ -32,7 +31,6 @@ export default class Button extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
-		iconOnly:   PropTypes.bool,
 		icon:       PropTypes.element,
 		flexIcon:   PropTypes.bool,
 		alignIcon:  PropTypes.oneOf([
@@ -44,7 +42,6 @@ export default class Button extends PureComponent<IProps> {
 
 	static defaultProps = {
 		elementRef: null,
-		iconOnly:   false,
 		icon:       null,
 		flexIcon:   false,
 		alignIcon:  'left',
@@ -56,7 +53,6 @@ export default class Button extends PureComponent<IProps> {
 		const {
 			elementRef,
 			icon,
-			iconOnly,
 			flexIcon,
 			alignIcon,
 			children,
@@ -68,6 +64,9 @@ export default class Button extends PureComponent<IProps> {
 		let buttonIcon: ReactElement<any> = null;
 
 		if (icon !== null) {
+
+			const iconOnly = !Children.count(children);
+
 			buttonIcon = cloneElement(
 				icon,
 				stylesheet('icon', {

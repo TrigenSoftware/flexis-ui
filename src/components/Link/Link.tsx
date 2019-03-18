@@ -16,7 +16,6 @@ import stylesheet from './Link.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<any>;
-	iconOnly?: boolean;
 	icon?: ReactElement<any>;
 	flexIcon?: boolean;
 	alignIcon?: 'left'|'right';
@@ -38,7 +37,6 @@ export default class Link extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:             PropTypes.func,
-		iconOnly:               PropTypes.bool,
 		icon:                   PropTypes.element,
 		flexIcon:               PropTypes.bool,
 		alignIcon:              PropTypes.oneOf([
@@ -54,7 +52,6 @@ export default class Link extends PureComponent<IProps> {
 
 	static defaultProps = {
 		elementRef:             null,
-		iconOnly:               false,
 		icon:                   null,
 		flexIcon:               false,
 		alignIcon:              'left',
@@ -70,7 +67,6 @@ export default class Link extends PureComponent<IProps> {
 		const {
 			elementRef,
 			icon,
-			iconOnly,
 			flexIcon,
 			alignIcon,
 			rel,
@@ -85,6 +81,9 @@ export default class Link extends PureComponent<IProps> {
 		let linkIcon: ReactElement<any> = null;
 
 		if (icon !== null) {
+
+			const iconOnly = !Children.count(children);
+
 			linkIcon = cloneElement(
 				icon,
 				stylesheet('icon', {
