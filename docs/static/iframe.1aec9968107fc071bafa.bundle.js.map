@@ -1,1 +1,0 @@
-{"version":3,"file":"static/iframe.1aec9968107fc071bafa.bundle.js","sources":["webpack:///./src/components/Modal/index.ts"],"sourcesContent":["export { default } from './Modal';\nexport * from './Modal';\n"],"mappings":"AAAA","sourceRoot":""}
