@@ -3,7 +3,6 @@ import React, {
 	Ref,
 	ReactElement,
 	ReactNode,
-	ReactType,
 	PureComponent,
 	Children,
 	cloneElement
@@ -23,7 +22,7 @@ interface ISelfProps {
 	alignIcon?: 'left'|'right';
 	rel?: string;
 	target?: string;
-	linkElement?: ReactType;
+	linkElement?: any;
 	linkElementCustomProps?: { [prop: string]: any };
 	children?: ReactNode;
 }

@@ -4,7 +4,6 @@ import React, {
 	CSSProperties,
 	ReactElement,
 	ChangeEvent,
-	ReactType,
 	PureComponent,
 	cloneElement
 } from 'react';
@@ -101,7 +100,7 @@ export default class Input extends PureComponent<IProps> {
 
 		const leftAligned = alignIcon === 'left';
 
-		let Input: ReactType = 'input';
+		let Input: any = 'input';
 		let maskedInputProps = {};
 		let inputIcon: ReactElement<any> = null;
 

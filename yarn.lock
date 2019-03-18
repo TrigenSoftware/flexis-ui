@@ -1790,11 +1790,6 @@
     find-config "^1.0.0"
     murmurhash "^0.0.2"
 
-"@stylable/runtime@^0.1.8":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-0.1.13.tgz#f3bbf4b06b05076c681d77cff5e29069bd9a409e"
-  integrity sha512-pHkfmTMJp0gi6zhFT0YJ/9e1hsKelXtmeIlcv0g20cOy5a3utCCYVOeHMqtD+7t9w2Y+b3ZYQMBrBLwUWybWvQ==
-
 "@stylable/runtime@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-1.0.4.tgz#364011921a31a276d94b4afff6c22096e9d825be"
@@ -2108,18 +2103,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@16.8.8":
   version "16.8.8"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.8.tgz#4b60a469fd2469f7aa6eaa0f8cfbc51f6d76e662"
   integrity sha512-xwEvyet96u7WnB96kqY0yY7qxx/pEpU51QeACkKFtrgjjXITQn0oO1iwPEraXVgh10ZFPix7gs1R4OJXF7P5sg==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^2.2.0"
-
-"@types/react@16.7.7":
-  version "16.7.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.7.7.tgz#1e5e23e7dd922968ed4b484cdec00a5402c9f31b"
-  integrity sha512-dJiq7CKxD1XJ/GqmbnsQisFnzG4z5lntKBw9X9qeSrguxFbrrhGa8cK9s0ONBp8wL1EfGfofEDVhjen26U46pw==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
