@@ -1,6 +1,6 @@
 {
   "name": "@flexis/ui",
-  "version": "0.5.0-alpha",
+  "version": "0.6.0-alpha",
   "description": "Styleless React Components",
   "author": "dangreen",
   "license": "MIT",
@@ -30,13 +30,15 @@
     "styleless"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "^7.4.2",
     "@stylable/runtime": "^1.0.4",
     "@types/prop-types": "^15.5.5",
     "@types/react": "16.8.8",
     "@types/react-transition-group": "^2.0.13",
+    "color": "^3.1.0",
+    "core-js": "^3.0.0",
     "react-input-mask": "^2.0.3",
-    "react-transition-group": "^2.4.0",
+    "react-transition-group": "^2.7.0",
     "resize-observer": "^1.0.0-alpha.1",
     "throttle-debounce": "^2.0.1"
   },
@@ -47,7 +49,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@trigen/scripts": "^1.5.0",
+    "@trigen/scripts": "^1.6.2",
     "clean-publish": "^1.1.0",
     "del-cli": "^1.1.0",
     "prop-types": "^15.6.2",
