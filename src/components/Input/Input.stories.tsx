@@ -10,7 +10,7 @@ import Input from './';
 
 const { TestIcon } = global as any;
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :withIcon
@@ -21,14 +21,13 @@ Stylable API
 - ::border
 `;
 
-const events = {
+export const events = {
 	onChange: action('change'),
 	onFocus:  action('focus'),
 	onBlur:   action('blur')
 };
 
 storiesOf('Input', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -36,9 +35,9 @@ storiesOf('Input', module)
 		'with default state',
 		() => (
 			<Input
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
-				{...events}
 			/>
 		)
 	)
@@ -46,10 +45,10 @@ storiesOf('Input', module)
 		'with default value',
 		() => (
 			<Input
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				defaultValue='Default value'
-				{...events}
 			/>
 		)
 	)
@@ -57,10 +56,10 @@ storiesOf('Input', module)
 		'with value',
 		() => (
 			<Input
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				value={text('Value', 'Value')}
-				{...events}
 			/>
 		)
 	)
@@ -68,11 +67,11 @@ storiesOf('Input', module)
 		'with mask',
 		() => (
 			<Input
+				{...events}
 				placeholder={text('Placeholder', '')}
 				mask={text('Mask', '+7 (999) 999-99-99')}
 				disabled={boolean('Disabled', false)}
 				defaultValue='+7 (913) 421-04-04'
-				{...events}
 			/>
 		)
 	)
@@ -80,12 +79,12 @@ storiesOf('Input', module)
 		'with icon',
 		() => (
 			<Input
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				value={text('Value', 'Value')}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}
-				{...events}
 			/>
 		)
 	)
@@ -93,12 +92,12 @@ storiesOf('Input', module)
 		'with right aligned icon',
 		() => (
 			<Input
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				value={text('Value', 'Value')}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
-				{...events}
 			/>
 		)
 	);

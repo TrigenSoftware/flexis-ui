@@ -10,7 +10,7 @@ import ToggleSelect, {
 	ToggleSelectOption
 } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::option
@@ -19,12 +19,11 @@ Stylable API
 - ::button
 `;
 
-const events = {
+export const events = {
 	onChange: action('change')
 };
 
 storiesOf('ToggleSelect', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

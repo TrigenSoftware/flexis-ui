@@ -12,7 +12,7 @@ import CustomSelect, {
 	CustomSelectOption
 } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::dropdownContent
@@ -24,12 +24,11 @@ Stylable API
 - ::input
 `;
 
-const events = {
+export const events = {
 	onChange: action('change')
 };
 
 storiesOf('CustomSelect', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

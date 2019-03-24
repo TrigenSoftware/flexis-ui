@@ -8,7 +8,7 @@ import Modal, { setAppElement } from './';
 
 setAppElement('#root');
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :appear
@@ -24,12 +24,11 @@ Stylable API
 - ::closeButton
 `;
 
-const events = {
+export const events = {
 	onClose: action('close')
 };
 
 storiesOf('Modal', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

@@ -10,7 +10,7 @@ import Button from './';
 
 const { TestIcon } = global as any;
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :withIcon
@@ -21,14 +21,13 @@ Stylable API
 - ::iconContainer
 `;
 
-const events = {
+export const events = {
 	onClick: action('click'),
 	onFocus: action('focus'),
 	onBlur:  action('blur')
 };
 
 storiesOf('Button', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -36,8 +35,8 @@ storiesOf('Button', module)
 		'with text',
 		() => (
 			<Button
-				disabled={boolean('Disabled', false)}
 				{...events}
+				disabled={boolean('Disabled', false)}
 			>
 				{text('Label', 'Button')}
 			</Button>
@@ -47,10 +46,10 @@ storiesOf('Button', module)
 		'with icon',
 		() => (
 			<Button
+				{...events}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}
-				{...events}
 			>
 				{text('Label', 'Button')}
 			</Button>
@@ -60,10 +59,10 @@ storiesOf('Button', module)
 		'with right aligned icon',
 		() => (
 			<Button
+				{...events}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
-				{...events}
 			>
 				{text('Label', 'Button')}
 			</Button>
@@ -73,12 +72,12 @@ storiesOf('Button', module)
 		'with flex icon',
 		() => (
 			<Button
+				{...events}
 				style={{ width: '100px' }}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 				flexIcon={boolean('Flex icon', true)}
-				{...events}
 			>
 				{text('Label', 'Button')}
 			</Button>

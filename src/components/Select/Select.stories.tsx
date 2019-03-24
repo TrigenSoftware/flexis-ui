@@ -10,19 +10,18 @@ import Select, {
 	SelectOption
 } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::select
 - ::border
 `;
 
-const events = {
+export const events = {
 	onChange: action('change')
 };
 
 storiesOf('Select', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

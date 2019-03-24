@@ -7,20 +7,19 @@ import {
 import Input from '../Input';
 import FormGroup from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::label
 `;
 
-const events = {
+export const events = {
 	onChange: action('change'),
 	onFocus:  action('focus'),
 	onBlur:   action('blur')
 };
 
 storiesOf('FormGroup', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -32,8 +31,8 @@ storiesOf('FormGroup', module)
 				label={text('Label', 'Text label')}
 			>
 				<Input
-					defaultValue=''
 					{...events}
+					defaultValue=''
 				/>
 			</FormGroup>
 		)
@@ -50,8 +49,8 @@ storiesOf('FormGroup', module)
 				)}
 			>
 				<Input
-					defaultValue=''
 					{...events}
+					defaultValue=''
 				/>
 			</FormGroup>
 		)

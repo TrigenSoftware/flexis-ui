@@ -7,7 +7,7 @@ import {
 import Button from '../Button';
 import FileSelect from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :disabled
@@ -15,12 +15,11 @@ Stylable API
 - ::border
 `;
 
-const events = {
+export const events = {
 	onChange: action('change')
 };
 
 storiesOf('FileSelect', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

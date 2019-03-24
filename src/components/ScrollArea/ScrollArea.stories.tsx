@@ -11,7 +11,7 @@ import Table, {
 } from '../Table';
 import ScrollArea from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::scroller
@@ -29,7 +29,6 @@ const colsCount = 20;
 const rowsCount = 50;
 
 storiesOf('ScrollArea', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

@@ -7,7 +7,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import Paginator from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :disabled
@@ -22,7 +22,6 @@ const totalPagesCount = 30;
 const defaultPage = 15;
 
 storiesOf('Paginator', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

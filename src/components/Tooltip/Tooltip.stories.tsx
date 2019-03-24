@@ -6,7 +6,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import Tooltip from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::tooltip
@@ -21,7 +21,6 @@ Stylable API
 `;
 
 storiesOf('Tooltip', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

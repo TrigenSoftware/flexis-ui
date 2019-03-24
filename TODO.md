@@ -1,8 +1,4 @@
-{..events} in stories to top
-actions addon with object argument
-
 check a11y dropdowns display
-edit CODESTYLE
 
 MediaQuery
 Image

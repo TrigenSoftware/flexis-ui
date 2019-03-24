@@ -7,7 +7,7 @@ import Menu, {
 	MenuButton
 } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::button
@@ -15,14 +15,13 @@ Stylable API
 - ::itemSeparator
 `;
 
-const events = {
+export const events = {
 	onClick: action('click'),
 	onFocus: action('focus'),
 	onBlur:  action('blur')
 };
 
 storiesOf('Menu', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

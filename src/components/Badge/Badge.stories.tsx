@@ -8,7 +8,7 @@ import Badge, { BadgeContainer } from './';
 
 const { TestIcon } = global as any;
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - BadgeContainer
@@ -22,7 +22,6 @@ Stylable API
 `;
 
 storiesOf('Badge', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

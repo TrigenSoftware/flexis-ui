@@ -2,14 +2,13 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import VisuallyHidden from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :focusable
 `;
 
 storiesOf('VisuallyHidden', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

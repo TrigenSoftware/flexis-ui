@@ -6,21 +6,20 @@ import {
 } from '@storybook/addon-knobs/react';
 import Radio from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::radio
 - ::face
 `;
 
-const events = {
+export const events = {
 	onChange: action('change'),
 	onFocus:  action('focus'),
 	onBlur:   action('blur')
 };
 
 storiesOf('Radio', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -28,9 +27,9 @@ storiesOf('Radio', module)
 		'with default state',
 		() => (
 			<Radio
+				{...events}
 				disabled={boolean('Disabled', false)}
 				defaultChecked={false}
-				{...events}
 			/>
 		)
 	)
@@ -38,9 +37,9 @@ storiesOf('Radio', module)
 		'with default checked',
 		() => (
 			<Radio
+				{...events}
 				disabled={boolean('Disabled', false)}
 				defaultChecked
-				{...events}
 			/>
 		)
 	)
@@ -48,9 +47,9 @@ storiesOf('Radio', module)
 		'with unchecked state',
 		() => (
 			<Radio
+				{...events}
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', false)}
-				{...events}
 			/>
 		)
 	)
@@ -58,9 +57,9 @@ storiesOf('Radio', module)
 		'with checked state',
 		() => (
 			<Radio
+				{...events}
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', true)}
-				{...events}
 			/>
 		)
 	);

@@ -6,21 +6,20 @@ import {
 } from '@storybook/addon-knobs/react';
 import Switch from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::input
 - ::face
 `;
 
-const events = {
+export const events = {
 	onChange: action('change'),
 	onFocus:  action('focus'),
 	onBlur:   action('blur')
 };
 
 storiesOf('Switch', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -28,10 +27,10 @@ storiesOf('Switch', module)
 		'with default state',
 		() => (
 			<Switch
+				{...events}
 				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				defaultChecked={false}
-				{...events}
 			/>
 		)
 	)
@@ -39,10 +38,10 @@ storiesOf('Switch', module)
 		'with default checked',
 		() => (
 			<Switch
+				{...events}
 				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				defaultChecked
-				{...events}
 			/>
 		)
 	)
@@ -50,10 +49,10 @@ storiesOf('Switch', module)
 		'with unchecked state',
 		() => (
 			<Switch
+				{...events}
 				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', false)}
-				{...events}
 			/>
 		)
 	)
@@ -61,10 +60,10 @@ storiesOf('Switch', module)
 		'with checked state',
 		() => (
 			<Switch
+				{...events}
 				type='checkbox'
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', true)}
-				{...events}
 			/>
 		)
 	);

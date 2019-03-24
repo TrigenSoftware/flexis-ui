@@ -10,7 +10,7 @@ import Table, {
 	Order
 } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::head
@@ -27,7 +27,6 @@ const rowsCount = 10;
 const columnsCount = 3;
 
 storiesOf('Table', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

@@ -6,19 +6,18 @@ import {
 } from '@storybook/addon-knobs/react';
 import FileDrop from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :disabled
 - :dragOver
 `;
 
-const events = {
+export const events = {
 	onChange: action('change')
 };
 
 storiesOf('FileDrop', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

@@ -6,14 +6,13 @@ import {
 } from '@storybook/addon-knobs/react';
 import ConfirmModal from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::form
 `;
 
 storiesOf('ConfirmModal', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

@@ -6,21 +6,20 @@ import {
 } from '@storybook/addon-knobs/react';
 import Checkbox from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - ::checkbox
 - ::face
 `;
 
-const events = {
+export const events = {
 	onChange: action('change'),
 	onFocus:  action('focus'),
 	onBlur:   action('blur')
 };
 
 storiesOf('Checkbox', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -30,7 +29,6 @@ storiesOf('Checkbox', module)
 			<Checkbox
 				disabled={boolean('Disabled', false)}
 				defaultChecked={false}
-				{...events}
 			/>
 		)
 	)
@@ -38,9 +36,9 @@ storiesOf('Checkbox', module)
 		'with default checked',
 		() => (
 			<Checkbox
+				{...events}
 				disabled={boolean('Disabled', false)}
 				defaultChecked
-				{...events}
 			/>
 		)
 	)
@@ -48,9 +46,9 @@ storiesOf('Checkbox', module)
 		'with unchecked state',
 		() => (
 			<Checkbox
+				{...events}
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', false)}
-				{...events}
 			/>
 		)
 	)
@@ -58,9 +56,9 @@ storiesOf('Checkbox', module)
 		'with checked state',
 		() => (
 			<Checkbox
+				{...events}
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', true)}
-				{...events}
 			/>
 		)
 	);

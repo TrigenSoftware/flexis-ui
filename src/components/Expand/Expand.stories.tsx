@@ -9,7 +9,7 @@ import Expand, {
 	ExpandContent
 } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :active
@@ -19,7 +19,6 @@ Stylable API
 `;
 
 storiesOf('Expand', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

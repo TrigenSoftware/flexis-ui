@@ -7,7 +7,7 @@ import {
 } from '@storybook/addon-knobs/react';
 import Dropdown, { DropdownContent } from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :active
@@ -20,7 +20,6 @@ Stylable API
 `;
 
 storiesOf('Dropdown', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})

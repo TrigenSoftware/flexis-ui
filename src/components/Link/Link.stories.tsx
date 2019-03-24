@@ -10,7 +10,7 @@ import Link from './';
 
 const { TestIcon } = global as any;
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 - :withIcon
@@ -21,14 +21,13 @@ Stylable API
 - ::iconContainer
 `;
 
-const events = {
+export const events = {
 	onClick: action('click'),
 	onFocus: action('focus'),
 	onBlur:  action('blur')
 };
 
 storiesOf('Link', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -36,8 +35,8 @@ storiesOf('Link', module)
 		'with text',
 		() => (
 			<Link
-				href='#'
 				{...events}
+				href='#'
 			>
 				{text('Label', 'Link')}
 			</Link>
@@ -47,10 +46,10 @@ storiesOf('Link', module)
 		'with icon',
 		() => (
 			<Link
+				{...events}
 				href='#'
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'left')}
-				{...events}
 			>
 				{text('Label', 'Link')}
 			</Link>
@@ -60,10 +59,10 @@ storiesOf('Link', module)
 		'with right aligned icon',
 		() => (
 			<Link
+				{...events}
 				href='#'
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
-				{...events}
 			>
 				{text('Label', 'Link')}
 			</Link>
@@ -73,12 +72,12 @@ storiesOf('Link', module)
 		'with flex icon',
 		() => (
 			<Link
+				{...events}
 				style={{ width: '100px' }}
 				href='#'
 				icon={<TestIcon/>}
 				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 				flexIcon={boolean('Flex icon', true)}
-				{...events}
 			>
 				{text('Label', 'Link')}
 			</Link>

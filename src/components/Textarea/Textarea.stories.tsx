@@ -7,19 +7,18 @@ import {
 } from '@storybook/addon-knobs/react';
 import Textarea from './';
 
-const stylableApi = `
+export const stylableApi = `
 Stylable API
 ---
 `;
 
-const events = {
+export const events = {
 	onChange: action('change'),
 	onFocus:  action('focus'),
 	onBlur:   action('blur')
 };
 
 storiesOf('Textarea', module)
-	// @ts-ignore
 	.addParameters({
 		info: stylableApi
 	})
@@ -27,10 +26,10 @@ storiesOf('Textarea', module)
 		'with default state',
 		() => (
 			<Textarea
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				defaultValue=''
-				{...events}
 			/>
 		)
 	)
@@ -38,10 +37,10 @@ storiesOf('Textarea', module)
 		'with default value',
 		() => (
 			<Textarea
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				defaultValue='Default value'
-				{...events}
 			/>
 		)
 	)
@@ -49,10 +48,10 @@ storiesOf('Textarea', module)
 		'with value',
 		() => (
 			<Textarea
+				{...events}
 				placeholder={text('Placeholder', '')}
 				disabled={boolean('Disabled', false)}
 				value={text('Value', 'Value')}
-				{...events}
 			/>
 		)
 	);
