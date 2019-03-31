@@ -27,6 +27,7 @@ storiesOf('Checkbox', module)
 		'with default state',
 		() => (
 			<Checkbox
+				{...events}
 				disabled={boolean('Disabled', false)}
 				defaultChecked={false}
 			/>
