@@ -65,11 +65,14 @@ export class TableCell extends PureComponent<ITableCellProps> {
 
 		const Cell = head ? 'th' : 'td';
 		const isOrder = head && typeof order === 'number';
-		const orderButton = isOrder ? buttonRole : {};
+		const buttonLikeProps = isOrder ? buttonRole : {};
+		const buttonLikeListeners = isOrder
+			? { onKeyPress: this.onKeyPress }
+			: {};
 
 		return (
 			<Cell
-				{...orderButton}
+				{...buttonLikeProps}
 				{...getHtmlProps(props)}
 				{...stylesheet('cell', {
 					head,
@@ -77,8 +80,8 @@ export class TableCell extends PureComponent<ITableCellProps> {
 					orderAsc:  isOrder && order === 1,
 					orderDesc: isOrder && order === -1
 				}, props)}
+				{...buttonLikeListeners}
 				onClick={this.onOrderChange}
-				onKeyPress={this.onKeyPress}
 			>
 				{children}
 			</Cell>
@@ -117,18 +120,15 @@ export class TableCell extends PureComponent<ITableCellProps> {
 	private onKeyPress(event: KeyboardEvent<HTMLTableCellElement>) {
 
 		const {
+			onKeyPress
+		} = this.props;
+		const {
 			key
 		} = event;
 
-		if (key !== ' ' && key !== 'Enter') {
-			return;
+		if (key === ' ' || key === 'Enter') {
+			this.onOrderChange(null);
 		}
-
-		const {
-			onKeyPress
-		} = this.props;
-
-		this.onOrderChange(null);
 
 		if (typeof onKeyPress === 'function') {
 			onKeyPress(event);
