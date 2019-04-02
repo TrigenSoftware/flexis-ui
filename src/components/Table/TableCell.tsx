@@ -2,6 +2,7 @@ import React, {
 	AllHTMLAttributes,
 	ReactNode,
 	MouseEvent,
+	KeyboardEvent,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
@@ -31,6 +32,10 @@ export type ITableCellProps = CombinePropsAndAttributes<
 	AllHTMLAttributes<HTMLTableCellElement>
 >;
 
+const buttonRole = {
+	role:     'button',
+	tabIndex: '0'
+};
 const orderValues: number[] = Object.values(Order).filter(_ => typeof _ === 'number');
 
 export class TableCell extends PureComponent<ITableCellProps> {
@@ -59,17 +64,21 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		} = this.props;
 
 		const Cell = head ? 'th' : 'td';
+		const isOrder = head && typeof order === 'number';
+		const orderButton = isOrder ? buttonRole : {};
 
 		return (
 			<Cell
+				{...orderButton}
 				{...getHtmlProps(props)}
 				{...stylesheet('cell', {
 					head,
-					orderNone: head && order === 0,
-					orderAsc:  head && order === 1,
-					orderDesc: head && order === -1
+					orderNone: isOrder && order === 0,
+					orderAsc:  isOrder && order === 1,
+					orderDesc: isOrder && order === -1
 				}, props)}
 				onClick={this.onOrderChange}
+				onKeyPress={this.onKeyPress}
 			>
 				{children}
 			</Cell>
@@ -101,6 +110,28 @@ export class TableCell extends PureComponent<ITableCellProps> {
 
 		if (typeof onClick === 'function') {
 			onClick(event);
+		}
+	}
+
+	@Listener()
+	private onKeyPress(event: KeyboardEvent<HTMLTableCellElement>) {
+
+		const {
+			key
+		} = event;
+
+		if (key !== ' ' && key !== 'Enter') {
+			return;
+		}
+
+		const {
+			onKeyPress
+		} = this.props;
+
+		this.onOrderChange(null);
+
+		if (typeof onKeyPress === 'function') {
+			onKeyPress(event);
 		}
 	}
 }
