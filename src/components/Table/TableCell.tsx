@@ -31,7 +31,7 @@ export type ITableCellProps = CombinePropsAndAttributes<
 	AllHTMLAttributes<HTMLTableCellElement>
 >;
 
-const orderValues: number[] = Object.values(Order);
+const orderValues: number[] = Object.values(Order).filter(_ => typeof _ === 'number');
 
 export class TableCell extends PureComponent<ITableCellProps> {
 
