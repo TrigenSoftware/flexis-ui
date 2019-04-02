@@ -97,9 +97,6 @@ export default class Input extends PureComponent<IProps> {
 			alwaysShowMask,
 			...props
 		} = this.props;
-
-		const leftAligned = alignIcon === 'left';
-
 		let Input: any = 'input';
 		let maskedInputProps = {};
 		let inputIcon: ReactElement<any> = null;
@@ -130,7 +127,6 @@ export default class Input extends PureComponent<IProps> {
 				}, props)}
 				style={style}
 			>
-				{leftAligned && inputIcon}
 				<Input
 					{...getHtmlProps(props)}
 					{...stylesheet('input')}
@@ -144,7 +140,7 @@ export default class Input extends PureComponent<IProps> {
 				<div
 					{...stylesheet('border')}
 				/>
-				{!leftAligned && inputIcon}
+				{inputIcon}
 			</label>
 		);
 	}

@@ -12,6 +12,10 @@
 		rightAlign;
 }
 
+.icon:leftAlign {
+	order: -1;
+}
+
 .input {
 	display: block;
 	width: 100%;
