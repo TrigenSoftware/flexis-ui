@@ -102,7 +102,6 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			disabled,
 			...props
 		} = this.props;
-
 		const {
 			page
 		} = this.state;
@@ -139,7 +138,6 @@ export default class Paginator extends PureComponent<IProps, IState> {
 		const {
 			total
 		} = this.props;
-
 		const pages: ReactElement<any>[] = Array(Math.min(visiblePages, total));
 		const pagesLength = pages.length;
 
@@ -158,11 +156,9 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			disabled,
 			mapPagesLabel
 		} = this.props;
-
 		const {
 			page
 		} = this.state;
-
 		let delta = 1;
 		let doStartDots = false;
 		let doEndDots = true;
@@ -185,7 +181,6 @@ export default class Paginator extends PureComponent<IProps, IState> {
 		let separate = false;
 		let num = visiblePagePlace + delta;
 		let text = String(num);
-
 		const active = num - 1 === page;
 
 		switch (visiblePagePlace) {

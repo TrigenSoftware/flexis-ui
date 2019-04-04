@@ -97,11 +97,9 @@ export default class Expand extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			active
 		} = this.state;
-
 		const [
 			title,
 			content
@@ -154,7 +152,6 @@ export default class Expand extends PureComponent<IProps, IState> {
 		const {
 			active
 		} = this.state;
-
 		const nextActive = typeof forceState === 'boolean'
 			? forceState
 			: !active;

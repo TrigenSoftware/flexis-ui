@@ -62,7 +62,6 @@ export class TableCell extends PureComponent<ITableCellProps> {
 			children,
 			...props
 		} = this.props;
-
 		const Cell = head ? 'th' : 'td';
 		const isOrder = head && typeof order === 'number';
 		const buttonLikeProps = isOrder ? buttonRole : {};

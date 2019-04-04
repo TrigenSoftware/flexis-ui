@@ -138,14 +138,11 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			value
 		} = this.state;
-
 		let label = multiple ? [] : '';
 		let activeDescendant: string = null;
-
 		const [
 			selectFace,
 			...options
@@ -163,13 +160,10 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 				value: optionValue,
 				children: optionLabel
 			} = child.props;
-
 			const option = typeof optionValue === 'undefined'
 				? optionLabel
 				: optionValue;
-
 			const checked = isCurrentValue(multiple, value, option);
-
 			const props: IOptionProps = {
 				type:     multiple ? 'checkbox' : 'radio',
 				value:    option,
@@ -250,7 +244,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			placeholder,
 			disabled
 		} = this.props;
-
 		const {
 			children,
 			...props
@@ -292,7 +285,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		const {
 			multiple
 		} = this.props;
-
 		const {
 			dropdownRef
 		} = this;
@@ -320,7 +312,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		const {
 			value
 		} = this.state;
-
 		const nextValue = getNextValue(multiple, value, inputNextValue);
 
 		if (nextValue === value) {

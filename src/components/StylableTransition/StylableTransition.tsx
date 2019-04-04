@@ -76,11 +76,9 @@ export default class StylableTransition extends Component<IProps> {
 		const {
 			states
 		} = props;
-
 		const stylableStatesSource = typeof states === 'function'
 			? states('root', defaultStylableStates)
 			: states;
-
 		const stylableStates = {
 			appear: {},
 			enter:  {},

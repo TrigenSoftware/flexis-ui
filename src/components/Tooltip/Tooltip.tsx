@@ -80,7 +80,6 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			active
 		} = this.state;
@@ -167,20 +166,17 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 			placement,
 			align
 		} = this.props;
-
 		const {
 			top: elementTop,
 			left: elementLeft,
 			width: elementWidth,
 			height: elementHeight
 		} = elementRef.getBoundingClientRect();
-
 		const {
 			offsetWidth: tooltipWidth,
 			offsetHeight: tooltipHeight,
 			style
 		} = tooltipRef;
-
 		let top = 0;
 		let left = 0;
 

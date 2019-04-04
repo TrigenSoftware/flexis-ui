@@ -14,18 +14,15 @@ export default function setOverflowOffset(
 		clientWidth,
 		clientHeight
 	} = document.documentElement;
-
 	const {
 		style
 	} = element;
-
 	const {
 		top,
 		left,
 		width,
 		height
 	} = element.getBoundingClientRect();
-
 	const right = clientWidth - (left + width);
 	const bottom = clientHeight - (top + height);
 

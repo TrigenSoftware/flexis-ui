@@ -76,7 +76,6 @@ export default class Link extends PureComponent<IProps> {
 			linkElementCustomProps,
 			...props
 		} = this.props;
-
 		const leftAligned = alignIcon === 'left';
 		let linkIcon: ReactElement<any> = null;
 

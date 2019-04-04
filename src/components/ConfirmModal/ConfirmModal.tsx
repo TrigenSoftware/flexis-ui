@@ -36,7 +36,6 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			active
 		} = this.state;

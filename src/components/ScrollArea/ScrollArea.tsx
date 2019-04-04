@@ -82,7 +82,6 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			topShadow,
 			rightShadow,
@@ -160,7 +159,6 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 		const {
 			y2xScroll
 		} = this.props;
-
 		const {
 			deltaY,
 			currentTarget
@@ -205,7 +203,6 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 			hideXScrollbar,
 			hideYScrollbar
 		} = this.props;
-
 		const xOffset = element.offsetHeight - element.clientHeight;
 		const yOffset = element.offsetWidth - element.clientWidth;
 

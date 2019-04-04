@@ -116,13 +116,10 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			value
 		} = this.state;
-
 		let activeDescendant: string = null;
-
 		const options = Children.map(children, (child: ReactElement<any>) => {
 
 			if (!child) {
@@ -133,13 +130,10 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 				value: optionValue,
 				children: optionLabel
 			} = child.props;
-
 			const option = typeof optionValue === 'undefined'
 				? optionLabel
 				: optionValue;
-
 			const checked = isCurrentValue(multiple, value, option);
-
 			const props: IOptionProps = {
 				type:     multiple ? 'checkbox' : 'radio',
 				value:    option,
@@ -195,7 +189,6 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 		const {
 			value
 		} = this.state;
-
 		const nextValue = getNextValue(multiple, value, inputNextValue);
 
 		if (nextValue === value) {

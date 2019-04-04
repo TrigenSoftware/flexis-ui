@@ -58,9 +58,7 @@ export default class Button extends PureComponent<IProps> {
 			children,
 			...props
 		} = this.props;
-
 		const leftAligned = alignIcon === 'left';
-
 		let buttonIcon: ReactElement<any> = null;
 
 		if (icon !== null) {

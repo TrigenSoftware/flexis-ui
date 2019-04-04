@@ -8,7 +8,6 @@ export function blockScroll(element = document.body) {
 	const {
 		documentElement
 	} = document;
-
 	let currentElement = element;
 	let restore: [HTMLElement, string][] = [];
 

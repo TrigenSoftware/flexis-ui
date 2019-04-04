@@ -117,11 +117,9 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			active
 		} = this.state;
-
 		const [
 			toggler,
 			content,
@@ -241,7 +239,6 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		const {
 			active
 		} = this.state;
-
 		const nextActive = typeof forceState === 'boolean'
 			? forceState
 			: !active;
@@ -267,7 +264,6 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			elementRef,
 			contentRef
 		} = this;
-
 		const {
 			active
 		} = this.state;
@@ -308,19 +304,16 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		const {
 			align
 		} = this.props;
-
 		const {
 			top: elementTop,
 			left: elementLeft,
 			width: elementWidth,
 			height: elementHeight
 		} = elementRef.getBoundingClientRect();
-
 		const {
 			offsetWidth: tooltipWidth,
 			style
 		} = contentRef;
-
 		let top = 0;
 		let left = 0;
 
