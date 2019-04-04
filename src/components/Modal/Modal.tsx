@@ -84,6 +84,8 @@ export default class Modal extends PureComponent<IProps> {
 			transitionDuration,
 			...props
 		} = this.props;
+		const rootStylesheet = stylesheet('root', {}, props);
+		const rootStylesheetPropNames = Object.keys(rootStylesheet);
 
 		return createPortal((
 			<StylableTransition
@@ -94,16 +96,16 @@ export default class Modal extends PureComponent<IProps> {
 				unmountOnExit
 			>
 				<div
-					{...stylesheet('root')}
+					{...rootStylesheet}
 					onClick={onClose}
 				>
 					<div
 						role='dialog'
 						aria-modal
-						{...getHtmlProps(props)}
+						{...getHtmlProps(props, rootStylesheetPropNames)}
 						{...stylesheet('window', {
 							centered
-						}, props)}
+						})}
 						onClick={this.onIgnoredEvent}
 					>
 						{closeButton && cloneElement(
