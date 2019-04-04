@@ -52,7 +52,6 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 			children,
 			...props
 		} = this.props;
-
 		const {
 			dragOver
 		} = this.state;
