@@ -12,6 +12,8 @@ Stylable API
 - ::form
 `;
 
+let confirmRef = null;
+
 storiesOf('ConfirmModal', module)
 	.addParameters({
 		info: stylableApi
@@ -19,8 +21,6 @@ storiesOf('ConfirmModal', module)
 	.add(
 		'with active state',
 		() => {
-
-			let confirmRef = null;
 
 			button('Show', async () => {
 
