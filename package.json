@@ -1,6 +1,6 @@
 {
   "name": "@flexis/ui",
-  "version": "0.7.0-alpha",
+  "version": "0.7.1-alpha",
   "description": "Styleless React Components",
   "author": "dangreen",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "styleless"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.4.2",
+    "@babel/runtime": "^7.4.3",
     "@stylable/runtime": "^1.0.4",
     "@types/prop-types": "^15.5.5",
     "@types/react": "16.8.8",
@@ -47,9 +47,9 @@
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@trigen/scripts": "^1.7.2",
-    "clean-publish": "^1.1.0",
+    "@babel/cli": "^7.4.3",
+    "@trigen/scripts": "^1.9.0",
+    "clean-publish": "^1.1.2",
     "del-cli": "^1.1.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
