@@ -19,7 +19,7 @@ storiesOf('ConfirmModal', module)
 		info: stylableApi
 	})
 	.add(
-		'with active state',
+		'with show demo',
 		() => {
 
 			button('Show', async () => {
