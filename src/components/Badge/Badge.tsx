@@ -41,12 +41,12 @@ export default class Badge extends PureComponent<IProps> {
 		} = this.props;
 
 		return (
-			<label
+			<span
 				{...getHtmlProps(props)}
 				{...stylesheet('root', {}, props)}
 			>
 				{children}
-			</label>
+			</span>
 		);
 	}
 }
