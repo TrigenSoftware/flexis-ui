@@ -1,5 +1,9 @@
-import React, { PureComponent } from 'react';
-import Button, { IProps as IButtonProps } from '../Button';
+import React, {
+	PureComponent
+} from 'react';
+import Button, {
+	IProps as IButtonProps
+} from '../Button';
 import stylesheet from './Menu.st.css';
 
 export type IMenuButtonProps = IButtonProps;

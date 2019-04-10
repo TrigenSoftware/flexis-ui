@@ -95,13 +95,13 @@ export default class Link extends PureComponent<IProps> {
 
 		return (
 			<LinkElement
+				ref={elementRef}
 				{...getHtmlProps(props)}
 				{...stylesheet('root', {
 					withIcon: Boolean(linkIcon),
 					flexIcon
 				}, props)}
 				{...linkElementCustomProps}
-				ref={elementRef}
 				target={target}
 				rel={target === '_blank' && rel === null
 					? safeTargetBlankRel

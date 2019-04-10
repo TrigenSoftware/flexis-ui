@@ -1,4 +1,6 @@
-import { debounce } from 'throttle-debounce';
+import {
+	debounce
+} from 'throttle-debounce';
 
 /**
  * Decortor for debouncify class method.

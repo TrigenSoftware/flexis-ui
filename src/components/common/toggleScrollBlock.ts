@@ -1,4 +1,6 @@
-import { blockScroll } from '../../helpers';
+import {
+	blockScroll
+} from '../../helpers';
 
 /**
  * Toggle scroll blocking.

@@ -43,9 +43,9 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 
 		return (
 			<div
+				ref={elementRef}
 				tabIndex={0}
 				{...getHtmlProps(props)}
-				ref={elementRef}
 				onClick={this.onClick}
 			>
 				{children}

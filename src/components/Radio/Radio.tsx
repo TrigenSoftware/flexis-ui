@@ -71,9 +71,9 @@ export default class Radio extends PureComponent<IProps> {
 				style={style}
 			>
 				<input
+					ref={elementRef}
 					{...getHtmlProps(props)}
 					{...stylesheet('radio')}
-					ref={elementRef}
 					type='radio'
 					onChange={this.onChange}
 					value={value}

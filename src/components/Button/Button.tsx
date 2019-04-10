@@ -77,12 +77,12 @@ export default class Button extends PureComponent<IProps> {
 
 		return (
 			<button
+				ref={elementRef}
 				{...getHtmlProps(props)}
 				{...stylesheet('root', {
 					withIcon: Boolean(buttonIcon),
 					flexIcon
 				}, props)}
-				ref={elementRef}
 			>
 				{buttonIcon ? (
 					<div

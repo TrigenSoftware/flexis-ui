@@ -1,6 +1,10 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import {
+	storiesOf
+} from '@storybook/react';
+import {
+	action
+} from '@storybook/addon-actions';
 import {
 	text,
 	boolean,
@@ -8,7 +12,9 @@ import {
 } from '@storybook/addon-knobs/react';
 import Input from './';
 
-const { TestIcon } = global as any;
+const {
+	TestIcon
+} = global as any;
 
 export const stylableApi = `
 Stylable API

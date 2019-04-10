@@ -1,10 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import {
+	storiesOf
+} from '@storybook/react';
+import {
+	action
+} from '@storybook/addon-actions';
 import {
 	boolean
 } from '@storybook/addon-knobs/react';
-import Modal, { setAppElement } from './';
+import Modal, {
+	setAppElement
+} from './';
 
 setAppElement('#root');
 

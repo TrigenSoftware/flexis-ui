@@ -1,5 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import {
+	storiesOf
+} from '@storybook/react';
 import VisuallyHidden from './';
 
 export const stylableApi = `

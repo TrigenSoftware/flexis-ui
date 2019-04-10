@@ -204,9 +204,9 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 
 		return (
 			<Dropdown
+				ref={this.onDropdownRef}
 				{...props as IDropdownProps}
 				{...stylesheet('root', {}, props)}
-				ref={this.onDropdownRef}
 				style={style}
 				disabled={disabled}
 			>

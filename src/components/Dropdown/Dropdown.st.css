@@ -10,6 +10,7 @@
 	-st-states:
 		/* Basic states */
 		active,
+		offset,
 		/* Align states */
 		leftAlign,
 		centerAlign,

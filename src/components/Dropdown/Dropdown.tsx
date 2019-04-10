@@ -8,7 +8,9 @@ import React, {
 	Children,
 	cloneElement
 } from 'react';
-import { createPortal } from 'react-dom';
+import {
+	createPortal
+} from 'react-dom';
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
@@ -17,8 +19,10 @@ import {
 	getAriaLabelProps,
 	getHtmlProps
 } from '../../helpers';
+import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
+import toggleAttribute from '../common/toggleAttribute';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
@@ -43,6 +47,12 @@ interface IState {
 
 const HALF = 2;
 const ESC_KEY = 27;
+
+const contentOffsetState = getStylesheetState(
+	stylesheet('content', {
+		offset: true
+	})
+);
 
 export default class Dropdown extends PureComponent<IProps, IState> {
 
@@ -128,12 +138,12 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 
 		return (
 			<span
+				ref={this.onElementRef}
 				{...getHtmlProps(props)}
 				{...stylesheet('root', {
 					active,
 					disabled
 				}, props)}
-				ref={this.onElementRef}
 				onClick={this.onToggle}
 				aria-disabled={disabled}
 			>
@@ -339,6 +349,8 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		style.top = `${top}px`;
 		style.left = `${left}px`;
 
-		setOverflowOffset(contentRef, top, left);
+		const withOffset = setOverflowOffset(contentRef, top, left);
+
+		toggleAttribute(withOffset, contentOffsetState, contentRef);
 	}
 }

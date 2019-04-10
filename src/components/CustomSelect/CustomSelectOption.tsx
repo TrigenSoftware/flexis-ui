@@ -9,7 +9,9 @@ import {
 	CombinePropsAndAttributes,
 	Listener
 } from '../../helpers';
-import Button, { IProps as IButtonProps } from '../Button';
+import Button, {
+	IProps as IButtonProps
+} from '../Button';
 import stylesheet from './CustomSelect.st.css';
 
 interface ISelfProps {

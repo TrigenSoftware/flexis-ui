@@ -1,4 +1,6 @@
-import { PureComponent } from 'react';
+import {
+	PureComponent
+} from 'react';
 import PropTypes from 'prop-types';
 
 export interface ICustomSelectFaceProps {
