@@ -1,5 +1,6 @@
 import React, {
 	AllHTMLAttributes,
+	ReactChild,
 	ReactElement,
 	ChangeEvent,
 	PureComponent,
@@ -14,9 +15,14 @@ import {
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
-import stylesheet from './ToggleSelect.st.css';
+import {
+	isCustomFlatSelectOptionFace,
+	onCustomFlatSelectOptionFaceClick
+} from './CustomFlatSelectOptionFace';
+import stylesheet from './CustomFlatSelect.st.css';
 
-export * from './ToggleSelectOption';
+export * from './CustomFlatSelectOptionFace';
+export * from './CustomFlatSelectOption';
 
 interface ISelfProps {
 	id?: string;
@@ -49,7 +55,7 @@ interface IState {
 	value: any;
 }
 
-export default class ToggleSelect extends PureComponent<IProps, IState> {
+export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		id:           PropTypes.string,
@@ -120,9 +126,15 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 			value
 		} = this.state;
 		let activeDescendant: string = null;
+		let optionFace: ReactElement<any> = null;
 		const options = Children.map(children, (child: ReactElement<any>) => {
 
 			if (!child) {
+				return null;
+			}
+
+			if (child.type[isCustomFlatSelectOptionFace]) {
+				optionFace = child;
 				return null;
 			}
 
@@ -154,7 +166,8 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 
 			return cloneElement(
 				child,
-				props
+				props,
+				this.face(optionFace, optionLabel)
 			);
 		});
 
@@ -168,6 +181,32 @@ export default class ToggleSelect extends PureComponent<IProps, IState> {
 			>
 				{options}
 			</ul>
+		);
+	}
+
+	private face(faceChild: ReactElement<any>, label: ReactChild): ReactChild {
+
+		const {
+			disabled
+		} = this.props;
+
+		if (!faceChild) {
+			return label;
+		}
+
+		const {
+			children: renderFace,
+			...props
+		} = faceChild.props;
+		const faceProps = {
+			onClick: onCustomFlatSelectOptionFaceClick,
+			disabled,
+			...props
+		};
+
+		return renderFace(
+			label,
+			faceProps
 		);
 	}
 

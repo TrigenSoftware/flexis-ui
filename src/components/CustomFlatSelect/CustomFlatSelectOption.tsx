@@ -1,18 +1,16 @@
 import React, {
+	AllHTMLAttributes,
 	ReactNode,
 	ChangeEvent,
-	MouseEvent,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener
+	Listener,
+	getHtmlProps
 } from '../../helpers';
-import Button, {
-	IProps as IButtonProps
-} from '../Button';
-import stylesheet from './ToggleSelect.st.css';
+import stylesheet from './CustomFlatSelect.st.css';
 
 interface ISelfProps {
 	id?: string;
@@ -25,12 +23,12 @@ interface ISelfProps {
 	onChange?(value: any, event: ChangeEvent);
 }
 
-export type IToggleSelectOptionProps = CombinePropsAndAttributes<
+export type ICustomFlatSelectOptionProps = CombinePropsAndAttributes<
 	ISelfProps,
-	IButtonProps
+	AllHTMLAttributes<HTMLLIElement>
 >;
 
-export class ToggleSelectOption extends PureComponent<IToggleSelectOptionProps> {
+export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptionProps> {
 
 	static propTypes = {
 		id:       PropTypes.string,
@@ -69,12 +67,11 @@ export class ToggleSelectOption extends PureComponent<IToggleSelectOptionProps> 
 			...props
 		} = this.props;
 
-		Reflect.deleteProperty(props, 'onChange');
-
 		return (
 			<li
 				id={id}
 				role='option'
+				{...getHtmlProps(props, ['onChange'])}
 				{...stylesheet('option')}
 			>
 				<label
@@ -89,15 +86,7 @@ export class ToggleSelectOption extends PureComponent<IToggleSelectOptionProps> 
 						value={value}
 						disabled={disabled}
 					/>
-					<Button
-						{...props as IButtonProps}
-						{...stylesheet('button', {}, props)}
-						type='button'
-						disabled={disabled}
-						onClick={this.onButtonClick}
-					>
-						{children}
-					</Button>
+					{children}
 				</label>
 			</li>
 		);
@@ -117,12 +106,5 @@ export class ToggleSelectOption extends PureComponent<IToggleSelectOptionProps> 
 				event
 			);
 		}
-	}
-
-	private onButtonClick(event: MouseEvent<HTMLButtonElement>) {
-
-		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
-
-		input.click();
 	}
 }

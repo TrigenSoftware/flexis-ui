@@ -1,4 +1,16 @@
 
+:import {
+	-st-from: '../CustomFlatSelect/CustomFlatSelect.st.css';
+	-st-named:
+		option,
+		label,
+		input;
+}
+
+@custom-selector :--option .options .option;
+@custom-selector :--label .options .label;
+@custom-selector :--input .options .input;
+
 .root {
 	/* empty block */
 }
@@ -12,23 +24,5 @@
 }
 
 .options {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.option {
-	/* empty block */
-}
-
-.label {
-	/* empty block */
-}
-
-.input {
-	/* empty block */
-}
-
-.button {
 	/* empty block */
 }
