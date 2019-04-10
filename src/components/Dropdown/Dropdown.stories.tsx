@@ -137,6 +137,7 @@ storiesOf('Dropdown', module)
 					onToggle={action('toggle')}
 					align={select('Align', ['left', 'center', 'right'], 'left')}
 					disabled={boolean('Disabled', false)}
+					blockScroll={boolean('Block scroll', true)}
 				>
 					<button>
 						Click me!
@@ -182,6 +183,7 @@ storiesOf('Dropdown', module)
 							onToggle={action('toggle')}
 							align={select('Align', ['left', 'center', 'right'], 'left')}
 							disabled={boolean('Disabled', false)}
+							blockScroll={boolean('Block scroll', true)}
 						>
 							<button>
 								Click me!

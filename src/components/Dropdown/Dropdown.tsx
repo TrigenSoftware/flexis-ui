@@ -31,6 +31,7 @@ interface ISelfProps {
 	active?: boolean;
 	defaultActive?: boolean;
 	disabled?: boolean;
+	blockScroll?: boolean;
 	align?: 'left'|'center'|'right';
 	children: ReactElement<any>[];
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
@@ -61,6 +62,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		defaultActive: PropTypes.bool,
 		active:        PropTypes.bool,
 		disabled:      PropTypes.bool,
+		blockScroll:   PropTypes.bool,
 		align:         PropTypes.oneOf([
 			'left',
 			'center',
@@ -76,6 +78,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		defaultActive: false,
 		active:        null,
 		disabled:      false,
+		blockScroll:   true,
 		align:         'left'
 	};
 
@@ -275,6 +278,9 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			contentRef
 		} = this;
 		const {
+			blockScroll
+		} = this.props;
+		const {
 			active
 		} = this.state;
 
@@ -285,11 +291,13 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			(elementRef.firstElementChild as HTMLElement).focus();
 		}
 
-		this.unblockScroll = toggleScrollBlock(
-			active,
-			this.unblockScroll,
-			elementRef
-		);
+		if (blockScroll) {
+			this.unblockScroll = toggleScrollBlock(
+				active,
+				this.unblockScroll,
+				elementRef
+			);
+		}
 	}
 
 	private removeEffects() {

@@ -1,5 +1,3 @@
-blockScroll prop
-tooltip "moved" state 
 check a11y dropdowns display
 
 MediaQuery
