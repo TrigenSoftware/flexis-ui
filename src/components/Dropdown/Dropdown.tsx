@@ -329,7 +329,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			height: elementHeight
 		} = elementRef.getBoundingClientRect();
 		const {
-			offsetWidth: tooltipWidth,
+			offsetWidth: contentWidth,
 			style
 		} = contentRef;
 		let top = 0;
@@ -348,12 +348,13 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 				break;
 
 			case 'right':
-				left = elementLeft + elementWidth - tooltipWidth;
+				left = elementLeft + elementWidth - contentWidth;
 				break;
 
 			default:
 		}
 
+		style.minWidth = `${elementWidth}px`;
 		style.top = `${top}px`;
 		style.left = `${left}px`;
 
