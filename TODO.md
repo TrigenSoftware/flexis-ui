@@ -1,4 +1,3 @@
-blockScroll prop
 check a11y dropdowns display
 
 MediaQuery

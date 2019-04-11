@@ -77,9 +77,9 @@ export default class Switch extends PureComponent<IProps> {
 				style={style}
 			>
 				<input
+					ref={elementRef}
 					{...getHtmlProps(props)}
 					{...stylesheet('input')}
-					ref={elementRef}
 					type={type}
 					onChange={this.onChange}
 					value={value}

@@ -3,8 +3,12 @@ import React, {
 	MouseEvent,
 	PureComponent
 } from 'react';
-import { Listener } from '../../helpers';
-import Modal, { IProps as IModalProps } from '../Modal';
+import {
+	Listener
+} from '../../helpers';
+import Modal, {
+	IProps as IModalProps
+} from '../Modal';
 import stylesheet from './ConfirmModal.st.css';
 
 export type IProps = IModalProps;

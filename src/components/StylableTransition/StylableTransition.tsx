@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
+import React, {
+	Component
+} from 'react';
 import PropTypes from 'prop-types';
-import Transition, { TransitionProps } from 'react-transition-group/Transition';
-import { RuntimeStylesheet } from '@stylable/runtime';
+import Transition, {
+	TransitionProps
+} from 'react-transition-group/Transition';
+import {
+	RuntimeStylesheet
+} from '@stylable/runtime';
 import {
 	CombinePropsAndAttributes,
 	Listener
@@ -64,9 +70,9 @@ export default class StylableTransition extends Component<IProps> {
 	};
 
 	private readonly stylableStates: {
-		appear: { [phase: string]: string },
-		enter: { [phase: string]: string },
-		exit: { [phase: string]: string }
+		appear: Record<string, string>,
+		enter: Record<string, string>,
+		exit: Record<string, string>
 	};
 
 	constructor(props) {
@@ -102,7 +108,9 @@ export default class StylableTransition extends Component<IProps> {
 
 	render() {
 
-		const props = { ...this.props };
+		const props = {
+			...this.props
+		};
 
 		Reflect.deleteProperty(props, 'states');
 

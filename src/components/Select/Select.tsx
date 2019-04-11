@@ -83,9 +83,9 @@ export default class Select extends PureComponent<IProps> {
 				style={style}
 			>
 				<select
+					ref={elementRef}
 					{...getHtmlProps(props, ['multiple'])}
 					{...stylesheet('select')}
-					ref={elementRef}
 					onChange={this.onChange}
 				>
 					{children}

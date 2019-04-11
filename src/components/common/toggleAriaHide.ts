@@ -1,4 +1,6 @@
-import { ariaHide } from '../../helpers';
+import {
+	ariaHide
+} from '../../helpers';
 
 /**
  * Toggle `aria-hidden`.

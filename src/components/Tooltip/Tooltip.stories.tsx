@@ -1,5 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import {
+	storiesOf
+} from '@storybook/react';
 import {
 	text,
 	select
@@ -11,6 +13,7 @@ Stylable API
 ---
 - ::tooltip
 	- :active
+	- :offset
 	- :topPlacement
 	- :rightPlacement
 	- :bottomPlacement

@@ -1,12 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import {
+	storiesOf
+} from '@storybook/react';
 import {
 	text,
 	select
 } from '@storybook/addon-knobs/react';
-import Badge, { BadgeContainer } from './';
+import Badge, {
+	BadgeContainer
+} from './';
 
-const { TestIcon } = global as any;
+const {
+	TestIcon
+} = global as any;
 
 export const stylableApi = `
 Stylable API

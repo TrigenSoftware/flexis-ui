@@ -8,7 +8,9 @@ import React, {
 	Children,
 	cloneElement
 } from 'react';
-import { createPortal } from 'react-dom';
+import {
+	createPortal
+} from 'react-dom';
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
@@ -17,8 +19,10 @@ import {
 	getAriaLabelProps,
 	getHtmlProps
 } from '../../helpers';
+import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
+import toggleAttribute from '../common/toggleAttribute';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
@@ -27,6 +31,7 @@ interface ISelfProps {
 	active?: boolean;
 	defaultActive?: boolean;
 	disabled?: boolean;
+	blockScroll?: boolean;
 	align?: 'left'|'center'|'right';
 	children: ReactElement<any>[];
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
@@ -44,6 +49,12 @@ interface IState {
 const HALF = 2;
 const ESC_KEY = 27;
 
+const contentOffsetState = getStylesheetState(
+	stylesheet('content', {
+		offset: true
+	})
+);
+
 export default class Dropdown extends PureComponent<IProps, IState> {
 
 	static propTypes = {
@@ -51,6 +62,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		defaultActive: PropTypes.bool,
 		active:        PropTypes.bool,
 		disabled:      PropTypes.bool,
+		blockScroll:   PropTypes.bool,
 		align:         PropTypes.oneOf([
 			'left',
 			'center',
@@ -66,6 +78,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		defaultActive: false,
 		active:        null,
 		disabled:      false,
+		blockScroll:   true,
 		align:         'left'
 	};
 
@@ -128,12 +141,12 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 
 		return (
 			<span
+				ref={this.onElementRef}
 				{...getHtmlProps(props)}
 				{...stylesheet('root', {
 					active,
 					disabled
 				}, props)}
-				ref={this.onElementRef}
 				onClick={this.onToggle}
 				aria-disabled={disabled}
 			>
@@ -265,6 +278,9 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			contentRef
 		} = this;
 		const {
+			blockScroll
+		} = this.props;
+		const {
 			active
 		} = this.state;
 
@@ -275,11 +291,13 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			(elementRef.firstElementChild as HTMLElement).focus();
 		}
 
-		this.unblockScroll = toggleScrollBlock(
-			active,
-			this.unblockScroll,
-			elementRef
-		);
+		if (blockScroll) {
+			this.unblockScroll = toggleScrollBlock(
+				active,
+				this.unblockScroll,
+				elementRef
+			);
+		}
 	}
 
 	private removeEffects() {
@@ -339,6 +357,8 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		style.top = `${top}px`;
 		style.left = `${left}px`;
 
-		setOverflowOffset(contentRef, top, left);
+		const withOffset = setOverflowOffset(contentRef, top, left);
+
+		toggleAttribute(withOffset, contentOffsetState, contentRef);
 	}
 }

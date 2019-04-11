@@ -128,9 +128,9 @@ export default class Input extends PureComponent<IProps> {
 				style={style}
 			>
 				<Input
+					ref={elementRef && mapRef(elementRef)}
 					{...getHtmlProps(props)}
 					{...stylesheet('input')}
-					ref={elementRef && mapRef(elementRef)}
 					type={type}
 					onChange={this.onChange}
 					value={value}

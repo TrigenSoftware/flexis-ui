@@ -71,9 +71,9 @@ export default class Checkbox extends PureComponent<IProps> {
 				style={style}
 			>
 				<input
+					ref={elementRef}
 					{...getHtmlProps(props)}
 					{...stylesheet('checkbox')}
-					ref={elementRef}
 					type='checkbox'
 					value={value}
 					checked={checked}

@@ -68,9 +68,9 @@ export default class FileSelect extends PureComponent<IProps> {
 			>
 				{children}
 				<input
+					ref={elementRef}
 					{...getHtmlProps(props)}
 					{...stylesheet('input')}
-					ref={elementRef}
 					type='file'
 					onChange={this.onChange}
 					disabled={disabled}

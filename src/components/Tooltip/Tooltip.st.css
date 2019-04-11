@@ -7,6 +7,7 @@
 	-st-states:
 		/* Basic states */
 		active,
+		offset,
 		/* Placement states */
 		topPlacement,
 		rightPlacement,

@@ -1,11 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import {
+	storiesOf
+} from '@storybook/react';
+import {
+	action
+} from '@storybook/addon-actions';
 import {
 	select,
 	boolean
 } from '@storybook/addon-knobs/react';
-import Dropdown, { DropdownContent } from './';
+import Dropdown, {
+	DropdownContent
+} from './';
 
 export const stylableApi = `
 Stylable API
@@ -14,9 +20,10 @@ Stylable API
 - :disable
 - ::content
 	- :active
-	- leftAlign
-	- centerAlign
-	- rightAlign
+	- :offset
+	- :leftAlign
+	- :centerAlign
+	- :rightAlign
 `;
 
 storiesOf('Dropdown', module)
@@ -130,6 +137,7 @@ storiesOf('Dropdown', module)
 					onToggle={action('toggle')}
 					align={select('Align', ['left', 'center', 'right'], 'left')}
 					disabled={boolean('Disabled', false)}
+					blockScroll={boolean('Block scroll', true)}
 				>
 					<button>
 						Click me!
@@ -175,6 +183,7 @@ storiesOf('Dropdown', module)
 							onToggle={action('toggle')}
 							align={select('Align', ['left', 'center', 'right'], 'left')}
 							disabled={boolean('Disabled', false)}
+							blockScroll={boolean('Block scroll', true)}
 						>
 							<button>
 								Click me!

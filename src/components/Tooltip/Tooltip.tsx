@@ -3,14 +3,18 @@ import React, {
 	ReactNode,
 	PureComponent
 } from 'react';
-import { createPortal } from 'react-dom';
+import {
+	createPortal
+} from 'react-dom';
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Listener,
 	getHtmlProps
 } from '../../helpers';
+import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
+import toggleAttribute from '../common/toggleAttribute';
 import stylesheet from './Tooltip.st.css';
 
 interface ISelfProps {
@@ -32,6 +36,12 @@ interface IState {
 }
 
 const HALF = 2;
+
+const tooltipOffsetState = getStylesheetState(
+	stylesheet('tooltip', {
+		offset: true
+	})
+);
 
 export default class Tooltip extends PureComponent<IProps, IState> {
 
@@ -86,8 +96,8 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 
 		return (
 			<span
-				{...stylesheet('root', {}, props)}
 				ref={this.onElementRef}
+				{...stylesheet('root', {}, props)}
 				onMouseEnter={this.onShow}
 				onFocus={this.onShow}
 				onMouseLeave={this.onHide}
@@ -98,6 +108,7 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 				{children}
 				{createPortal((
 					<div
+						ref={this.onTooltipRef}
 						id={id}
 						role='tooltip'
 						{...getHtmlProps(props)}
@@ -106,7 +117,6 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 							[`${align}Align`]:         Boolean(align),
 							active
 						}, props)}
-						ref={this.onTooltipRef}
 						aria-hidden={!active}
 					>
 						{content}
@@ -266,6 +276,8 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 		style.top = `${top}px`;
 		style.left = `${left}px`;
 
-		setOverflowOffset(tooltipRef, top, left);
+		const withOffset = setOverflowOffset(tooltipRef, top, left);
+
+		toggleAttribute(withOffset, tooltipOffsetState, tooltipRef);
 	}
 }
