@@ -14,8 +14,7 @@ import {
 } from '../../helpers';
 
 export interface ITransitionState {
-	appear?: string;
-	appearActive?: string;
+	active?: string;
 	enter?: string;
 	enterActive?: string;
 	enterDone?: string;
@@ -26,6 +25,7 @@ export interface ITransitionState {
 
 interface ISelfProps {
 	states: RuntimeStylesheet|ITransitionState;
+	statesElement?: string;
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -34,43 +34,44 @@ export type IProps = CombinePropsAndAttributes<
 >;
 
 const defaultStylableStates: ITransitionState = {
-	appear:       'appear',
-	appearActive: 'appearActive',
-	enter:        'enter',
-	enterActive:  'enterActive',
-	enterDone:    'enterDone',
-	exit:         'exit',
-	exitActive:   'exitActive',
-	exitDone:     'exitDone'
+	active:      'active',
+	enter:       'enter',
+	enterActive: 'enterActive',
+	enterDone:   'enterDone',
+	exit:        'exit',
+	exitActive:  'exitActive',
+	exitDone:    'exitDone'
 };
 
 export default class StylableTransition extends Component<IProps> {
 
 	static propTypes = {
 		...(Transition as any).propTypes,
-		states:     PropTypes.oneOfType([
+		states:        PropTypes.oneOfType([
 			PropTypes.func,
 			PropTypes.object
 		]).isRequired,
-		onEnter:    PropTypes.func,
-		onEntering: PropTypes.func,
-		onEntered:  PropTypes.func,
-		onExit:     PropTypes.func,
-		onExiting:  PropTypes.func,
-		onExited:   PropTypes.func
+		statesElement: PropTypes.string,
+		onEnter:       PropTypes.func,
+		onEntering:    PropTypes.func,
+		onEntered:     PropTypes.func,
+		onExit:        PropTypes.func,
+		onExiting:     PropTypes.func,
+		onExited:      PropTypes.func
 	};
 
 	static defaultProps = {
-		onEnter:    null,
-		onEntering: null,
-		onEntered:  null,
-		onExit:     null,
-		onExiting:  null,
-		onExited:   null
+		statesElement: 'root',
+		onEnter:       null,
+		onEntering:    null,
+		onEntered:     null,
+		onExit:        null,
+		onExiting:     null,
+		onExited:      null
 	};
 
 	private readonly stylableStates: {
-		appear: Record<string, string>,
+		active: Record<string, string>,
 		enter: Record<string, string>,
 		exit: Record<string, string>
 	};
@@ -80,13 +81,14 @@ export default class StylableTransition extends Component<IProps> {
 		super(props);
 
 		const {
-			states
+			states,
+			statesElement
 		} = props;
 		const stylableStatesSource = typeof states === 'function'
-			? states('root', defaultStylableStates)
+			? states(statesElement, defaultStylableStates)
 			: states;
 		const stylableStates = {
-			appear: {},
+			active: {},
 			enter:  {},
 			exit:   {}
 		};
@@ -113,6 +115,7 @@ export default class StylableTransition extends Component<IProps> {
 		};
 
 		Reflect.deleteProperty(props, 'states');
+		Reflect.deleteProperty(props, 'statesElement');
 
 		return (
 			<Transition
@@ -128,13 +131,9 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Listener()
-	private onEnter(node, appearing) {
+	private onEnter(node) {
 
-		const stateAttribute = this.getStateAttribute(
-			appearing
-				? 'appear'
-				: 'enter'
-		);
+		const stateAttribute = this.getStateAttribute('enter');
 
 		this.removeStateAttributes(node, 'exit');
 
@@ -147,22 +146,27 @@ export default class StylableTransition extends Component<IProps> {
 		} = this.props;
 
 		if (typeof onEnter === 'function') {
-			onEnter(node, appearing);
+			onEnter(node);
 		}
 	}
 
 	@Listener()
-	private onEntering(node, appearing) {
+	private onEntering(node) {
 
-		const stateAttribute = this.getStateAttribute(
-			appearing
-				? 'appear'
-				: 'enter',
-			'active'
-		);
+		const enterStateAttribute = this.getStateAttribute('enter', 'active');
+		const activeStateAttribute = this.getStateAttribute('active');
 
-		if (stateAttribute) {
-			this.reflowAndAddStateAttribute(node, stateAttribute);
+		if (enterStateAttribute) {
+			this.reflowAndAddStateAttribute(node, enterStateAttribute);
+		}
+
+		if (activeStateAttribute) {
+
+			if (enterStateAttribute) {
+				node.setAttribute(activeStateAttribute, 'true');
+			} else {
+				this.reflowAndAddStateAttribute(node, activeStateAttribute);
+			}
 		}
 
 		const {
@@ -170,24 +174,16 @@ export default class StylableTransition extends Component<IProps> {
 		} = this.props;
 
 		if (typeof onEntering === 'function') {
-			onEntering(node, appearing);
+			onEntering(node);
 		}
 	}
 
 	@Listener()
-	private onEntered(node, appearing) {
+	private onEntered(node) {
 
-		const stateAttribute = this.getStateAttribute(
-			'enter',
-			'done'
-		);
+		const stateAttribute = this.getStateAttribute('enter', 'done');
 
-		this.removeStateAttributes(
-			node,
-			appearing
-				? 'appear'
-				: 'enter'
-		);
+		this.removeStateAttributes(node, 'enter');
 
 		if (stateAttribute) {
 			node.setAttribute(stateAttribute, 'true');
@@ -198,7 +194,7 @@ export default class StylableTransition extends Component<IProps> {
 		} = this.props;
 
 		if (typeof onEntered === 'function') {
-			onEntered(node, appearing);
+			onEntered(node);
 		}
 	}
 
@@ -207,8 +203,8 @@ export default class StylableTransition extends Component<IProps> {
 
 		const stateAttribute = this.getStateAttribute('exit');
 
-		this.removeStateAttributes(node, 'appear');
 		this.removeStateAttributes(node, 'enter');
+		this.removeStateAttributes(node, 'active');
 
 		if (stateAttribute) {
 			node.setAttribute(stateAttribute, 'true');
@@ -304,7 +300,7 @@ export default class StylableTransition extends Component<IProps> {
 		if (node) {
 			// This is for to force a repaint,
 			// which is necessary in order to transition styles when adding a class name.
-			// node.scrollTop;
+			node.scrollTop; // tslint:disable-line
 			node.setAttribute(stateAttribute, 'true');
 		}
 	}

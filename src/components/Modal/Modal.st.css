@@ -1,8 +1,9 @@
 
 .root {
 	-st-states:
-		appear,
-		appearActive,
+		/* Basic states */
+		active,
+		/* Transition states */
 		enter,
 		enterActive,
 		enterDone,

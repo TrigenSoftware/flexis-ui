@@ -103,7 +103,7 @@ export default class Expand extends PureComponent<IProps, IState> {
 		const [
 			title,
 			content
-		] = Children.toArray(children) as ReactElement<any>[];
+		] = Children.toArray<ReactElement<any>>(children);
 
 		return (
 			<div

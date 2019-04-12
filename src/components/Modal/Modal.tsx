@@ -68,7 +68,7 @@ export default class Modal extends PureComponent<IProps> {
 		active:             false,
 		centered:           false,
 		closeButton:        defaultCloseButton,
-		transitionDuration: 400
+		transitionDuration: 0
 	};
 
 	private unblockScroll: () => void = null;
@@ -94,7 +94,6 @@ export default class Modal extends PureComponent<IProps> {
 				in={active}
 				states={stylesheet}
 				timeout={transitionDuration}
-				appear
 				unmountOnExit
 			>
 				<div

@@ -23,6 +23,7 @@ import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
 import toggleAttribute from '../common/toggleAttribute';
+import StylableTransition from '../StylableTransition';
 import stylesheet from './Dropdown.st.css';
 
 export * from './DropdownContent';
@@ -34,6 +35,7 @@ interface ISelfProps {
 	blockScroll?: boolean;
 	align?: 'left'|'center'|'right';
 	children: ReactElement<any>[];
+	transitionDuration?: number;
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
 }
 
@@ -58,28 +60,30 @@ const contentOffsetState = getStylesheetState(
 export default class Dropdown extends PureComponent<IProps, IState> {
 
 	static propTypes = {
-		onToggle:      PropTypes.func,
-		defaultActive: PropTypes.bool,
-		active:        PropTypes.bool,
-		disabled:      PropTypes.bool,
-		blockScroll:   PropTypes.bool,
-		align:         PropTypes.oneOf([
+		onToggle:           PropTypes.func,
+		defaultActive:      PropTypes.bool,
+		active:             PropTypes.bool,
+		disabled:           PropTypes.bool,
+		blockScroll:        PropTypes.bool,
+		align:              PropTypes.oneOf([
 			'left',
 			'center',
 			'right'
 		]),
-		children:      PropTypes.arrayOf(
+		children:           PropTypes.arrayOf(
 			PropTypes.element
-		).isRequired
+		).isRequired,
+		transitionDuration: PropTypes.number
 	};
 
 	static defaultProps = {
-		onToggle:      null,
-		defaultActive: false,
-		active:        null,
-		disabled:      false,
-		blockScroll:   true,
-		align:         'left'
+		onToggle:           null,
+		defaultActive:      false,
+		active:             null,
+		disabled:           false,
+		blockScroll:        true,
+		align:              'left',
+		transitionDuration: 0
 	};
 
 	static getDerivedStateFromProps(
@@ -126,7 +130,6 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 
 		const {
 			disabled,
-			align,
 			children,
 			...props
 		} = this.props;
@@ -137,12 +140,12 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			toggler,
 			content,
 			...misc
-		] = Children.toArray(children) as ReactElement<any>[];
+		] = Children.toArray<ReactElement<any>>(children);
 
 		return (
 			<span
 				ref={this.onElementRef}
-				{...getHtmlProps(props)}
+				{...getHtmlProps(props, ['align'])}
 				{...stylesheet('root', {
 					active,
 					disabled
@@ -157,23 +160,44 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 					'disabled':      disabled
 				})}
 				{createPortal(
-					cloneElement(content, {
-						...getAriaLabelProps({
-							role:       'region',
-							labelledBy: toggler.props.id
-						}, content.props),
-						...stylesheet('content', {
-							[`${align}Align`]: Boolean(align),
-							active
-						}, content.props),
-						'elementRef':   this.onContentRef,
-						'onKeyDown':    this.onEscPress,
-						'aria-hidden':  !active
-					}),
+					this.renderContent(toggler, content),
 					document.body
 				)}
 				{misc}
 			</span>
+		);
+	}
+
+	private renderContent(toggler: ReactElement<any>, content: ReactElement<any>) {
+
+		const {
+			align,
+			transitionDuration
+		} = this.props;
+		const {
+			active
+		} = this.state;
+
+		return (
+			<StylableTransition
+				in={active}
+				states={stylesheet}
+				statesElement='content'
+				timeout={transitionDuration}
+			>
+				{cloneElement(content, {
+					...getAriaLabelProps({
+						role:       'region',
+						labelledBy: toggler.props.id
+					}, content.props),
+					...stylesheet('content', {
+						[`${align}Align`]: Boolean(align)
+					}, content.props),
+					'elementRef':   this.onContentRef,
+					'onKeyDown':    this.onEscPress,
+					'aria-hidden':  !active
+				})}
+			</StylableTransition>
 		);
 	}
 

@@ -11,6 +11,13 @@
 		/* Basic states */
 		active,
 		offset,
+		/* Transition states */
+		enter,
+		enterActive,
+		enterDone,
+		exit,
+		exitActive,
+		exitDone,
 		/* Align states */
 		leftAlign,
 		centerAlign,
