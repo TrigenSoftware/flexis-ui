@@ -184,6 +184,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 				states={stylesheet}
 				statesElement='content'
 				timeout={transitionDuration}
+				appear
 			>
 				{cloneElement(content, {
 					...getAriaLabelProps({
