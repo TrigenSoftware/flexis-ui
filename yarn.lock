@@ -1959,10 +1959,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
-"@trigen/scripts@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-1.9.0.tgz#e46c3966778257f409a0a35b6aa2594d9820e9e4"
-  integrity sha512-AVYvB6xdrkY8bjWvBDeazRZ5l+OI3fk80UqnpyfHsv1XRP5GDuj80olZks6ktnjLBhEF2B0sO6ggYQ4B0md0jw==
+"@trigen/scripts@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-1.9.2.tgz#e10ef3872b8a3b87412d3c46f04a708024f27dc2"
+  integrity sha512-6KwbSFp3mbm6p2e1/xGdCjvOb0Cg5R+tww5Q/Oc4ZSSV2mm7F43nudbuBf//WR+4UXHgV4+fXUWV4k7z8EPXrw==
   dependencies:
     "@babel/core" "^7.4.0"
     "@babel/register" "^7.4.0"
