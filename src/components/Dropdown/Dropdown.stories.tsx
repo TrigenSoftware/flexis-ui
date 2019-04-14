@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	select,
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Dropdown, {
 	DropdownContent
 } from './';
@@ -26,7 +26,7 @@ Stylable API
 	- :rightAlign
 `;
 
-storiesOf('Dropdown', module)
+export default storiesOf('Dropdown', module)
 	.addParameters({
 		info: stylableApi
 	})

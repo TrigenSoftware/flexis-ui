@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Table, {
 	TableHead,
 	TableBody,
@@ -30,7 +30,7 @@ Stylable API
 const rowsCount = 10;
 const columnsCount = 3;
 
-storiesOf('Table', module)
+export default storiesOf('Table', module)
 	.addParameters({
 		info: stylableApi
 	})

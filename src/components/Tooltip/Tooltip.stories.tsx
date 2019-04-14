@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	text,
 	select
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Tooltip from './';
 
 export const stylableApi = `
@@ -23,7 +23,7 @@ Stylable API
 	- :endAlign
 `;
 
-storiesOf('Tooltip', module)
+export default storiesOf('Tooltip', module)
 	.addParameters({
 		info: stylableApi
 	})

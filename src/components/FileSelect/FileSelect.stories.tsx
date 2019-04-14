@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Button from '../Button';
 import FileSelect from './';
 
@@ -23,7 +23,7 @@ export const events = {
 	onChange: action('change')
 };
 
-storiesOf('FileSelect', module)
+export default storiesOf('FileSelect', module)
 	.addParameters({
 		info: stylableApi
 	})

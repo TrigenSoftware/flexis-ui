@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import FileDrop from './';
 
 export const stylableApi = `
@@ -21,7 +21,7 @@ export const events = {
 	onChange: action('change')
 };
 
-storiesOf('FileDrop', module)
+export default storiesOf('FileDrop', module)
 	.addParameters({
 		info: stylableApi
 	})

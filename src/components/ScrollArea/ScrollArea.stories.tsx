@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Table, {
 	TableHead,
 	TableBody,
@@ -30,7 +30,7 @@ Stylable API
 const colsCount = 20;
 const rowsCount = 50;
 
-storiesOf('ScrollArea', module)
+export default storiesOf('ScrollArea', module)
 	.addParameters({
 		info: stylableApi
 	})

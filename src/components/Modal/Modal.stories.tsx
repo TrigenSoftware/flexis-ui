@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Modal, {
 	setAppElement
 } from './';
@@ -34,7 +34,7 @@ export const events = {
 	onClose: action('close')
 };
 
-storiesOf('Modal', module)
+export default storiesOf('Modal', module)
 	.addParameters({
 		info: stylableApi
 	})

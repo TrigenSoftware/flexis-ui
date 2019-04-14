@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	text,
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Textarea from './';
 
 export const stylableApi = `
@@ -22,7 +22,7 @@ export const events = {
 	onBlur:   action('blur')
 };
 
-storiesOf('Textarea', module)
+export default storiesOf('Textarea', module)
 	.addParameters({
 		info: stylableApi
 	})

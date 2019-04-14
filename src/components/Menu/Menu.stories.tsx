@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Menu, {
 	MenuItem,
 	MenuItemSeparator,
@@ -25,7 +25,7 @@ export const events = {
 	onBlur:  action('blur')
 };
 
-storiesOf('Menu', module)
+export default storiesOf('Menu', module)
 	.addParameters({
 		info: stylableApi
 	})

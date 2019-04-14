@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	text,
 	select
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Badge, {
 	BadgeContainer
 } from './';
@@ -27,7 +27,7 @@ Stylable API
 	- :endAlign
 `;
 
-storiesOf('Badge', module)
+export default storiesOf('Badge', module)
 	.addParameters({
 		info: stylableApi
 	})

@@ -1,15 +1,15 @@
 /* tslint:disable: no-magic-numbers */
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	boolean,
 	number
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Select, {
 	SelectOption
 } from './';
@@ -25,7 +25,7 @@ export const events = {
 	onChange: action('change')
 };
 
-storiesOf('Select', module)
+export default storiesOf('Select', module)
 	.addParameters({
 		info: stylableApi
 	})

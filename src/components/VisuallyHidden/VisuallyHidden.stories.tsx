@@ -1,7 +1,7 @@
 import React from 'react';
 import {
 	storiesOf
-} from '@storybook/react';
+} from '../../helpers/stories';
 import VisuallyHidden from './';
 
 export const stylableApi = `
@@ -10,7 +10,7 @@ Stylable API
 - :focusable
 `;
 
-storiesOf('VisuallyHidden', module)
+export default storiesOf('VisuallyHidden', module)
 	.addParameters({
 		info: stylableApi
 	})

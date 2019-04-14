@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
@@ -10,6 +7,9 @@ import {
 	boolean,
 	select
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Input from './';
 
 const {
@@ -33,7 +33,7 @@ export const events = {
 	onBlur:   action('blur')
 };
 
-storiesOf('Input', module)
+export default storiesOf('Input', module)
 	.addParameters({
 		info: stylableApi
 	})

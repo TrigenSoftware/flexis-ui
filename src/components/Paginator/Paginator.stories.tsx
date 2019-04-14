@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	boolean,
 	number
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Paginator from './';
 
 export const stylableApi = `
@@ -25,7 +25,7 @@ Stylable API
 const totalPagesCount = 30;
 const defaultPage = 15;
 
-storiesOf('Paginator', module)
+export default storiesOf('Paginator', module)
 	.addParameters({
 		info: stylableApi
 	})

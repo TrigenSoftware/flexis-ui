@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	text
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Input from '../Input';
 import FormGroup from './';
 
@@ -23,7 +23,7 @@ export const events = {
 	onBlur:   action('blur')
 };
 
-storiesOf('FormGroup', module)
+export default storiesOf('FormGroup', module)
 	.addParameters({
 		info: stylableApi
 	})

@@ -4,6 +4,8 @@ const { atLoaderOptions } = require('../tsconfig.json');
 
 module.exports = configureStorybook;
 
+process.env.FLEXISUI_STORIES = JSON.stringify(true);
+
 function configureStorybook(input) {
 
 	const storybookConfig = superConfigureStorybook(input);

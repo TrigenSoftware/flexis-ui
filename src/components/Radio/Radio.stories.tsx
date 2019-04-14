@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	boolean
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import Radio from './';
 
 export const stylableApi = `
@@ -23,7 +23,7 @@ export const events = {
 	onBlur:   action('blur')
 };
 
-storiesOf('Radio', module)
+export default storiesOf('Radio', module)
 	.addParameters({
 		info: stylableApi
 	})

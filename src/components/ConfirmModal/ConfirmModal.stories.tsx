@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-	storiesOf
-} from '@storybook/react';
-import {
 	action
 } from '@storybook/addon-actions';
 import {
 	button
 } from '@storybook/addon-knobs/react';
+import {
+	storiesOf
+} from '../../helpers/stories';
 import ConfirmModal from './';
 
 export const stylableApi = `
@@ -18,7 +18,7 @@ Stylable API
 
 let confirmRef = null;
 
-storiesOf('ConfirmModal', module)
+export default storiesOf('ConfirmModal', module)
 	.addParameters({
 		info: stylableApi
 	})
