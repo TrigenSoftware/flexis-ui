@@ -19,6 +19,9 @@ import {
 	isCustomFlatSelectOptionFace,
 	onCustomFlatSelectOptionFaceClick
 } from './CustomFlatSelectOptionFace';
+import {
+	ICustomFlatSelectOptionProps
+} from './CustomFlatSelectOption';
 import stylesheet from './CustomFlatSelect.st.css';
 
 export * from './CustomFlatSelectOptionFace';
@@ -139,9 +142,12 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			}
 
 			const {
+				props: optionSourceProps
+			} = child;
+			const {
 				value: optionValue,
 				children: optionLabel
-			} = child.props;
+			} = optionSourceProps;
 			const option = typeof optionValue === 'undefined'
 				? optionLabel
 				: optionValue;
@@ -167,7 +173,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			return cloneElement(
 				child,
 				props,
-				this.face(optionFace, optionLabel)
+				this.face(optionFace, optionLabel, optionSourceProps)
 			);
 		});
 
@@ -184,7 +190,11 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		);
 	}
 
-	private face(faceChild: ReactElement<any>, label: ReactChild): ReactChild {
+	private face(
+		faceChild: ReactElement<any>,
+		label: ReactChild,
+		optionProps: ICustomFlatSelectOptionProps
+	): ReactChild {
 
 		const {
 			disabled
@@ -201,6 +211,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		const faceProps = {
 			onClick: onCustomFlatSelectOptionFaceClick,
 			disabled,
+			...optionProps,
 			...props
 		};
 

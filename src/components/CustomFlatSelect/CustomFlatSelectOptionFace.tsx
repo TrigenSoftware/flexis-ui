@@ -4,9 +4,11 @@ import {
 	MouseEvent
 } from 'react';
 import PropTypes from 'prop-types';
+import {
+	ICustomFlatSelectOptionProps
+} from './CustomFlatSelectOption';
 
-export interface ICustomFlatSelectOptionFacePassedProps {
-	disabled?: boolean;
+export interface ICustomFlatSelectOptionFacePassedProps extends ICustomFlatSelectOptionProps {
 	onClick?(event: MouseEvent): void;
 }
 

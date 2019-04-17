@@ -3,10 +3,11 @@ import {
 	ReactChild
 } from 'react';
 import PropTypes from 'prop-types';
+import {
+	IProps as ICustomSelectProps
+} from './CustomSelect';
 
-export interface ICustomSelectFacePassedProps {
-	disabled?: boolean;
-}
+export interface ICustomSelectFacePassedProps extends ICustomSelectProps {}
 
 export interface ICustomSelectFaceProps {
 	children(label: ReactChild, props: ICustomSelectFacePassedProps): ReactChild;

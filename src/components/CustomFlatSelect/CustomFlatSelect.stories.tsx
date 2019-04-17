@@ -63,9 +63,9 @@ export default storiesOf('CustomFlatSelect', module)
 				disabled={boolean('Disabled', false)}
 			>
 				<CustomFlatSelectOptionFace>
-					{(label, props) => (
+					{(label, { disabled }) => (
 						<Button
-							{...props}
+							disabled={disabled}
 							type='button'
 						>
 							{label}

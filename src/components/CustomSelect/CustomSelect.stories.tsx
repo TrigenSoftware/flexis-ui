@@ -102,9 +102,9 @@ export default storiesOf('CustomSelect', module)
 					)}
 				</CustomSelectFace>
 				<CustomSelectOptionFace>
-					{(label, props) => (
+					{(label, { disabled }) => (
 						<button
-							{...props}
+							disabled={disabled}
 						>
 							{label}
 						</button>
