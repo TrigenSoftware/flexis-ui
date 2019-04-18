@@ -197,13 +197,10 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 	private face(faceChild: ReactElement<any>, label: string|string[]) {
 
 		const {
-			props: selectSourceProps
-		} = this;
-		const {
 			multiple,
 			placeholder,
 			disabled
-		} = selectSourceProps;
+		} = this.props;
 		const faceLabel = (
 			(multiple ? (label as string[]).join(', ') : label)
 			|| placeholder && (
@@ -234,10 +231,12 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			...props
 		} = faceChild.props;
 		const faceProps = {
+			multiple,
 			disabled,
-			...selectSourceProps,
 			...props
 		};
+
+		console.log(faceProps);
 
 		return renderFace(
 			faceLabel,

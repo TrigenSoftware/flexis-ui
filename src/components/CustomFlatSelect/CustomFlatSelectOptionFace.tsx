@@ -4,11 +4,12 @@ import {
 	MouseEvent
 } from 'react';
 import PropTypes from 'prop-types';
-import {
-	ICustomFlatSelectOptionProps
-} from './CustomFlatSelectOption';
 
-export interface ICustomFlatSelectOptionFacePassedProps extends ICustomFlatSelectOptionProps {
+export interface ICustomFlatSelectOptionFacePassedProps {
+	type?: 'radio'|'checkbox';
+	value?: any;
+	checked?: boolean;
+	disabled?: boolean;
 	onClick?(event: MouseEvent): void;
 }
 
