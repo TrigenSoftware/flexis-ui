@@ -1,6 +1,6 @@
 {
   "name": "@flexis/ui",
-  "version": "0.11.0-alpha",
+  "version": "0.11.1-alpha",
   "description": "Styleless React Components",
   "author": "dangreen",
   "license": "MIT",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
-    "@trigen/scripts": "^1.10.0",
+    "@trigen/scripts": "^1.10.1",
     "clean-publish": "^1.1.2",
     "del-cli": "^1.1.0",
     "prop-types": "^15.6.2",
