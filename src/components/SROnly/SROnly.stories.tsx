@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	storiesOf
 } from '../../helpers/stories';
-import VisuallyHidden from './';
+import SROnly from './';
 
 export const stylableApi = `
 Stylable API
@@ -10,23 +10,23 @@ Stylable API
 - :focusable
 `;
 
-export default storiesOf('VisuallyHidden', module)
+export default storiesOf('SROnly', module)
 	.addParameters({
 		info: stylableApi
 	})
 	.add(
 		'with heading',
 		() => (
-			<VisuallyHidden>
+			<SROnly>
 				<h1>Very important but hidden title</h1>
-			</VisuallyHidden>
+			</SROnly>
 		)
 	)
 	.add(
 		'with focusable state',
 		() => (
-			<VisuallyHidden focusable>
+			<SROnly focusable>
 				<button>Very important but hidden button</button>
-			</VisuallyHidden>
+			</SROnly>
 		)
 	);

@@ -236,8 +236,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			...props
 		};
 
-		console.log(faceProps);
-
 		return renderFace(
 			faceLabel,
 			faceProps

@@ -213,8 +213,6 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			...props
 		};
 
-		console.log(faceProps);
-
 		return renderFace(
 			label,
 			faceProps

@@ -4,7 +4,7 @@ import {
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
-import stylesheet from './VisuallyHidden.st.css';
+import stylesheet from './SROnly.st.css';
 
 export interface IProps {
 	focusable?: boolean;
@@ -12,7 +12,7 @@ export interface IProps {
 	[prop: string]: any;
 }
 
-export default class VisuallyHidden extends PureComponent<IProps> {
+export default class SROnly extends PureComponent<IProps> {
 
 	static propTypes = {
 		focusable: PropTypes.bool,
