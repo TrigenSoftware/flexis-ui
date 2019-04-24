@@ -24,7 +24,10 @@ export class TableHead extends PureComponent<ITableHeadProps> {
 	static propTypes = {
 		children: PropTypes.oneOfType([
 			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.element)
+			PropTypes.arrayOf(PropTypes.oneOfType([
+				PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element)
+			]))
 		]).isRequired
 	};
 

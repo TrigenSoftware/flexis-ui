@@ -30,7 +30,10 @@ export default class Table extends PureComponent<IProps> {
 	static propTypes = {
 		children: PropTypes.oneOfType([
 			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.element)
+			PropTypes.arrayOf(PropTypes.oneOfType([
+				PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element)
+			]))
 		]).isRequired
 	};
 

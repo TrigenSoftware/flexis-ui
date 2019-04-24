@@ -24,7 +24,10 @@ export class TableRow extends PureComponent<ITableRowProps> {
 	static propTypes = {
 		children: PropTypes.oneOfType([
 			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.element)
+			PropTypes.arrayOf(PropTypes.oneOfType([
+				PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element)
+			]))
 		]).isRequired
 	};
 

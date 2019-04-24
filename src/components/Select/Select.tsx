@@ -44,7 +44,10 @@ export default class Select extends PureComponent<IProps> {
 		onChange:     PropTypes.func,
 		children:     PropTypes.oneOfType([
 			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.element)
+			PropTypes.arrayOf(PropTypes.oneOfType([
+				PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element)
+			]))
 		]).isRequired
 	};
 

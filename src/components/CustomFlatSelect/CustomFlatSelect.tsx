@@ -67,7 +67,10 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		disabled:     PropTypes.bool,
 		children:     PropTypes.oneOfType([
 			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.element)
+			PropTypes.arrayOf(PropTypes.oneOfType([
+				PropTypes.element,
+				PropTypes.arrayOf(PropTypes.element)
+			]))
 		]).isRequired
 	};
 
