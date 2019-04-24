@@ -2,6 +2,7 @@ import React, {
 	AllHTMLAttributes,
 	ReactNode,
 	ChangeEvent,
+	MouseEvent,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
@@ -86,7 +87,12 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 						value={value}
 						disabled={disabled}
 					/>
-					{children}
+					<span
+						{...stylesheet('face')}
+						onClick={this.onFaceClick}
+					>
+						{children}
+					</span>
 				</label>
 			</li>
 		);
@@ -106,5 +112,12 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 				event
 			);
 		}
+	}
+
+	private onFaceClick(event: MouseEvent) {
+
+		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
+
+		input.click();
 	}
 }

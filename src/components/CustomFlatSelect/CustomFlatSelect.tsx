@@ -1,6 +1,5 @@
 import React, {
 	AllHTMLAttributes,
-	ReactChild,
 	ReactElement,
 	ChangeEvent,
 	PureComponent,
@@ -15,13 +14,8 @@ import {
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
-import {
-	isCustomFlatSelectOptionFace,
-	onCustomFlatSelectOptionFaceClick
-} from './CustomFlatSelectOptionFace';
 import stylesheet from './CustomFlatSelect.st.css';
 
-export * from './CustomFlatSelectOptionFace';
 export * from './CustomFlatSelectOption';
 
 interface ISelfProps {
@@ -129,15 +123,9 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			value
 		} = this.state;
 		let activeDescendant: string = null;
-		let optionFace: ReactElement<any> = null;
 		const options = Children.map(children, (child: ReactElement<any>) => {
 
 			if (!child) {
-				return null;
-			}
-
-			if (child.type[isCustomFlatSelectOptionFace]) {
-				optionFace = child;
 				return null;
 			}
 
@@ -169,8 +157,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 
 			return cloneElement(
 				child,
-				props,
-				this.face(optionFace, optionLabel, props)
+				props
 			);
 		});
 
@@ -184,41 +171,6 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			>
 				{options}
 			</ul>
-		);
-	}
-
-	private face(
-		faceChild: ReactElement<any>,
-		label: ReactChild,
-		optionProps: IOptionProps
-	): ReactChild {
-
-		if (!faceChild) {
-			return label;
-		}
-
-		const {
-			children: renderFace,
-			...props
-		} = faceChild.props;
-		const {
-			type,
-			value,
-			checked,
-			disabled
-		} = optionProps;
-		const faceProps = {
-			onClick: onCustomFlatSelectOptionFaceClick,
-			type,
-			value,
-			checked,
-			disabled,
-			...props
-		};
-
-		return renderFace(
-			label,
-			faceProps
 		);
 	}
 

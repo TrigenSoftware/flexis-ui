@@ -13,7 +13,6 @@ import {
 } from '../../helpers/stories';
 import CustomSelect, {
 	CustomSelectFace,
-	CustomSelectOptionFace,
 	CustomSelectOption
 } from './';
 
@@ -72,44 +71,6 @@ export default storiesOf('CustomSelect', module)
 						</button>
 					)}
 				</CustomSelectFace>
-				<CustomSelectOption value={0}>
-					Option #1
-				</CustomSelectOption>
-				<CustomSelectOption value={1}>
-					Option #2
-				</CustomSelectOption>
-				<CustomSelectOption value={2}>
-					Option #3
-				</CustomSelectOption>
-			</CustomSelect>
-		)
-	)
-	.add(
-		'with custom option face',
-		() => (
-			<CustomSelect
-				{...events}
-				disabled={boolean('Disabled', false)}
-			>
-				<CustomSelectFace>
-					{(label, { disabled }) => (
-						<button
-							id='customSelectFace'
-							disabled={disabled}
-						>
-							{label}
-						</button>
-					)}
-				</CustomSelectFace>
-				<CustomSelectOptionFace>
-					{(label, { disabled }) => (
-						<button
-							disabled={disabled}
-						>
-							{label}
-						</button>
-					)}
-				</CustomSelectOptionFace>
 				<CustomSelectOption value={0}>
 					Option #1
 				</CustomSelectOption>

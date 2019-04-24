@@ -19,8 +19,7 @@ import Dropdown, {
 	DropdownContent
 } from '../Dropdown';
 import CustomFlatSelect, {
-	IProps as ICustomFlatSelectProps,
-	isCustomFlatSelectOptionFace
+	IProps as ICustomFlatSelectProps
 } from '../CustomFlatSelect';
 import {
 	isCustomSelectFace
@@ -28,7 +27,6 @@ import {
 import stylesheet from './CustomSelect.st.css';
 
 export * from './CustomSelectFace';
-export * from './CustomSelectOptionFace';
 export * from './CustomSelectOption';
 
 interface ISelfProps extends ICustomFlatSelectProps {
@@ -126,10 +124,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			if (child.type[isCustomSelectFace]) {
 				selectFace = child;
 				return null;
-			}
-
-			if (child.type[isCustomFlatSelectOptionFace]) {
-				return child;
 			}
 
 			const {

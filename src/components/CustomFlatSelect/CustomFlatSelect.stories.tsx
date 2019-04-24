@@ -12,7 +12,6 @@ import {
 } from '../../helpers/stories';
 import Button from '../Button';
 import CustomFlatSelect, {
-	CustomFlatSelectOptionFace,
 	CustomFlatSelectOption
 } from './';
 
@@ -54,7 +53,7 @@ export default storiesOf('CustomFlatSelect', module)
 		)
 	)
 	.add(
-		'with custom face',
+		'with option button',
 		() => (
 			<CustomFlatSelect
 				{...events}
@@ -62,18 +61,10 @@ export default storiesOf('CustomFlatSelect', module)
 				style={{ width: '10rem' }}
 				disabled={boolean('Disabled', false)}
 			>
-				<CustomFlatSelectOptionFace>
-					{(label, { disabled }) => (
-						<Button
-							disabled={disabled}
-							type='button'
-						>
-							{label}
-						</Button>
-					)}
-				</CustomFlatSelectOptionFace>
 				<CustomFlatSelectOption value={0}>
-					Option #1
+					<Button type='button'>
+						Option #1
+					</Button>
 				</CustomFlatSelectOption>
 				<CustomFlatSelectOption value={1}>
 					Option #2
