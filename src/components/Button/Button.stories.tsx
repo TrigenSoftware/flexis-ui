@@ -62,6 +62,17 @@ export default storiesOf('Button', module)
 		)
 	)
 	.add(
+		'with icon only',
+		() => (
+			<Button
+				{...events}
+				disabled={boolean('Disabled', false)}
+				icon={<TestIcon/>}
+				alignIcon={select('Align icon', ['left', 'right'], 'left')}
+			/>
+		)
+	)
+	.add(
 		'with right aligned icon',
 		() => (
 			<Button

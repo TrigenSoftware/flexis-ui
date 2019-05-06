@@ -58,19 +58,15 @@ export default class Button extends PureComponent<IProps> {
 			children,
 			...props
 		} = this.props;
+		const iconOnly = !Children.count(children);
 		const leftAligned = alignIcon === 'left';
 		let buttonIcon: ReactElement<any> = null;
 
 		if (icon !== null) {
-
-			const iconOnly = !Children.count(children);
-
 			buttonIcon = cloneElement(
 				icon,
 				stylesheet('icon', {
-					[`${alignIcon}Align`]: Boolean(alignIcon)
-						&& Children.count(children)
-						&& !iconOnly
+					[`${alignIcon}Align`]: Boolean(alignIcon) && !iconOnly
 				}, icon.props)
 			);
 		}
@@ -89,7 +85,9 @@ export default class Button extends PureComponent<IProps> {
 						{...stylesheet('iconContainer')}
 					>
 						{leftAligned && buttonIcon}
-						<span>{children}</span>
+						{!iconOnly && (
+							<span>{children}</span>
+						)}
 						{!leftAligned && buttonIcon}
 					</div>
 				) : children}
