@@ -62,6 +62,17 @@ export default storiesOf('Link', module)
 		)
 	)
 	.add(
+		'with icon only',
+		() => (
+			<Link
+				{...events}
+				href='#'
+				icon={<TestIcon/>}
+				alignIcon={select('Align icon', ['left', 'right'], 'left')}
+			/>
+		)
+	)
+	.add(
 		'with right aligned icon',
 		() => (
 			<Link

@@ -76,19 +76,15 @@ export default class Link extends PureComponent<IProps> {
 			linkElementCustomProps,
 			...props
 		} = this.props;
+		const iconOnly = !Children.count(children);
 		const leftAligned = alignIcon === 'left';
 		let linkIcon: ReactElement<any> = null;
 
 		if (icon !== null) {
-
-			const iconOnly = !Children.count(children);
-
 			linkIcon = cloneElement(
 				icon,
 				stylesheet('icon', {
-					[`${alignIcon}Align`]: Boolean(alignIcon)
-						&& Children.count(children)
-						&& !iconOnly
+					[`${alignIcon}Align`]: Boolean(alignIcon) && !iconOnly
 				}, icon.props)
 			);
 		}
@@ -113,7 +109,9 @@ export default class Link extends PureComponent<IProps> {
 						{...stylesheet('iconContainer')}
 					>
 						{leftAligned && linkIcon}
-						<span>{children}</span>
+						{!iconOnly && (
+							<span>{children}</span>
+						)}
 						{!leftAligned && linkIcon}
 					</div>
 				) : children}
