@@ -3,11 +3,8 @@
 	-st-states:
 		withIcon,
 		flexIcon;
-	cursor: pointer;
-}
-
-.root:withIcon {
 	display: inline-block;
+	cursor: pointer;
 }
 
 .iconContainer {
