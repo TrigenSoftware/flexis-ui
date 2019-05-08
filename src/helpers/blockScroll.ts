@@ -1,3 +1,42 @@
+
+interface IElementOverflow {
+	count: number;
+	value: string;
+}
+
+const elementsOverflows = new Map<HTMLElement, IElementOverflow>();
+
+function blockElement(element: HTMLElement) {
+
+	const overflow = elementsOverflows.get(element);
+
+	if (overflow) {
+		overflow.count++;
+	} else {
+		elementsOverflows.set(element, {
+			count:    1,
+			value: element.style.overflow
+		});
+		element.style.overflow = 'hidden';
+	}
+}
+
+function unblockElement(element: HTMLElement) {
+
+	const overflow = elementsOverflows.get(element);
+
+	if (!overflow) {
+		return;
+	}
+
+	overflow.count--;
+
+	if (!overflow.count) {
+		element.style.overflow = overflow.value;
+		elementsOverflows.delete(element);
+	}
+}
+
 /**
  * Block scroll.
  * @param  element - HTML-element to block scroll.
@@ -9,16 +48,13 @@ export function blockScroll(element = document.body) {
 		documentElement
 	} = document;
 	let currentElement = element;
-	let restore: [HTMLElement, string][] = [];
+	let restore: HTMLElement[] = [];
 
 	do {
 
-		restore.push([
-			currentElement,
-			currentElement.style.overflow
-		]);
+		restore.push(currentElement);
+		blockElement(currentElement);
 
-		currentElement.style.overflow = 'hidden';
 		currentElement = currentElement.parentElement;
 
 	} while (currentElement !== documentElement);
@@ -31,9 +67,7 @@ export function blockScroll(element = document.body) {
 			return;
 		}
 
-		restore.forEach(([element, overflow]) => {
-			element.style.overflow = overflow;
-		});
+		restore.forEach(unblockElement);
 		restore = null;
 	};
 }

@@ -13,7 +13,7 @@ import {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	subscribeEvent,
 	getHtmlProps
 } from '../../helpers';
@@ -143,12 +143,12 @@ export default class Modal extends PureComponent<IProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onIgnoredEvent(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 	}
 
-	@Listener()
+	@Bind()
 	private onEscPress(event: KeyboardEvent) {
 
 		const {

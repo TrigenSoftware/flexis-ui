@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Switch.st.css';
@@ -93,7 +93,7 @@ export default class Switch extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {

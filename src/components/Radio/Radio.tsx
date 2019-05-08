@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Radio.st.css';
@@ -87,7 +87,7 @@ export default class Radio extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {

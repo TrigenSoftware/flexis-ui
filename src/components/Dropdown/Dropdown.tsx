@@ -14,7 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	subscribeEvent,
 	getAriaLabelProps,
 	getHtmlProps
@@ -23,6 +23,7 @@ import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
 import toggleAttribute from '../common/toggleAttribute';
+import throttleFocus from '../common/throttleFocus';
 import StylableTransition from '../StylableTransition';
 import stylesheet from './Dropdown.st.css';
 
@@ -203,25 +204,10 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 	}
 
 	componentDidMount() {
-		this.unsubscribeFromOutsideClick = subscribeEvent(
-			document,
-			'click',
-			(event) => {
-
-				const {
-					active
-				} = this.state;
-
-				if (active) {
-					this.toggleActiveState(false, event);
-				}
-			}
-		);
 		this.toggleEffects();
 	}
 
 	componentWillUnmount() {
-		this.unsubscribeFromOutsideClick();
 		this.removeEffects();
 	}
 
@@ -236,28 +222,38 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onElementRef(ref: HTMLSpanElement) {
 		this.elementRef = ref;
 	}
 
-	@Listener()
+	@Bind()
 	private onContentRef(ref: HTMLElement) {
 		this.contentRef = ref;
 	}
 
-	@Listener()
+	@Bind()
 	private onToggle(event: MouseEvent<HTMLSpanElement>) {
-		event.stopPropagation();
-		event.nativeEvent.stopImmediatePropagation();
 		this.toggleActiveState(null, event);
 	}
 
-	@Listener()
+	@Bind()
 	private onEscPress(event: KeyboardEvent) {
 
 		if (event.keyCode === ESC_KEY) {
 			event.stopPropagation();
+			this.toggleActiveState(false, event);
+		}
+	}
+
+	@Bind()
+	private onOutsideClick(event: Event) {
+
+		const {
+			active
+		} = this.state;
+
+		if (active) {
 			this.toggleActiveState(false, event);
 		}
 	}
@@ -308,19 +304,39 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		const {
 			active
 		} = this.state;
+		const {
+			parentElement
+		} = elementRef;
+		const outsideClickSubscribed = typeof this.unsubscribeFromOutsideClick === 'function';
 
 		if (active) {
-			contentRef.focus();
+
 			this.setContentPosition();
+			throttleFocus(contentRef);
+
+			if (!outsideClickSubscribed) {
+				this.unsubscribeFromOutsideClick = subscribeEvent(
+					document,
+					'click',
+					this.onOutsideClick
+				);
+			}
+
 		} else {
-			(elementRef.firstElementChild as HTMLElement).focus();
+
+			throttleFocus(elementRef.firstElementChild as HTMLElement);
+
+			if (outsideClickSubscribed) {
+				this.unsubscribeFromOutsideClick();
+				this.unsubscribeFromOutsideClick = null;
+			}
 		}
 
 		if (blockScroll) {
 			this.unblockScroll = toggleScrollBlock(
 				active,
 				this.unblockScroll,
-				elementRef
+				parentElement
 			);
 		}
 	}
@@ -330,6 +346,11 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		if (typeof this.unblockScroll === 'function') {
 			this.unblockScroll();
 			this.unblockScroll = null;
+		}
+
+		if (typeof this.unsubscribeFromOutsideClick === 'function') {
+			this.unsubscribeFromOutsideClick();
+			this.unsubscribeFromOutsideClick = null;
 		}
 	}
 

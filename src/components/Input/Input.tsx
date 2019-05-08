@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Input.st.css';
@@ -145,7 +145,7 @@ export default class Input extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {

@@ -1,10 +1,8 @@
 /**
- * Decortor for debouncify class method.
- * @param  delay - Debounce delay in ms.
- * @param  atBegin - Call at begin.
+ * Decortor for bind class method to context.
  * @return Method decorator.
  */
-export function Listener(): MethodDecorator {
+export function Bind(): MethodDecorator {
 	return (_, key, descriptor: PropertyDescriptor) => {
 
 		const listener = descriptor.value;

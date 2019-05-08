@@ -1,4 +1,4 @@
-export * from './Listener';
+export * from './Bind';
 export * from './Throttle';
 export * from './Debounce';
 export * from './subscribeEvent';

@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import getStylesheetState from '../common/getStylesheetState';
@@ -137,24 +137,24 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onElementRef(ref: HTMLSpanElement) {
 		this.elementRef = ref;
 	}
 
-	@Listener()
+	@Bind()
 	private onTooltipRef(ref: HTMLDivElement) {
 		this.tooltipRef = ref;
 	}
 
-	@Listener()
+	@Bind()
 	private onShow() {
 		this.setState(() => ({
 			active: true
 		}));
 	}
 
-	@Listener()
+	@Bind()
 	private onHide() {
 		this.setState(() => ({
 			active: false

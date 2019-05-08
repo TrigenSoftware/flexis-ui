@@ -10,7 +10,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getAriaLabelProps,
 	getHtmlProps
 } from '../../helpers';
@@ -132,7 +132,7 @@ export default class Expand extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onToggle(event: MouseEvent) {
 		this.toggleActiveState(null, event);
 	}

@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 
@@ -53,7 +53,7 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onClick(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();

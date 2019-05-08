@@ -10,7 +10,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './Select.st.css';
@@ -100,7 +100,7 @@ export default class Select extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	onChange(event: ChangeEvent<HTMLSelectElement>) {
 
 		const {

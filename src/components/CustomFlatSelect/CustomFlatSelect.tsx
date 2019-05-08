@@ -9,7 +9,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
@@ -174,7 +174,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(inputNextValue, event: ChangeEvent) {
 
 		const {

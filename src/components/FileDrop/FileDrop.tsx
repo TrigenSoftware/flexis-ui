@@ -7,7 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './FileDrop.st.css';
@@ -76,13 +76,13 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onIgnoredEvent(event: DragEvent) {
 		event.stopPropagation();
 		event.preventDefault();
 	}
 
-	@Listener()
+	@Bind()
 	private onDragOver(event: DragEvent) {
 
 		event.stopPropagation();
@@ -93,7 +93,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 		}));
 	}
 
-	@Listener()
+	@Bind()
 	private onDragLeave(event: DragEvent) {
 
 		event.stopPropagation();
@@ -104,7 +104,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 		}));
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: DragEvent) {
 
 		event.stopPropagation();

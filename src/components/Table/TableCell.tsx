@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps,
 	modulo
 } from '../../helpers';
@@ -87,7 +87,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onOrderChange(event: MouseEvent<HTMLTableCellElement>) {
 
 		const {
@@ -115,7 +115,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onKeyPress(event: KeyboardEvent<HTMLTableCellElement>) {
 
 		const {

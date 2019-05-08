@@ -10,7 +10,7 @@ import {
 } from '@stylable/runtime';
 import {
 	CombinePropsAndAttributes,
-	Listener
+	Bind
 } from '../../helpers';
 
 export interface ITransitionState {
@@ -130,7 +130,7 @@ export default class StylableTransition extends Component<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onEnter(node) {
 
 		const stateAttribute = this.getStateAttribute('enter');
@@ -150,7 +150,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onEntering(node) {
 
 		const enterStateAttribute = this.getStateAttribute('enter', 'active');
@@ -178,7 +178,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onEntered(node) {
 
 		const stateAttribute = this.getStateAttribute('enter', 'done');
@@ -198,7 +198,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onExit(node) {
 
 		const stateAttribute = this.getStateAttribute('exit');
@@ -219,7 +219,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onExiting(node) {
 
 		const stateAttribute = this.getStateAttribute('exit', 'active');
@@ -237,7 +237,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onExited(node) {
 
 		const stateAttribute = this.getStateAttribute('exit', 'done');

@@ -10,7 +10,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getAriaLabelProps
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
@@ -236,7 +236,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onDropdownRef(ref: Dropdown) {
 
 		const {
@@ -250,7 +250,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onDropdownHide(event: MouseEvent) {
 
 		const {
@@ -268,7 +268,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 	private onChange(nextValue, event: ChangeEvent<Element>);
 	private onChange(nextValue, name: string, event: ChangeEvent<Element>);
 
-	@Listener()
+	@Bind()
 	private onChange(nextValue, eventOrName, event?) {
 
 		const {

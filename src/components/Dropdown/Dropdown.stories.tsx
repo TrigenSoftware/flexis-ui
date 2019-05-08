@@ -37,6 +37,7 @@ export default storiesOf('Dropdown', module)
 				onToggle={action('toggle')}
 				align={select('Align', ['left', 'center', 'right'], 'left')}
 				disabled={boolean('Disabled', false)}
+				blockScroll={boolean('Block scroll', true)}
 			>
 				<button id='dropdownToggleButton'>
 					Click me!
@@ -61,6 +62,7 @@ export default storiesOf('Dropdown', module)
 				onToggle={action('toggle')}
 				align={select('Align', ['left', 'center', 'right'], 'left')}
 				disabled={boolean('Disabled', false)}
+				blockScroll={boolean('Block scroll', true)}
 				defaultActive
 			>
 				<button>
@@ -85,6 +87,7 @@ export default storiesOf('Dropdown', module)
 				onToggle={action('toggle')}
 				align={select('Align', ['left', 'center', 'right'], 'left')}
 				disabled={boolean('Disabled', true)}
+				blockScroll={boolean('Block scroll', true)}
 			>
 				<button>
 					Click me!
@@ -109,6 +112,7 @@ export default storiesOf('Dropdown', module)
 				align={select('Align', ['left', 'center', 'right'], 'left')}
 				disabled={boolean('Disabled', false)}
 				active={boolean('Active', true)}
+				blockScroll={boolean('Block scroll', true)}
 			>
 				<button>
 					Click me!
@@ -201,5 +205,32 @@ export default storiesOf('Dropdown', module)
 					</div>
 				</div>
 			</div>
+		)
+	)
+	.add(
+		'with two dropdowns',
+		() => (
+			<>
+				<Dropdown
+					onToggle={action('toggle')}
+				>
+					<button id='dropdownToggleButton'>
+						Click me!
+					</button>
+					<DropdownContent>
+						Dropdown content.
+					</DropdownContent>
+				</Dropdown>
+				<Dropdown
+					onToggle={action('toggle')}
+				>
+					<button id='dropdownToggleButton2'>
+						Click me!
+					</button>
+					<DropdownContent>
+						Dropdown content.
+					</DropdownContent>
+				</Dropdown>
+			</>
 		)
 	);

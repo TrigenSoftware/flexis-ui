@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
@@ -138,19 +138,19 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 		this.hideScroll(this.scroller);
 	}
 
-	@Listener()
+	@Bind()
 	private onScrollerRef(ref: HTMLDivElement) {
 		this.scroller = ref;
 		this.setShadow(ref);
 		this.hideScroll(ref);
 	}
 
-	@Listener()
+	@Bind()
 	private onScroll({ currentTarget }: UIEvent<HTMLDivElement>) {
 		this.setShadow(currentTarget);
 	}
 
-	@Listener()
+	@Bind()
 	private onWheel(event: WheelEvent<HTMLDivElement>) {
 
 		const {

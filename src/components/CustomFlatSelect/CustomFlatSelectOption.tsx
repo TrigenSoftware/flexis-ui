@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
 	getHtmlProps
 } from '../../helpers';
 import stylesheet from './CustomFlatSelect.st.css';
@@ -98,7 +98,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent) {
 
 		const {
