@@ -2,6 +2,7 @@ import React, {
 	AllHTMLAttributes,
 	ReactElement,
 	PureComponent,
+	Children,
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
@@ -46,6 +47,7 @@ export default class FormGroup extends PureComponent<IProps> {
 			children,
 			...props
 		} = this.props;
+		const child = Children.only(children);
 
 		return (
 			<div
@@ -61,8 +63,10 @@ export default class FormGroup extends PureComponent<IProps> {
 					</label>
 				)}
 				{cloneElement(
-					children,
-					{ id: id || children.props.id }
+					child,
+					{
+						id: id || child.props.id
+					}
 				)}
 			</div>
 		);
