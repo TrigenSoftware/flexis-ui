@@ -1,5 +1,4 @@
 rm getHtmlProps?
-extendInfo from Biletron
 check a11y dropdowns display
 
 MediaQuery
