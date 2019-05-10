@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	LiHTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Menu.st.css';
 
@@ -16,7 +15,7 @@ interface ISelfProps {
 
 export type IMenuItemSeparatorProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLLIElement>
+	LiHTMLAttributes<HTMLLIElement>
 >;
 
 export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
@@ -38,7 +37,7 @@ export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
 
 		return (
 			<li
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('itemSeparator', {}, props)}
 			>
 				{children}

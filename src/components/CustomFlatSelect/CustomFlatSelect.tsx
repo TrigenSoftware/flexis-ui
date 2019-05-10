@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactElement,
 	ChangeEvent,
 	PureComponent,
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
@@ -42,7 +42,7 @@ interface IOptionProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLUListElement>
+	HTMLAttributes<HTMLUListElement>
 >;
 
 interface IState {
@@ -164,7 +164,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		return (
 			<ul
 				role='listbox'
-				{...getHtmlProps(props, ['onChange'])}
+				{...omit(props, ['onChange'])}
 				{...stylesheet('root', {}, props)}
 				aria-activedescendant={activeDescendant}
 				aria-multiselectable={multiple}

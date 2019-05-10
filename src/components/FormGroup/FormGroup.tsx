@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactElement,
 	PureComponent,
 	Children,
@@ -7,8 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './FormGroup.st.css';
 
@@ -20,7 +19,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 export default class FormGroup extends PureComponent<IProps> {
@@ -51,7 +50,7 @@ export default class FormGroup extends PureComponent<IProps> {
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {}, props)}
 			>
 				{typeof label !== 'string' ? label : (

@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	LiHTMLAttributes,
 	ReactNode,
 	ChangeEvent,
 	MouseEvent,
@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import stylesheet from './CustomFlatSelect.st.css';
 
@@ -26,7 +26,7 @@ interface ISelfProps {
 
 export type ICustomFlatSelectOptionProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLLIElement>
+	LiHTMLAttributes<HTMLLIElement>
 >;
 
 export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptionProps> {
@@ -72,7 +72,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 			<li
 				id={id}
 				role='option'
-				{...getHtmlProps(props, ['onChange'])}
+				{...omit(props, ['onChange'])}
 				{...stylesheet('option')}
 			>
 				<label

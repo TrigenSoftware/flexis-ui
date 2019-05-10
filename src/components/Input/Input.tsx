@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	InputHTMLAttributes,
 	Ref,
 	CSSProperties,
 	ReactElement,
@@ -11,8 +11,7 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
 	CombinePropsAndAttributes,
-	Bind,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './Input.st.css';
 
@@ -35,7 +34,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLInputElement>
+	InputHTMLAttributes<HTMLInputElement>
 >;
 
 export default class Input extends PureComponent<IProps> {
@@ -129,7 +128,7 @@ export default class Input extends PureComponent<IProps> {
 			>
 				<Input
 					ref={elementRef && mapRef(elementRef)}
-					{...getHtmlProps(props)}
+					{...props}
 					{...stylesheet('input')}
 					type={type}
 					onChange={this.onChange}

@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	ButtonHTMLAttributes,
 	Ref,
 	ReactElement,
 	ReactNode,
@@ -9,8 +9,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Button.st.css';
 
@@ -24,7 +23,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLButtonElement>
+	ButtonHTMLAttributes<HTMLButtonElement>
 >;
 
 export default class Button extends PureComponent<IProps> {
@@ -74,7 +73,7 @@ export default class Button extends PureComponent<IProps> {
 		return (
 			<button
 				ref={elementRef}
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {
 					withIcon: Boolean(buttonIcon),
 					flexIcon

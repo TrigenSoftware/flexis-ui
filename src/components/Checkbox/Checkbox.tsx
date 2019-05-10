@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	InputHTMLAttributes,
 	Ref,
 	CSSProperties,
 	ChangeEvent,
@@ -8,8 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Bind,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './Checkbox.st.css';
 
@@ -26,7 +25,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLInputElement>
+	InputHTMLAttributes<HTMLInputElement>
 >;
 
 export default class Checkbox extends PureComponent<IProps> {
@@ -72,7 +71,7 @@ export default class Checkbox extends PureComponent<IProps> {
 			>
 				<input
 					ref={elementRef}
-					{...getHtmlProps(props)}
+					{...props}
 					{...stylesheet('checkbox')}
 					type='checkbox'
 					value={value}

@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	MouseEvent,
 	ReactElement,
 	PureComponent
@@ -7,7 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import stylesheet from './Paginator.st.css';
 
@@ -25,7 +25,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLElement>
+	HTMLAttributes<HTMLElement>
 >;
 
 interface IState {
@@ -108,7 +108,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 
 		return (
 			<nav
-				{...getHtmlProps(props, [
+				{...omit(props, [
 					'tabIndex',
 					'onChange'
 				])}

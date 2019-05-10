@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactElement,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Table.st.css';
 
@@ -16,7 +15,7 @@ interface ISelfProps {
 
 export type ITableBodyProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLTableSectionElement>
+	HTMLAttributes<HTMLTableSectionElement>
 >;
 
 export class TableBody extends PureComponent<ITableBodyProps> {
@@ -40,7 +39,7 @@ export class TableBody extends PureComponent<ITableBodyProps> {
 
 		return (
 			<tbody
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('body', {}, props)}
 			>
 				{children}

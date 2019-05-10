@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
@@ -9,8 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Bind,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
@@ -28,7 +27,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 interface IState {
@@ -111,7 +110,7 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 						ref={this.onTooltipRef}
 						id={id}
 						role='tooltip'
-						{...getHtmlProps(props)}
+						{...props}
 						{...stylesheet('tooltip', {
 							[`${placement}Placement`]: Boolean(placement),
 							[`${align}Align`]:         Boolean(align),

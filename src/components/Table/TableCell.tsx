@@ -1,5 +1,6 @@
 import React, {
-	AllHTMLAttributes,
+	ThHTMLAttributes,
+	TdHTMLAttributes,
 	ReactNode,
 	MouseEvent,
 	KeyboardEvent,
@@ -9,7 +10,6 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
-	getHtmlProps,
 	modulo
 } from '../../helpers';
 import stylesheet from './Table.st.css';
@@ -29,7 +29,10 @@ interface ISelfProps {
 
 export type ITableCellProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLTableCellElement>
+	ThHTMLAttributes<HTMLTableHeaderCellElement>
+> | CombinePropsAndAttributes<
+	ISelfProps,
+	TdHTMLAttributes<HTMLTableDataCellElement>
 >;
 
 const buttonRole = {
@@ -72,7 +75,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		return (
 			<Cell
 				{...buttonLikeProps}
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('cell', {
 					head,
 					orderNone: isOrder && order === 0,

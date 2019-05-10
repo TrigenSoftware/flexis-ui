@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	InputHTMLAttributes,
 	Ref,
 	CSSProperties,
 	ChangeEvent,
@@ -9,8 +9,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Bind,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './FileSelect.st.css';
 
@@ -26,7 +25,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLInputElement>
+	InputHTMLAttributes<HTMLInputElement>
 >;
 
 export default class FileSelect extends PureComponent<IProps> {
@@ -69,7 +68,7 @@ export default class FileSelect extends PureComponent<IProps> {
 				{children}
 				<input
 					ref={elementRef}
-					{...getHtmlProps(props)}
+					{...props}
 					{...stylesheet('input')}
 					type='file'
 					onChange={this.onChange}

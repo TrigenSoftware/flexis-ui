@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	TextareaHTMLAttributes,
 	Ref,
 	ChangeEvent,
 	PureComponent
@@ -7,8 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Bind,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './Textarea.st.css';
 
@@ -23,7 +22,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLTextAreaElement>
+	TextareaHTMLAttributes<HTMLTextAreaElement>
 >;
 
 export default class Textarea extends PureComponent<IProps> {
@@ -62,7 +61,7 @@ export default class Textarea extends PureComponent<IProps> {
 		return (
 			<textarea
 				ref={elementRef}
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {}, props)}
 				onChange={this.onChange}
 				value={value}

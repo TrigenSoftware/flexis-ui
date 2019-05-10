@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	UIEvent,
 	WheelEvent,
 	ReactNode,
@@ -8,8 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Bind,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
 
@@ -26,7 +25,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 interface IState {
@@ -91,7 +90,7 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {}, props)}
 			>
 				<div

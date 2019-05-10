@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	SelectHTMLAttributes,
 	Ref,
 	ReactElement,
 	CSSProperties,
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import stylesheet from './Select.st.css';
 
@@ -30,7 +30,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLSelectElement>
+	SelectHTMLAttributes<HTMLSelectElement>
 >;
 
 export default class Select extends PureComponent<IProps> {
@@ -87,7 +87,7 @@ export default class Select extends PureComponent<IProps> {
 			>
 				<select
 					ref={elementRef}
-					{...getHtmlProps(props, ['multiple'])}
+					{...omit(props, ['multiple'])}
 					{...stylesheet('select')}
 					onChange={this.onChange}
 				>

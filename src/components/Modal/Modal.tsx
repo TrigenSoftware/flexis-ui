@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	MouseEvent,
 	SyntheticEvent,
 	ReactElement,
@@ -15,7 +15,7 @@ import {
 	CombinePropsAndAttributes,
 	Bind,
 	subscribeEvent,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import toggleScrollBlock from '../common/toggleScrollBlock';
 import toggleAriaHide from '../common/toggleAriaHide';
@@ -33,7 +33,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 const ESC_KEY = 27;
@@ -104,7 +104,7 @@ export default class Modal extends PureComponent<IProps> {
 					<div
 						role='dialog'
 						aria-modal
-						{...getHtmlProps(props, rootStylesheetPropNames)}
+						{...omit(props, rootStylesheetPropNames)}
 						{...stylesheet('window', {
 							centered
 						})}

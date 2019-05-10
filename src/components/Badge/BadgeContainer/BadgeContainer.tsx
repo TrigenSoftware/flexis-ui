@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../../helpers';
 import stylesheet from './BadgeContainer.st.css';
 
@@ -18,7 +17,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLSpanElement>
+	HTMLAttributes<HTMLSpanElement>
 >;
 
 export default class BadgeContainer extends PureComponent<IProps> {
@@ -53,7 +52,7 @@ export default class BadgeContainer extends PureComponent<IProps> {
 
 		return (
 			<span
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {
 					[`${placement}Placement`]: Boolean(placement),
 					[`${align}Align`]:         Boolean(align)

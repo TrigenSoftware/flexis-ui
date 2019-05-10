@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	DragEvent,
 	ReactNode,
 	PureComponent
@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import stylesheet from './FileDrop.st.css';
 
@@ -20,7 +20,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 interface IState {
@@ -58,7 +58,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...getHtmlProps(props, ['onChange'])}
+				{...omit(props, ['onChange'])}
 				{...stylesheet('root', {
 					disabled,
 					dragOver

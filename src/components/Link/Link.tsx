@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	AnchorHTMLAttributes,
 	Ref,
 	ReactElement,
 	ReactNode,
@@ -9,8 +9,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Link.st.css';
 
@@ -28,7 +27,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLAnchorElement>
+	AnchorHTMLAttributes<HTMLAnchorElement>
 >;
 
 const safeTargetBlankRel = 'noopener noreferrer';
@@ -92,7 +91,7 @@ export default class Link extends PureComponent<IProps> {
 		return (
 			<LinkElement
 				ref={elementRef}
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {
 					withIcon: Boolean(linkIcon),
 					flexIcon

@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
@@ -18,7 +17,7 @@ interface ISelfProps {
 
 export type IExpandTitleProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 export class ExpandTitle extends PureComponent<IExpandTitleProps> {
@@ -49,7 +48,7 @@ export class ExpandTitle extends PureComponent<IExpandTitleProps> {
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('title', {}, props)}
 				tabIndex={disabled ? -1 : tabIndex}
 			>

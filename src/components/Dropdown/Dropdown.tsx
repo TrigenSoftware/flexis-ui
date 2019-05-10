@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	MouseEvent,
 	KeyboardEvent,
 	SyntheticEvent,
@@ -17,7 +17,7 @@ import {
 	Bind,
 	subscribeEvent,
 	getAriaLabelProps,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
@@ -42,7 +42,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLSpanElement>
+	HTMLAttributes<HTMLSpanElement>
 >;
 
 interface IState {
@@ -146,7 +146,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		return (
 			<span
 				ref={this.onElementRef}
-				{...getHtmlProps(props, ['align'])}
+				{...omit(props, ['align'])}
 				{...stylesheet('root', {
 					active,
 					disabled
