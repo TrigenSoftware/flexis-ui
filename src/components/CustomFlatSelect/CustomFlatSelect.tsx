@@ -27,7 +27,6 @@ interface ISelfProps {
 	disabled?: boolean;
 	children: ReactElement<any>|ReactElement<any>[];
 	onChange?(value, event: ChangeEvent);
-	onChange?(value, name: string, event: ChangeEvent);
 }
 
 interface IOptionProps {
@@ -36,6 +35,7 @@ interface IOptionProps {
 	checked: boolean;
 	disabled: boolean;
 	name: string;
+	optionId: string;
 	id?: string;
 	onChange(value, event: ChangeEvent);
 }
@@ -131,13 +131,15 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 
 			const {
 				value: optionValue,
-				children: optionLabel
+				children: optionLabel,
+				...childProps
 			} = child.props;
 			const option = typeof optionValue === 'undefined'
 				? optionLabel
 				: optionValue;
 			const checked = isCurrentValue(multiple, value, option);
 			const props: IOptionProps = {
+				...childProps,
 				type:     multiple ? 'checkbox' : 'radio',
 				value:    option,
 				onChange: this.onChange,
@@ -148,10 +150,10 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 
 			if (typeof id === 'string') {
 
-				props.id = `${id}-option-${option}`;
+				props.optionId = `${id}-option-${option}`;
 
-				if (checked) {
-					activeDescendant = props.id;
+				if (checked && !multiple) {
+					activeDescendant = props.optionId;
 				}
 			}
 
@@ -164,10 +166,16 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		return (
 			<ul
 				role='listbox'
-				{...omit(props, ['onChange'])}
+				{...omit(props, [
+					'onChange',
+					'defaultValue',
+					'value'
+				])}
 				{...stylesheet('root', {}, props)}
+				id={id}
 				aria-activedescendant={activeDescendant}
 				aria-multiselectable={multiple}
+				aria-disabled={disabled}
 			>
 				{options}
 			</ul>
@@ -179,7 +187,6 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 
 		const {
 			value: valueProp,
-			name,
 			onChange,
 			multiple,
 			disabled
@@ -205,12 +212,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		}
 
 		if (typeof onChange === 'function') {
-
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

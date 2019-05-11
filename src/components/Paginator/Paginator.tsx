@@ -20,7 +20,6 @@ interface ISelfProps {
 	disabled?: boolean;
 	mapPagesLabel?(label: string): string;
 	onChange?(page: number, event: MouseEvent);
-	onChange?(page: number, name: string, event: MouseEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -110,7 +109,11 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			<nav
 				{...omit(props, [
 					'tabIndex',
-					'onChange'
+					'onChange',
+					'mapPagesLabel',
+					'defaultPage',
+					'page',
+					'total'
 				])}
 				{...stylesheet('root', {
 					disabled
@@ -154,7 +157,8 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			tabIndex,
 			total,
 			disabled,
-			mapPagesLabel
+			mapPagesLabel,
+			name
 		} = this.props;
 		const {
 			page
@@ -214,6 +218,8 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			default:
 		}
 
+		const pageNum = num - 1;
+
 		return (
 			<li
 				key={visiblePagePlace}
@@ -230,7 +236,9 @@ export default class Paginator extends PureComponent<IProps, IState> {
 						})}
 						type='button'
 						tabIndex={tabIndex}
-						onClick={this.onChange(num - 1)}
+						onClick={this.onChange(pageNum)}
+						name={name}
+						value={pageNum}
 						disabled={disabled}
 						aria-current={active ? 'page' : null}
 					>
@@ -251,7 +259,6 @@ export default class Paginator extends PureComponent<IProps, IState> {
 
 		const {
 			page: pageProp,
-			name,
 			onChange,
 			disabled
 		} = this.props;
@@ -275,12 +282,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 		}
 
 		if (typeof onChange === 'function') {
-
-			if (name) {
-				onChange(nextPage, name, event);
-			} else {
-				onChange(nextPage, event);
-			}
+			onChange(nextPage, event);
 		}
 	}
 }

@@ -3,8 +3,10 @@ import React, {
 	Ref,
 	CSSProperties,
 	ChangeEvent,
-	ReactNode,
-	PureComponent
+	ReactElement,
+	PureComponent,
+	Children,
+	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -16,11 +18,9 @@ import stylesheet from './FileSelect.st.css';
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
 	style?: CSSProperties;
-	name?: string;
 	disabled?: boolean;
-	children?: ReactNode;
+	children: ReactElement<any>;
 	onChange?(files: File[], event: ChangeEvent);
-	onChange?(files: File[], name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -33,7 +33,6 @@ export default class FileSelect extends PureComponent<IProps> {
 	static propTypes = {
 		elementRef: PropTypes.func,
 		style:      PropTypes.object,
-		name:       PropTypes.string,
 		onChange:   PropTypes.func,
 		disabled:   PropTypes.bool,
 		children:   PropTypes.node
@@ -42,7 +41,6 @@ export default class FileSelect extends PureComponent<IProps> {
 	static defaultProps = {
 		elementRef: null,
 		style:      null,
-		name:       null,
 		onChange:   null,
 		disabled:   false,
 		children:   null
@@ -65,7 +63,13 @@ export default class FileSelect extends PureComponent<IProps> {
 				}, props)}
 				style={style}
 			>
-				{children}
+				{cloneElement(
+					Children.only(children),
+					{
+						'aria-disabled': disabled,
+						'disabled':      disabled
+					}
+				)}
 				<input
 					ref={elementRef}
 					{...props}
@@ -73,9 +77,6 @@ export default class FileSelect extends PureComponent<IProps> {
 					type='file'
 					onChange={this.onChange}
 					disabled={disabled}
-				/>
-				<div
-					{...stylesheet('border')}
 				/>
 			</label>
 		);
@@ -85,7 +86,6 @@ export default class FileSelect extends PureComponent<IProps> {
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
@@ -93,11 +93,7 @@ export default class FileSelect extends PureComponent<IProps> {
 
 			const nextValue = Array.from(event.currentTarget.files);
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

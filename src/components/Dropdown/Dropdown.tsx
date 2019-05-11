@@ -146,7 +146,13 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		return (
 			<span
 				ref={this.onElementRef}
-				{...omit(props, ['align'])}
+				{...omit(props, [
+					'defaultActive',
+					'active',
+					'blockScroll',
+					'align',
+					'transitionDuration'
+				])}
 				{...stylesheet('root', {
 					active,
 					disabled

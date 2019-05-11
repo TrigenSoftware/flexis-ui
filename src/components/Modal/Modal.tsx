@@ -143,7 +143,6 @@ export default class Modal extends PureComponent<IProps> {
 		}
 	}
 
-	@Bind()
 	private onIgnoredEvent(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 	}

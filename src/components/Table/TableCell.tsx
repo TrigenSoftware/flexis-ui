@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
+	omit,
 	modulo
 } from '../../helpers';
 import stylesheet from './Table.st.css';
@@ -75,7 +76,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		return (
 			<Cell
 				{...buttonLikeProps}
-				{...props}
+				{...omit(props, ['onOrderChange'])}
 				{...stylesheet('cell', {
 					head,
 					orderNone: isOrder && order === 0,

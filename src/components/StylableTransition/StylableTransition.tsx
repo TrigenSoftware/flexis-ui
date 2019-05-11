@@ -10,7 +10,8 @@ import {
 } from '@stylable/runtime';
 import {
 	CombinePropsAndAttributes,
-	Bind
+	Bind,
+	omit
 } from '../../helpers';
 
 export interface ITransitionState {
@@ -110,12 +111,10 @@ export default class StylableTransition extends Component<IProps> {
 
 	render() {
 
-		const props = {
-			...this.props
-		};
-
-		Reflect.deleteProperty(props, 'states');
-		Reflect.deleteProperty(props, 'statesElement');
+		const props = omit(this.props, [
+			'states',
+			'statesElement'
+		]);
 
 		return (
 			<Transition

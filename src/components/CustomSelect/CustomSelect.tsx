@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
+	omit,
 	getAriaLabelProps
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
@@ -147,8 +148,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			return child;
 		});
 
-		Reflect.deleteProperty(props, 'onChange');
-
 		return (
 			<Dropdown
 				ref={this.onDropdownRef}
@@ -164,7 +163,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 					aria-multiselectable={multiple}
 				>
 					<CustomFlatSelect
-						{...props}
+						{...omit(props, ['elementRef'])}
 						{...ariaLabelProps}
 						{...stylesheet('options')}
 						name={name}
@@ -265,11 +264,8 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		}
 	}
 
-	private onChange(nextValue, event: ChangeEvent<Element>);
-	private onChange(nextValue, name: string, event: ChangeEvent<Element>);
-
 	@Bind()
-	private onChange(nextValue, eventOrName, event?) {
+	private onChange(nextValue, event: ChangeEvent<Element>) {
 
 		const {
 			onChange
@@ -280,7 +276,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		}));
 
 		if (typeof onChange === 'function') {
-			onChange(nextValue, eventOrName, event);
+			onChange(nextValue, event);
 		}
 	}
 }

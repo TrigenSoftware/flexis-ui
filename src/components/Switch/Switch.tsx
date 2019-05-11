@@ -21,7 +21,6 @@ interface ISelfProps {
 	defaultChecked?: boolean;
 	checked?: boolean;
 	onChange?(value: string|number|boolean, event: ChangeEvent);
-	onChange?(value: string|number|boolean, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -63,10 +62,6 @@ export default class Switch extends PureComponent<IProps> {
 		const {
 			elementRef,
 			style,
-			type,
-			value,
-			checked,
-			defaultChecked,
 			...props
 		} = this.props;
 
@@ -79,11 +74,7 @@ export default class Switch extends PureComponent<IProps> {
 					ref={elementRef}
 					{...props}
 					{...stylesheet('input')}
-					type={type}
 					onChange={this.onChange}
-					value={value}
-					checked={checked}
-					defaultChecked={defaultChecked}
 				/>
 				<div
 					{...stylesheet('face')}
@@ -96,7 +87,6 @@ export default class Switch extends PureComponent<IProps> {
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
-			name,
 			onChange,
 			value
 		} = this.props;
@@ -107,11 +97,7 @@ export default class Switch extends PureComponent<IProps> {
 				? value
 				: event.currentTarget.checked;
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

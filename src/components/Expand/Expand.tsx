@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
+	omit,
 	getAriaLabelProps
 } from '../../helpers';
 import stylesheet from './Expand.st.css';
@@ -106,7 +107,11 @@ export default class Expand extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...props}
+				{...omit(props, [
+					'defaultActive',
+					'active',
+					'onToggle'
+				])}
 				{...stylesheet('root', {
 					active,
 					disabled

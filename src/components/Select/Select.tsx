@@ -25,7 +25,6 @@ interface ISelfProps {
 	value?: any;
 	children: ReactElement<any>|ReactElement<any>[];
 	onChange?(value, event: ChangeEvent);
-	onChange?(value, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -104,7 +103,6 @@ export default class Select extends PureComponent<IProps> {
 	onChange(event: ChangeEvent<HTMLSelectElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
@@ -115,11 +113,7 @@ export default class Select extends PureComponent<IProps> {
 			} = event.currentTarget.options;
 			const nextValue = this.originalValues[selectedIndex];
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

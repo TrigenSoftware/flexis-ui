@@ -17,7 +17,6 @@ interface ISelfProps {
 	defaultValue?: string|number;
 	value?: string|number;
 	onChange?(value: string, event: ChangeEvent);
-	onChange?(value: string, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -53,7 +52,6 @@ export default class Textarea extends PureComponent<IProps> {
 
 		const {
 			elementRef,
-			value,
 			defaultValue,
 			...props
 		} = this.props;
@@ -64,7 +62,6 @@ export default class Textarea extends PureComponent<IProps> {
 				{...props}
 				{...stylesheet('root', {}, props)}
 				onChange={this.onChange}
-				value={value}
 				defaultValue={defaultValue as string}
 			/>
 		);
@@ -74,7 +71,6 @@ export default class Textarea extends PureComponent<IProps> {
 	private onChange(event: ChangeEvent<HTMLTextAreaElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
@@ -82,11 +78,7 @@ export default class Textarea extends PureComponent<IProps> {
 
 			const nextValue = event.currentTarget.value;
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

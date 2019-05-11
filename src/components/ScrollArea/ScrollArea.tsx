@@ -8,7 +8,8 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Bind
+	Bind,
+	omit
 } from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
 
@@ -90,7 +91,7 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...props}
+				{...omit(props, ['y2xScroll'])}
 				{...stylesheet('root', {}, props)}
 			>
 				<div

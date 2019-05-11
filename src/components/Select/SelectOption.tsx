@@ -28,7 +28,6 @@ export class SelectOption extends PureComponent<ISelectOptionProps> {
 	render() {
 
 		const {
-			value,
 			children,
 			...props
 		} = this.props;
@@ -36,7 +35,6 @@ export class SelectOption extends PureComponent<ISelectOptionProps> {
 		return (
 			<option
 				{...props}
-				value={value}
 			>
 				{children}
 			</option>

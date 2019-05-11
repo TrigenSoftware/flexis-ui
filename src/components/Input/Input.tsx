@@ -29,7 +29,6 @@ interface ISelfProps {
 	formatChars?: any;
 	alwaysShowMask?: boolean;
 	onChange?(value: string, event: ChangeEvent);
-	onChange?(value: string, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -85,9 +84,6 @@ export default class Input extends PureComponent<IProps> {
 		const {
 			elementRef,
 			style,
-			type,
-			value,
-			defaultValue,
 			icon,
 			alignIcon,
 			mask,
@@ -130,10 +126,7 @@ export default class Input extends PureComponent<IProps> {
 					ref={elementRef && mapRef(elementRef)}
 					{...props}
 					{...stylesheet('input')}
-					type={type}
 					onChange={this.onChange}
-					value={value}
-					defaultValue={defaultValue}
 					{...maskedInputProps}
 				/>
 				<div
@@ -148,24 +141,14 @@ export default class Input extends PureComponent<IProps> {
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
 		if (typeof onChange === 'function') {
-
-			if (name) {
-				onChange(
-					event.currentTarget.value,
-					name,
-					event
-				);
-			} else {
-				onChange(
-					event.currentTarget.value,
-					event
-				);
-			}
+			onChange(
+				event.currentTarget.value,
+				event
+			);
 		}
 	}
 }

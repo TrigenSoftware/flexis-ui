@@ -168,6 +168,7 @@ export default storiesOf('CustomFlatSelect', module)
 			<CustomFlatSelect
 				{...events}
 				style={{ width: '10rem' }}
+				id='select'
 				name='select'
 				disabled={boolean('Disabled', false)}
 				multiple

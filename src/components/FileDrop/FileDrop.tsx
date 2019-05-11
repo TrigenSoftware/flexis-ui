@@ -70,13 +70,13 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 				onDragLeave={this.onDragLeave}
 				onDragEnd={this.onDragLeave}
 				onDrop={this.onChange}
+				aria-disabled={disabled}
 			>
 				{children}
 			</div>
 		);
 	}
 
-	@Bind()
 	private onIgnoredEvent(event: DragEvent) {
 		event.stopPropagation();
 		event.preventDefault();

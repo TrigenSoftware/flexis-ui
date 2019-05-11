@@ -7,8 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	Bind
+	CombinePropsAndAttributes
 } from '../../helpers';
 
 interface ISelfProps {
@@ -52,7 +51,6 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 		);
 	}
 
-	@Bind()
 	private onClick(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();

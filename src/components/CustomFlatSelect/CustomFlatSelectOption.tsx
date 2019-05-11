@@ -14,6 +14,7 @@ import {
 import stylesheet from './CustomFlatSelect.st.css';
 
 interface ISelfProps {
+	optionId?: string;
 	id?: string;
 	type?: 'radio'|'checkbox';
 	name?: string;
@@ -58,6 +59,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 	render() {
 
 		const {
+			optionId,
 			id,
 			type,
 			name,
@@ -70,8 +72,10 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 
 		return (
 			<li
-				id={id}
+				id={optionId}
 				role='option'
+				aria-selected={checked}
+				aria-disabled={disabled}
 				{...omit(props, ['onChange'])}
 				{...stylesheet('option')}
 			>
@@ -80,6 +84,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 				>
 					<input
 						{...stylesheet('input')}
+						id={id}
 						type={type}
 						name={name}
 						checked={checked}
@@ -115,6 +120,15 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 	}
 
 	private onFaceClick(event: MouseEvent) {
+
+		const {
+			target,
+			currentTarget
+		} = event;
+
+		if (target === currentTarget) {
+			return;
+		}
 
 		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
 
