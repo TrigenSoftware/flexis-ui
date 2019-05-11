@@ -180,7 +180,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 					<input
 						type='hidden'
 						name={name}
-						value={value}
+						value={value || ''}
 					/>
 				)}
 			</Dropdown>

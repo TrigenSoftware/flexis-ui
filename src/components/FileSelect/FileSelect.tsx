@@ -58,9 +58,7 @@ export default class FileSelect extends PureComponent<IProps> {
 
 		return (
 			<label
-				{...stylesheet('root', {
-					disabled
-				}, props)}
+				{...stylesheet('root', {}, props)}
 				style={style}
 			>
 				{cloneElement(
