@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	DragEvent,
 	ReactNode,
 	PureComponent
@@ -7,8 +7,8 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	Bind,
+	omit
 } from '../../helpers';
 import stylesheet from './FileDrop.st.css';
 
@@ -20,7 +20,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 interface IState {
@@ -58,7 +58,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...getHtmlProps(props, ['onChange'])}
+				{...omit(props, ['onChange'])}
 				{...stylesheet('root', {
 					disabled,
 					dragOver
@@ -70,19 +70,19 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 				onDragLeave={this.onDragLeave}
 				onDragEnd={this.onDragLeave}
 				onDrop={this.onChange}
+				aria-disabled={disabled}
 			>
 				{children}
 			</div>
 		);
 	}
 
-	@Listener()
 	private onIgnoredEvent(event: DragEvent) {
 		event.stopPropagation();
 		event.preventDefault();
 	}
 
-	@Listener()
+	@Bind()
 	private onDragOver(event: DragEvent) {
 
 		event.stopPropagation();
@@ -93,7 +93,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 		}));
 	}
 
-	@Listener()
+	@Bind()
 	private onDragLeave(event: DragEvent) {
 
 		event.stopPropagation();
@@ -104,7 +104,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 		}));
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: DragEvent) {
 
 		event.stopPropagation();

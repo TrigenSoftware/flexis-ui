@@ -32,8 +32,8 @@ export default storiesOf('Checkbox', module)
 		() => (
 			<Checkbox
 				{...events}
+				name='checkbox'
 				disabled={boolean('Disabled', false)}
-				defaultChecked={false}
 			/>
 		)
 	)
@@ -64,6 +64,17 @@ export default storiesOf('Checkbox', module)
 				{...events}
 				disabled={boolean('Disabled', false)}
 				checked={boolean('Checked', true)}
+			/>
+		)
+	)
+	.add(
+		'with value',
+		() => (
+			<Checkbox
+				{...events}
+				name='checkbox'
+				value='string value'
+				disabled={boolean('Disabled', false)}
 			/>
 		)
 	);

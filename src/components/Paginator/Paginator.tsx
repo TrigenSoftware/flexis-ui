@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	MouseEvent,
 	ReactElement,
 	PureComponent
@@ -7,12 +7,13 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	getHtmlProps
+	omit
 } from '../../helpers';
 import stylesheet from './Paginator.st.css';
 
 interface ISelfProps {
 	tabIndex?: number;
+	type?: 'button'|'submit';
 	name?: string;
 	defaultPage?: number;
 	page?: number;
@@ -20,12 +21,11 @@ interface ISelfProps {
 	disabled?: boolean;
 	mapPagesLabel?(label: string): string;
 	onChange?(page: number, event: MouseEvent);
-	onChange?(page: number, name: string, event: MouseEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLElement>
+	HTMLAttributes<HTMLElement>
 >;
 
 interface IState {
@@ -45,6 +45,10 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			PropTypes.number,
 			PropTypes.string
 		]),
+		type:          PropTypes.oneOf([
+			'button',
+			'submit'
+		]),
 		name:          PropTypes.string,
 		onChange:      PropTypes.func,
 		defaultPage:   PropTypes.number,
@@ -56,6 +60,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 
 	static defaultProps = {
 		tabIndex:      0,
+		type:          'button',
 		name:          null,
 		onChange:      null,
 		defaultPage:   -1,
@@ -108,9 +113,14 @@ export default class Paginator extends PureComponent<IProps, IState> {
 
 		return (
 			<nav
-				{...getHtmlProps(props, [
+				{...omit(props, [
 					'tabIndex',
-					'onChange'
+					'type',
+					'onChange',
+					'mapPagesLabel',
+					'defaultPage',
+					'page',
+					'total'
 				])}
 				{...stylesheet('root', {
 					disabled
@@ -154,7 +164,9 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			tabIndex,
 			total,
 			disabled,
-			mapPagesLabel
+			mapPagesLabel,
+			type,
+			name
 		} = this.props;
 		const {
 			page
@@ -214,6 +226,8 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			default:
 		}
 
+		const pageNum = num - 1;
+
 		return (
 			<li
 				key={visiblePagePlace}
@@ -228,9 +242,11 @@ export default class Paginator extends PureComponent<IProps, IState> {
 						{...stylesheet('button', {
 							active
 						})}
-						type='button'
+						type={type}
 						tabIndex={tabIndex}
-						onClick={this.onChange(num - 1)}
+						onClick={this.onChange(pageNum)}
+						name={name}
+						value={pageNum}
 						disabled={disabled}
 						aria-current={active ? 'page' : null}
 					>
@@ -251,7 +267,6 @@ export default class Paginator extends PureComponent<IProps, IState> {
 
 		const {
 			page: pageProp,
-			name,
 			onChange,
 			disabled
 		} = this.props;
@@ -275,12 +290,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 		}
 
 		if (typeof onChange === 'function') {
-
-			if (name) {
-				onChange(nextPage, name, event);
-			} else {
-				onChange(nextPage, event);
-			}
+			onChange(nextPage, event);
 		}
 	}
 }

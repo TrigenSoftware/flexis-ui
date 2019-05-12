@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	LiHTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Menu.st.css';
 
@@ -16,7 +15,7 @@ interface ISelfProps {
 
 export type IMenuItemProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLLIElement>
+	LiHTMLAttributes<HTMLLIElement>
 >;
 
 export class MenuItem extends PureComponent<IMenuItemProps> {
@@ -35,7 +34,7 @@ export class MenuItem extends PureComponent<IMenuItemProps> {
 		return (
 			<li
 				role='menuitem'
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('item', {}, props)}
 			>
 				{children}

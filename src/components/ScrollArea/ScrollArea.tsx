@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	UIEvent,
 	WheelEvent,
 	ReactNode,
@@ -8,8 +8,8 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	Bind,
+	omit
 } from '../../helpers';
 import stylesheet from './ScrollArea.st.css';
 
@@ -26,7 +26,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 interface IState {
@@ -91,7 +91,7 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...omit(props, ['y2xScroll'])}
 				{...stylesheet('root', {}, props)}
 			>
 				<div
@@ -138,19 +138,19 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 		this.hideScroll(this.scroller);
 	}
 
-	@Listener()
+	@Bind()
 	private onScrollerRef(ref: HTMLDivElement) {
 		this.scroller = ref;
 		this.setShadow(ref);
 		this.hideScroll(ref);
 	}
 
-	@Listener()
+	@Bind()
 	private onScroll({ currentTarget }: UIEvent<HTMLDivElement>) {
 		this.setShadow(currentTarget);
 	}
 
-	@Listener()
+	@Bind()
 	private onWheel(event: WheelEvent<HTMLDivElement>) {
 
 		const {

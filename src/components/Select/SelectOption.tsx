@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	OptionHTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 
 interface ISelfProps {
@@ -16,7 +15,7 @@ interface ISelfProps {
 
 export type ISelectOptionProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLOptionElement>
+	OptionHTMLAttributes<HTMLOptionElement>
 >;
 
 export class SelectOption extends PureComponent<ISelectOptionProps> {
@@ -29,15 +28,13 @@ export class SelectOption extends PureComponent<ISelectOptionProps> {
 	render() {
 
 		const {
-			value,
 			children,
 			...props
 		} = this.props;
 
 		return (
 			<option
-				{...getHtmlProps(props)}
-				value={value}
+				{...props}
 			>
 				{children}
 			</option>

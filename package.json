@@ -30,14 +30,14 @@
     "styleless"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
+    "@babel/runtime": "^7.4.4",
     "@stylable/runtime": "^1.0.4",
-    "@types/prop-types": "^15.5.5",
-    "@types/react": "16.8.12",
-    "@types/react-transition-group": "^2.0.13",
-    "color": "^3.1.0",
+    "@types/prop-types": "^15.7.1",
+    "@types/react": "16.8.17",
+    "@types/react-transition-group": "^2.9.1",
+    "color": "^3.1.1",
     "react-input-mask": "^2.0.3",
-    "react-transition-group": "^2.7.0",
+    "react-transition-group": "^4.0.0",
     "resize-observer": "^1.0.0-alpha.1",
     "throttle-debounce": "^2.0.1"
   },
@@ -47,7 +47,7 @@
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
+    "@babel/cli": "^7.4.4",
     "@trigen/scripts": "^1.10.2",
     "clean-publish": "^1.1.2",
     "del-cli": "^1.1.0",

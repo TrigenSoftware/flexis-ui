@@ -66,4 +66,34 @@ export default storiesOf('Radio', module)
 				checked={boolean('Checked', true)}
 			/>
 		)
+	)
+	.add(
+		'with value',
+		() => (
+			<Radio
+				{...events}
+				name='radio'
+				value='string value'
+				disabled={boolean('Disabled', false)}
+			/>
+		)
+	)
+	.add(
+		'with few radios',
+		() => (
+			<>
+				<Radio
+					{...events}
+					name='radio'
+					value='string value'
+					disabled={boolean('Disabled', false)}
+				/>
+				<Radio
+					{...events}
+					name='radio'
+					value='another string value'
+					disabled={boolean('Disabled', false)}
+				/>
+			</>
+		)
 	);

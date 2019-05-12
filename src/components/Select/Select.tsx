@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	SelectHTMLAttributes,
 	Ref,
 	ReactElement,
 	CSSProperties,
@@ -10,8 +10,8 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	Bind,
+	omit
 } from '../../helpers';
 import stylesheet from './Select.st.css';
 
@@ -25,12 +25,11 @@ interface ISelfProps {
 	value?: any;
 	children: ReactElement<any>|ReactElement<any>[];
 	onChange?(value, event: ChangeEvent);
-	onChange?(value, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLSelectElement>
+	SelectHTMLAttributes<HTMLSelectElement>
 >;
 
 export default class Select extends PureComponent<IProps> {
@@ -87,7 +86,7 @@ export default class Select extends PureComponent<IProps> {
 			>
 				<select
 					ref={elementRef}
-					{...getHtmlProps(props, ['multiple'])}
+					{...omit(props, ['multiple'])}
 					{...stylesheet('select')}
 					onChange={this.onChange}
 				>
@@ -100,11 +99,10 @@ export default class Select extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	onChange(event: ChangeEvent<HTMLSelectElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
@@ -115,11 +113,7 @@ export default class Select extends PureComponent<IProps> {
 			} = event.currentTarget.options;
 			const nextValue = this.originalValues[selectedIndex];
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

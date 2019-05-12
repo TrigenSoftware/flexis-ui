@@ -4,7 +4,7 @@ import React, {
 	PureComponent
 } from 'react';
 import {
-	Listener
+	Bind
 } from '../../helpers';
 import Modal, {
 	IProps as IModalProps
@@ -62,7 +62,7 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private async onSubmit(event: FormEvent) {
 		event.preventDefault();
 		event.stopPropagation();
@@ -70,7 +70,7 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 		this.resolve(true);
 	}
 
-	@Listener()
+	@Bind()
 	private onClick(
 		{ target }: MouseEvent<HTMLFormElement> & { target: HTMLButtonElement }
 	) {
@@ -80,7 +80,7 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onClose() {
 		this.hide();
 	}

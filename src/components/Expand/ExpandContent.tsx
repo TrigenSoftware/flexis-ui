@@ -1,12 +1,11 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
@@ -16,7 +15,7 @@ interface ISelfProps {
 
 export type IExpandContentProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 export class ExpandContent extends PureComponent<IExpandContentProps> {
@@ -38,7 +37,7 @@ export class ExpandContent extends PureComponent<IExpandContentProps> {
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('content', {}, props)}
 			>
 				{children}

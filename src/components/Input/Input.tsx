@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	InputHTMLAttributes,
 	Ref,
 	CSSProperties,
 	ReactElement,
@@ -11,8 +11,7 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './Input.st.css';
 
@@ -30,12 +29,11 @@ interface ISelfProps {
 	formatChars?: any;
 	alwaysShowMask?: boolean;
 	onChange?(value: string, event: ChangeEvent);
-	onChange?(value: string, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLInputElement>
+	InputHTMLAttributes<HTMLInputElement>
 >;
 
 export default class Input extends PureComponent<IProps> {
@@ -86,9 +84,6 @@ export default class Input extends PureComponent<IProps> {
 		const {
 			elementRef,
 			style,
-			type,
-			value,
-			defaultValue,
 			icon,
 			alignIcon,
 			mask,
@@ -129,12 +124,9 @@ export default class Input extends PureComponent<IProps> {
 			>
 				<Input
 					ref={elementRef && mapRef(elementRef)}
-					{...getHtmlProps(props)}
+					{...props}
 					{...stylesheet('input')}
-					type={type}
 					onChange={this.onChange}
-					value={value}
-					defaultValue={defaultValue}
 					{...maskedInputProps}
 				/>
 				<div
@@ -145,28 +137,18 @@ export default class Input extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
 		if (typeof onChange === 'function') {
-
-			if (name) {
-				onChange(
-					event.currentTarget.value,
-					name,
-					event
-				);
-			} else {
-				onChange(
-					event.currentTarget.value,
-					event
-				);
-			}
+			onChange(
+				event.currentTarget.value,
+				event
+			);
 		}
 	}
 }

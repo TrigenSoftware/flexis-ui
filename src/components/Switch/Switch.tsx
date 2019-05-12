@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	InputHTMLAttributes,
 	Ref,
 	CSSProperties,
 	ChangeEvent,
@@ -8,8 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './Switch.st.css';
 
@@ -22,12 +21,11 @@ interface ISelfProps {
 	defaultChecked?: boolean;
 	checked?: boolean;
 	onChange?(value: string|number|boolean, event: ChangeEvent);
-	onChange?(value: string|number|boolean, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLInputElement>
+	InputHTMLAttributes<HTMLInputElement>
 >;
 
 export default class Switch extends PureComponent<IProps> {
@@ -64,10 +62,6 @@ export default class Switch extends PureComponent<IProps> {
 		const {
 			elementRef,
 			style,
-			type,
-			value,
-			checked,
-			defaultChecked,
 			...props
 		} = this.props;
 
@@ -78,13 +72,9 @@ export default class Switch extends PureComponent<IProps> {
 			>
 				<input
 					ref={elementRef}
-					{...getHtmlProps(props)}
+					{...props}
 					{...stylesheet('input')}
-					type={type}
 					onChange={this.onChange}
-					value={value}
-					checked={checked}
-					defaultChecked={defaultChecked}
 				/>
 				<div
 					{...stylesheet('face')}
@@ -93,26 +83,21 @@ export default class Switch extends PureComponent<IProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
-			name,
 			onChange,
 			value
 		} = this.props;
 
 		if (typeof onChange === 'function') {
 
-			const nextValue = value !== null
+			const nextValue = typeof value !== 'undefined'
 				? value
 				: event.currentTarget.checked;
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

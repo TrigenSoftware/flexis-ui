@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	TextareaHTMLAttributes,
 	Ref,
 	ChangeEvent,
 	PureComponent
@@ -7,8 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	Bind
 } from '../../helpers';
 import stylesheet from './Textarea.st.css';
 
@@ -18,12 +17,11 @@ interface ISelfProps {
 	defaultValue?: string|number;
 	value?: string|number;
 	onChange?(value: string, event: ChangeEvent);
-	onChange?(value: string, name: string, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLTextAreaElement>
+	TextareaHTMLAttributes<HTMLTextAreaElement>
 >;
 
 export default class Textarea extends PureComponent<IProps> {
@@ -54,7 +52,6 @@ export default class Textarea extends PureComponent<IProps> {
 
 		const {
 			elementRef,
-			value,
 			defaultValue,
 			...props
 		} = this.props;
@@ -62,20 +59,18 @@ export default class Textarea extends PureComponent<IProps> {
 		return (
 			<textarea
 				ref={elementRef}
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {}, props)}
 				onChange={this.onChange}
-				value={value}
 				defaultValue={defaultValue as string}
 			/>
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onChange(event: ChangeEvent<HTMLTextAreaElement>) {
 
 		const {
-			name,
 			onChange
 		} = this.props;
 
@@ -83,11 +78,7 @@ export default class Textarea extends PureComponent<IProps> {
 
 			const nextValue = event.currentTarget.value;
 
-			if (name) {
-				onChange(nextValue, name, event);
-			} else {
-				onChange(nextValue, event);
-			}
+			onChange(nextValue, event);
 		}
 	}
 }

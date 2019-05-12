@@ -1,13 +1,13 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	ReactElement,
 	PureComponent,
+	Children,
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 import stylesheet from './FormGroup.st.css';
 
@@ -19,7 +19,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 export default class FormGroup extends PureComponent<IProps> {
@@ -46,10 +46,11 @@ export default class FormGroup extends PureComponent<IProps> {
 			children,
 			...props
 		} = this.props;
+		const child = Children.only(children);
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...props}
 				{...stylesheet('root', {}, props)}
 			>
 				{typeof label !== 'string' ? label : (
@@ -61,8 +62,10 @@ export default class FormGroup extends PureComponent<IProps> {
 					</label>
 				)}
 				{cloneElement(
-					children,
-					{ id: id || children.props.id }
+					child,
+					{
+						id: id || child.props.id
+					}
 				)}
 			</div>
 		);

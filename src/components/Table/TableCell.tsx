@@ -1,5 +1,6 @@
 import React, {
-	AllHTMLAttributes,
+	ThHTMLAttributes,
+	TdHTMLAttributes,
 	ReactNode,
 	MouseEvent,
 	KeyboardEvent,
@@ -8,8 +9,8 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps,
+	Bind,
+	omit,
 	modulo
 } from '../../helpers';
 import stylesheet from './Table.st.css';
@@ -29,7 +30,10 @@ interface ISelfProps {
 
 export type ITableCellProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLTableCellElement>
+	ThHTMLAttributes<HTMLTableHeaderCellElement>
+> | CombinePropsAndAttributes<
+	ISelfProps,
+	TdHTMLAttributes<HTMLTableDataCellElement>
 >;
 
 const buttonRole = {
@@ -72,7 +76,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		return (
 			<Cell
 				{...buttonLikeProps}
-				{...getHtmlProps(props)}
+				{...omit(props, ['onOrderChange'])}
 				{...stylesheet('cell', {
 					head,
 					orderNone: isOrder && order === 0,
@@ -87,7 +91,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onOrderChange(event: MouseEvent<HTMLTableCellElement>) {
 
 		const {
@@ -115,7 +119,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onKeyPress(event: KeyboardEvent<HTMLTableCellElement>) {
 
 		const {

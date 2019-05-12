@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	Ref,
 	ReactNode,
 	MouseEvent,
@@ -7,9 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	CombinePropsAndAttributes,
-	Listener,
-	getHtmlProps
+	CombinePropsAndAttributes
 } from '../../helpers';
 
 interface ISelfProps {
@@ -19,7 +17,7 @@ interface ISelfProps {
 
 export type IDropdownContentProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 export class DropdownContent extends PureComponent<IDropdownContentProps> {
@@ -45,7 +43,7 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 			<div
 				ref={elementRef}
 				tabIndex={0}
-				{...getHtmlProps(props)}
+				{...props}
 				onClick={this.onClick}
 			>
 				{children}
@@ -53,7 +51,6 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 		);
 	}
 
-	@Listener()
 	private onClick(event: MouseEvent<HTMLDivElement>) {
 		event.stopPropagation();
 		event.nativeEvent.stopImmediatePropagation();

@@ -1,6 +1,7 @@
 import {
 	ReactElement,
 	PureComponent,
+	Children,
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
@@ -31,8 +32,11 @@ export default class SROnly extends PureComponent<IProps> {
 			...props
 		} = this.props;
 
-		return cloneElement(children, stylesheet('root', {
-			focusable
-		}, props));
+		return cloneElement(
+			Children.only(children),
+			stylesheet('root', {
+				focusable
+			}, props)
+		);
 	}
 }

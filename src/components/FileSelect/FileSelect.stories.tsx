@@ -14,9 +14,7 @@ import FileSelect from './';
 export const stylableApi = `
 Stylable API
 ---
-- :disabled
 - ::input
-- ::border
 `;
 
 export const events = {

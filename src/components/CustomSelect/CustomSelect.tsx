@@ -10,7 +10,8 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
+	Bind,
+	omit,
 	getAriaLabelProps
 } from '../../helpers';
 import isCurrentValue from '../common/isCurrentValue';
@@ -147,8 +148,6 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			return child;
 		});
 
-		Reflect.deleteProperty(props, 'onChange');
-
 		return (
 			<Dropdown
 				ref={this.onDropdownRef}
@@ -164,7 +163,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 					aria-multiselectable={multiple}
 				>
 					<CustomFlatSelect
-						{...props}
+						{...omit(props, ['elementRef'])}
 						{...ariaLabelProps}
 						{...stylesheet('options')}
 						name={name}
@@ -181,7 +180,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 					<input
 						type='hidden'
 						name={name}
-						value={value}
+						value={value || ''}
 					/>
 				)}
 			</Dropdown>
@@ -236,7 +235,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onDropdownRef(ref: Dropdown) {
 
 		const {
@@ -250,7 +249,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		}
 	}
 
-	@Listener()
+	@Bind()
 	private onDropdownHide(event: MouseEvent) {
 
 		const {
@@ -265,11 +264,8 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		}
 	}
 
-	private onChange(nextValue, event: ChangeEvent<Element>);
-	private onChange(nextValue, name: string, event: ChangeEvent<Element>);
-
-	@Listener()
-	private onChange(nextValue, eventOrName, event?) {
+	@Bind()
+	private onChange(nextValue, event: ChangeEvent<Element>) {
 
 		const {
 			onChange
@@ -280,7 +276,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		}));
 
 		if (typeof onChange === 'function') {
-			onChange(nextValue, eventOrName, event);
+			onChange(nextValue, event);
 		}
 	}
 }

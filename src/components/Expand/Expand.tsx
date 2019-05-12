@@ -1,5 +1,5 @@
 import React, {
-	AllHTMLAttributes,
+	HTMLAttributes,
 	SyntheticEvent,
 	MouseEvent,
 	ReactElement,
@@ -10,9 +10,9 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
-	Listener,
-	getAriaLabelProps,
-	getHtmlProps
+	Bind,
+	omit,
+	getAriaLabelProps
 } from '../../helpers';
 import stylesheet from './Expand.st.css';
 
@@ -29,7 +29,7 @@ interface ISelfProps {
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	AllHTMLAttributes<HTMLDivElement>
+	HTMLAttributes<HTMLDivElement>
 >;
 
 interface IState {
@@ -107,7 +107,11 @@ export default class Expand extends PureComponent<IProps, IState> {
 
 		return (
 			<div
-				{...getHtmlProps(props)}
+				{...omit(props, [
+					'defaultActive',
+					'active',
+					'onToggle'
+				])}
 				{...stylesheet('root', {
 					active,
 					disabled
@@ -132,7 +136,7 @@ export default class Expand extends PureComponent<IProps, IState> {
 		);
 	}
 
-	@Listener()
+	@Bind()
 	private onToggle(event: MouseEvent) {
 		this.toggleActiveState(null, event);
 	}
