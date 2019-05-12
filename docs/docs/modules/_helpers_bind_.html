@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;helpers/stories&quot; | @flexis/ui</title>
+	<title>&quot;helpers/Bind&quot; | @flexis/ui</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_helpers_stories_.html">&quot;helpers/stories&quot;</a>
+					<a href="_helpers_bind_.html">&quot;helpers/Bind&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;helpers/stories&quot;</h1>
+			<h1>External module &quot;helpers/Bind&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -69,64 +69,36 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_helpers_stories_.exportablestory.html" class="tsd-kind-icon">Exportable<wbr>Story</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_helpers_stories_.html#withstories" class="tsd-kind-icon">with<wbr>Stories</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_helpers_stories_.html#storiesof" class="tsd-kind-icon">stories<wbr>Of</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_helpers_bind_.html#bind" class="tsd-kind-icon">Bind</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="withstories" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> with<wbr>Stories</h3>
-					<div class="tsd-signature tsd-kind-icon">with<wbr>Stories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;process.env.FLEXISUI_STORIES &#x3D;&#x3D;&#x3D; &#x27;true&#x27;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/TrigenSoftware/flexis-ui/blob/a0833f5/src/helpers/stories.ts#L9">helpers/stories.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="storiesof" class="tsd-anchor"></a>
-					<h3>stories<wbr>Of</h3>
+					<a name="bind" class="tsd-anchor"></a>
+					<h3>Bind</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">stories<wbr>Of<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, module<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NodeModule</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_helpers_stories_.exportablestory.html" class="tsd-signature-type">ExportableStory</a></li>
+						<li class="tsd-signature tsd-kind-icon">Bind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MethodDecorator</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/TrigenSoftware/flexis-ui/blob/a0833f5/src/helpers/stories.ts#L11">helpers/stories.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/TrigenSoftware/flexis-ui/blob/492b92a/src/helpers/Bind.ts#L5">helpers/Bind.ts:5</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>module: <span class="tsd-signature-type">NodeModule</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_helpers_stories_.exportablestory.html" class="tsd-signature-type">ExportableStory</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decortor for bind class method to context.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MethodDecorator</span></h4>
+							<p>Method decorator.</p>
 						</li>
 					</ul>
 				</section>
@@ -139,20 +111,14 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_helpers_stories_.html">"helpers/stories"</a>
+						<a href="_helpers_bind_.html">"helpers/<wbr>Bind"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_helpers_stories_.exportablestory.html" class="tsd-kind-icon">Exportable<wbr>Story</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_helpers_stories_.html#withstories" class="tsd-kind-icon">with<wbr>Stories</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_helpers_stories_.html#storiesof" class="tsd-kind-icon">stories<wbr>Of</a>
+						<a href="_helpers_bind_.html#bind" class="tsd-kind-icon">Bind</a>
 					</li>
 				</ul>
 			</nav>
