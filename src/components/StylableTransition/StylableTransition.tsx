@@ -111,14 +111,14 @@ export default class StylableTransition extends Component<IProps> {
 
 	render() {
 
-		const props = omit(this.props, [
+		const props: any = omit(this.props, [
 			'states',
 			'statesElement'
 		]);
 
 		return (
 			<Transition
-				{...props as any}
+				{...props}
 				onEnter={this.onEnter}
 				onEntered={this.onEntered}
 				onEntering={this.onEntering}

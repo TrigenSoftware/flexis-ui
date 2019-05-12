@@ -13,6 +13,7 @@ import stylesheet from './Paginator.st.css';
 
 interface ISelfProps {
 	tabIndex?: number;
+	type?: 'button'|'submit';
 	name?: string;
 	defaultPage?: number;
 	page?: number;
@@ -44,6 +45,10 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			PropTypes.number,
 			PropTypes.string
 		]),
+		type:          PropTypes.oneOf([
+			'button',
+			'submit'
+		]),
 		name:          PropTypes.string,
 		onChange:      PropTypes.func,
 		defaultPage:   PropTypes.number,
@@ -55,6 +60,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 
 	static defaultProps = {
 		tabIndex:      0,
+		type:          'button',
 		name:          null,
 		onChange:      null,
 		defaultPage:   -1,
@@ -109,6 +115,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			<nav
 				{...omit(props, [
 					'tabIndex',
+					'type',
 					'onChange',
 					'mapPagesLabel',
 					'defaultPage',
@@ -158,6 +165,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 			total,
 			disabled,
 			mapPagesLabel,
+			type,
 			name
 		} = this.props;
 		const {
@@ -234,7 +242,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 						{...stylesheet('button', {
 							active
 						})}
-						type='button'
+						type={type}
 						tabIndex={tabIndex}
 						onClick={this.onChange(pageNum)}
 						name={name}

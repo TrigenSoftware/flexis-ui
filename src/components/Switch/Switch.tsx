@@ -93,7 +93,7 @@ export default class Switch extends PureComponent<IProps> {
 
 		if (typeof onChange === 'function') {
 
-			const nextValue = value !== null
+			const nextValue = typeof value !== 'undefined'
 				? value
 				: event.currentTarget.checked;
 
