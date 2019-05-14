@@ -2,7 +2,6 @@ import React, {
 	SelectHTMLAttributes,
 	Ref,
 	ReactElement,
-	CSSProperties,
 	ChangeEvent,
 	PureComponent,
 	Children
