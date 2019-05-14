@@ -14,6 +14,8 @@ import stylesheet from './FormGroup.st.css';
 interface ISelfProps {
 	id?: string;
 	label?: string|ReactElement<any>;
+	description?: string|ReactElement<any>;
+	required?: boolean;
 	children: ReactElement<any>;
 }
 
@@ -25,17 +27,21 @@ export type IProps = CombinePropsAndAttributes<
 export default class FormGroup extends PureComponent<IProps> {
 
 	static propTypes = {
-		id:       PropTypes.string,
-		label:    PropTypes.oneOfType([
+		id:          PropTypes.string,
+		label:       PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.element
 		]),
-		children: PropTypes.node.isRequired
+		description: PropTypes.string,
+		required:    PropTypes.bool,
+		children:    PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
-		id:    null,
-		label: null
+		id:          null,
+		label:       null,
+		description: null,
+		required:    false
 	};
 
 	render() {
@@ -43,6 +49,8 @@ export default class FormGroup extends PureComponent<IProps> {
 		const {
 			id,
 			label,
+			description,
+			required,
 			children,
 			...props
 		} = this.props;
@@ -51,7 +59,9 @@ export default class FormGroup extends PureComponent<IProps> {
 		return (
 			<div
 				{...props}
-				{...stylesheet('root', {}, props)}
+				{...stylesheet('root', {
+					required
+				}, props)}
 			>
 				{typeof label !== 'string' ? label : (
 					<label
@@ -64,8 +74,17 @@ export default class FormGroup extends PureComponent<IProps> {
 				{cloneElement(
 					child,
 					{
-						id: id || child.props.id
+						id: id || child.props.id,
+						required
 					}
+				)}
+				{typeof description !== 'string' ? description : (
+					<label
+						{...stylesheet('description')}
+						htmlFor={id}
+					>
+						{description}
+					</label>
 				)}
 			</div>
 		);

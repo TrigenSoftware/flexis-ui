@@ -46,10 +46,7 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		id:        PropTypes.string,
-		tabIndex:  PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
+		tabIndex:  PropTypes.number,
 		placement: PropTypes.oneOf([
 			'top',
 			'right',

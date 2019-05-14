@@ -1,7 +1,6 @@
 import React, {
 	InputHTMLAttributes,
 	Ref,
-	CSSProperties,
 	ChangeEvent,
 	PureComponent
 } from 'react';
@@ -10,17 +9,17 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
+import {
+	Primitive,
+	InputValue
+} from '../common/types';
 import stylesheet from './Switch.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
-	style?: CSSProperties;
-	type: 'checkbox'|'radius';
-	name?: string;
-	value?: string|number;
-	defaultChecked?: boolean;
-	checked?: boolean;
-	onChange?(value: string|number|boolean, event: ChangeEvent);
+	type: 'checkbox'|'radio';
+	value?: InputValue;
+	onChange?(value: Primitive, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -31,55 +30,37 @@ export type IProps = CombinePropsAndAttributes<
 export default class Switch extends PureComponent<IProps> {
 
 	static propTypes = {
-		elementRef:     PropTypes.func,
-		style:          PropTypes.object,
-		type:           PropTypes.oneOf([
+		elementRef: PropTypes.func,
+		type:       PropTypes.oneOf([
 			'checkbox',
 			'radio'
 		]).isRequired,
-		name:           PropTypes.string,
-		onChange:       PropTypes.func,
-		value:          PropTypes.oneOfType([
+		onChange:   PropTypes.func,
+		value:      PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
-		]),
-		defaultChecked: PropTypes.bool,
-		checked:        PropTypes.bool
+		])
 	};
 
 	static defaultProps = {
-		elementRef:     null,
-		style:          null,
-		name:           null,
-		onChange:       null,
-		value:          undefined,
-		defaultChecked: undefined,
-		checked:        undefined
+		elementRef: null,
+		onChange:   null
 	};
 
 	render() {
 
 		const {
 			elementRef,
-			style,
 			...props
 		} = this.props;
 
 		return (
-			<label
+			<input
+				ref={elementRef}
+				{...props}
 				{...stylesheet('root', {}, props)}
-				style={style}
-			>
-				<input
-					ref={elementRef}
-					{...props}
-					{...stylesheet('input')}
-					onChange={this.onChange}
-				/>
-				<div
-					{...stylesheet('face')}
-				/>
-			</label>
+				onChange={this.onChange}
+			/>
 		);
 	}
 

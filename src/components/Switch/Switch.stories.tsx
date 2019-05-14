@@ -13,8 +13,7 @@ import Switch from './';
 export const stylableApi = `
 Stylable API
 ---
-- ::input
-- ::face
+_empty_
 `;
 
 export const events = {

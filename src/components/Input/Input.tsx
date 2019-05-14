@@ -1,11 +1,8 @@
 import React, {
 	InputHTMLAttributes,
 	Ref,
-	CSSProperties,
-	ReactElement,
 	ChangeEvent,
-	PureComponent,
-	cloneElement
+	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-input-mask';
@@ -13,22 +10,21 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
+import {
+	InputValue
+} from '../common/types';
 import stylesheet from './Input.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
-	style?: CSSProperties;
 	type?: string;
-	name?: string;
-	defaultValue?: string|number;
-	value?: string|number;
-	icon?: ReactElement<any>;
-	alignIcon?: 'left'|'right';
+	value?: InputValue;
+	defaultValue?: InputValue;
 	mask?: string;
 	maskChar?: string;
 	formatChars?: any;
 	alwaysShowMask?: boolean;
-	onChange?(value: string, event: ChangeEvent);
+	onChange?(value: InputValue, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -40,22 +36,15 @@ export default class Input extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:     PropTypes.func,
-		style:          PropTypes.object,
 		type:           PropTypes.string,
-		name:           PropTypes.string,
 		onChange:       PropTypes.func,
-		defaultValue:   PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		]),
 		value:          PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
+			PropTypes.number,
+			PropTypes.string
 		]),
-		icon:           PropTypes.element,
-		alignIcon:      PropTypes.oneOf([
-			'left',
-			'right'
+		defaultValue:   PropTypes.oneOfType([
+			PropTypes.number,
+			PropTypes.string
 		]),
 		mask:           PropTypes.string,
 		maskChar:       PropTypes.string,
@@ -65,14 +54,8 @@ export default class Input extends PureComponent<IProps> {
 
 	static defaultProps = {
 		elementRef:     null,
-		style:          null,
 		type:           'text',
-		name:           null,
 		onChange:       null,
-		defaultValue:   undefined,
-		value:          undefined,
-		icon:           null,
-		alignIcon:      'left',
 		mask:           null,
 		maskChar:       null,
 		formatChars:    null,
@@ -83,9 +66,6 @@ export default class Input extends PureComponent<IProps> {
 
 		const {
 			elementRef,
-			style,
-			icon,
-			alignIcon,
 			mask,
 			maskChar,
 			formatChars,
@@ -94,7 +74,6 @@ export default class Input extends PureComponent<IProps> {
 		} = this.props;
 		let Input: any = 'input';
 		let maskedInputProps = {};
-		let inputIcon: ReactElement<any> = null;
 
 		if (typeof mask === 'string') {
 			Input = MaskedInput;
@@ -106,34 +85,14 @@ export default class Input extends PureComponent<IProps> {
 			};
 		}
 
-		if (icon !== null) {
-			inputIcon = cloneElement(
-				icon,
-				stylesheet('icon', {
-					[`${alignIcon}Align`]: Boolean(alignIcon)
-				}, icon.props)
-			);
-		}
-
 		return (
-			<label
-				{...stylesheet('root', {
-					withIcon: Boolean(inputIcon)
-				}, props)}
-				style={style}
-			>
-				<Input
-					ref={elementRef && mapRef(elementRef)}
-					{...props}
-					{...stylesheet('input')}
-					onChange={this.onChange}
-					{...maskedInputProps}
-				/>
-				<div
-					{...stylesheet('border')}
-				/>
-				{inputIcon}
-			</label>
+			<Input
+				ref={elementRef && mapRef(elementRef)}
+				{...props}
+				{...stylesheet('root', {}, props)}
+				onChange={this.onChange}
+				{...maskedInputProps}
+			/>
 		);
 	}
 
@@ -141,12 +100,20 @@ export default class Input extends PureComponent<IProps> {
 	private onChange(event: ChangeEvent<HTMLInputElement>) {
 
 		const {
-			onChange
+			onChange,
+			type
 		} = this.props;
 
 		if (typeof onChange === 'function') {
+
+			const {
+				value
+			} = event.currentTarget;
+
 			onChange(
-				event.currentTarget.value,
+				isNumberType(type)
+					? Number(value)
+					: value,
 				event
 			);
 		}
@@ -159,4 +126,17 @@ function mapRef(elementRef) {
 			? ref.input
 			: ref
 	);
+}
+
+function isNumberType(type: string) {
+
+	switch (type) {
+
+		case 'number':
+		case 'range':
+			return true;
+
+		default:
+			return false;
+	}
 }

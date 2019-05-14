@@ -7,9 +7,12 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
+import {
+	Primitive
+} from '../common/types';
 
 interface ISelfProps {
-	value?: any;
+	value?: Primitive;
 	children: ReactNode;
 }
 
@@ -28,6 +31,7 @@ export class SelectOption extends PureComponent<ISelectOptionProps> {
 	render() {
 
 		const {
+			value,
 			children,
 			...props
 		} = this.props;
@@ -35,6 +39,7 @@ export class SelectOption extends PureComponent<ISelectOptionProps> {
 		return (
 			<option
 				{...props}
+				value={value as string}
 			>
 				{children}
 			</option>

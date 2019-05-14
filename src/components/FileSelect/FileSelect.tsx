@@ -59,15 +59,9 @@ export default class FileSelect extends PureComponent<IProps> {
 		return (
 			<label
 				{...stylesheet('root', {}, props)}
+				role='none'
 				style={style}
 			>
-				{cloneElement(
-					Children.only(children),
-					{
-						'aria-disabled': disabled,
-						'disabled':      disabled
-					}
-				)}
 				<input
 					ref={elementRef}
 					{...props}
@@ -76,6 +70,13 @@ export default class FileSelect extends PureComponent<IProps> {
 					onChange={this.onChange}
 					disabled={disabled}
 				/>
+				{cloneElement(
+					Children.only(children),
+					{
+						'aria-disabled': disabled,
+						'disabled':      disabled
+					}
+				)}
 			</label>
 		);
 	}

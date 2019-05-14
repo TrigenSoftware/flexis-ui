@@ -13,8 +13,7 @@ import Checkbox from './';
 export const stylableApi = `
 Stylable API
 ---
-- ::checkbox
-- ::face
+_empty_
 `;
 
 export const events = {
@@ -73,7 +72,7 @@ export default storiesOf('Checkbox', module)
 			<Checkbox
 				{...events}
 				name='checkbox'
-				value='string value'
+				value={Math.PI}
 				disabled={boolean('Disabled', false)}
 			/>
 		)

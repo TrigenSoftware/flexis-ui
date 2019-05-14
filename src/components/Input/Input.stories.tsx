@@ -1,30 +1,21 @@
+/* tslint:disable no-magic-numbers */
 import React from 'react';
 import {
 	action
 } from '@storybook/addon-actions';
 import {
 	text,
-	boolean,
-	select
+	boolean
 } from '@storybook/addon-knobs/react';
 import {
 	storiesOf
 } from '../../helpers/stories';
 import Input from './';
 
-const {
-	TestIcon
-} = global as any;
-
 export const stylableApi = `
 Stylable API
 ---
-- :withIcon
-- ::icon
-	- :leftAlign
-	- :rightAlign
-- ::input
-- ::border
+_empty_
 `;
 
 export const events = {
@@ -70,6 +61,18 @@ export default storiesOf('Input', module)
 		)
 	)
 	.add(
+		'with type number',
+		() => (
+			<Input
+				{...events}
+				type='number'
+				placeholder={text('Placeholder', '')}
+				disabled={boolean('Disabled', false)}
+				defaultValue={4}
+			/>
+		)
+	)
+	.add(
 		'with mask',
 		() => (
 			<Input
@@ -78,32 +81,6 @@ export default storiesOf('Input', module)
 				mask={text('Mask', '+7 (999) 999-99-99')}
 				disabled={boolean('Disabled', false)}
 				defaultValue='+7 (913) 421-04-04'
-			/>
-		)
-	)
-	.add(
-		'with icon',
-		() => (
-			<Input
-				{...events}
-				placeholder={text('Placeholder', '')}
-				disabled={boolean('Disabled', false)}
-				value={text('Value', 'Value')}
-				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'left')}
-			/>
-		)
-	)
-	.add(
-		'with right aligned icon',
-		() => (
-			<Input
-				{...events}
-				placeholder={text('Placeholder', '')}
-				disabled={boolean('Disabled', false)}
-				value={text('Value', 'Value')}
-				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'right')}
 			/>
 		)
 	);

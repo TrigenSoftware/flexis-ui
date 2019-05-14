@@ -11,6 +11,9 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
+import {
+	SelectValue
+} from '../common/types';
 import stylesheet from './CustomFlatSelect.st.css';
 
 interface ISelfProps {
@@ -18,11 +21,11 @@ interface ISelfProps {
 	id?: string;
 	type?: 'radio'|'checkbox';
 	name?: string;
-	value?: any;
+	value?: SelectValue;
 	checked?: boolean;
 	disabled?: boolean;
 	children: ReactNode;
-	onChange?(value: any, event: ChangeEvent);
+	onChange?(value: SelectValue, event: ChangeEvent);
 }
 
 export type ICustomFlatSelectOptionProps = CombinePropsAndAttributes<
@@ -51,7 +54,6 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 		type:     null,
 		name:     null,
 		onChange: null,
-		value:    undefined,
 		checked:  false,
 		disabled: false
 	};
@@ -89,7 +91,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 						name={name}
 						checked={checked}
 						onChange={this.onChange}
-						value={value}
+						value={value as string}
 						disabled={disabled}
 					/>
 					<span

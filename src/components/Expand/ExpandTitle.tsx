@@ -23,10 +23,7 @@ export type IExpandTitleProps = CombinePropsAndAttributes<
 export class ExpandTitle extends PureComponent<IExpandTitleProps> {
 
 	static propTypes = {
-		tabIndex: PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
+		tabIndex: PropTypes.number,
 		disabled: PropTypes.bool,
 		children: PropTypes.node
 	};

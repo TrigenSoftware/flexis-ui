@@ -14,6 +14,7 @@ import Textarea from './';
 export const stylableApi = `
 Stylable API
 ---
+_empty_
 `;
 
 export const events = {

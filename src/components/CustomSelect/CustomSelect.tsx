@@ -14,6 +14,9 @@ import {
 	omit,
 	getAriaLabelProps
 } from '../../helpers';
+import {
+	SelectValue
+} from '../common/types';
 import isCurrentValue from '../common/isCurrentValue';
 import Dropdown, {
 	IProps as IDropdownProps,
@@ -42,7 +45,7 @@ export type IProps = CombinePropsAndAttributes<
 >;
 
 interface IState {
-	value: any;
+	value: SelectValue;
 }
 
 export default class CustomSelect extends PureComponent<IProps, IState> {
@@ -180,7 +183,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 					<input
 						type='hidden'
 						name={name}
-						value={value || ''}
+						value={value as string || ''}
 					/>
 				)}
 			</Dropdown>
@@ -265,7 +268,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 	}
 
 	@Bind()
-	private onChange(nextValue, event: ChangeEvent<Element>) {
+	private onChange(nextValue: SelectValue, event: ChangeEvent<Element>) {
 
 		const {
 			onChange

@@ -13,18 +13,19 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
+import {
+	Primitive
+} from '../common/types';
 import stylesheet from './Select.st.css';
 
 export * from './SelectOption';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLSelectElement>;
-	style?: CSSProperties;
-	name?: string;
-	defaultValue?: any;
-	value?: any;
+	defaultValue?: Primitive;
+	value?: Primitive;
 	children: ReactElement<any>|ReactElement<any>[];
-	onChange?(value, event: ChangeEvent);
+	onChange?(value: Primitive, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -36,10 +37,16 @@ export default class Select extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
-		style:        PropTypes.object,
-		name:         PropTypes.string,
-		defaultValue: PropTypes.any,
-		value:        PropTypes.any,
+		defaultValue: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+			PropTypes.bool
+		]),
+		value:        PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+			PropTypes.bool
+		]),
 		onChange:     PropTypes.func,
 		children:     PropTypes.oneOfType([
 			PropTypes.element,
@@ -52,18 +59,17 @@ export default class Select extends PureComponent<IProps> {
 
 	static defaultProps = {
 		elementRef: null,
-		style:      null,
-		name:       null,
 		onChange:   null
 	};
 
-	private originalValues = [];
+	private originalValues: Primitive[] = [];
 
 	render() {
 
 		const {
 			elementRef,
-			style,
+			defaultValue,
+			value,
 			children,
 			...props
 		} = this.props;
@@ -80,22 +86,16 @@ export default class Select extends PureComponent<IProps> {
 		));
 
 		return (
-			<span
+			<select
+				ref={elementRef}
+				{...omit(props, ['multiple'])}
 				{...stylesheet('root', {}, props)}
-				style={style}
+				onChange={this.onChange}
+				defaultValue={defaultValue as string}
+				value={value as string}
 			>
-				<select
-					ref={elementRef}
-					{...omit(props, ['multiple'])}
-					{...stylesheet('select')}
-					onChange={this.onChange}
-				>
-					{children}
-				</select>
-				<div
-					{...stylesheet('border')}
-				/>
-			</span>
+				{children}
+			</select>
 		);
 	}
 

@@ -13,8 +13,7 @@ import Radio from './';
 export const stylableApi = `
 Stylable API
 ---
-- ::radio
-- ::face
+_empty_
 `;
 
 export const events = {

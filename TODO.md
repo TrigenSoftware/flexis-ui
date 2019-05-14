@@ -1,5 +1,17 @@
+form group description
+form group required
+inputs only for primitives
+Select; FormGroup
+ImageSelect
+another a11y audit: 
+- id generation; 
+- labelledby can contain few ids; 
+- https://pattern-library.dequelabs.com/components/selects
+- check a11y dropdowns display
+- check expand display none
+- add a11y notes to each component
+commons: aligns, directsions enums
 screenshot testing
-check a11y dropdowns display
 
 MediaQuery
 Image

@@ -1,9 +1,14 @@
 
 .root {
+	-st-states: required;
 	display: flex;
 	flex-direction: column;
 }
 
 .label {
+	/* Empty block */
+}
+
+.description {
 	/* Empty block */
 }

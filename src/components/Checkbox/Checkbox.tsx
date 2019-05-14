@@ -1,7 +1,6 @@
 import React, {
 	InputHTMLAttributes,
 	Ref,
-	CSSProperties,
 	ChangeEvent,
 	PureComponent
 } from 'react';
@@ -10,16 +9,16 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
+import {
+	Primitive,
+	InputValue
+} from '../common/types';
 import stylesheet from './Checkbox.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
-	style?: CSSProperties;
-	name?: string;
-	value?: string|number;
-	checked?: boolean;
-	defaultChecked?: boolean;
-	onChange?(value: string|number|boolean, event: ChangeEvent): void;
+	value?: InputValue;
+	onChange?(value: Primitive, event: ChangeEvent): void;
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -30,26 +29,17 @@ export type IProps = CombinePropsAndAttributes<
 export default class Checkbox extends PureComponent<IProps> {
 
 	static propTypes = {
-		elementRef:     PropTypes.func,
-		style:          PropTypes.object,
-		name:           PropTypes.string,
-		onChange:       PropTypes.func,
-		value:          PropTypes.oneOfType([
+		elementRef: PropTypes.func,
+		onChange:   PropTypes.func,
+		value:      PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number
-		]),
-		defaultChecked: PropTypes.bool,
-		checked:        PropTypes.bool
+		])
 	};
 
 	static defaultProps = {
-		elementRef:     null,
-		style:          null,
-		name:           null,
-		onChange:       null,
-		value:          undefined,
-		defaultChecked: undefined,
-		checked:        undefined
+		elementRef: null,
+		onChange:   null
 	};
 
 	render() {
@@ -61,21 +51,13 @@ export default class Checkbox extends PureComponent<IProps> {
 		} = this.props;
 
 		return (
-			<label
+			<input
+				ref={elementRef}
+				{...props}
 				{...stylesheet('root', {}, props)}
-				style={style}
-			>
-				<input
-					ref={elementRef}
-					{...props}
-					{...stylesheet('checkbox')}
-					type='checkbox'
-					onChange={this.onChange}
-				/>
-				<div
-					{...stylesheet('face')}
-				/>
-			</label>
+				type='checkbox'
+				onChange={this.onChange}
+			/>
 		);
 	}
 

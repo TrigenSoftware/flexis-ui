@@ -12,6 +12,9 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
+import {
+	SelectValue
+} from '../common/types';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
 import stylesheet from './CustomFlatSelect.st.css';
@@ -21,23 +24,23 @@ export * from './CustomFlatSelectOption';
 interface ISelfProps {
 	id?: string;
 	name?: string;
-	defaultValue?: any;
-	value?: any;
+	defaultValue?: SelectValue;
+	value?: SelectValue;
 	multiple?: boolean;
 	disabled?: boolean;
 	children: ReactElement<any>|ReactElement<any>[];
-	onChange?(value, event: ChangeEvent);
+	onChange?(value: SelectValue, event: ChangeEvent);
 }
 
 interface IOptionProps {
 	type: string;
-	value: any;
+	value: SelectValue;
 	checked: boolean;
 	disabled: boolean;
 	name: string;
 	optionId: string;
 	id?: string;
-	onChange(value, event: ChangeEvent);
+	onChange(value: SelectValue, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -46,7 +49,7 @@ export type IProps = CombinePropsAndAttributes<
 >;
 
 interface IState {
-	value: any;
+	value: SelectValue;
 }
 
 export default class CustomFlatSelect extends PureComponent<IProps, IState> {
@@ -183,7 +186,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 	}
 
 	@Bind()
-	private onChange(inputNextValue, event: ChangeEvent) {
+	private onChange(inputNextValue: SelectValue, event: ChangeEvent) {
 
 		const {
 			value: valueProp,

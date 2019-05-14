@@ -3,7 +3,8 @@ import {
 	action
 } from '@storybook/addon-actions';
 import {
-	text
+	text,
+	boolean
 } from '@storybook/addon-knobs/react';
 import {
 	storiesOf
@@ -14,6 +15,7 @@ import FormGroup from './';
 export const stylableApi = `
 Stylable API
 ---
+- :required
 - ::label
 `;
 
@@ -33,6 +35,36 @@ export default storiesOf('FormGroup', module)
 			<FormGroup
 				id='input-id'
 				label={text('Label', 'Text label')}
+			>
+				<Input
+					{...events}
+					defaultValue=''
+				/>
+			</FormGroup>
+		)
+	)
+	.add(
+		'with text description',
+		() => (
+			<FormGroup
+				id='input-id'
+				label={text('Label', 'Text label')}
+				description={text('Description', 'Description label')}
+			>
+				<Input
+					{...events}
+					defaultValue=''
+				/>
+			</FormGroup>
+		)
+	)
+	.add(
+		'with required state',
+		() => (
+			<FormGroup
+				id='input-id'
+				label={text('Label', 'Text label')}
+				required={boolean('Required', true)}
 			>
 				<Input
 					{...events}
