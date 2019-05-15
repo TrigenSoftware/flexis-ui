@@ -4,8 +4,13 @@ import {
 	select
 } from '@storybook/addon-knobs/react';
 import {
-	storiesOf
+	storiesOf,
+	buildInfo
 } from '../../helpers/stories';
+import {
+	PlacementValues,
+	AlignValues
+} from '../common/types';
 import Badge, {
 	BadgeContainer
 } from './';
@@ -18,13 +23,20 @@ export const stylableApi = `
 Stylable API
 ---
 - BadgeContainer
-	- :topPlacement
-	- :rightPlacement
-	- :bottomPlacement
-	- :leftPlacement
-	- :startAlign
-	- :centerAlign
-	- :endAlign
+${buildInfo([
+	{
+		values:  PlacementValues,
+		prefix:  ':',
+		postfix: 'placement',
+		indent:  1
+	},
+	{
+		values:  AlignValues,
+		prefix:  ':',
+		postfix: 'align',
+		indent:  1
+	}
+])}
 `;
 
 export default storiesOf('Badge', module)
@@ -43,8 +55,8 @@ export default storiesOf('Badge', module)
 		'with container',
 		() => (
 			<BadgeContainer
-				placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'top')}
-				align={select('Align', ['start', 'center', 'end'], 'start')}
+				placement={select('Placement', PlacementValues, 'top')}
+				align={select('Align', AlignValues, 'start')}
 			>
 				<TestIcon
 					width='32px'

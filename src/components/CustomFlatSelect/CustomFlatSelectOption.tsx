@@ -12,7 +12,8 @@ import {
 	omit
 } from '../../helpers';
 import {
-	SelectValue
+	SelectValue,
+	SelectValuePropType
 } from '../common/types';
 import stylesheet from './CustomFlatSelect.st.css';
 
@@ -43,7 +44,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 		]),
 		name:     PropTypes.string,
 		onChange: PropTypes.func,
-		value:    PropTypes.any,
+		value:    SelectValuePropType,
 		checked:  PropTypes.bool,
 		disabled: PropTypes.bool,
 		children: PropTypes.node.isRequired

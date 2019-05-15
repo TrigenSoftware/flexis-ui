@@ -36,18 +36,19 @@ export type ITableCellProps = CombinePropsAndAttributes<
 	TdHTMLAttributes<HTMLTableDataCellElement>
 >;
 
+export const OrderValues: Order[] = Object.values(Order).filter(_ => typeof _ === 'number');
+
 const buttonRole = {
 	role:     'button',
-	tabIndex: '0'
+	tabIndex: 0
 };
-const orderValues: number[] = Object.values(Order).filter(_ => typeof _ === 'number');
 
 export class TableCell extends PureComponent<ITableCellProps> {
 
 	static propTypes = {
 		head:          PropTypes.bool,
 		onOrderChange: PropTypes.func,
-		order:         PropTypes.oneOf(orderValues),
+		order:         PropTypes.oneOf(OrderValues),
 		children:      PropTypes.node
 	};
 
@@ -106,9 +107,9 @@ export class TableCell extends PureComponent<ITableCellProps> {
 			&& typeof onOrderChange === 'function'
 		) {
 			onOrderChange(
-				orderValues[modulo(
-					orderValues.indexOf(order) + 1,
-					orderValues.length
+				OrderValues[modulo(
+					OrderValues.indexOf(order) + 1,
+					OrderValues.length
 				)],
 				event
 			);

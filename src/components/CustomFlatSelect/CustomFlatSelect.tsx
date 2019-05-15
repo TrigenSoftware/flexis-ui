@@ -13,7 +13,8 @@ import {
 	omit
 } from '../../helpers';
 import {
-	SelectValue
+	SelectValue,
+	SelectValuePropType
 } from '../common/types';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
@@ -58,8 +59,8 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		id:           PropTypes.string,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
-		defaultValue: PropTypes.any,
-		value:        PropTypes.any,
+		defaultValue: SelectValuePropType,
+		value:        SelectValuePropType,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
 		children:     PropTypes.oneOfType([
@@ -72,13 +73,11 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		id:           null,
-		name:         null,
-		onChange:     null,
-		defaultValue: null,
-		value:        null,
-		multiple:     false,
-		disabled:     false
+		id:       null,
+		name:     null,
+		onChange: null,
+		multiple: false,
+		disabled: false
 	};
 
 	static getDerivedStateFromProps(
@@ -86,7 +85,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		{ value: prevValue }: IState
 	): IState {
 
-		const nextValue = value === null
+		const nextValue = typeof value === 'undefined'
 			? prevValue
 			: value;
 
@@ -208,7 +207,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			return;
 		}
 
-		if (valueProp === null) {
+		if (typeof valueProp === 'undefined') {
 			this.setState(() => ({
 				value: nextValue
 			}));

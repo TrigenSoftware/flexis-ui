@@ -13,7 +13,8 @@ import {
 	omit
 } from '../../helpers';
 import {
-	Primitive
+	Primitive,
+	PrimitivePropType
 } from '../common/types';
 import stylesheet from './Select.st.css';
 
@@ -36,16 +37,8 @@ export default class Select extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
-		defaultValue: PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number,
-			PropTypes.bool
-		]),
-		value:        PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number,
-			PropTypes.bool
-		]),
+		defaultValue: PrimitivePropType,
+		value:        PrimitivePropType,
 		onChange:     PropTypes.func,
 		children:     PropTypes.oneOfType([
 			PropTypes.element,

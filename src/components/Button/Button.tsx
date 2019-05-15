@@ -11,13 +11,18 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
+import {
+	AlignSide,
+	AlignSideVariant,
+	AlignSideValues
+} from '../common/types';
 import stylesheet from './Button.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLButtonElement>;
 	icon?: ReactElement<any>;
 	flexIcon?: boolean;
-	alignIcon?: 'left'|'right';
+	alignIcon?: AlignSide;
 	children?: ReactNode;
 }
 
@@ -32,10 +37,7 @@ export default class Button extends PureComponent<IProps> {
 		elementRef: PropTypes.func,
 		icon:       PropTypes.element,
 		flexIcon:   PropTypes.bool,
-		alignIcon:  PropTypes.oneOf([
-			'left',
-			'right'
-		]),
+		alignIcon:  PropTypes.oneOf(AlignSideValues),
 		children:   PropTypes.node
 	};
 
@@ -43,7 +45,7 @@ export default class Button extends PureComponent<IProps> {
 		elementRef: null,
 		icon:       null,
 		flexIcon:   false,
-		alignIcon:  'left',
+		alignIcon:  AlignSideVariant.Left,
 		children:   null
 	};
 

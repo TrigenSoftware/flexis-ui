@@ -8,7 +8,8 @@ import {
 	CombinePropsAndAttributes
 } from '../../helpers';
 import {
-	Primitive
+	Primitive,
+	PrimitivePropType
 } from '../common/types';
 
 interface ISelfProps {
@@ -24,7 +25,7 @@ export type ISelectOptionProps = CombinePropsAndAttributes<
 export class SelectOption extends PureComponent<ISelectOptionProps> {
 
 	static propTypes = {
-		value:    PropTypes.any,
+		value:    PrimitivePropType,
 		children: PropTypes.node.isRequired
 	};
 

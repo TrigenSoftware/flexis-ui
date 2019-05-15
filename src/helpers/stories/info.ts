@@ -4,25 +4,31 @@ import {
 } from '@storybook/react';
 
 export interface IStylableAPI {
-	0: string;
-	1: string[];
-	2?: number;
-	[Symbol.iterator]: any;
+	values: string[];
+	prefix?: string;
+	postfix?: string;
+	indent?: number;
 }
 
-function propWithPrefix(prop: string, prefix: string) {
+function formatValue(value: string, prefix: string, postfix: string) {
 
-	if (!prefix.replace(/:/g, '').length) {
-		return `${prefix}${prop}`;
-	}
+	const formatedValue = prefix.replace(/:/g, '').length
+		? value.replace(value[0], value[0].toUpperCase())
+		: value;
+	const formatedPostfix = postfix.replace(postfix[0], postfix[0].toUpperCase());
 
-	return `${prefix}${prop.replace(prop[0], prop[0].toUpperCase())}`;
+	return `${prefix}${formatedValue}${formatedPostfix}`;
 }
 
 export function buildInfo(stylableApi: IStylableAPI[]): string {
-	return stylableApi.map(([prefix, props, indent = 0]) =>
-		props.map(_ =>
-			`${'\t'.repeat(indent)}- ${propWithPrefix(_, prefix)}`
+	return stylableApi.map(({
+		values,
+		prefix = '',
+		postfix = '',
+		indent = 0
+	}) =>
+	values.map(_ =>
+			`${'\t'.repeat(indent)}- ${formatValue(_, prefix, postfix)}`
 		).join('\n')
 	).join('\n');
 }

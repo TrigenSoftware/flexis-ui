@@ -11,7 +11,8 @@ import {
 	Bind
 } from '../../helpers';
 import {
-	InputValue
+	InputValue,
+	InputValuePropType
 } from '../common/types';
 import stylesheet from './Input.st.css';
 
@@ -38,14 +39,8 @@ export default class Input extends PureComponent<IProps> {
 		elementRef:     PropTypes.func,
 		type:           PropTypes.string,
 		onChange:       PropTypes.func,
-		value:          PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
-		defaultValue:   PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
+		value:          InputValuePropType,
+		defaultValue:   InputValuePropType,
 		mask:           PropTypes.string,
 		maskChar:       PropTypes.string,
 		formatChars:    PropTypes.object,

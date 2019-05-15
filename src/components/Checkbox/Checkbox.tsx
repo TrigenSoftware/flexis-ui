@@ -11,7 +11,8 @@ import {
 } from '../../helpers';
 import {
 	Primitive,
-	InputValue
+	InputValue,
+	InputValuePropType
 } from '../common/types';
 import stylesheet from './Checkbox.st.css';
 
@@ -31,10 +32,7 @@ export default class Checkbox extends PureComponent<IProps> {
 	static propTypes = {
 		elementRef: PropTypes.func,
 		onChange:   PropTypes.func,
-		value:      PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		])
+		value:      InputValuePropType
 	};
 
 	static defaultProps = {

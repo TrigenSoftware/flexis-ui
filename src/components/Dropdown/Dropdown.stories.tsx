@@ -7,8 +7,12 @@ import {
 	boolean
 } from '@storybook/addon-knobs/react';
 import {
-	storiesOf
+	storiesOf,
+	buildInfo
 } from '../../helpers/stories';
+import {
+	AlignValues
+} from '../common/types';
 import Dropdown, {
 	DropdownContent
 } from './';
@@ -21,9 +25,14 @@ Stylable API
 - ::content
 	- :active
 	- :offset
-	- :leftAlign
-	- :centerAlign
-	- :rightAlign
+${buildInfo([
+	{
+		values:  AlignValues,
+		prefix:  ':',
+		postfix: 'align',
+		indent:  1
+	}
+])}
 `;
 
 export default storiesOf('Dropdown', module)
@@ -35,7 +44,7 @@ export default storiesOf('Dropdown', module)
 		() => (
 			<Dropdown
 				onToggle={action('toggle')}
-				align={select('Align', ['left', 'center', 'right'], 'left')}
+				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', false)}
 				blockScroll={boolean('Block scroll', true)}
 			>
@@ -60,7 +69,7 @@ export default storiesOf('Dropdown', module)
 		() => (
 			<Dropdown
 				onToggle={action('toggle')}
-				align={select('Align', ['left', 'center', 'right'], 'left')}
+				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', false)}
 				blockScroll={boolean('Block scroll', true)}
 				defaultActive
@@ -85,7 +94,7 @@ export default storiesOf('Dropdown', module)
 		() => (
 			<Dropdown
 				onToggle={action('toggle')}
-				align={select('Align', ['left', 'center', 'right'], 'left')}
+				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', true)}
 				blockScroll={boolean('Block scroll', true)}
 			>
@@ -109,7 +118,7 @@ export default storiesOf('Dropdown', module)
 		() => (
 			<Dropdown
 				onToggle={action('toggle')}
-				align={select('Align', ['left', 'center', 'right'], 'left')}
+				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', false)}
 				active={boolean('Active', true)}
 				blockScroll={boolean('Block scroll', true)}
@@ -139,7 +148,7 @@ export default storiesOf('Dropdown', module)
 			>
 				<Dropdown
 					onToggle={action('toggle')}
-					align={select('Align', ['left', 'center', 'right'], 'left')}
+					align={select('Align', AlignValues, 'start')}
 					disabled={boolean('Disabled', false)}
 					blockScroll={boolean('Block scroll', true)}
 				>
@@ -185,7 +194,7 @@ export default storiesOf('Dropdown', module)
 					>
 						<Dropdown
 							onToggle={action('toggle')}
-							align={select('Align', ['left', 'center', 'right'], 'left')}
+							align={select('Align', AlignValues, 'start')}
 							disabled={boolean('Disabled', false)}
 							blockScroll={boolean('Block scroll', true)}
 						>

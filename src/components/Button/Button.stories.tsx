@@ -8,8 +8,12 @@ import {
 	select
 } from '@storybook/addon-knobs/react';
 import {
-	storiesOf
+	storiesOf,
+	buildInfo
 } from '../../helpers/stories';
+import {
+	AlignSideValues
+} from '../common/types';
 import Button from './';
 
 const {
@@ -21,10 +25,16 @@ Stylable API
 ---
 - :withIcon
 - :flexIcon
-- ::icon
-	- :leftAlign
-	- :rightAlign
 - ::iconContainer
+- ::icon
+${buildInfo([
+	{
+		values:  AlignSideValues,
+		prefix:  ':',
+		postfix: 'align',
+		indent:  1
+	}
+])}
 `;
 
 export const events = {
@@ -55,7 +65,7 @@ export default storiesOf('Button', module)
 				{...events}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'left')}
+				alignIcon={select('Align icon', AlignSideValues, 'left')}
 			>
 				{text('Label', 'Button')}
 			</Button>
@@ -68,7 +78,7 @@ export default storiesOf('Button', module)
 				{...events}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'left')}
+				alignIcon={select('Align icon', AlignSideValues, 'left')}
 			/>
 		)
 	)
@@ -79,7 +89,7 @@ export default storiesOf('Button', module)
 				{...events}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'right')}
+				alignIcon={select('Align icon', AlignSideValues, 'right')}
 			>
 				{text('Label', 'Button')}
 			</Button>
@@ -93,7 +103,7 @@ export default storiesOf('Button', module)
 				style={{ width: '100px' }}
 				disabled={boolean('Disabled', false)}
 				icon={<TestIcon/>}
-				alignIcon={select('Align icon', ['left', 'right'], 'right')}
+				alignIcon={select('Align icon', AlignSideValues, 'right')}
 				flexIcon={boolean('Flex icon', true)}
 			>
 				{text('Label', 'Button')}

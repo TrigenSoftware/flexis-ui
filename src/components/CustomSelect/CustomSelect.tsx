@@ -64,23 +64,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		placeholder: null
 	};
 
-	static getDerivedStateFromProps(
-		{ value }: IProps,
-		{ value: prevValue }: IState
-	): IState {
-
-		const nextValue = value === null
-			? prevValue
-			: value;
-
-		if (nextValue === prevValue) {
-			return null;
-		}
-
-		return {
-			value: nextValue
-		};
-	}
+	static getDerivedStateFromProps = CustomFlatSelect.getDerivedStateFromProps;
 
 	private dropdownRef: Dropdown = null;
 

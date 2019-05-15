@@ -11,6 +11,13 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
+import {
+	Placement,
+	Align,
+	AlignVariant,
+	PlacementValues,
+	AlignValues
+} from '../common/types';
 import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleAttribute from '../common/toggleAttribute';
@@ -19,8 +26,8 @@ import stylesheet from './Tooltip.st.css';
 interface ISelfProps {
 	id?: string;
 	tabIndex?: number;
-	placement: 'top'|'right'|'bottom'|'left';
-	align?: 'start'|'center'|'end';
+	placement: Placement;
+	align?: Align;
 	content: ReactNode;
 	children: ReactNode;
 }
@@ -47,17 +54,8 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 	static propTypes = {
 		id:        PropTypes.string,
 		tabIndex:  PropTypes.number,
-		placement: PropTypes.oneOf([
-			'top',
-			'right',
-			'bottom',
-			'left'
-		]).isRequired,
-		align:     PropTypes.oneOf([
-			'start',
-			'center',
-			'end'
-		]),
+		placement: PropTypes.oneOf(PlacementValues).isRequired,
+		align:     PropTypes.oneOf(AlignValues),
 		content:   PropTypes.node.isRequired,
 		children:  PropTypes.node.isRequired
 	};
@@ -65,7 +63,7 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 	static defaultProps = {
 		id:       null,
 		tabIndex: 0,
-		align:    'center'
+		align:    AlignVariant.Center
 	};
 
 	state = {

@@ -11,13 +11,18 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
+import {
+	AlignSide,
+	AlignSideVariant,
+	AlignSideValues
+} from '../common/types';
 import stylesheet from './Link.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<any>;
 	icon?: ReactElement<any>;
 	flexIcon?: boolean;
-	alignIcon?: 'left'|'right';
+	alignIcon?: AlignSide;
 	rel?: string;
 	target?: string;
 	linkElement?: any;
@@ -38,10 +43,7 @@ export default class Link extends PureComponent<IProps> {
 		elementRef:             PropTypes.func,
 		icon:                   PropTypes.element,
 		flexIcon:               PropTypes.bool,
-		alignIcon:              PropTypes.oneOf([
-			'left',
-			'right'
-		]),
+		alignIcon:              PropTypes.oneOf(AlignSideValues),
 		rel:                    PropTypes.string,
 		target:                 PropTypes.string,
 		children:               PropTypes.node,
@@ -53,7 +55,7 @@ export default class Link extends PureComponent<IProps> {
 		elementRef:             null,
 		icon:                   null,
 		flexIcon:               false,
-		alignIcon:              'left',
+		alignIcon:              AlignSideVariant.Left,
 		rel:                    null,
 		target:                 null,
 		children:               null,
