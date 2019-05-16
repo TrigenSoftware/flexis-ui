@@ -13,9 +13,8 @@ import stylesheet from './Textarea.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLTextAreaElement>;
-	name?: string;
-	defaultValue?: string|number;
-	value?: string|number;
+	defaultValue?: string;
+	value?: string;
 	onChange?(value: string, event: ChangeEvent);
 }
 
@@ -28,31 +27,15 @@ export default class Textarea extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,
-		name:         PropTypes.string,
 		onChange:     PropTypes.func,
-		defaultValue: PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		]),
-		value:        PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		])
-	};
-
-	static defaultProps = {
-		elementRef:   null,
-		name:         null,
-		onChange:     null,
-		defaultValue: undefined,
-		value:        undefined
+		defaultValue: PropTypes.string,
+		value:        PropTypes.string
 	};
 
 	render() {
 
 		const {
 			elementRef,
-			defaultValue,
 			...props
 		} = this.props;
 
@@ -62,7 +45,6 @@ export default class Textarea extends PureComponent<IProps> {
 				{...props}
 				{...stylesheet('root', {}, props)}
 				onChange={this.onChange}
-				defaultValue={defaultValue as string}
 			/>
 		);
 	}
@@ -75,10 +57,10 @@ export default class Textarea extends PureComponent<IProps> {
 		} = this.props;
 
 		if (typeof onChange === 'function') {
-
-			const nextValue = event.currentTarget.value;
-
-			onChange(nextValue, event);
+			onChange(
+				event.currentTarget.value,
+				event
+			);
 		}
 	}
 }

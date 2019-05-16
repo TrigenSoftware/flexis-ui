@@ -41,10 +41,7 @@ const visiblePagesMid = Math.floor(visiblePages / HALF);
 export default class Paginator extends PureComponent<IProps, IState> {
 
 	static propTypes = {
-		tabIndex:      PropTypes.oneOfType([
-			PropTypes.number,
-			PropTypes.string
-		]),
+		tabIndex:      PropTypes.number,
 		type:          PropTypes.oneOf([
 			'button',
 			'submit'
@@ -61,10 +58,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 	static defaultProps = {
 		tabIndex:      0,
 		type:          'button',
-		name:          null,
-		onChange:      null,
 		defaultPage:   -1,
-		page:          null,
 		disabled:      false,
 		mapPagesLabel: _ => _
 	};

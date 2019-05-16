@@ -17,8 +17,7 @@ import Select, {
 export const stylableApi = `
 Stylable API
 ---
-- ::select
-- ::border
+- arrows()
 `;
 
 export const events = {

@@ -28,10 +28,6 @@ export default class Badge extends PureComponent<IProps> {
 		children: PropTypes.node
 	};
 
-	static defaultProps = {
-		children: null
-	};
-
 	render() {
 
 		const {

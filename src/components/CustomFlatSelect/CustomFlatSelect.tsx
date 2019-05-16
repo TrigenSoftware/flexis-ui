@@ -12,6 +12,10 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
+import {
+	SelectValue,
+	SelectValuePropType
+} from '../common/types';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
 import stylesheet from './CustomFlatSelect.st.css';
@@ -21,23 +25,23 @@ export * from './CustomFlatSelectOption';
 interface ISelfProps {
 	id?: string;
 	name?: string;
-	defaultValue?: any;
-	value?: any;
+	defaultValue?: SelectValue;
+	value?: SelectValue;
 	multiple?: boolean;
 	disabled?: boolean;
 	children: ReactElement<any>|ReactElement<any>[];
-	onChange?(value, event: ChangeEvent);
+	onChange?(value: SelectValue, event: ChangeEvent);
 }
 
 interface IOptionProps {
 	type: string;
-	value: any;
+	value: SelectValue;
 	checked: boolean;
 	disabled: boolean;
 	name: string;
 	optionId: string;
 	id?: string;
-	onChange(value, event: ChangeEvent);
+	onChange(value: SelectValue, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -46,7 +50,7 @@ export type IProps = CombinePropsAndAttributes<
 >;
 
 interface IState {
-	value: any;
+	value: SelectValue;
 }
 
 export default class CustomFlatSelect extends PureComponent<IProps, IState> {
@@ -55,8 +59,8 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		id:           PropTypes.string,
 		name:         PropTypes.string,
 		onChange:     PropTypes.func,
-		defaultValue: PropTypes.any,
-		value:        PropTypes.any,
+		defaultValue: SelectValuePropType,
+		value:        SelectValuePropType,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
 		children:     PropTypes.oneOfType([
@@ -69,13 +73,8 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		id:           null,
-		name:         null,
-		onChange:     null,
-		defaultValue: null,
-		value:        null,
-		multiple:     false,
-		disabled:     false
+		multiple: false,
+		disabled: false
 	};
 
 	static getDerivedStateFromProps(
@@ -83,7 +82,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		{ value: prevValue }: IState
 	): IState {
 
-		const nextValue = value === null
+		const nextValue = typeof value === 'undefined'
 			? prevValue
 			: value;
 
@@ -183,7 +182,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 	}
 
 	@Bind()
-	private onChange(inputNextValue, event: ChangeEvent) {
+	private onChange(inputNextValue: SelectValue, event: ChangeEvent) {
 
 		const {
 			value: valueProp,
@@ -205,7 +204,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 			return;
 		}
 
-		if (valueProp === null) {
+		if (typeof valueProp === 'undefined') {
 			this.setState(() => ({
 				value: nextValue
 			}));

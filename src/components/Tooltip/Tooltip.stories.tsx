@@ -4,8 +4,13 @@ import {
 	select
 } from '@storybook/addon-knobs/react';
 import {
-	storiesOf
+	storiesOf,
+	buildInfo
 } from '../../helpers/stories';
+import {
+	PlacementValues,
+	AlignValues
+} from '../common/types';
 import Tooltip from './';
 
 export const stylableApi = `
@@ -21,6 +26,20 @@ Stylable API
 	- :startAlign
 	- :centerAlign
 	- :endAlign
+${buildInfo([
+	{
+		values:  PlacementValues,
+		prefix:  ':',
+		postfix: 'placement',
+		indent:  1
+	},
+	{
+		values:  AlignValues,
+		prefix:  ':',
+		postfix: 'align',
+		indent:  1
+	}
+])}
 `;
 
 export default storiesOf('Tooltip', module)
@@ -32,8 +51,8 @@ export default storiesOf('Tooltip', module)
 		() => (
 			<Tooltip
 				id='tooltip'
-				placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
-				align={select('Align', ['start', 'center', 'end'], 'start')}
+				placement={select('Placement', PlacementValues, 'bottom')}
+				align={select('Align', AlignValues, 'start')}
 				content={text('Content', 'Tooltip text')}
 			>
 				Point mouse on me
@@ -49,8 +68,8 @@ export default storiesOf('Tooltip', module)
 				}}
 			>
 				<Tooltip
-					placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
-					align={select('Align', ['start', 'center', 'end'], 'start')}
+					placement={select('Placement', PlacementValues, 'bottom')}
+					align={select('Align', AlignValues, 'start')}
 					content={text('Content', 'Tooltip text')}
 				>
 					Point mouse on me
@@ -83,8 +102,8 @@ export default storiesOf('Tooltip', module)
 						}}
 					>
 						<Tooltip
-							placement={select('Placement', ['top', 'right', 'bottom', 'left'], 'bottom')}
-							align={select('Align', ['start', 'center', 'end'], 'start')}
+							placement={select('Placement', PlacementValues, 'bottom')}
+							align={select('Align', AlignValues, 'start')}
 							content={text('Content', 'Tooltip text')}
 						>
 							Point mouse on me

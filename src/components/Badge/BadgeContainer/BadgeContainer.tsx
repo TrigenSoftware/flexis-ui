@@ -7,11 +7,18 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../../helpers';
+import {
+	Placement,
+	Align,
+	AlignVariant,
+	PlacementValues,
+	AlignValues
+} from '../../common/types';
 import stylesheet from './BadgeContainer.st.css';
 
 interface ISelfProps {
-	placement: 'top'|'right'|'bottom'|'left';
-	align?: 'start'|'center'|'end';
+	placement: Placement;
+	align?: Align;
 	children: ReactNode;
 }
 
@@ -23,22 +30,13 @@ export type IProps = CombinePropsAndAttributes<
 export default class BadgeContainer extends PureComponent<IProps> {
 
 	static propTypes = {
-		placement: PropTypes.oneOf([
-			'top',
-			'right',
-			'bottom',
-			'left'
-		]).isRequired,
-		align:     PropTypes.oneOf([
-			'start',
-			'center',
-			'end'
-		]),
+		placement: PropTypes.oneOf(PlacementValues).isRequired,
+		align:     PropTypes.oneOf(AlignValues),
 		children:  PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
-		align: 'center'
+		align: AlignVariant.Center
 	};
 
 	render() {

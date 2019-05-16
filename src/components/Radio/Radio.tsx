@@ -1,7 +1,6 @@
 import React, {
 	InputHTMLAttributes,
 	Ref,
-	CSSProperties,
 	ChangeEvent,
 	PureComponent
 } from 'react';
@@ -10,16 +9,17 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
+import {
+	Primitive,
+	InputValue,
+	InputValuePropType
+} from '../common/types';
 import stylesheet from './Radio.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
-	style?: CSSProperties;
-	name?: string;
-	value?: string|number;
-	defaultChecked?: boolean;
-	checked?: boolean;
-	onChange?(value: string|number|boolean, event: ChangeEvent): void;
+	value?: InputValue;
+	onChange?(value: Primitive, event: ChangeEvent): void;
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -30,52 +30,26 @@ export type IProps = CombinePropsAndAttributes<
 export default class Radio extends PureComponent<IProps> {
 
 	static propTypes = {
-		elementRef:     PropTypes.func,
-		style:          PropTypes.object,
-		name:           PropTypes.string,
-		onChange:       PropTypes.func,
-		value:          PropTypes.oneOfType([
-			PropTypes.string,
-			PropTypes.number
-		]),
-		defaultChecked: PropTypes.bool,
-		checked:        PropTypes.bool
-	};
-
-	static defaultProps = {
-		elementRef:     null,
-		style:          null,
-		name:           null,
-		onChange:       null,
-		value:          undefined,
-		defaultChecked: undefined,
-		checked:        undefined
+		elementRef: PropTypes.func,
+		onChange:   PropTypes.func,
+		value:      InputValuePropType
 	};
 
 	render() {
 
 		const {
 			elementRef,
-			style,
 			...props
 		} = this.props;
 
 		return (
-			<label
+			<input
+				ref={elementRef}
+				{...props}
 				{...stylesheet('root', {}, props)}
-				style={style}
-			>
-				<input
-					ref={elementRef}
-					{...props}
-					{...stylesheet('radio')}
-					type='radio'
-					onChange={this.onChange}
-				/>
-				<div
-					{...stylesheet('face')}
-				/>
-			</label>
+				type='radio'
+				onChange={this.onChange}
+			/>
 		);
 	}
 

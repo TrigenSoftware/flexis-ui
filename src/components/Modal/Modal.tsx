@@ -64,7 +64,6 @@ export default class Modal extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
-		onClose:            null,
 		active:             false,
 		centered:           false,
 		closeButton:        defaultCloseButton,

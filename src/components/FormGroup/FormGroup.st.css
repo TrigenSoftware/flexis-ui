@@ -1,9 +1,31 @@
 
 .root {
+	-st-states: withIcon;
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 .label {
-	/* Empty block */
+	order: -2;
+}
+
+.label,
+.description {
+	flex: 1 1 100%;
+}
+
+.icon {
+	-st-states:
+		leftAlign,
+		rightAlign;
+	fill: currentColor;
+}
+
+.icon:leftAlign {
+	order: -1;
+}
+
+.input {
+	flex: 1;
 }

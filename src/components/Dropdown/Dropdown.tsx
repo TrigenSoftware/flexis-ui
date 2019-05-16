@@ -19,6 +19,11 @@ import {
 	getAriaLabelProps,
 	omit
 } from '../../helpers';
+import {
+	Align,
+	AlignVariant,
+	AlignValues
+} from '../common/types';
 import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
@@ -34,7 +39,7 @@ interface ISelfProps {
 	defaultActive?: boolean;
 	disabled?: boolean;
 	blockScroll?: boolean;
-	align?: 'left'|'center'|'right';
+	align?: Align;
 	children: ReactElement<any>[];
 	transitionDuration?: number;
 	onToggle?(active: boolean, event: Event|SyntheticEvent);
@@ -66,11 +71,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		active:             PropTypes.bool,
 		disabled:           PropTypes.bool,
 		blockScroll:        PropTypes.bool,
-		align:              PropTypes.oneOf([
-			'left',
-			'center',
-			'right'
-		]),
+		align:              PropTypes.oneOf(AlignValues),
 		children:           PropTypes.arrayOf(
 			PropTypes.element
 		).isRequired,
@@ -78,12 +79,10 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		onToggle:           null,
 		defaultActive:      false,
-		active:             null,
 		disabled:           false,
 		blockScroll:        true,
-		align:              'left',
+		align:              AlignVariant.Start,
 		transitionDuration: 0
 	};
 
@@ -95,9 +94,10 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		{ active: prevActive }: IState
 	): IState {
 
-		const nextActive = !disabled && (typeof active === 'boolean'
-			? active
-			: prevActive
+		const nextActive = !disabled && (
+			typeof active === 'boolean'
+				? active
+				: prevActive
 		);
 
 		if (nextActive === prevActive) {
@@ -391,15 +391,15 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 
 		switch (align) {
 
-			case 'left':
+			case AlignVariant.Start:
 				left = elementLeft;
 				break;
 
-			case 'center':
+			case AlignVariant.Center:
 				left = elementLeft + elementWidth / HALF;
 				break;
 
-			case 'right':
+			case AlignVariant.End:
 				left = elementLeft + elementWidth - contentWidth;
 				break;
 

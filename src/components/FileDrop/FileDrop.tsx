@@ -36,9 +36,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		onChange: null,
-		disabled: false,
-		children: null
+		disabled: false
 	};
 
 	state = {

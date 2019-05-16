@@ -11,13 +11,18 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
+import {
+	AlignSide,
+	AlignSideVariant,
+	AlignSideValues
+} from '../common/types';
 import stylesheet from './Button.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLButtonElement>;
 	icon?: ReactElement<any>;
 	flexIcon?: boolean;
-	alignIcon?: 'left'|'right';
+	alignIcon?: AlignSide;
 	children?: ReactNode;
 }
 
@@ -32,19 +37,13 @@ export default class Button extends PureComponent<IProps> {
 		elementRef: PropTypes.func,
 		icon:       PropTypes.element,
 		flexIcon:   PropTypes.bool,
-		alignIcon:  PropTypes.oneOf([
-			'left',
-			'right'
-		]),
+		alignIcon:  PropTypes.oneOf(AlignSideValues),
 		children:   PropTypes.node
 	};
 
 	static defaultProps = {
-		elementRef: null,
-		icon:       null,
 		flexIcon:   false,
-		alignIcon:  'left',
-		children:   null
+		alignIcon:  AlignSideVariant.Left
 	};
 
 	render() {
@@ -58,10 +57,10 @@ export default class Button extends PureComponent<IProps> {
 			...props
 		} = this.props;
 		const iconOnly = !Children.count(children);
-		const leftAligned = alignIcon === 'left';
+		const leftAligned = alignIcon === AlignSideVariant.Left;
 		let buttonIcon: ReactElement<any> = null;
 
-		if (icon !== null) {
+		if (typeof icon !== 'undefined') {
 			buttonIcon = cloneElement(
 				icon,
 				stylesheet('icon', {

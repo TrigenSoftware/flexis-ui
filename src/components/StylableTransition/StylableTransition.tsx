@@ -62,13 +62,7 @@ export default class StylableTransition extends Component<IProps> {
 	};
 
 	static defaultProps = {
-		statesElement: 'root',
-		onEnter:       null,
-		onEntering:    null,
-		onEntered:     null,
-		onExit:        null,
-		onExiting:     null,
-		onExited:      null
+		statesElement: 'root'
 	};
 
 	private readonly stylableStates: {

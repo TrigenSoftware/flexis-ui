@@ -1,5 +1,13 @@
+another a11y audit: 
+- id generation; 
+- labelledby can contain few ids; 
+- https://pattern-library.dequelabs.com/components/selects
+- https://t.co/klHVgkbadG?amp=1
+- https://t.co/kmIIM9zIIs?amp=1
+- check a11y dropdowns display
+- check expand display none
+- add a11y notes to each component
 screenshot testing
-check a11y dropdowns display
 
 MediaQuery
 Image
