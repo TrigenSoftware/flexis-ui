@@ -3,7 +3,7 @@ import React, {
 	CSSProperties,
 	ReactElement,
 	ChangeEvent,
-	Component,
+	PureComponent,
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
@@ -45,7 +45,7 @@ interface IState {
 
 export const DisplayValues: Display[] = Object.values(DisplayVariant);
 
-export default class ImageSelect extends Component<IProps, IState> {
+export default class ImageSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
 		elementRef:   PropTypes.func,

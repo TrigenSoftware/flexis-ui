@@ -1,4 +1,3 @@
-Pure vs Simple
 another a11y audit: 
 - id generation; 
 - labelledby can contain few ids; 

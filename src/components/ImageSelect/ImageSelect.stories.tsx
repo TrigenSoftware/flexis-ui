@@ -7,7 +7,8 @@ import {
 	text
 } from '@storybook/addon-knobs/react';
 import {
-	storiesOf
+	storiesOf,
+	buildInfo
 } from '../../helpers/stories';
 import ImageSelect, {
 	DisplayValues
@@ -19,6 +20,16 @@ const {
 
 export const stylableApi = `
 Stylable API
+- :preview
+${buildInfo([
+	{
+		values: DisplayValues,
+		prefix: ':',
+		indent: 1
+	}
+])}
+- :img
+- :placeholder
 ---
 `;
 
