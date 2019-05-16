@@ -48,16 +48,20 @@ export const DisplayValues: Display[] = Object.values(DisplayVariant);
 export default class ImageSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
+		...FileSelect.propTypes,
 		elementRef:   PropTypes.func,
 		style:        PropTypes.object,
 		display:      PropTypes.oneOf(DisplayValues),
 		placeholder:  PropTypes.element,
 		defaultValue: PropTypes.string,
-		value:        PropTypes.string
+		value:        PropTypes.string,
+		readOnly:     PropTypes.bool
 	};
 
 	static defaultProps = {
-		display: DisplayVariant.Block
+		...FileSelect.defaultProps,
+		display:  DisplayVariant.Block,
+		readOnly: false
 	};
 
 	static getDerivedStateFromProps(
@@ -98,6 +102,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			style,
 			display,
 			placeholder,
+			disabled,
+			readOnly,
 			children,
 			...props
 		} = this.props;
@@ -131,10 +137,13 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 				])}
 				{...stylesheet('root', {}, props)}
 				onChange={this.onChange}
+				disabled={disabled || readOnly}
 			>
 				<figure
 					{...stylesheet('preview', {
-						[display]: Boolean(display)
+						[display]: Boolean(display),
+						readOnly,
+						disabled
 					})}
 					style={previewStyle}
 				>

@@ -32,5 +32,9 @@
 }
 
 .closeButton {
-	/* empty block */
+	cursor: pointer;
+}
+
+.closeButton:disabled {
+	cursor: default;
 }

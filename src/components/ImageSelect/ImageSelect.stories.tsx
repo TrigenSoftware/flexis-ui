@@ -4,7 +4,8 @@ import {
 } from '@storybook/addon-actions';
 import {
 	select,
-	text
+	text,
+	boolean
 } from '@storybook/addon-knobs/react';
 import {
 	storiesOf,
@@ -20,7 +21,7 @@ const {
 
 export const stylableApi = `
 Stylable API
-- :preview
+- ::preview
 ${buildInfo([
 	{
 		values: DisplayValues,
@@ -28,8 +29,8 @@ ${buildInfo([
 		indent: 1
 	}
 ])}
-- :img
-- :placeholder
+- ::img
+- ::placeholder
 ---
 `;
 
@@ -87,6 +88,28 @@ export default storiesOf('ImageSelect', module)
 				onChange={action('change')}
 				display={select('Display', DisplayValues, 'block')}
 				defaultValue={text('Default value', imageUrl)}
+			/>
+		)
+	)
+	.add(
+		'with disabled state',
+		() => (
+			<ImageSelect
+				style={style}
+				onChange={action('change')}
+				defaultValue={text('Default value', imageUrl)}
+				disabled={boolean('Disabled', true)}
+			/>
+		)
+	)
+	.add(
+		'with readOnly state',
+		() => (
+			<ImageSelect
+				style={style}
+				onChange={action('change')}
+				defaultValue={text('Default value', imageUrl)}
+				readOnly={boolean('Readonly', true)}
 			/>
 		)
 	);

@@ -19,4 +19,9 @@
 
 .button {
 	-st-states: active;
+	cursor: pointer;
+}
+
+.button:disabled {
+	cursor: default;
 }

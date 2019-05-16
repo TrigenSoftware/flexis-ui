@@ -6,6 +6,10 @@
 	cursor: pointer;
 }
 
+.root:disabled {
+	cursor: default;
+}
+
 .iconContainer {
 	display: flex;
 	align-items: center;

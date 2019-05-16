@@ -10,6 +10,10 @@
 	user-select: none;
 }
 
+.root:disabled .title {
+	cursor: default;
+}
+
 .root:not(:active) .content {
 	display: none;
 }

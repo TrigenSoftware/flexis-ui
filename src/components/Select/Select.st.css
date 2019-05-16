@@ -1,4 +1,8 @@
 
 .root {
-	/* Empty block */
+	cursor: pointer;
+}
+
+.root:disabled {
+	cursor: default;
 }

@@ -15,7 +15,7 @@ function formatValue(value: string, prefix: string, postfix: string) {
 	const formatedValue = prefix.replace(/:/g, '').length
 		? value.replace(value[0], value[0].toUpperCase())
 		: value;
-	const formatedPostfix = postfix.replace(postfix[0], postfix[0].toUpperCase());
+	const formatedPostfix = postfix && postfix.replace(postfix[0], postfix[0].toUpperCase());
 
 	return `${prefix}${formatedValue}${formatedPostfix}`;
 }
