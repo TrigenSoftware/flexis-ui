@@ -1,0 +1,24 @@
+
+.root {
+	/* Empty block */
+}
+
+.preview {
+	-st-states:
+		block,
+		img;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.img {
+	/* Empty block */
+}
+
+.placeholder {
+	/* Empty block */
+}
