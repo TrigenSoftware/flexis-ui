@@ -49,11 +49,6 @@ export default class Select extends PureComponent<IProps> {
 		]).isRequired
 	};
 
-	static defaultProps = {
-		elementRef: null,
-		onChange:   null
-	};
-
 	private originalValues: Primitive[] = [];
 
 	render() {

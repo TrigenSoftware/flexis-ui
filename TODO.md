@@ -1,7 +1,4 @@
-form group description
-form group required
-FormGroup
-ImageSelect
+Pure vs Simple
 another a11y audit: 
 - id generation; 
 - labelledby can contain few ids; 

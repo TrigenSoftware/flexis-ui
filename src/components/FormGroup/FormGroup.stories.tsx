@@ -4,19 +4,39 @@ import {
 } from '@storybook/addon-actions';
 import {
 	text,
-	boolean
+	boolean,
+	select
 } from '@storybook/addon-knobs/react';
 import {
-	storiesOf
+	storiesOf,
+	buildInfo
 } from '../../helpers/stories';
+import {
+	AlignSideValues
+} from '../common/types';
 import Input from '../Input';
+import Textarea from '../Textarea';
 import FormGroup from './';
+
+const {
+	TestIcon
+} = global as any;
 
 export const stylableApi = `
 Stylable API
 ---
-- :required
+- :withIcon
 - ::label
+- ::description
+- ::icon
+${buildInfo([
+	{
+		values:  AlignSideValues,
+		prefix:  ':',
+		postfix: 'align',
+		indent:  1
+	}
+])}
 `;
 
 export const events = {
@@ -30,7 +50,7 @@ export default storiesOf('FormGroup', module)
 		info: stylableApi
 	})
 	.add(
-		'with text label',
+		'with input',
 		() => (
 			<FormGroup
 				id='input-id'
@@ -44,7 +64,21 @@ export default storiesOf('FormGroup', module)
 		)
 	)
 	.add(
-		'with text description',
+		'with textarea',
+		() => (
+			<FormGroup
+				id='input-id'
+				label={text('Label', 'Text label')}
+			>
+				<Textarea
+					{...events}
+					defaultValue=''
+				/>
+			</FormGroup>
+		)
+	)
+	.add(
+		'with input and text description',
 		() => (
 			<FormGroup
 				id='input-id'
@@ -64,9 +98,44 @@ export default storiesOf('FormGroup', module)
 			<FormGroup
 				id='input-id'
 				label={text('Label', 'Text label')}
-				required={boolean('Required', true)}
+				description={text('Description', 'Description label')}
 			>
 				<Input
+					{...events}
+					required={boolean('Required', true)}
+					defaultValue=''
+				/>
+			</FormGroup>
+		)
+	)
+	.add(
+		'with input and icon',
+		() => (
+			<FormGroup
+				id='input-id'
+				label={text('Label', 'Text label')}
+				description={text('Description', 'Description label')}
+				icon={<TestIcon/>}
+				alignIcon={select('Align icon', AlignSideValues, 'left')}
+			>
+				<Input
+					{...events}
+					required={boolean('Required', false)}
+					defaultValue=''
+				/>
+			</FormGroup>
+		)
+	)
+	.add(
+		'with textarea and icon',
+		() => (
+			<FormGroup
+				id='input-id'
+				label={text('Label', 'Text label')}
+				icon={<TestIcon/>}
+				alignIcon={select('Align icon', AlignSideValues, 'left')}
+			>
+				<Textarea
 					{...events}
 					defaultValue=''
 				/>

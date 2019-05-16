@@ -51,10 +51,6 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 	};
 
 	static defaultProps = {
-		id:       null,
-		type:     null,
-		name:     null,
-		onChange: null,
 		checked:  false,
 		disabled: false
 	};

@@ -49,9 +49,7 @@ export default class Expand extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		onToggle:      null,
 		defaultActive: false,
-		active:        null,
 		disabled:      false
 	};
 

@@ -61,7 +61,6 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		id:       null,
 		tabIndex: 0,
 		align:    AlignVariant.Center
 	};

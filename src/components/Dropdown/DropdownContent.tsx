@@ -27,10 +27,6 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 		children:   PropTypes.node.isRequired
 	};
 
-	static defaultProps = {
-		elementRef: null
-	};
-
 	render() {
 
 		const {

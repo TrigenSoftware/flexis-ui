@@ -73,9 +73,6 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		id:       null,
-		name:     null,
-		onChange: null,
 		multiple: false,
 		disabled: false
 	};

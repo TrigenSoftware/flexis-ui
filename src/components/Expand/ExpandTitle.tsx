@@ -30,8 +30,7 @@ export class ExpandTitle extends PureComponent<IExpandTitleProps> {
 
 	static defaultProps = {
 		tabIndex: 0,
-		disabled: false,
-		children: null
+		disabled: false
 	};
 
 	render() {

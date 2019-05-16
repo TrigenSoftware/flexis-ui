@@ -42,11 +42,8 @@ export default class Button extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
-		elementRef: null,
-		icon:       null,
 		flexIcon:   false,
-		alignIcon:  AlignSideVariant.Left,
-		children:   null
+		alignIcon:  AlignSideVariant.Left
 	};
 
 	render() {
@@ -60,10 +57,10 @@ export default class Button extends PureComponent<IProps> {
 			...props
 		} = this.props;
 		const iconOnly = !Children.count(children);
-		const leftAligned = alignIcon === 'left';
+		const leftAligned = alignIcon === AlignSideVariant.Left;
 		let buttonIcon: ReactElement<any> = null;
 
-		if (icon !== null) {
+		if (typeof icon !== 'undefined') {
 			buttonIcon = cloneElement(
 				icon,
 				stylesheet('icon', {

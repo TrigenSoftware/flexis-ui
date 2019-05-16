@@ -35,11 +35,6 @@ export default class Radio extends PureComponent<IProps> {
 		value:      InputValuePropType
 	};
 
-	static defaultProps = {
-		elementRef: null,
-		onChange:   null
-	};
-
 	render() {
 
 		const {

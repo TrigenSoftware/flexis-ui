@@ -57,12 +57,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		placeholder: PropTypes.string
 	};
 
-	static defaultProps = {
-		...CustomFlatSelect.defaultProps,
-		elementRef:  null,
-		style:       null,
-		placeholder: null
-	};
+	static defaultProps = CustomFlatSelect.defaultProps;
 
 	static getDerivedStateFromProps = CustomFlatSelect.getDerivedStateFromProps;
 

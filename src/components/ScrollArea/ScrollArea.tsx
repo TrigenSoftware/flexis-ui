@@ -56,8 +56,7 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 		ignoreLeftShadow:   false,
 		hideXScrollbar:     false,
 		hideYScrollbar:     false,
-		y2xScroll:          false,
-		children:           null
+		y2xScroll:          false
 	};
 
 	state = {

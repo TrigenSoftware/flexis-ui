@@ -24,10 +24,6 @@ export class ExpandContent extends PureComponent<IExpandContentProps> {
 		children: PropTypes.node
 	};
 
-	static defaultProps = {
-		children: null
-	};
-
 	render() {
 
 		const {

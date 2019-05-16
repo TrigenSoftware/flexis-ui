@@ -58,10 +58,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 	static defaultProps = {
 		tabIndex:      0,
 		type:          'button',
-		name:          null,
-		onChange:      null,
 		defaultPage:   -1,
-		page:          null,
 		disabled:      false,
 		mapPagesLabel: _ => _
 	};

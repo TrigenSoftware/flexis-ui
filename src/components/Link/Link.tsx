@@ -52,13 +52,8 @@ export default class Link extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
-		elementRef:             null,
-		icon:                   null,
 		flexIcon:               false,
 		alignIcon:              AlignSideVariant.Left,
-		rel:                    null,
-		target:                 null,
-		children:               null,
 		linkElement:            'a',
 		linkElementCustomProps: {}
 	};
@@ -78,10 +73,10 @@ export default class Link extends PureComponent<IProps> {
 			...props
 		} = this.props;
 		const iconOnly = !Children.count(children);
-		const leftAligned = alignIcon === 'left';
+		const leftAligned = alignIcon === AlignSideVariant.Left;
 		let linkIcon: ReactElement<any> = null;
 
-		if (icon !== null) {
+		if (typeof icon !== 'undefined') {
 			linkIcon = cloneElement(
 				icon,
 				stylesheet('icon', {
@@ -100,7 +95,7 @@ export default class Link extends PureComponent<IProps> {
 				}, props)}
 				{...linkElementCustomProps}
 				target={target}
-				rel={target === '_blank' && rel === null
+				rel={target === '_blank' && typeof rel === 'undefined'
 					? safeTargetBlankRel
 					: rel
 				}

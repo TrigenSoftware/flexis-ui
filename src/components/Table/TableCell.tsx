@@ -53,10 +53,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 	};
 
 	static defaultProps = {
-		head:          false,
-		onOrderChange: null,
-		order:         null,
-		children:      null
+		head: false
 	};
 
 	render() {

@@ -24,10 +24,6 @@ export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
 		children: PropTypes.node
 	};
 
-	static defaultProps = {
-		children: null
-	};
-
 	render() {
 
 		const {

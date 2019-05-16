@@ -48,12 +48,7 @@ export default class Input extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
-		elementRef:     null,
 		type:           'text',
-		onChange:       null,
-		mask:           null,
-		maskChar:       null,
-		formatChars:    null,
 		alwaysShowMask: true
 	};
 

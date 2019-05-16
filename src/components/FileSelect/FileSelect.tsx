@@ -39,11 +39,7 @@ export default class FileSelect extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
-		elementRef: null,
-		style:      null,
-		onChange:   null,
-		disabled:   false,
-		children:   null
+		disabled: false
 	};
 
 	render() {

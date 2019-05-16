@@ -9,13 +9,19 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
+import {
+	AlignSide,
+	AlignSideVariant,
+	AlignSideValues
+} from '../common/types';
 import stylesheet from './FormGroup.st.css';
 
 interface ISelfProps {
 	id?: string;
 	label?: string|ReactElement<any>;
 	description?: string|ReactElement<any>;
-	required?: boolean;
+	icon?: ReactElement<any>;
+	alignIcon?: AlignSide;
 	children: ReactElement<any>;
 }
 
@@ -33,15 +39,13 @@ export default class FormGroup extends PureComponent<IProps> {
 			PropTypes.element
 		]),
 		description: PropTypes.string,
-		required:    PropTypes.bool,
+		icon:       PropTypes.element,
+		alignIcon:  PropTypes.oneOf(AlignSideValues),
 		children:    PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
-		id:          null,
-		label:       null,
-		description: null,
-		required:    false
+		alignIcon: AlignSideVariant.Left
 	};
 
 	render() {
@@ -50,20 +54,40 @@ export default class FormGroup extends PureComponent<IProps> {
 			id,
 			label,
 			description,
-			required,
+			icon,
+			alignIcon,
 			children,
 			...props
 		} = this.props;
 		const child = Children.only(children);
+		const {
+			props: childProps
+		} = child;
+		let inputIcon: ReactElement<any> = null;
+
+		if (typeof icon !== 'undefined') {
+			inputIcon = cloneElement(
+				icon,
+				stylesheet('icon', {
+					[`${alignIcon}Align`]: Boolean(alignIcon)
+				}, icon.props)
+			);
+		}
 
 		return (
 			<div
 				{...props}
-				{...stylesheet('root', {
-					required
-				}, props)}
+				{...stylesheet('root', {}, props)}
 			>
-				{typeof label !== 'string' ? label : (
+				{cloneElement(
+					child,
+					{
+						id: id || childProps.id,
+						...stylesheet('input', {}, childProps)
+					}
+				)}
+				{inputIcon}
+				{label && (
 					<label
 						{...stylesheet('label')}
 						htmlFor={id}
@@ -71,14 +95,7 @@ export default class FormGroup extends PureComponent<IProps> {
 						{label}
 					</label>
 				)}
-				{cloneElement(
-					child,
-					{
-						id: id || child.props.id,
-						required
-					}
-				)}
-				{typeof description !== 'string' ? description : (
+				{description && (
 					<label
 						{...stylesheet('description')}
 						htmlFor={id}

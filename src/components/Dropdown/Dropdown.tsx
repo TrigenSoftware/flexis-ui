@@ -79,9 +79,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 	};
 
 	static defaultProps = {
-		onToggle:           null,
 		defaultActive:      false,
-		active:             null,
 		disabled:           false,
 		blockScroll:        true,
 		align:              AlignVariant.Start,

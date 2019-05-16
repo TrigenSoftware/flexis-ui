@@ -32,11 +32,6 @@ export default class Textarea extends PureComponent<IProps> {
 		value:        PropTypes.string
 	};
 
-	static defaultProps = {
-		elementRef:   null,
-		onChange:     null
-	};
-
 	render() {
 
 		const {
