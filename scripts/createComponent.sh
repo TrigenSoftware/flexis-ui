@@ -12,7 +12,7 @@ printf "import React, {
 	HTMLAttributes,
 	Ref,
 	ReactNode,
-	Component
+	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -30,7 +30,7 @@ export type IProps = CombinePropsAndAttributes<
 	HTMLAttributes<HTMLDivElement>
 >;
 
-export default class $1 extends Component<IProps> {
+export default class $1 extends PureComponent<IProps> {
 
 	static propTypes = {
 		elementRef: PropTypes.func,
