@@ -63,9 +63,10 @@ export default class FormGroup extends PureComponent<IProps> {
 		const {
 			props: childProps
 		} = child;
+		const withIcon = typeof icon !== 'undefined';
 		let inputIcon: ReactElement<any> = null;
 
-		if (typeof icon !== 'undefined') {
+		if (withIcon) {
 			inputIcon = cloneElement(
 				icon,
 				stylesheet('icon', {
@@ -77,14 +78,16 @@ export default class FormGroup extends PureComponent<IProps> {
 		return (
 			<div
 				{...props}
-				{...stylesheet('root', {}, props)}
+				{...stylesheet('root', {
+					withIcon
+				}, props)}
 			>
 				{cloneElement(
 					child,
 					{
 						id: id || childProps.id,
 						...stylesheet('input', {
-							[`${alignIcon}Icon`]: Boolean(inputIcon)
+							[`${alignIcon}Icon`]: withIcon
 						}, childProps)
 					}
 				)}
