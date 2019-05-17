@@ -83,7 +83,9 @@ export default class FormGroup extends PureComponent<IProps> {
 					child,
 					{
 						id: id || childProps.id,
-						...stylesheet('input', {}, childProps)
+						...stylesheet('input', {
+							[`${alignIcon}Icon`]: Boolean(alignIcon)
+						}, childProps)
 					}
 				)}
 				{inputIcon}
