@@ -2,6 +2,7 @@ import React, {
 	InputHTMLAttributes,
 	Ref,
 	CSSProperties,
+	KeyboardEvent,
 	ChangeEvent,
 	ReactElement,
 	PureComponent,
@@ -13,6 +14,7 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
+import isKeyboardClick from '../common/isKeyboardClick';
 import stylesheet from './FileSelect.st.css';
 
 interface ISelfProps {
@@ -53,15 +55,15 @@ export default class FileSelect extends PureComponent<IProps> {
 		} = this.props;
 
 		return (
-			<label
+			<span
 				{...stylesheet('root', {}, props)}
-				role='none'
 				style={style}
 			>
 				<input
 					ref={elementRef}
 					{...props}
 					{...stylesheet('input')}
+					tabIndex={-1}
 					type='file'
 					onChange={this.onChange}
 					disabled={disabled}
@@ -69,11 +71,12 @@ export default class FileSelect extends PureComponent<IProps> {
 				{cloneElement(
 					Children.only(children),
 					{
+						'onKeyPress':    this.onFaceKeyPress,
 						'aria-disabled': disabled,
 						'disabled':      disabled
 					}
 				)}
-			</label>
+			</span>
 		);
 	}
 
@@ -89,6 +92,21 @@ export default class FileSelect extends PureComponent<IProps> {
 			const nextValue = Array.from(event.currentTarget.files);
 
 			onChange(nextValue, event);
+		}
+	}
+
+	private onFaceKeyPress(event: KeyboardEvent) {
+
+		const {
+			currentTarget,
+			key
+		} = event;
+
+		if (isKeyboardClick(key)) {
+
+			const input = currentTarget.previousElementSibling as HTMLInputElement;
+
+			input.click();
 		}
 	}
 }

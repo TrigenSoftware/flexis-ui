@@ -7,7 +7,6 @@
 	-st-states:
 		/* Common states */
 		readOnly,
-		disabled,
 		/* Display states */
 		block,
 		img;

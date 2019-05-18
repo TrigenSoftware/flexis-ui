@@ -39,6 +39,18 @@ export default storiesOf('FileSelect', module)
 		)
 	)
 	.add(
+		'with span',
+		() => (
+			<FileSelect
+				{...events}
+			>
+				<span tabIndex={0}>
+					Select file
+				</span>
+			</FileSelect>
+		)
+	)
+	.add(
 		'with disabled state',
 		() => (
 			<FileSelect

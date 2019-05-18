@@ -1,5 +1,6 @@
 import React, {
 	Ref,
+	ButtonHTMLAttributes,
 	CSSProperties,
 	ReactElement,
 	ChangeEvent,
@@ -12,9 +13,8 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
-import FileSelect, {
-	IProps as IFileSelectProps
-} from '../FileSelect';
+import FileSelect from '../FileSelect';
+import SROnly from '../SROnly';
 import stylesheet from './ImageSelect.st.css';
 
 export enum DisplayVariant {
@@ -26,21 +26,23 @@ export type Display = 'img'|'block';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
-	style?: CSSProperties;
 	display?: Display;
 	placeholder?: ReactElement<any>;
 	defaultValue?: string;
 	value?: string;
+	disabled?: boolean;
+	readOnly?: boolean;
 	onChange?(image: File, event: ChangeEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
 	ISelfProps,
-	IFileSelectProps
+	ButtonHTMLAttributes<HTMLButtonElement>
 >;
 
 interface IState {
 	value: string;
+	filename: string;
 }
 
 export const DisplayValues: Display[] = Object.values(DisplayVariant);
@@ -50,24 +52,25 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 	static propTypes = {
 		...FileSelect.propTypes,
 		elementRef:   PropTypes.func,
-		style:        PropTypes.object,
 		display:      PropTypes.oneOf(DisplayValues),
 		placeholder:  PropTypes.element,
 		defaultValue: PropTypes.string,
 		value:        PropTypes.string,
+		disabled:     PropTypes.bool,
 		readOnly:     PropTypes.bool
 	};
 
 	static defaultProps = {
 		...FileSelect.defaultProps,
 		display:  DisplayVariant.Block,
+		disabled: false,
 		readOnly: false
 	};
 
 	static getDerivedStateFromProps(
 		{ value }: IProps,
 		{ value: prevValue }: IState
-	): IState {
+	): Partial<IState> {
 
 		const nextValue = typeof value === 'undefined'
 			? prevValue
@@ -91,7 +94,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		} = props;
 
 		this.state = {
-			value: defaultValue
+			value:    defaultValue,
+			filename: ''
 		};
 	}
 
@@ -107,7 +111,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			...props
 		} = this.props;
 		const {
-			value
+			value,
+			filename
 		} = this.state;
 		const withPlaceholder = !value && placeholder;
 		const previewStyle: CSSProperties = { ...style };
@@ -130,19 +135,19 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		return (
 			<FileSelect
 				elementRef={elementRef}
-				{...omit(props, [
-					'defaultValue',
-					'value'
-				])}
 				{...stylesheet('root', {}, props)}
 				onChange={this.onChange}
 				disabled={disabled || readOnly}
 			>
-				<figure
+				<button
+					{...omit(props, [
+						'onChange',
+						'defaultValue',
+						'value'
+					])}
 					{...stylesheet('preview', {
 						[display]: Boolean(display),
-						readOnly,
-						disabled
+						readOnly
 					})}
 					style={previewStyle}
 				>
@@ -151,7 +156,10 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 						placeholder,
 						stylesheet('placeholder', {}, placeholder.props)
 					)}
-				</figure>
+					<SROnly>
+						<span>{filename}</span>
+					</SROnly>
+				</button>
 			</FileSelect>
 		);
 	}
@@ -180,7 +188,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 
 		if (typeof valueProp === 'undefined') {
 			this.setState(() => ({
-				value: nextValue
+				value:    nextValue,
+				filename: image.name
 			}));
 		}
 

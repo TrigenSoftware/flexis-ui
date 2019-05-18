@@ -13,6 +13,7 @@ import {
 	omit,
 	modulo
 } from '../../helpers';
+import isKeyboardClick from '../common/isKeyboardClick';
 import stylesheet from './Table.st.css';
 
 export enum Order {
@@ -127,7 +128,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 			key
 		} = event;
 
-		if (key === ' ' || key === 'Enter') {
+		if (isKeyboardClick(key)) {
 			this.onOrderChange(null);
 		}
 

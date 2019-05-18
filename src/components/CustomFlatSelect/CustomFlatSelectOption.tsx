@@ -129,7 +129,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 			return;
 		}
 
-		const input = event.currentTarget.previousElementSibling as HTMLInputElement;
+		const input = currentTarget.previousElementSibling as HTMLInputElement;
 
 		input.click();
 	}

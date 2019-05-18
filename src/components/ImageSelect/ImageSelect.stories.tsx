@@ -34,11 +34,14 @@ ${buildInfo([
 ---
 `;
 
+export const events = {
+	onChange: action('change')
+};
+
 // tslint:disable-next-line
-const imageUrl = 'https://cdn3.iconfinder.com/data/icons/message-and-communication-sets/50/Icon_Profile_Macbook-256.png';
+export const imageUrl = 'https://cdn3.iconfinder.com/data/icons/message-and-communication-sets/50/Icon_Profile_Macbook-256.png';
 
 const style = {
-	border:         '1px solid silver',
 	backgroundSize: 'cover',
 	minWidth:       '4em',
 	minHeight:      '4em'
@@ -52,8 +55,8 @@ export default storiesOf('ImageSelect', module)
 		'with default state',
 		() => (
 			<ImageSelect
+				{...events}
 				style={style}
-				onChange={action('change')}
 				display={select('Display', DisplayValues, 'block')}
 			/>
 		)
@@ -62,8 +65,8 @@ export default storiesOf('ImageSelect', module)
 		'with placeholder',
 		() => (
 			<ImageSelect
+				{...events}
 				style={style}
-				onChange={action('change')}
 				display={select('Display', DisplayValues, 'block')}
 				placeholder={<TestIcon/>}
 			/>
@@ -73,8 +76,8 @@ export default storiesOf('ImageSelect', module)
 		'with value',
 		() => (
 			<ImageSelect
+				{...events}
 				style={style}
-				onChange={action('change')}
 				display={select('Display', DisplayValues, 'block')}
 				value={text('Value', imageUrl)}
 			/>
@@ -84,8 +87,8 @@ export default storiesOf('ImageSelect', module)
 		'with default value',
 		() => (
 			<ImageSelect
+				{...events}
 				style={style}
-				onChange={action('change')}
 				display={select('Display', DisplayValues, 'block')}
 				defaultValue={text('Default value', imageUrl)}
 			/>
@@ -95,8 +98,8 @@ export default storiesOf('ImageSelect', module)
 		'with disabled state',
 		() => (
 			<ImageSelect
+				{...events}
 				style={style}
-				onChange={action('change')}
 				defaultValue={text('Default value', imageUrl)}
 				disabled={boolean('Disabled', true)}
 			/>
@@ -106,10 +109,20 @@ export default storiesOf('ImageSelect', module)
 		'with readOnly state',
 		() => (
 			<ImageSelect
+				{...events}
 				style={style}
-				onChange={action('change')}
 				defaultValue={text('Default value', imageUrl)}
 				readOnly={boolean('Readonly', true)}
+			/>
+		)
+	)
+	.add(
+		'with title',
+		() => (
+			<ImageSelect
+				{...events}
+				style={style}
+				title={text('Title', 'Select image')}
 			/>
 		)
 	);
