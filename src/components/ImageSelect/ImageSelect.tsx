@@ -27,6 +27,7 @@ export type Display = 'img'|'block';
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
 	display?: Display;
+	name?: string;
 	placeholder?: ReactElement<any>;
 	defaultValue?: string;
 	value?: string;
@@ -53,6 +54,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		...FileSelect.propTypes,
 		elementRef:   PropTypes.func,
 		display:      PropTypes.oneOf(DisplayValues),
+		name:         PropTypes.string,
 		placeholder:  PropTypes.element,
 		defaultValue: PropTypes.string,
 		value:        PropTypes.string,
@@ -105,6 +107,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			elementRef,
 			style,
 			display,
+			name,
 			placeholder,
 			disabled,
 			readOnly,
@@ -136,6 +139,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			<FileSelect
 				elementRef={elementRef}
 				{...stylesheet('root', {}, props)}
+				name={name}
 				onChange={this.onChange}
 				disabled={disabled || readOnly}
 			>
