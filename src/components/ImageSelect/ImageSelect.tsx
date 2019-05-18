@@ -147,7 +147,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 					])}
 					{...stylesheet('preview', {
 						[display]: Boolean(display),
-						readOnly
+						readOnly,
+						disabled
 					})}
 					style={previewStyle}
 				>

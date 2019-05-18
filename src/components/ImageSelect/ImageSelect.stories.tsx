@@ -39,7 +39,7 @@ export const events = {
 };
 
 // tslint:disable-next-line
-export const imageUrl = 'https://cdn3.iconfinder.com/data/icons/message-and-communication-sets/50/Icon_Profile_Macbook-256.png';
+export const imageUrl = 'https://instagram.fhen2-1.fna.fbcdn.net/vp/d81ca16ed081cd80553eaaa63fa24b34/5D69ED4D/t51.2885-15/e15/11274387_579453698862853_1466193977_n.jpg?_nc_ht=instagram.fhen2-1.fna.fbcdn.net';
 
 const style = {
 	backgroundSize: 'cover',
