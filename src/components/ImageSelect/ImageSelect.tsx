@@ -104,7 +104,6 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			placeholder,
 			disabled,
 			readOnly,
-			children,
 			...props
 		} = this.props;
 		const {
