@@ -33,7 +33,7 @@
     "@babel/runtime": "^7.4.4",
     "@stylable/runtime": "^1.0.4",
     "@types/prop-types": "^15.7.1",
-    "@types/react": "16.8.17",
+    "@types/react": "16.8.18",
     "@types/react-transition-group": "^2.9.1",
     "color": "^3.1.1",
     "react-input-mask": "^2.0.3",
