@@ -28,7 +28,11 @@
 
 .input {
 	-st-states:
+		flex,
 		leftIcon,
 		rightIcon;
+}
+
+.input:flex {
 	flex: 1;
 }

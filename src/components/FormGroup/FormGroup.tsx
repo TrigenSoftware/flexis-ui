@@ -18,6 +18,7 @@ import stylesheet from './FormGroup.st.css';
 
 interface ISelfProps {
 	id?: string;
+	flex?: boolean;
 	label?: string|ReactElement<any>;
 	description?: string|ReactElement<any>;
 	icon?: ReactElement<any>;
@@ -34,6 +35,7 @@ export default class FormGroup extends PureComponent<IProps> {
 
 	static propTypes = {
 		id:          PropTypes.string,
+		flex:        PropTypes.bool,
 		label:       PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.element
@@ -45,6 +47,7 @@ export default class FormGroup extends PureComponent<IProps> {
 	};
 
 	static defaultProps = {
+		flex:      true,
 		alignIcon: AlignSideVariant.Left
 	};
 
@@ -52,6 +55,7 @@ export default class FormGroup extends PureComponent<IProps> {
 
 		const {
 			id,
+			flex,
 			label,
 			description,
 			icon,
@@ -87,7 +91,8 @@ export default class FormGroup extends PureComponent<IProps> {
 					{
 						id: id || childProps.id,
 						...stylesheet('input', {
-							[`${alignIcon}Icon`]: withIcon
+							[`${alignIcon}Icon`]: withIcon,
+							flex
 						}, childProps)
 					}
 				)}

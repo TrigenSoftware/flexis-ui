@@ -1,7 +1,8 @@
 rm size from icons
 another a11y audit: 
 - id generation; 
-- labelledby can contain few ids; 
+- labelledby can contain few ids;
+- focusable and aria-hidden combinations
 - https://pattern-library.dequelabs.com/components/selects
 - https://t.co/klHVgkbadG?amp=1
 - https://t.co/kmIIM9zIIs?amp=1

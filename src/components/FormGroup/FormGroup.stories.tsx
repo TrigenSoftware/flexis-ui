@@ -27,6 +27,16 @@ Stylable API
 ---
 - :withIcon
 - ::label
+- ::input
+	- :flex
+${buildInfo([
+	{
+		values:  AlignSideValues,
+		prefix:  ':',
+		postfix: 'icon',
+		indent:  1
+	}
+])}
 - ::description
 - ::icon
 ${buildInfo([
@@ -54,6 +64,7 @@ export default storiesOf('FormGroup', module)
 		() => (
 			<FormGroup
 				id='input-id'
+				flex={boolean('Flex', true)}
 				label={text('Label', 'Text label')}
 			>
 				<Input
@@ -68,6 +79,7 @@ export default storiesOf('FormGroup', module)
 		() => (
 			<FormGroup
 				id='input-id'
+				flex={boolean('Flex', true)}
 				label={text('Label', 'Text label')}
 			>
 				<Textarea
@@ -82,6 +94,7 @@ export default storiesOf('FormGroup', module)
 		() => (
 			<FormGroup
 				id='input-id'
+				flex={boolean('Flex', true)}
 				label={text('Label', 'Text label')}
 				description={text('Description', 'Description label')}
 			>
@@ -113,6 +126,7 @@ export default storiesOf('FormGroup', module)
 		() => (
 			<FormGroup
 				id='input-id'
+				flex={boolean('Flex', true)}
 				label={text('Label', 'Text label')}
 				description={text('Description', 'Description label')}
 				icon={<TestIcon/>}
