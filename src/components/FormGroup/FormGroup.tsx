@@ -54,7 +54,7 @@ export default class FormGroup extends PureComponent<IProps> {
 	render() {
 
 		const {
-			id,
+			id: idProp,
 			flex,
 			label,
 			description,
@@ -67,6 +67,7 @@ export default class FormGroup extends PureComponent<IProps> {
 		const {
 			props: childProps
 		} = child;
+		const id = idProp || childProps.id;
 		const withIcon = typeof icon !== 'undefined';
 		let inputIcon: ReactElement<any> = null;
 
@@ -89,7 +90,7 @@ export default class FormGroup extends PureComponent<IProps> {
 				{cloneElement(
 					child,
 					{
-						id: id || childProps.id,
+						id,
 						...stylesheet('input', {
 							[`${alignIcon}Icon`]: withIcon,
 							flex
