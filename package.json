@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@trigen/scripts": "^1.10.2",
+    "@trigen/scripts": "^2.0.0",
     "clean-publish": "^1.1.2",
     "del-cli": "^1.1.0",
     "prop-types": "^15.6.2",
