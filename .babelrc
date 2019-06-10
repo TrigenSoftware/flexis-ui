@@ -10,5 +10,22 @@
 				}
 			}
 		]
-	]
+	],
+	"env": {
+		"test": {
+			"presets": [
+				[
+					"babel-preset-trigen",
+					{
+						"targets": {
+							"node": "current"
+						},
+						"commonjs": true,
+						"react": true,
+						"typescript": true
+					}
+				]
+			]
+		}
+	}
 }

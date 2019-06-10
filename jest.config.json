@@ -1,0 +1,19 @@
+{
+	"testRegex": "/src/.*\\.spec\\.(jsx?|tsx?)$",
+	"modulePathIgnorePatterns": [
+		"<rootDir>/package/.*"
+	],
+	"transform": {
+		"^.+\\.(jsx?|tsx?)$": "babel-jest"
+	},
+	"collectCoverage": true,
+	"collectCoverageFrom": [
+		"src/helpers/**/*.{js,jsx,ts,tsx}",
+		"!**/*.d.ts",
+		"!**/node_modules/**"
+	],
+	"coverageReporters": [
+		"lcovonly",
+		"text"
+	]
+}
