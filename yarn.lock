@@ -2049,10 +2049,10 @@
     typedoc "^0.14.0"
     typescript "3.5.1"
 
-"@trigen/scripts-preset-lib@2":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.5.0.tgz#81db71668528cf043ad7f9a25eaae0faedaf1a83"
-  integrity sha512-vNw6MCIEaQcHiIBGoqlsIFtMvH7hwusM4Jm/bQvgYQ7u/+mvPsMyOtk+zDN3QlPv8iIk2j811s7DY/iJ4EaqRA==
+"@trigen/scripts-preset-lib@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.0.tgz#2d8bd8d2b83639a86c7e69c6b72a6e2093011ae6"
+  integrity sha512-O9uCohIvU7ry4aRkfYTT9GJXWqTGB1/SUEHC4Z6Dqi7SeMWjbak/DGYVD+RgT489c5gyF4y9NsKd91232F9VyA==
   dependencies:
     "@trigen/scripts" "^2.5.0"
     browserslist-config-trigen "^1.1.0"
