@@ -11,7 +11,8 @@
 	[
 		"@trigen/scripts-preset-lib",
 		{
-			"testSkipBuild": true
+			"testSkipBuild": true,
+			"publish": "./package"
 		}
 	]
 ]
