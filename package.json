@@ -37,9 +37,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@stylable/runtime": "^1.0.4",
+    "@stylable/runtime": "^2.1.0",
     "@types/prop-types": "^15.7.1",
-    "@types/react": "16.8.17",
+    "@types/react": "^16.8.19",
     "@types/react-transition-group": "^2.9.1",
     "color": "^3.1.1",
     "core-js": "3",
@@ -55,7 +55,7 @@
     "@trigen/scripts-plugin-typescript": "2",
     "@trigen/scripts-preset-lib": "2",
     "@trigen/scripts-preset-react-app": "2",
-    "del-cli": "^1.1.0",
+    "del-cli": "^2.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
