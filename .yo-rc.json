@@ -1,0 +1,19 @@
+{
+  "generator-trigen-lib": {
+    "editPackage": true,
+    "pkg": {
+      "name": "@flexis/ui",
+      "version": "0.14.9-alpha",
+      "description": "Styleless React Components",
+      "repository": "https://github.com/TrigenSoftware/flexis-ui",
+      "author": "dangreen"
+    },
+    "type": "browser",
+    "lang": "ts",
+    "rollup": false,
+    "jest": false,
+    "coverage": false,
+    "publishAsRoot": true,
+    "cleanPublish": true
+  }
+}

@@ -1,12 +1,14 @@
 {
 	"exclude": "node_modules/**",
 	"presets": [
-		["babel-preset-trigen", {
-			"corejs": 2,
-			"react": true,
-			"reactRemovePropTypes": {
-				"mode": "unsafe-wrap"
+		[
+			"babel-preset-trigen",
+			{
+				"react": true,
+				"reactRemovePropTypes": {
+					"mode": "unsafe-wrap"
+				}
 			}
-		}]
+		]
 	]
 }

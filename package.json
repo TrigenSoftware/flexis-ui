@@ -16,19 +16,24 @@
     "lint:styles": "trigen-scripts lint:styles",
     "lint:scripts": "trigen-scripts lint:scripts",
     "lint": "trigen-scripts lint",
-    "test": "npm run lint && npm run build",
+    "test": "trigen-scripts test",
     "build:docs": "./scripts/generateDocs.sh",
     "start:storybook": "trigen-scripts start:storybook -c .storybook",
     "build:storybook": "trigen-scripts build:storybook -c .storybook",
     "build": "./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
-    "cleanPublish": "npm run test && cd package && clean-publish"
+    "cleanPublish": "trigen-scripts cleanPublish ./package"
   },
   "keywords": [
     "react-components",
     "ui",
     "styleless"
   ],
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@stylable/runtime": "^1.0.4",
@@ -36,20 +41,19 @@
     "@types/react": "16.8.17",
     "@types/react-transition-group": "^2.9.1",
     "color": "^3.1.1",
+    "core-js": "3",
     "react-input-mask": "^2.0.3",
     "react-transition-group": "^4.0.0",
     "resize-observer": "^1.0.0-alpha.1",
     "throttle-debounce": "^2.0.1"
   },
-  "peerDependencies": {
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@trigen/scripts": "^1.10.2",
-    "clean-publish": "^1.1.2",
+    "@trigen/scripts": "2",
+    "@trigen/scripts-plugin-babel": "2",
+    "@trigen/scripts-plugin-eslint": "2",
+    "@trigen/scripts-plugin-typescript": "2",
+    "@trigen/scripts-preset-lib": "2",
+    "@trigen/scripts-preset-react-app": "2",
     "del-cli": "^1.1.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",

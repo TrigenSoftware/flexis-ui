@@ -1,12 +1,12 @@
 # @flexis/ui
 
 [![NPM version][npm]][npm-url]
-[![Peer dependency status][peer-deps]][peer-deps-url]
-[![Dependency status][deps]][deps-url]
+[![Peer dependencies status][peer-deps]][peer-deps-url]
+[![Dependencies status][deps]][deps-url]
 [![Build status][build]][build-url]
 [![Greenkeeper badge][greenkeeper]][greenkeeper-url]
 
-[npm]: https://img.shields.io/npm/v/%40flexis/ui.svg
+[npm]: https://img.shields.io/npm/v/@flexis/ui.svg
 [npm-url]: https://npmjs.com/package/@flexis/ui
 
 [peer-deps]: https://david-dm.org/TrigenSoftware/flexis-ui/peer-status.svg
