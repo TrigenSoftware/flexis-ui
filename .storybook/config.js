@@ -1,11 +1,10 @@
 import './injectTestIcon';
-import {
-	loadStories
-} from '@trigen/scripts/storybook/config';
 import React from 'react';
 import {
-	addDecorator,
 	configure
+} from '@trigen/scripts-preset-react-app/storybook/config';
+import {
+	addDecorator
 } from '@storybook/react';
 import stylesheet from '../src/reboot.st.css';
 
@@ -15,4 +14,4 @@ addDecorator(story => (
 	</div>
 ));
 
-configure(loadStories, module);
+configure(module);

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 rm -rf package
 cp -R src package
 tsc --rootDir src --outDir package

@@ -10,7 +10,11 @@ export function textTructate(text: string, length: number) {
 		return text;
 	}
 
-	const subString = text.substr(0, length - 1);
+	const subString = text.substr(0, length);
+	const spaceIndex = subString.lastIndexOf(' ');
+	const truncatedString = ~spaceIndex
+		? subString.substr(0, spaceIndex)
+		: subString;
 
-	return `${subString.substr(0, subString.lastIndexOf(' '))}...`;
+	return `${truncatedString}...`;
 }

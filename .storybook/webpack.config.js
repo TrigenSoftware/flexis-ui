@@ -1,5 +1,5 @@
-const superConfigureStorybook = require('@trigen/scripts/storybook/webpack.config');
-const findIndex = require('@trigen/scripts/helpers/findIndex').default;
+const superConfigureStorybook = require('@trigen/scripts-preset-react-app/storybook/webpack.config');
+const findIndex = require('@trigen/scripts-preset-react-app/helpers/findIndex').default;
 const { atLoaderOptions } = require('../tsconfig.json');
 
 module.exports = configureStorybook;
