@@ -17,7 +17,7 @@
     "lint:scripts": "trigen-scripts lint:scripts",
     "lint": "trigen-scripts lint",
     "jest": "trigen-scripts jest",
-    "test": "trigen-scripts test",
+    "test": "trigen-scripts test && npm run build",
     "build:docs": "./scripts/generateDocs.sh",
     "start:storybook": "trigen-scripts start:storybook -c .storybook",
     "build:storybook": "trigen-scripts build:storybook -c .storybook",
