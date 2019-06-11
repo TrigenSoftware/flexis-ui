@@ -11,6 +11,19 @@
 			}
 		]
 	],
+	"overrides": [
+		{
+			"test": "**/stylable/*.js",
+			"presets": [
+				[
+					"babel-preset-trigen",
+					{
+						"commonjs": true
+					}
+				]
+			]
+		}
+	],
 	"env": {
 		"test": {
 			"presets": [
