@@ -1,6 +1,6 @@
 import React, {
 	HTMLAttributes,
-	ReactElement,
+	ReactNode,
 	PureComponent
 } from 'react';
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ import {
 import stylesheet from './Table.st.css';
 
 interface ISelfProps {
-	children: ReactElement<any>|ReactElement<any>[];
+	children: ReactNode;
 }
 
 export type ITableHeadProps = CombinePropsAndAttributes<
@@ -21,13 +21,7 @@ export type ITableHeadProps = CombinePropsAndAttributes<
 export class TableHead extends PureComponent<ITableHeadProps> {
 
 	static propTypes = {
-		children: PropTypes.oneOfType([
-			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.oneOfType([
-				PropTypes.element,
-				PropTypes.arrayOf(PropTypes.element)
-			]))
-		]).isRequired
+		children: PropTypes.node.isRequired
 	};
 
 	render() {

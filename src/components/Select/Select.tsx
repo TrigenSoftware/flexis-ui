@@ -1,6 +1,7 @@
 import React, {
 	SelectHTMLAttributes,
 	Ref,
+	ReactNode,
 	ReactElement,
 	ChangeEvent,
 	PureComponent,
@@ -24,7 +25,7 @@ interface ISelfProps {
 	elementRef?: Ref<HTMLSelectElement>;
 	defaultValue?: Primitive;
 	value?: Primitive;
-	children: ReactElement<any>|ReactElement<any>[];
+	children: ReactNode;
 	onChange?(value: Primitive, event: ChangeEvent);
 }
 
@@ -40,13 +41,7 @@ export default class Select extends PureComponent<IProps> {
 		defaultValue: PrimitivePropType,
 		value:        PrimitivePropType,
 		onChange:     PropTypes.func,
-		children:     PropTypes.oneOfType([
-			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.oneOfType([
-				PropTypes.element,
-				PropTypes.arrayOf(PropTypes.element)
-			]))
-		]).isRequired
+		children:     PropTypes.node.isRequired
 	};
 
 	private originalValues: Primitive[] = [];

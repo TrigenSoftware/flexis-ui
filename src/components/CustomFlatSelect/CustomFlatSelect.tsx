@@ -1,6 +1,7 @@
 import React, {
 	HTMLAttributes,
 	ReactElement,
+	ReactNode,
 	ChangeEvent,
 	PureComponent,
 	Children,
@@ -29,7 +30,7 @@ interface ISelfProps {
 	value?: SelectValue;
 	multiple?: boolean;
 	disabled?: boolean;
-	children: ReactElement<any>|ReactElement<any>[];
+	children: ReactNode;
 	onChange?(value: SelectValue, event: ChangeEvent);
 }
 
@@ -63,13 +64,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 		value:        SelectValuePropType,
 		multiple:     PropTypes.bool,
 		disabled:     PropTypes.bool,
-		children:     PropTypes.oneOfType([
-			PropTypes.element,
-			PropTypes.arrayOf(PropTypes.oneOfType([
-				PropTypes.element,
-				PropTypes.arrayOf(PropTypes.element)
-			]))
-		]).isRequired
+		children:     PropTypes.node.isRequired
 	};
 
 	static defaultProps = {
