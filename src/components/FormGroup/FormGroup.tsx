@@ -40,9 +40,12 @@ export default class FormGroup extends PureComponent<IProps> {
 			PropTypes.string,
 			PropTypes.element
 		]),
-		description: PropTypes.string,
-		icon:       PropTypes.element,
-		alignIcon:  PropTypes.oneOf(AlignSideValues),
+		description: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.element
+		]),
+		icon:        PropTypes.element,
+		alignIcon:   PropTypes.oneOf(AlignSideValues),
 		children:    PropTypes.node.isRequired
 	};
 
