@@ -72,6 +72,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		active:             PropTypes.bool,
 		disabled:           PropTypes.bool,
 		blockScroll:        PropTypes.bool,
+		hideOnClick:        PropTypes.bool,
 		align:              PropTypes.oneOf(AlignValues),
 		children:           PropTypes.arrayOf(
 			PropTypes.element
@@ -152,7 +153,8 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 					'active',
 					'blockScroll',
 					'align',
-					'transitionDuration'
+					'transitionDuration',
+					'hideOnClick'
 				])}
 				{...stylesheet('root', {
 					active,

@@ -24,8 +24,9 @@ export type IDropdownContentProps = CombinePropsAndAttributes<
 export class DropdownContent extends PureComponent<IDropdownContentProps> {
 
 	static propTypes = {
-		elementRef: PropTypes.func,
-		children:   PropTypes.node.isRequired
+		elementRef:  PropTypes.func,
+		hideOnClick: PropTypes.bool,
+		children:    PropTypes.node.isRequired
 	};
 
 	render() {
@@ -42,7 +43,7 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 				ref={elementRef}
 				tabIndex={0}
 				{...props}
-				onClick={!hideOnClick && this.onClick}
+				onClick={hideOnClick ? undefined : this.onClick}
 			>
 				{children}
 			</div>
