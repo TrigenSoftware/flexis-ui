@@ -47,6 +47,7 @@ export default storiesOf('Dropdown', module)
 				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', false)}
 				blockScroll={boolean('Block scroll', true)}
+				hideOnClick={boolean('Hide on click', false)}
 			>
 				<button id='dropdownToggleButton'>
 					Click me!
@@ -72,6 +73,7 @@ export default storiesOf('Dropdown', module)
 				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', false)}
 				blockScroll={boolean('Block scroll', true)}
+				hideOnClick={boolean('Hide on click', false)}
 				defaultActive
 			>
 				<button>
@@ -97,6 +99,7 @@ export default storiesOf('Dropdown', module)
 				align={select('Align', AlignValues, 'start')}
 				disabled={boolean('Disabled', true)}
 				blockScroll={boolean('Block scroll', true)}
+				hideOnClick={boolean('Hide on click', false)}
 			>
 				<button>
 					Click me!
@@ -122,6 +125,7 @@ export default storiesOf('Dropdown', module)
 				disabled={boolean('Disabled', false)}
 				active={boolean('Active', true)}
 				blockScroll={boolean('Block scroll', true)}
+				hideOnClick={boolean('Hide on click', false)}
 			>
 				<button>
 					Click me!

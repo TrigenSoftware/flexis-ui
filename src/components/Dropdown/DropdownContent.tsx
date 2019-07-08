@@ -12,6 +12,7 @@ import {
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLDivElement>;
+	hideOnClick?: boolean;
 	children: ReactNode;
 }
 
@@ -31,6 +32,7 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 
 		const {
 			elementRef,
+			hideOnClick,
 			children,
 			...props
 		} = this.props;
@@ -40,7 +42,7 @@ export class DropdownContent extends PureComponent<IDropdownContentProps> {
 				ref={elementRef}
 				tabIndex={0}
 				{...props}
-				onClick={this.onClick}
+				onClick={!hideOnClick && this.onClick}
 			>
 				{children}
 			</div>

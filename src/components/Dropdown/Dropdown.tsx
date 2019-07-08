@@ -39,6 +39,7 @@ interface ISelfProps {
 	defaultActive?: boolean;
 	disabled?: boolean;
 	blockScroll?: boolean;
+	hideOnClick?: boolean;
 	align?: Align;
 	children: ReactElement<any>[];
 	transitionDuration?: number;
@@ -179,7 +180,8 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 
 		const {
 			align,
-			transitionDuration
+			transitionDuration,
+			hideOnClick
 		} = this.props;
 		const {
 			active
@@ -203,7 +205,8 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 					}, content.props),
 					'elementRef':   this.onContentRef,
 					'onKeyDown':    this.onEscPress,
-					'aria-hidden':  !active
+					'aria-hidden':  !active,
+					'hideOnClick':  hideOnClick
 				})}
 			</StylableTransition>
 		);

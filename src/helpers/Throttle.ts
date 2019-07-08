@@ -1,6 +1,9 @@
 import {
 	throttle
 } from 'throttle-debounce';
+import {
+	Bind
+} from './Bind';
 
 /**
  * Decortor for throttlify class method.
@@ -11,5 +14,6 @@ import {
 export function Throttle(delay: number, noTrailing = false): MethodDecorator {
 	return (_, __, descriptor: PropertyDescriptor) => {
 		descriptor.value = throttle(delay, noTrailing, descriptor.value, false);
+		Bind()(_, __, descriptor);
 	};
 }
