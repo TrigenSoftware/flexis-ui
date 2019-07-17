@@ -1986,16 +1986,16 @@
     "@svgr/plugin-svgo" "^4.2.0"
     loader-utils "^1.2.3"
 
-"@trigen/scripts-plugin-babel@2", "@trigen/scripts-plugin-babel@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-babel/-/scripts-plugin-babel-2.5.0.tgz#efbf9118a696a4e67a47459880285e6be4ff26ed"
-  integrity sha512-FcBB6ixHhjTwBdeUOX1pjmaVUnoemsZ/4D0+Mf2dJpxsfVjsrSKowVxwWugtF68Ypd5ADisHTp/qwj+KQX35hw==
+"@trigen/scripts-plugin-babel@2", "@trigen/scripts-plugin-babel@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-babel/-/scripts-plugin-babel-2.6.3.tgz#28a1128e9bd374a486a5cdb634de70a24ec91277"
+  integrity sha512-RE9KFw+rNOa0yTAlIyWn/R+EX+bHIyR5wbjGgFhcqKX8tiWpeT9ROLD+3MtkYjgmkWRbbPBrznRIMHEWe6r17g==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.4.0"
     "@babel/node" "^7.0.0"
     "@babel/runtime" "^7.4.2"
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     babel-preset-trigen "^2.2.1"
 
 "@trigen/scripts-plugin-eslint@2":
@@ -2007,20 +2007,21 @@
     eslint "^5.15.3"
     eslint-config-trigen "^3.2.3"
 
-"@trigen/scripts-plugin-jest@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-jest/-/scripts-plugin-jest-2.5.0.tgz#6e9bb8235c7daac6307a6c076b92411c4e18ac34"
-  integrity sha512-G/HIX90G7uNnNuZC4E8x4gvupAEuNH3pEn64tExOgGydPtxi19Aoyuctrldzz+lW7ovsbsV9hpUMxXd/rpuzjw==
+"@trigen/scripts-plugin-jest@^2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-jest/-/scripts-plugin-jest-2.6.4.tgz#5ffb775b1e015a1a7123b548d4c077e36c13ab80"
+  integrity sha512-h2PduvrJYZAYWsfVXNETp9FWY3Dtq2f8TgB6EbCbxOE1fqZvxiMT2sXAb/hv93ojve89i/jtmIw/S8+I+ozfkA==
   dependencies:
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     "@types/jest" "^24.0.10"
     babel-jest "^24.5.0"
+    babel-preset-trigen "^2.2.2"
     jest "^24.3.0"
 
-"@trigen/scripts-plugin-storybook@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-2.5.0.tgz#d7ecdd47b2b826381dc8b6c45c70e37e4d35e0d9"
-  integrity sha512-KCUm+63DOxfkYKBDRtm4RJ3e02ZhzuTPgPHkXllDcLgrnPM3oeyBGmy9x/rak+nMDD9xu2yuxV3ajx9S65fJVw==
+"@trigen/scripts-plugin-storybook@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-2.6.3.tgz#12bfc1bdde9178f51a995e1a24a57cb1edcbe93d"
+  integrity sha512-JIcqSBnSN0zkP8+Jqr3OY1vaoLh9MwInOmyjbJRWgskDgH5KLw/X4hxaW9ayi54x4rlz4i+lONMCA+ytsRVSrA==
   dependencies:
     "@storybook/addon-a11y" "^5.0.5"
     "@storybook/addon-actions" "^5.0.5"
@@ -2029,19 +2030,19 @@
     "@storybook/addon-options" "^5.0.5"
     "@storybook/addons" "^5.0.5"
     "@storybook/react" "^5.0.5"
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     "@types/storybook__addon-a11y" "^5.0.0"
     "@types/storybook__addon-actions" "^3.4.1"
     "@types/storybook__addon-info" "^4.1.0"
     "@types/storybook__addon-knobs" "4.0.0"
     "@types/storybook__react" "^4.0.0"
 
-"@trigen/scripts-plugin-typescript@2", "@trigen/scripts-plugin-typescript@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-2.5.0.tgz#27039836949bca80f995a71802e4f3041e1cc9f6"
-  integrity sha512-77U42m6A/93q0CPLAMP38I1eAXdcib4hBNe+K2VaX7TBy2zvnKdypgG+5RrwpR0NC2Jc1+hOCOQGCueCOUjfUQ==
+"@trigen/scripts-plugin-typescript@2", "@trigen/scripts-plugin-typescript@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-2.6.3.tgz#886d96c4a801128f8a201f0ccf1d29efb4d3a2e7"
+  integrity sha512-zuzQshQwgocnVl8scTKJtjLsSPZM8+zD/f21KnBj463AJVrIyfKn8458m7sIF/SLqXWgS12Zdc2PHvywxri07Q==
   dependencies:
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     ts-node-dev "^1.0.0-pre.39"
     tsconfig-paths "^3.8.0"
     tslint "^5.11.0"
@@ -2049,12 +2050,12 @@
     typedoc "^0.14.0"
     typescript "3.5.1"
 
-"@trigen/scripts-preset-lib@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.0.tgz#2d8bd8d2b83639a86c7e69c6b72a6e2093011ae6"
-  integrity sha512-O9uCohIvU7ry4aRkfYTT9GJXWqTGB1/SUEHC4Z6Dqi7SeMWjbak/DGYVD+RgT489c5gyF4y9NsKd91232F9VyA==
+"@trigen/scripts-preset-lib@2":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.3.tgz#3aafa918feff737bd12f844555a8aa74cf4bbfff"
+  integrity sha512-p56LVRiFPN5RTvlakZBOojaAiKIJo5PBxQWfQBy6eKiD4QMurgCUJ5+TT3EV3cNiw1NcG4Vtmu5TfL6WE9wccA==
   dependencies:
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     browserslist-config-trigen "^1.1.0"
     clean-publish "^1.1.0"
     coveralls "^3.0.0"
@@ -2062,20 +2063,20 @@
     lint-staged "^8.1.0"
 
 "@trigen/scripts-preset-react-app@2":
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-2.5.1.tgz#cdcc6cdab7c87f270ed0e9ebc49f20f08cb6b361"
-  integrity sha512-qgxYlln6SnMVmtPmdjDdYI1JHzMHqugeDNJSjH0I0XkVNXWTthNYCA05uUKYZgpTImD0jA51TXR0nYHnHFboLA==
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-2.6.4.tgz#eb162b3c780808544d84ff9a8a60dea12a8cb1ce"
+  integrity sha512-vKhSkIzGC0/eTySZXyJWsJBQiRFHIqthdn6OxFRvbW4F7SY4WQR/hGjATHp3ikxkJT6WxuddPhtMW4zPVmOChg==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/srcset-loader" "^1.0.0"
     "@flexis/workbox-webpack-plugin" "^1.0.0-beta"
     "@stylable/core" "^1.0.6"
     "@stylable/webpack-plugin" "^1.1.4"
-    "@trigen/scripts" "^2.5.0"
-    "@trigen/scripts-plugin-babel" "^2.5.0"
-    "@trigen/scripts-plugin-jest" "^2.5.0"
-    "@trigen/scripts-plugin-storybook" "^2.5.0"
-    "@trigen/scripts-plugin-typescript" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
+    "@trigen/scripts-plugin-babel" "^2.6.3"
+    "@trigen/scripts-plugin-jest" "^2.6.4"
+    "@trigen/scripts-plugin-storybook" "^2.6.3"
+    "@trigen/scripts-plugin-typescript" "^2.6.3"
     autoprefixer "^9.1.3"
     awesome-typescript-loader "^5.2.0"
     babel-loader "^8.0.0"
@@ -2109,10 +2110,10 @@
     webpack-filter-warnings-plugin "^1.2.1"
     webpack-hot-middleware "^2.22.3"
 
-"@trigen/scripts@2", "@trigen/scripts@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.5.0.tgz#dd02e3f1538ff59fe7c548c97ad4ec6d802a77e3"
-  integrity sha512-LssQg5Fir1WUQJoJadvpvvJZTFrTaUJ59oOHgRE/xY6qTQ3kFgzyC4ivNTwCNWeks9lin9g5Z4UxDUbMEc9MwA==
+"@trigen/scripts@2", "@trigen/scripts@^2.5.0", "@trigen/scripts@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.6.3.tgz#c5275f1a770c052c27412ebf269a5aaedac6e3e9"
+  integrity sha512-n84YpkKXzAx2O4BXlTtRyz8+oyIb1Se56E+1f2WvDEfBECKSL//fYpEh7nASBKBuzka5Bv1kae7srKRzT54kAQ==
   dependencies:
     "@babel/runtime" "^7.4.2"
     chalk "^2.4.2"
@@ -3472,7 +3473,7 @@ babel-preset-react-app@^9.0.0:
     babel-plugin-macros "2.5.1"
     babel-plugin-transform-react-remove-prop-types "0.4.24"
 
-babel-preset-trigen@^2.2.1:
+babel-preset-trigen@^2.2.1, babel-preset-trigen@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/babel-preset-trigen/-/babel-preset-trigen-2.2.2.tgz#193baea0aea061ef05f8db4e34392c77d39daa09"
   integrity sha512-Jfbrtk/rEwYLWBKTuuPzgI2OoMuTPF8keEnnM5Nek3Xdbo5+To/PNCnRaNyFvsmya2sohwY7kJ+yl6vQ3U5/Ew==
