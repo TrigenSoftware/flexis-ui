@@ -12,6 +12,10 @@
 	align-items: center;
 }
 
+.iconContainer::before {
+	content: '\200B';
+}
+
 .root:flexIcon .iconContainer {
 	justify-content: space-between;
 }
