@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@stylable/runtime": "^1.0.4",
+    "@stylable/runtime": "^2.1.1",
     "@types/prop-types": "^15.7.1",
     "@types/react": "^16.8.19",
     "@types/react-transition-group": "^2.9.1",
