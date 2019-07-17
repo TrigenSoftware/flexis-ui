@@ -2037,11 +2037,11 @@
     "@types/storybook__react" "^4.0.0"
 
 "@trigen/scripts-plugin-typescript@2", "@trigen/scripts-plugin-typescript@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-2.5.0.tgz#27039836949bca80f995a71802e4f3041e1cc9f6"
-  integrity sha512-77U42m6A/93q0CPLAMP38I1eAXdcib4hBNe+K2VaX7TBy2zvnKdypgG+5RrwpR0NC2Jc1+hOCOQGCueCOUjfUQ==
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-2.6.3.tgz#886d96c4a801128f8a201f0ccf1d29efb4d3a2e7"
+  integrity sha512-zuzQshQwgocnVl8scTKJtjLsSPZM8+zD/f21KnBj463AJVrIyfKn8458m7sIF/SLqXWgS12Zdc2PHvywxri07Q==
   dependencies:
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     ts-node-dev "^1.0.0-pre.39"
     tsconfig-paths "^3.8.0"
     tslint "^5.11.0"
@@ -2049,12 +2049,12 @@
     typedoc "^0.14.0"
     typescript "3.5.1"
 
-"@trigen/scripts-preset-lib@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.0.tgz#2d8bd8d2b83639a86c7e69c6b72a6e2093011ae6"
-  integrity sha512-O9uCohIvU7ry4aRkfYTT9GJXWqTGB1/SUEHC4Z6Dqi7SeMWjbak/DGYVD+RgT489c5gyF4y9NsKd91232F9VyA==
+"@trigen/scripts-preset-lib@2":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.3.tgz#3aafa918feff737bd12f844555a8aa74cf4bbfff"
+  integrity sha512-p56LVRiFPN5RTvlakZBOojaAiKIJo5PBxQWfQBy6eKiD4QMurgCUJ5+TT3EV3cNiw1NcG4Vtmu5TfL6WE9wccA==
   dependencies:
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     browserslist-config-trigen "^1.1.0"
     clean-publish "^1.1.0"
     coveralls "^3.0.0"
@@ -2109,10 +2109,10 @@
     webpack-filter-warnings-plugin "^1.2.1"
     webpack-hot-middleware "^2.22.3"
 
-"@trigen/scripts@2", "@trigen/scripts@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.5.0.tgz#dd02e3f1538ff59fe7c548c97ad4ec6d802a77e3"
-  integrity sha512-LssQg5Fir1WUQJoJadvpvvJZTFrTaUJ59oOHgRE/xY6qTQ3kFgzyC4ivNTwCNWeks9lin9g5Z4UxDUbMEc9MwA==
+"@trigen/scripts@2", "@trigen/scripts@^2.5.0", "@trigen/scripts@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.6.3.tgz#c5275f1a770c052c27412ebf269a5aaedac6e3e9"
+  integrity sha512-n84YpkKXzAx2O4BXlTtRyz8+oyIb1Se56E+1f2WvDEfBECKSL//fYpEh7nASBKBuzka5Bv1kae7srKRzT54kAQ==
   dependencies:
     "@babel/runtime" "^7.4.2"
     chalk "^2.4.2"
