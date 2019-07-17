@@ -2049,12 +2049,12 @@
     typedoc "^0.14.0"
     typescript "3.5.1"
 
-"@trigen/scripts-preset-lib@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.0.tgz#2d8bd8d2b83639a86c7e69c6b72a6e2093011ae6"
-  integrity sha512-O9uCohIvU7ry4aRkfYTT9GJXWqTGB1/SUEHC4Z6Dqi7SeMWjbak/DGYVD+RgT489c5gyF4y9NsKd91232F9VyA==
+"@trigen/scripts-preset-lib@2":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-2.6.3.tgz#3aafa918feff737bd12f844555a8aa74cf4bbfff"
+  integrity sha512-p56LVRiFPN5RTvlakZBOojaAiKIJo5PBxQWfQBy6eKiD4QMurgCUJ5+TT3EV3cNiw1NcG4Vtmu5TfL6WE9wccA==
   dependencies:
-    "@trigen/scripts" "^2.5.0"
+    "@trigen/scripts" "^2.6.3"
     browserslist-config-trigen "^1.1.0"
     clean-publish "^1.1.0"
     coveralls "^3.0.0"
@@ -2113,6 +2113,18 @@
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.5.0.tgz#dd02e3f1538ff59fe7c548c97ad4ec6d802a77e3"
   integrity sha512-LssQg5Fir1WUQJoJadvpvvJZTFrTaUJ59oOHgRE/xY6qTQ3kFgzyC4ivNTwCNWeks9lin9g5Z4UxDUbMEc9MwA==
+  dependencies:
+    "@babel/runtime" "^7.4.2"
+    chalk "^2.4.2"
+    core-js "3"
+    immutability-helper "^3.0.0"
+    rcfile "^1.0.3"
+    resolve-cwd "^3.0.0"
+
+"@trigen/scripts@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-2.6.3.tgz#c5275f1a770c052c27412ebf269a5aaedac6e3e9"
+  integrity sha512-n84YpkKXzAx2O4BXlTtRyz8+oyIb1Se56E+1f2WvDEfBECKSL//fYpEh7nASBKBuzka5Bv1kae7srKRzT54kAQ==
   dependencies:
     "@babel/runtime" "^7.4.2"
     chalk "^2.4.2"
@@ -9642,9 +9654,9 @@ locate-path@^5.0.0:
     p-locate "^4.1.0"
 
 lodash-es@^4.17.11:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
-  integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.14.tgz#12a95a963cc5955683cee3b74e85458954f37ecc"
+  integrity sha512-7zchRrGa8UZXjD/4ivUWP1867jDkhzTG2c/uj739utSd7O/pFFdxspCemIFKEEjErbcqRzn8nKnGsi7mvTgRPA==
 
 lodash._basecopy@^3.0.0:
   version "3.0.1"
