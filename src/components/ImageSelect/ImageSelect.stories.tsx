@@ -31,11 +31,13 @@ ${buildInfo([
 ])}
 - ::img
 - ::placeholder
+- ::resetButton
 ---
 `;
 
 export const events = {
-	onChange: action('change')
+	onChange: action('change'),
+	onReset:  action('reset')
 };
 
 // tslint:disable-next-line

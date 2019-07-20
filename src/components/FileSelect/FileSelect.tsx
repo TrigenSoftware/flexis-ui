@@ -4,10 +4,12 @@ import React, {
 	CSSProperties,
 	KeyboardEvent,
 	ChangeEvent,
+	ReactNode,
 	ReactElement,
 	PureComponent,
 	Children,
-	cloneElement
+	cloneElement,
+	isValidElement
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -21,7 +23,7 @@ interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
 	style?: CSSProperties;
 	disabled?: boolean;
-	children: ReactElement<any>;
+	children: ReactNode;
 	onChange?(files: File[], event: ChangeEvent);
 }
 
@@ -68,14 +70,21 @@ export default class FileSelect extends PureComponent<IProps> {
 					onChange={this.onChange}
 					disabled={disabled}
 				/>
-				{cloneElement(
-					Children.only(children),
-					{
-						'onKeyPress':    this.onFaceKeyPress,
-						'aria-disabled': disabled,
-						'disabled':      disabled
+				{Children.map(children, (child, i) => {
+
+					if (i === 0 && isValidElement(child)) {
+						return cloneElement(
+							child as ReactElement,
+							{
+								'onKeyPress':    this.onFaceKeyPress,
+								'aria-disabled': disabled,
+								'disabled':      disabled
+							}
+						);
 					}
-				)}
+
+					return child;
+				})}
 			</span>
 		);
 	}
