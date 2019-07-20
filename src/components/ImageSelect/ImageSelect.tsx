@@ -4,6 +4,7 @@ import React, {
 	CSSProperties,
 	ReactElement,
 	ChangeEvent,
+	MouseEvent,
 	PureComponent,
 	cloneElement
 } from 'react';
@@ -33,7 +34,9 @@ interface ISelfProps {
 	value?: string;
 	disabled?: boolean;
 	readOnly?: boolean;
+	resetButton?: ReactElement<any>;
 	onChange?(image: File, event: ChangeEvent);
+	onReset?(event: MouseEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -48,6 +51,24 @@ interface IState {
 
 export const DisplayValues: Display[] = Object.values(DisplayVariant);
 
+const defaultResetButton = (
+	<button type='button'>
+		&times;
+	</button>
+);
+
+function getDefaultState(props: IProps) {
+
+	const {
+		defaultValue
+	} = props;
+
+	return {
+		value:    defaultValue,
+		filename: ''
+	};
+}
+
 export default class ImageSelect extends PureComponent<IProps, IState> {
 
 	static propTypes = {
@@ -59,14 +80,17 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		defaultValue: PropTypes.string,
 		value:        PropTypes.string,
 		disabled:     PropTypes.bool,
-		readOnly:     PropTypes.bool
+		readOnly:     PropTypes.bool,
+		resetButton:  PropTypes.element,
+		onReset:      PropTypes.func
 	};
 
 	static defaultProps = {
 		...FileSelect.defaultProps,
-		display:  DisplayVariant.Block,
-		disabled: false,
-		readOnly: false
+		display:     DisplayVariant.Block,
+		disabled:    false,
+		readOnly:    false,
+		resetButton: defaultResetButton
 	};
 
 	static getDerivedStateFromProps(
@@ -91,14 +115,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 
 		super(props);
 
-		const {
-			defaultValue
-		} = props;
-
-		this.state = {
-			value:    defaultValue,
-			filename: ''
-		};
+		this.state = getDefaultState(props);
 	}
 
 	render() {
@@ -111,6 +128,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			placeholder,
 			disabled,
 			readOnly,
+			resetButton,
 			...props
 		} = this.props;
 		const {
@@ -146,6 +164,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 				<button
 					{...omit(props, [
 						'onChange',
+						'onReset',
 						'defaultValue',
 						'value'
 					])}
@@ -165,6 +184,13 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 						<span>{filename}</span>
 					</SROnly>
 				</button>
+				{resetButton && !disabled && !readOnly && cloneElement(
+					resetButton,
+					{
+						...stylesheet('resetButton', {}, resetButton.props),
+						onClick: this.onReset
+					}
+				)}
 			</FileSelect>
 		);
 	}
@@ -200,6 +226,25 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 
 		if (typeof onChange === 'function') {
 			onChange(image, event);
+		}
+	}
+
+	@Bind()
+	private onReset(event: MouseEvent) {
+
+		const {
+			value: valueProp,
+			onReset
+		} = this.props;
+
+		if (typeof valueProp === 'undefined') {
+			this.setState(() =>
+				getDefaultState(this.props)
+			);
+		}
+
+		if (typeof onReset === 'function') {
+			onReset(event);
 		}
 	}
 }
