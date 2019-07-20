@@ -1,6 +1,6 @@
 
 .root {
-	/* Empty block */
+	position: relative;
 }
 
 .preview {
@@ -24,4 +24,10 @@
 
 .placeholder {
 	/* Empty block */
+}
+
+.resetButton {
+	position: absolute;
+	z-index: 1;
+	cursor: pointer;
 }
