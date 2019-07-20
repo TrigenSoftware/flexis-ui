@@ -5,6 +5,7 @@ import React, {
 	KeyboardEvent,
 	ChangeEvent,
 	ReactNode,
+	ReactElement,
 	PureComponent,
 	Children,
 	cloneElement,
@@ -73,7 +74,7 @@ export default class FileSelect extends PureComponent<IProps> {
 
 					if (i === 0 && isValidElement(child)) {
 						return cloneElement(
-							child,
+							child as ReactElement,
 							{
 								'onKeyPress':    this.onFaceKeyPress,
 								'aria-disabled': disabled,
