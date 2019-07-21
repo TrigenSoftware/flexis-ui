@@ -27,7 +27,13 @@
 }
 
 .resetButton {
+	-st-states: hidden;
 	position: absolute;
 	z-index: 1;
 	cursor: pointer;
+}
+
+.resetButton:hidden {
+	pointer-events: none;
+	opacity: 0;
 }

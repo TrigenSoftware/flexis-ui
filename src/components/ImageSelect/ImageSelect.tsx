@@ -184,10 +184,12 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 						<span>{filename}</span>
 					</SROnly>
 				</button>
-				{resetButton && !disabled && !readOnly && cloneElement(
+				{resetButton && cloneElement(
 					resetButton,
 					{
-						...stylesheet('resetButton', {}, resetButton.props),
+						...stylesheet('resetButton', {
+							hidden: disabled || readOnly || !value
+						}, resetButton.props),
 						onClick: this.onReset
 					}
 				)}

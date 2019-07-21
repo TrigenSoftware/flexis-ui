@@ -32,6 +32,7 @@ ${buildInfo([
 - ::img
 - ::placeholder
 - ::resetButton
+	- :hidden
 ---
 `;
 
