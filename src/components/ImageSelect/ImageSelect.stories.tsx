@@ -37,8 +37,7 @@ ${buildInfo([
 `;
 
 export const events = {
-	onChange: action('change'),
-	onReset:  action('reset')
+	onChange: action('change')
 };
 
 // tslint:disable-next-line

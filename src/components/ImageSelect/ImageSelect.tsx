@@ -35,8 +35,7 @@ interface ISelfProps {
 	disabled?: boolean;
 	readOnly?: boolean;
 	resetButton?: ReactElement<any>;
-	onChange?(image: File, event: ChangeEvent);
-	onReset?(event: MouseEvent);
+	onChange?(image: File, event: ChangeEvent|MouseEvent);
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -81,8 +80,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		value:        PropTypes.string,
 		disabled:     PropTypes.bool,
 		readOnly:     PropTypes.bool,
-		resetButton:  PropTypes.element,
-		onReset:      PropTypes.func
+		resetButton:  PropTypes.element
 	};
 
 	static defaultProps = {
@@ -164,7 +162,6 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 				<button
 					{...omit(props, [
 						'onChange',
-						'onReset',
 						'defaultValue',
 						'value'
 					])}
@@ -236,7 +233,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 
 		const {
 			value: valueProp,
-			onReset
+			onChange
 		} = this.props;
 
 		if (typeof valueProp === 'undefined') {
@@ -246,8 +243,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			);
 		}
 
-		if (typeof onReset === 'function') {
-			onReset(event);
+		if (typeof onChange === 'function') {
+			onChange(null, event);
 		}
 	}
 }
