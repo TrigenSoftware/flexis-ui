@@ -240,6 +240,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		} = this.props;
 
 		if (typeof valueProp === 'undefined') {
+			(event.target as any).parentElement.firstElementChild.value = null;
 			this.setState(() =>
 				getDefaultState(this.props)
 			);
