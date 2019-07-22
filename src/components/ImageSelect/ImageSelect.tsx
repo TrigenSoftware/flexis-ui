@@ -27,6 +27,7 @@ export type Display = 'img'|'block';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
+	previewStyle?: CSSProperties;
 	display?: Display;
 	name?: string;
 	placeholder?: ReactElement<any>;
@@ -73,6 +74,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 	static propTypes = {
 		...FileSelect.propTypes,
 		elementRef:   PropTypes.func,
+		previewStyle: PropTypes.object,
 		display:      PropTypes.oneOf(DisplayValues),
 		name:         PropTypes.string,
 		placeholder:  PropTypes.element,
@@ -121,6 +123,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		const {
 			elementRef,
 			style,
+			previewStyle: previewStyleProp,
 			display,
 			name,
 			placeholder,
@@ -134,7 +137,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			filename
 		} = this.state;
 		const withPlaceholder = !value && placeholder;
-		const previewStyle: CSSProperties = { ...style };
+		const previewStyle: CSSProperties = { ...previewStyleProp };
 		let previewImg: ReactElement<any> = null;
 
 		if (value) {
@@ -154,6 +157,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		return (
 			<FileSelect
 				elementRef={elementRef}
+				style={style}
 				{...stylesheet('root', {}, props)}
 				name={name}
 				onChange={this.onChange}

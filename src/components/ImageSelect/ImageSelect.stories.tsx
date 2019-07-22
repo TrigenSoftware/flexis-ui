@@ -58,7 +58,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				display={select('Display', DisplayValues, 'block')}
 			/>
 		)
@@ -68,7 +68,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				display={select('Display', DisplayValues, 'block')}
 				placeholder={<TestIcon/>}
 			/>
@@ -79,7 +79,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				display={select('Display', DisplayValues, 'block')}
 				value={text('Value', imageUrl)}
 			/>
@@ -90,7 +90,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				display={select('Display', DisplayValues, 'block')}
 				defaultValue={text('Default value', imageUrl)}
 			/>
@@ -101,7 +101,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				defaultValue={text('Default value', imageUrl)}
 				disabled={boolean('Disabled', true)}
 			/>
@@ -112,7 +112,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				defaultValue={text('Default value', imageUrl)}
 				readOnly={boolean('Readonly', true)}
 			/>
@@ -123,7 +123,7 @@ export default storiesOf('ImageSelect', module)
 		() => (
 			<ImageSelect
 				{...events}
-				style={style}
+				previewStyle={style}
 				title={text('Title', 'Select image')}
 			/>
 		)
