@@ -235,9 +235,12 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			value: valueProp,
 			onChange
 		} = this.props;
+		const fileInput: HTMLInputElement = (event.target as any).parentElement.firstElementChild;
+
+		event.target = fileInput;
 
 		if (typeof valueProp === 'undefined') {
-			(event.target as any).parentElement.firstElementChild.value = null;
+			fileInput.value = null;
 			this.setState(() =>
 				getDefaultState(this.props)
 			);
