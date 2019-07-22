@@ -245,9 +245,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		}
 
 		if (typeof onChange === 'function') {
-
 			event.target = fileInput;
-
 			onChange(null, event);
 		}
 	}
