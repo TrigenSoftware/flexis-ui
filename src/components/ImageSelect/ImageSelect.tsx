@@ -237,8 +237,6 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		} = this.props;
 		const fileInput: HTMLInputElement = (event.target as any).parentElement.firstElementChild;
 
-		event.target = fileInput;
-
 		if (typeof valueProp === 'undefined') {
 			fileInput.value = null;
 			this.setState(() =>
@@ -247,6 +245,9 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		}
 
 		if (typeof onChange === 'function') {
+
+			event.target = fileInput;
+
 			onChange(null, event);
 		}
 	}
