@@ -4,6 +4,7 @@
 		[
 			"babel-preset-trigen",
 			{
+				"commonjs": true,
 				"react": true,
 				"reactRemovePropTypes": {
 					"mode": "unsafe-wrap"
@@ -13,12 +14,15 @@
 	],
 	"overrides": [
 		{
-			"test": "**/stylable/*.js",
+			"test": "**/*.mjs",
 			"presets": [
 				[
 					"babel-preset-trigen",
 					{
-						"commonjs": true
+						"react": true,
+						"reactRemovePropTypes": {
+							"mode": "unsafe-wrap"
+						}
 					}
 				]
 			]
