@@ -1,8 +1,3 @@
-
-const {
-	removeEventListener
-} = HTMLElement.prototype;
-
 /**
  * Subscribe to UI event.
  * @param  element - Target element.
@@ -20,5 +15,5 @@ export function subscribeEvent(
 
 	element.addEventListener(eventName, listener, useCapture);
 
-	return removeEventListener.bind(element, eventName, listener, useCapture);
+	return element.removeEventListener.bind(element, eventName, listener, useCapture);
 }
