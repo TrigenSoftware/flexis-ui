@@ -14,7 +14,10 @@ import {
 	modulo
 } from '../../helpers';
 import isKeyboardClick from '../common/isKeyboardClick';
-import stylesheet from './Table.st.css';
+import {
+	style,
+	classes
+} from './Table.st.css';
 
 export enum Order {
 	None = 0,
@@ -60,6 +63,7 @@ export class TableCell extends PureComponent<ITableCellProps> {
 	render() {
 
 		const {
+			className,
 			head,
 			order,
 			children,
@@ -76,12 +80,12 @@ export class TableCell extends PureComponent<ITableCellProps> {
 			<Cell
 				{...buttonLikeProps}
 				{...omit(props, ['onOrderChange'])}
-				{...stylesheet('cell', {
+				className={style(classes.cell, {
 					head,
 					orderNone: isOrder && order === 0,
 					orderAsc:  isOrder && order === 1,
 					orderDesc: isOrder && order === -1
-				}, props)}
+				}, className)}
 				{...buttonLikeListeners}
 				onClick={this.onOrderChange}
 			>

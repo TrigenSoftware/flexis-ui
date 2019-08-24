@@ -14,7 +14,10 @@ import {
 	InputValue,
 	InputValuePropType
 } from '../common/types';
-import stylesheet from './Input.st.css';
+import {
+	style,
+	classes
+} from './Input.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
@@ -55,6 +58,7 @@ export default class Input extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			mask,
 			maskChar,
@@ -79,7 +83,7 @@ export default class Input extends PureComponent<IProps> {
 			<Input
 				ref={elementRef && mapRef(elementRef)}
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				onChange={this.onChange}
 				{...maskedInputProps}
 			/>

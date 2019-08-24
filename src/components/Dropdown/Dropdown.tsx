@@ -24,13 +24,15 @@ import {
 	AlignVariant,
 	AlignValues
 } from '../common/types';
-import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
 import toggleScrollBlock from '../common/toggleScrollBlock';
-import toggleAttribute from '../common/toggleAttribute';
 import throttleFocus from '../common/throttleFocus';
 import StylableTransition from '../StylableTransition';
-import stylesheet from './Dropdown.st.css';
+import {
+	style,
+	classes,
+	cssStates
+} from './Dropdown.st.css';
 
 export * from './DropdownContent';
 
@@ -53,16 +55,11 @@ export type IProps = CombinePropsAndAttributes<
 
 interface IState {
 	active: boolean;
+	contentWithOffset: boolean;
 }
 
 const HALF = 2;
 const ESC_KEY = 27;
-
-const contentOffsetState = getStylesheetState(
-	stylesheet('content', {
-		offset: true
-	})
-);
 
 export default class Dropdown extends PureComponent<IProps, IState> {
 
@@ -94,7 +91,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			disabled
 		}: IProps,
 		{ active: prevActive }: IState
-	): IState {
+	): Partial<IState> {
 
 		const nextActive = !disabled && (
 			typeof active === 'boolean'
@@ -125,13 +122,15 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 		} = props;
 
 		this.state = {
-			active: defaultActive
+			active:            defaultActive,
+			contentWithOffset: false
 		};
 	}
 
 	render() {
 
 		const {
+			className,
 			disabled,
 			children,
 			...props
@@ -156,10 +155,10 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 					'transitionDuration',
 					'hideOnClick'
 				])}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					active,
 					disabled
-				}, props)}
+				}, className)}
 				onClick={this.onToggle}
 				aria-disabled={disabled}
 			>
@@ -186,13 +185,14 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			hideOnClick
 		} = this.props;
 		const {
-			active
+			active,
+			contentWithOffset
 		} = this.state;
 
 		return (
 			<StylableTransition
 				in={active}
-				states={stylesheet}
+				states={cssStates}
 				statesElement='content'
 				timeout={transitionDuration}
 				appear
@@ -202,9 +202,10 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 						role:       'region',
 						labelledBy: toggler.props.id
 					}, content.props),
-					...stylesheet('content', {
-						[`${align}Align`]: Boolean(align)
-					}, content.props),
+					'className':    style('content', {
+						[`${align}Align`]: Boolean(align),
+						offset:            contentWithOffset
+					}, content.props.className),
 					'elementRef':   this.onContentRef,
 					'onKeyDown':    this.onEscPress,
 					'aria-hidden':  !active,
@@ -417,6 +418,8 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 
 		const withOffset = setOverflowOffset(contentRef, top, left);
 
-		toggleAttribute(withOffset, contentOffsetState, contentRef);
+		this.setState(() => ({
+			contentWithOffset: withOffset
+		}));
 	}
 }

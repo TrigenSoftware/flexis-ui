@@ -9,7 +9,10 @@ import {
 	CombinePropsAndAttributes,
 	omit
 } from '../../helpers';
-import stylesheet from './Paginator.st.css';
+import {
+	style,
+	classes
+} from './Paginator.st.css';
 
 interface ISelfProps {
 	tabIndex?: number;
@@ -97,6 +100,7 @@ export default class Paginator extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			name,
 			disabled,
 			...props
@@ -116,13 +120,13 @@ export default class Paginator extends PureComponent<IProps, IState> {
 					'page',
 					'total'
 				])}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					disabled
-				}, props)}
+				}, className)}
 				aria-disabled={disabled}
 			>
 				<ul
-					{...stylesheet('list')}
+					className={classes.list}
 				>
 					{this.pages()}
 				</ul>
@@ -225,15 +229,15 @@ export default class Paginator extends PureComponent<IProps, IState> {
 		return (
 			<li
 				key={visiblePagePlace}
-				{...stylesheet('item')}
+				className={classes.item}
 			>
 				{separate ? (
 					<span
-						{...stylesheet('separator')}
+						className={classes.separator}
 					/>
 				) : (
 					<button
-						{...stylesheet('button', {
+						className={style(classes.button, {
 							active
 						})}
 						type={type}

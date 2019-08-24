@@ -14,7 +14,10 @@ import {
 	InputValue,
 	InputValuePropType
 } from '../common/types';
-import stylesheet from './Radio.st.css';
+import {
+	style,
+	classes
+} from './Radio.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
@@ -38,6 +41,7 @@ export default class Radio extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			...props
 		} = this.props;
@@ -46,7 +50,7 @@ export default class Radio extends PureComponent<IProps> {
 			<input
 				ref={elementRef}
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				type='radio'
 				onChange={this.onChange}
 			/>

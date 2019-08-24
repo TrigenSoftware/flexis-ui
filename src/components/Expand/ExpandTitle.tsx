@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Expand.st.css';
+import {
+	style,
+	classes
+} from './Expand.st.css';
 
 interface ISelfProps {
 	tabIndex?: number;
@@ -36,6 +39,7 @@ export class ExpandTitle extends PureComponent<IExpandTitleProps> {
 	render() {
 
 		const {
+			className,
 			tabIndex,
 			disabled,
 			children,
@@ -45,7 +49,7 @@ export class ExpandTitle extends PureComponent<IExpandTitleProps> {
 		return (
 			<div
 				{...props}
-				{...stylesheet('title', {}, props)}
+				className={style(classes.title, className)}
 				tabIndex={disabled ? -1 : tabIndex}
 			>
 				{children}

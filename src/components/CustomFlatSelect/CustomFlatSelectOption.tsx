@@ -15,7 +15,10 @@ import {
 	SelectValue,
 	SelectValuePropType
 } from '../common/types';
-import stylesheet from './CustomFlatSelect.st.css';
+import {
+	style,
+	classes
+} from './CustomFlatSelect.st.css';
 
 interface ISelfProps {
 	optionId?: string;
@@ -58,6 +61,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 	render() {
 
 		const {
+			className,
 			optionId,
 			id,
 			type,
@@ -76,13 +80,13 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 				aria-selected={checked}
 				aria-disabled={disabled}
 				{...omit(props, ['onChange'])}
-				{...stylesheet('option')}
+				className={style(classes.option, className)}
 			>
 				<label
-					{...stylesheet('label')}
+					className={classes.label}
 				>
 					<input
-						{...stylesheet('input')}
+						className={classes.input}
 						id={id}
 						type={type}
 						name={name}
@@ -92,7 +96,7 @@ export class CustomFlatSelectOption extends PureComponent<ICustomFlatSelectOptio
 						disabled={disabled}
 					/>
 					<span
-						{...stylesheet('face')}
+						className={classes.face}
 						onClick={this.onFaceClick}
 					>
 						{children}

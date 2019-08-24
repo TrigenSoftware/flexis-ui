@@ -5,7 +5,10 @@ import {
 	cloneElement
 } from 'react';
 import PropTypes from 'prop-types';
-import stylesheet from './SROnly.st.css';
+import {
+	style,
+	classes
+} from './SROnly.st.css';
 
 export interface IProps {
 	focusable?: boolean;
@@ -27,6 +30,7 @@ export default class SROnly extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			focusable,
 			children,
 			...props
@@ -34,9 +38,12 @@ export default class SROnly extends PureComponent<IProps> {
 
 		return cloneElement(
 			Children.only(children),
-			stylesheet('root', {
-				focusable
-			}, props)
+			{
+				...props,
+				className: style(classes.root, {
+					focusable
+				}, className)
+			}
 		);
 	}
 }

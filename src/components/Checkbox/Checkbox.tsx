@@ -14,7 +14,10 @@ import {
 	InputValue,
 	InputValuePropType
 } from '../common/types';
-import stylesheet from './Checkbox.st.css';
+import {
+	style,
+	classes
+} from './Checkbox.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
@@ -38,8 +41,8 @@ export default class Checkbox extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
-			style,
 			...props
 		} = this.props;
 
@@ -47,7 +50,7 @@ export default class Checkbox extends PureComponent<IProps> {
 			<input
 				ref={elementRef}
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				type='checkbox'
 				onChange={this.onChange}
 			/>

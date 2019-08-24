@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Menu.st.css';
+import {
+	style,
+	classes
+} from './Menu.st.css';
 
 interface ISelfProps {
 	children?: ReactNode;
@@ -27,6 +30,7 @@ export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -34,7 +38,7 @@ export class MenuItemSeparator extends PureComponent<IMenuItemSeparatorProps> {
 		return (
 			<li
 				{...props}
-				{...stylesheet('itemSeparator', {}, props)}
+				className={style(classes.itemSeparator, className)}
 			>
 				{children}
 			</li>

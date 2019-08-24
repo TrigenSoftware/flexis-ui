@@ -19,7 +19,10 @@ import {
 } from '../common/types';
 import isCurrentValue from '../common/isCurrentValue';
 import getNextValue from '../common/getNextValue';
-import stylesheet from './CustomFlatSelect.st.css';
+import {
+	style,
+	classes
+} from './CustomFlatSelect.st.css';
 
 export * from './CustomFlatSelectOption';
 
@@ -106,6 +109,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			id,
 			name,
 			multiple,
@@ -165,7 +169,7 @@ export default class CustomFlatSelect extends PureComponent<IProps, IState> {
 					'defaultValue',
 					'value'
 				])}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				id={id}
 				aria-activedescendant={activeDescendant}
 				aria-multiselectable={multiple}

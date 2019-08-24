@@ -16,7 +16,10 @@ import {
 	AlignSideVariant,
 	AlignSideValues
 } from '../common/types';
-import stylesheet from './Button.st.css';
+import {
+	style,
+	classes
+} from './Button.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLButtonElement>;
@@ -49,6 +52,7 @@ export default class Button extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			icon,
 			flexIcon,
@@ -63,9 +67,11 @@ export default class Button extends PureComponent<IProps> {
 		if (typeof icon !== 'undefined') {
 			buttonIcon = cloneElement(
 				icon,
-				stylesheet('icon', {
-					[`${alignIcon}Align`]: Boolean(alignIcon) && !iconOnly
-				}, icon.props)
+				{
+					className: style(classes.icon, {
+						[`${alignIcon}Align`]: Boolean(alignIcon) && !iconOnly
+					}, icon.props.className)
+				}
 			);
 		}
 
@@ -73,14 +79,14 @@ export default class Button extends PureComponent<IProps> {
 			<button
 				ref={elementRef}
 				{...props}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					withIcon: Boolean(buttonIcon),
 					flexIcon
-				}, props)}
+				}, className)}
 			>
 				{buttonIcon ? (
 					<div
-						{...stylesheet('iconContainer')}
+						className={classes.iconContainer}
 					>
 						{leftAligned && buttonIcon}
 						{!iconOnly && (

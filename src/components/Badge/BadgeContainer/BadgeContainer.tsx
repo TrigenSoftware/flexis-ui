@@ -14,7 +14,10 @@ import {
 	PlacementValues,
 	AlignValues
 } from '../../common/types';
-import stylesheet from './BadgeContainer.st.css';
+import {
+	style,
+	classes
+} from './BadgeContainer.st.css';
 
 interface ISelfProps {
 	placement: Placement;
@@ -42,6 +45,7 @@ export default class BadgeContainer extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			placement,
 			align,
 			children,
@@ -51,10 +55,10 @@ export default class BadgeContainer extends PureComponent<IProps> {
 		return (
 			<span
 				{...props}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					[`${placement}Placement`]: Boolean(placement),
 					[`${align}Align`]:         Boolean(align)
-				}, props)}
+				}, className)}
 			>
 				{children}
 			</span>

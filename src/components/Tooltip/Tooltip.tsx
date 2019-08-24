@@ -18,10 +18,11 @@ import {
 	PlacementValues,
 	AlignValues
 } from '../common/types';
-import getStylesheetState from '../common/getStylesheetState';
 import setOverflowOffset from '../common/setOverflowOffset';
-import toggleAttribute from '../common/toggleAttribute';
-import stylesheet from './Tooltip.st.css';
+import {
+	style,
+	classes
+} from './Tooltip.st.css';
 
 interface ISelfProps {
 	id?: string;
@@ -39,15 +40,10 @@ export type IProps = CombinePropsAndAttributes<
 
 interface IState {
 	active: boolean;
+	tooltipWithOffset: boolean;
 }
 
 const HALF = 2;
-
-const tooltipOffsetState = getStylesheetState(
-	stylesheet('tooltip', {
-		offset: true
-	})
-);
 
 export default class Tooltip extends PureComponent<IProps, IState> {
 
@@ -66,7 +62,8 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 	};
 
 	state = {
-		active: false
+		active:            false,
+		tooltipWithOffset: false
 	};
 
 	private elementRef: HTMLSpanElement = null;
@@ -75,6 +72,7 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			id,
 			tabIndex,
 			content,
@@ -84,13 +82,14 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 			...props
 		} = this.props;
 		const {
-			active
+			active,
+			tooltipWithOffset
 		} = this.state;
 
 		return (
 			<span
 				ref={this.onElementRef}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				onMouseEnter={this.onShow}
 				onFocus={this.onShow}
 				onMouseLeave={this.onHide}
@@ -105,11 +104,12 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 						id={id}
 						role='tooltip'
 						{...props}
-						{...stylesheet('tooltip', {
+						className={style(classes.tooltip, {
 							[`${placement}Placement`]: Boolean(placement),
 							[`${align}Align`]:         Boolean(align),
+							offset:                    tooltipWithOffset,
 							active
-						}, props)}
+						})}
 						aria-hidden={!active}
 					>
 						{content}
@@ -271,6 +271,8 @@ export default class Tooltip extends PureComponent<IProps, IState> {
 
 		const withOffset = setOverflowOffset(tooltipRef, top, left);
 
-		toggleAttribute(withOffset, tooltipOffsetState, tooltipRef);
+		this.setState(() => ({
+			tooltipWithOffset: withOffset
+		}));
 	}
 }

@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Badge.st.css';
+import {
+	style,
+	classes
+} from './Badge.st.css';
 
 export {
 	default as BadgeContainer
@@ -31,6 +34,7 @@ export default class Badge extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -38,7 +42,7 @@ export default class Badge extends PureComponent<IProps> {
 		return (
 			<span
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 			>
 				{children}
 			</span>

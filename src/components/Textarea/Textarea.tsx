@@ -9,7 +9,10 @@ import {
 	CombinePropsAndAttributes,
 	Bind
 } from '../../helpers';
-import stylesheet from './Textarea.st.css';
+import {
+	style,
+	classes
+} from './Textarea.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLTextAreaElement>;
@@ -35,6 +38,7 @@ export default class Textarea extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			...props
 		} = this.props;
@@ -43,7 +47,7 @@ export default class Textarea extends PureComponent<IProps> {
 			<textarea
 				ref={elementRef}
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				onChange={this.onChange}
 			/>
 		);

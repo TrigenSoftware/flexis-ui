@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Table.st.css';
+import {
+	style,
+	classes
+} from './Table.st.css';
 
 interface ISelfProps {
 	children: ReactNode;
@@ -27,6 +30,7 @@ export class TableBody extends PureComponent<ITableBodyProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -34,7 +38,7 @@ export class TableBody extends PureComponent<ITableBodyProps> {
 		return (
 			<tbody
 				{...props}
-				{...stylesheet('body', {}, props)}
+				className={style(classes.body, className)}
 			>
 				{children}
 			</tbody>

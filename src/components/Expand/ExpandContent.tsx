@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Expand.st.css';
+import {
+	style,
+	classes
+} from './Expand.st.css';
 
 interface ISelfProps {
 	children?: ReactNode;
@@ -27,6 +30,7 @@ export class ExpandContent extends PureComponent<IExpandContentProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -34,7 +38,7 @@ export class ExpandContent extends PureComponent<IExpandContentProps> {
 		return (
 			<div
 				{...props}
-				{...stylesheet('content', {}, props)}
+				className={style(classes.content, className)}
 			>
 				{children}
 			</div>
