@@ -29,5 +29,10 @@ initStoryshots({
 			failureThreshold,
 			...options
 		};
+	},
+	getScreenshotOptions() {
+		return {
+			fullPage: false
+		};
 	}
 });
