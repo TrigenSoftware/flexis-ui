@@ -1,8 +1,14 @@
 {
-	"testRegex": "/src/.*\\.spec\\.(jsx?|tsx?)$",
+	"setupFiles": [
+		"@trigen/scripts-plugin-storybook/jest/registerContext"
+	],
+	"testRegex": "/(src|test)/.*\\.spec\\.(jsx?|tsx?)$",
 	"modulePathIgnorePatterns": [
 		"<rootDir>/package/.*"
 	],
+    "moduleNameMapper": {
+    	"\\.(css|svg)$": "@trigen/scripts-plugin-storybook/jest/mockFile"
+    },
 	"transform": {
 		"^.+\\.(jsx?|tsx?)$": "babel-jest"
 	},

@@ -4,7 +4,8 @@
 [![Peer dependencies status][peer-deps]][peer-deps-url]
 [![Dependencies status][deps]][deps-url]
 [![Build status][build]][build-url]
-[![Greenkeeper badge][greenkeeper]][greenkeeper-url]
+[![Dependabot badge][dependabot]][dependabot-url]
+[![Documentation badge][documentation]][documentation-url]
 
 [npm]: https://img.shields.io/npm/v/@flexis/ui.svg
 [npm-url]: https://npmjs.com/package/@flexis/ui
@@ -15,11 +16,14 @@
 [deps]: https://david-dm.org/TrigenSoftware/flexis-ui.svg
 [deps-url]: https://david-dm.org/TrigenSoftware/flexis-ui
 
-[build]: http://img.shields.io/travis/com/TrigenSoftware/flexis-ui.svg
+[build]: http://img.shields.io/travis/com/TrigenSoftware/flexis-ui/master.svg
 [build-url]: https://travis-ci.com/TrigenSoftware/flexis-ui
 
-[greenkeeper]: https://badges.greenkeeper.io/TrigenSoftware/flexis-ui.svg
-[greenkeeper-url]: https://greenkeeper.io/
+[dependabot]: https://api.dependabot.com/badges/status?host=github&repo=TrigenSoftware/flexis-ui
+[dependabot-url]: https://dependabot.com/
+
+[documentation]: https://img.shields.io/badge/API-Documentation-2b7489.svg
+[documentation-url]: https://trigensoftware.github.io/flexis-ui
 
 Styleless React Components.
 
