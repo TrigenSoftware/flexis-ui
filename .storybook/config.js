@@ -14,4 +14,10 @@ addDecorator(story => (
 	</div>
 ));
 
-configure(module);
+const stories = require.context(
+	process.env.PROJECT_SRC,
+	true,
+	/\.stories\.tsx$/
+);
+
+configure(module, stories);
