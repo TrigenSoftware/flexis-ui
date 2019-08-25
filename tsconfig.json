@@ -27,6 +27,7 @@
 		"inlineSourceMap": false
 	},
 	"exclude": [
-		"package/**/*"
+		"package/**/*",
+		"test/**/*"
 	]
 }

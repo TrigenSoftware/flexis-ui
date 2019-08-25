@@ -2324,10 +2324,10 @@
     babel-preset-trigen "^2.2.2"
     jest "^24.3.0"
 
-"@trigen/scripts-plugin-storybook@^2.10.0":
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-2.10.0.tgz#d8ccd50aa4f240fcc49572b3160315fbe0a1d376"
-  integrity sha512-/PsuCtKUjl0IxOuAsMtQ2jojAoeoXnd9IopNpaook5TPS/vk6UNXziD2QF3ErMB7FfhjX07OPTRr2IItYp0pXg==
+"@trigen/scripts-plugin-storybook@^2.10.1":
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-2.10.1.tgz#6d52a0264d653d45292aa24f17c43d5fb79bd9a2"
+  integrity sha512-vfS+jOR2uEoezxPC7pkb8cwE2r/Y1jAecuqCNRIXhnhd5+iazJ8fscsS5ncKr9hH3lPYvk/01NI/RT6mwUfh8w==
   dependencies:
     "@storybook/addon-a11y" "^5.1.10"
     "@storybook/addon-actions" "^5.0.5"
@@ -2372,10 +2372,10 @@
     husky "^3.0.3"
     lint-staged "^9.2.1"
 
-"@trigen/scripts-preset-react-app@^2.10.0":
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-2.10.0.tgz#5159733cd9366ff488c094c575a4643fa5d12963"
-  integrity sha512-Z0+w1CexZx94dTVHtGpOrN/UBaG6fSB82OWBQP4Jd5ykDcEz5rmgwvx6HPD9fDtG4l2clY8NAy58B4kcxwoWKQ==
+"@trigen/scripts-preset-react-app@^2.10.1":
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-2.10.1.tgz#d8c8e4dc534e3419c53d948e59e139408961b82d"
+  integrity sha512-Oux9d6u4HP1Ix2lX0XAQqm/d8SHU6i/BrY5M8I21pR2ahszCU7G6GSSTy++J72Pw1tl+RpVvzYh2a29zumqEVw==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/srcset-loader" "^1.0.0"
@@ -2385,7 +2385,7 @@
     "@trigen/scripts" "^2.7.0"
     "@trigen/scripts-plugin-babel" "^2.7.0"
     "@trigen/scripts-plugin-jest" "^2.7.0"
-    "@trigen/scripts-plugin-storybook" "^2.10.0"
+    "@trigen/scripts-plugin-storybook" "^2.10.1"
     "@trigen/scripts-plugin-typescript" "^2.7.2"
     autoprefixer "^9.1.3"
     awesome-typescript-loader "^5.2.0"
@@ -2565,15 +2565,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
-  version "16.8.19"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.19.tgz#629154ef05e2e1985cdde94477deefd823ad9be3"
-  integrity sha512-QzEzjrd1zFzY9cDlbIiFvdr+YUmefuuRYrPxmkwG0UQv5XF35gFIi7a95m1bNVcFU0VimxSZ5QVGSiBmlggQXQ==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^2.2.0"
-
-"@types/react@^16.9.2":
+"@types/react@*", "@types/react@^16.9.2":
   version "16.9.2"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.2.tgz#6d1765431a1ad1877979013906731aae373de268"
   integrity sha512-jYP2LWwlh+FTqGd9v7ynUKZzjj98T8x7Yclz479QdRhHfuW9yQ+0jjnD31eXSXutmBpppj5PYNLYLRfnZJvcfg==
