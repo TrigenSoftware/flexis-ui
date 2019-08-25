@@ -21,6 +21,8 @@
     "build:docs": "./scripts/generateDocs.sh",
     "start:storybook": "trigen-scripts start:storybook -c .storybook",
     "build:storybook": "trigen-scripts build:storybook -c .storybook",
+    "update:storyshots": "docker-compose -f containers/docker-compose.yml run storyshots",
+    "test:storyshots": "docker-compose -f containers/docker-compose.yml run storyshots /project/containers/testStoryshots.sh",
     "build": "./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
     "cleanPublish": "trigen-scripts cleanPublish"
