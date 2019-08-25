@@ -42,6 +42,9 @@
 						"typescript": true
 					}
 				]
+			],
+			"plugins": [
+				"require-context-hook"
 			]
 		}
 	}
