@@ -49,10 +49,10 @@
     "throttle-debounce": "^2.0.1"
   },
   "devDependencies": {
-    "@trigen/scripts": "2.7.0",
-    "@trigen/scripts-plugin-babel": "2.7.0",
-    "@trigen/scripts-plugin-eslint": "2.7.0",
-    "@trigen/scripts-plugin-typescript": "2.7.2",
+    "@trigen/scripts": "^2.7.0",
+    "@trigen/scripts-plugin-babel": "^2.7.0",
+    "@trigen/scripts-plugin-eslint": "^2.7.0",
+    "@trigen/scripts-plugin-typescript": "^2.7.2",
     "@trigen/scripts-preset-lib": "^2.7.2",
     "@trigen/scripts-preset-react-app": "^2.10.1",
     "del-cli": "^2.0.0",
