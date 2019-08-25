@@ -1,7 +1,0 @@
-version: '3'
-services:
-  storyshots:
-    image: buildkite/puppeteer:latest
-    entrypoint: /project/containers/updateStoryshots.sh
-    volumes:
-      - ../:/project
