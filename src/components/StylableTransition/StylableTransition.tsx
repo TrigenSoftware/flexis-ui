@@ -2,8 +2,8 @@ import React, {
 	Component
 } from 'react';
 import PropTypes from 'prop-types';
-import addClass from 'dom-helpers/class/addClass';
-import removeClass from 'dom-helpers/class/removeClass';
+import addClass from 'dom-helpers/addClass';
+import removeClass from 'dom-helpers/removeClass';
 import Transition, {
 	TransitionProps
 } from 'react-transition-group/Transition';
