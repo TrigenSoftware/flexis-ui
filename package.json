@@ -18,6 +18,7 @@
     "lint": "trigen-scripts lint",
     "jest": "trigen-scripts jest",
     "test": "SEED=584 npm run build:storybook && trigen-scripts test && npm run build",
+    "artifacts": "trigen-scripts artifacts test/__image_snapshots__/__diff_output__",
     "build:docs": "./scripts/generateDocs.sh",
     "start:storybook": "trigen-scripts start:storybook -c .storybook",
     "build:storybook": "trigen-scripts build:storybook -c .storybook",

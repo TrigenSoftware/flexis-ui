@@ -4,4 +4,8 @@ node_js:
 cache:
   directories:
     - node_modules
+before_install:
+  - sudo apt-get update
+  - echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+  - sudo apt-get install -y msttcorefonts
 after_failure: npm run artifacts
