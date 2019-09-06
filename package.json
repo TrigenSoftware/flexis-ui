@@ -23,7 +23,7 @@
     "build:storybook": "trigen-scripts build:storybook -c .storybook",
     "build": "./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
-    "cleanPublish": "trigen-scripts cleanPublish"
+    "cleanPublish": "npm run build && npm run build:storybook && trigen-scripts cleanPublish"
   },
   "keywords": [
     "react-components",
