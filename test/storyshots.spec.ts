@@ -8,21 +8,7 @@ initStoryshots({
 	getMatchOptions(info) {
 
 		const options = getMatchOptions(info);
-		let failureThreshold = 0.2;
-
-		switch (options.customSnapshotIdentifier) {
-
-			case 'ScrollArea__with-table':
-				failureThreshold = 5;
-				break;
-
-			case 'Table__with-rows':
-			case 'Table__with-order':
-				failureThreshold = 1;
-				break;
-
-			default:
-		}
+		const failureThreshold = 0.1;
 
 		return {
 			failureThresholdType: 'percent',
