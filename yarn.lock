@@ -2027,10 +2027,10 @@
     babel-preset-trigen "^2.2.2"
     jest "^24.3.0"
 
-"@trigen/scripts-plugin-storybook@^3.0.0-alpha.0":
-  version "3.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-3.0.0-alpha.0.tgz#334cebdf180878d8ed840a82986280fb6cb474f7"
-  integrity sha512-dNAaoyt6fv9wJod5Vru2R1D3+h8aGFhGbV6jNlC+MRT9Ps7e3xj75gs2Q9zplsBKeCj4qyTNrm1EyGRwp5ZDYA==
+"@trigen/scripts-plugin-storybook@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-3.0.0.tgz#f56b72cccbfb2ebacfeb5986f1d485af0907c8dd"
+  integrity sha512-ydZnOwYIUuJebNb4WLy4xsIjDaRzHHoKfqGRWEflHsHG0bAVWV4DByLMI//STBInkdOUOfNcmbqKbvWrGa1v/w==
   dependencies:
     "@storybook/addon-a11y" "^5.1.10"
     "@storybook/addon-actions" "^5.0.5"
@@ -2050,10 +2050,10 @@
     babel-plugin-require-context-hook "^1.0.0"
     react-test-renderer "^16.9.0"
 
-"@trigen/scripts-plugin-typescript@^3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-3.0.0-alpha.1.tgz#09b7e694f3e6d86c6a02759d1729db9728b8d000"
-  integrity sha512-Gu3lGc8vt8R0KWTgcBhrmcaLwq5Bq0e6XO2agcBhPz5ucnyvORliCm2assi4VV+dzAhepyq7q6cTq8vagcwj0A==
+"@trigen/scripts-plugin-typescript@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-3.0.0.tgz#8f941ac3a684e54b54f62bddc3cb1af733d5aa93"
+  integrity sha512-mwRCJnprZIbEzTL6BruH7+v7UxZ5WNyLuFHSRNN3OkR3OUCAEPnRyNIpwdPLWCxBNKR3eNp8XA4nyEi3AB+EPw==
   dependencies:
     "@trigen/scripts" "^2.7.0"
     ts-node-dev "^1.0.0-pre.39"
@@ -2075,10 +2075,10 @@
     husky "^3.0.3"
     lint-staged "^9.2.1"
 
-"@trigen/scripts-preset-react-app@^3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-3.0.0-alpha.1.tgz#78bae79e63d09cd7e0eed66fc08b0f45c567c258"
-  integrity sha512-gPLVUJvvXp0sCdFhivRb7ok23K0BTuSzn49ywCL/EeToulVvgx6Ve22XLVXYoYIhUmVD0szd+ZXFiLnBfu4rHw==
+"@trigen/scripts-preset-react-app@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-3.0.0.tgz#c75f7e3e8424b5561c575c2acc62b1a30816e7dd"
+  integrity sha512-EE8+OvmUvSmQmhMjbdil5X0drKTxySaDjaEfsw8XBN6nfMqg7Quz3aH6U+9bCX86LEcWmcC/FXEkGbxdAqEdCQ==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/favicons" "^1.3.4"
@@ -2089,8 +2089,8 @@
     "@trigen/scripts" "^2.7.0"
     "@trigen/scripts-plugin-babel" "^2.7.0"
     "@trigen/scripts-plugin-jest" "^2.7.0"
-    "@trigen/scripts-plugin-storybook" "^3.0.0-alpha.0"
-    "@trigen/scripts-plugin-typescript" "^3.0.0-alpha.1"
+    "@trigen/scripts-plugin-storybook" "^3.0.0"
+    "@trigen/scripts-plugin-typescript" "^3.0.0"
     autoprefixer "^9.1.3"
     awesome-typescript-loader "^5.2.0"
     babel-loader "^8.0.0"
