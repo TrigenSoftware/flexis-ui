@@ -14,6 +14,7 @@
 	cursor: default;
 }
 
+/* stylelint-disable a11y/no-display-none */
 .root:not(:active) .content {
 	display: none;
-}
+}/* styelint-enable */
