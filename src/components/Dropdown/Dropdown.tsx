@@ -202,7 +202,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 						role:       'region',
 						labelledBy: toggler.props.id
 					}, content.props),
-					'className':    style('content', {
+					'className':    style(classes.content, {
 						[`${align}Align`]: Boolean(align),
 						offset:            contentWithOffset
 					}, content.props.className),

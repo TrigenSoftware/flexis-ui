@@ -114,7 +114,7 @@ export default class Modal extends PureComponent<IProps> {
 						{closeButton && cloneElement(
 							closeButton,
 							{
-								className: style('closeButton', {}, closeButton.props.className),
+								className: style(classes.closeButton, closeButton.props.className),
 								onClick:   onClose
 							}
 						)}
