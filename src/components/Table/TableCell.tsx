@@ -40,7 +40,7 @@ export type ITableCellProps = CombinePropsAndAttributes<
 	TdHTMLAttributes<HTMLTableDataCellElement>
 >;
 
-export const OrderValues: Order[] = Object.values(Order).filter(_ => typeof _ === 'number');
+export const OrderValues = Object.values(Order).filter(_ => typeof _ === 'number') as Order[];
 
 const buttonRole = {
 	role:     'button',
