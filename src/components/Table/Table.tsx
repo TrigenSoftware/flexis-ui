@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Table.st.css';
+import {
+	style,
+	classes
+} from './Table.st.css';
 
 export * from './TableHead';
 export * from './TableBody';
@@ -33,6 +36,7 @@ export default class Table extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -40,7 +44,7 @@ export default class Table extends PureComponent<IProps> {
 		return (
 			<table
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 			>
 				{children}
 			</table>

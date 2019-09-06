@@ -17,7 +17,10 @@ import {
 	Primitive,
 	PrimitivePropType
 } from '../common/types';
-import stylesheet from './Select.st.css';
+import {
+	style,
+	classes
+} from './Select.st.css';
 
 export * from './SelectOption';
 
@@ -49,6 +52,7 @@ export default class Select extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			defaultValue,
 			value,
@@ -71,7 +75,7 @@ export default class Select extends PureComponent<IProps> {
 			<select
 				ref={elementRef}
 				{...omit(props, ['multiple'])}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				onChange={this.onChange}
 				defaultValue={defaultValue as string}
 				value={value as string}

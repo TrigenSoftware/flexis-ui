@@ -4,7 +4,10 @@ import React, {
 import Button, {
 	IProps as IButtonProps
 } from '../Button';
-import stylesheet from './Menu.st.css';
+import {
+	style,
+	classes
+} from './Menu.st.css';
 
 export type IMenuButtonProps = IButtonProps;
 
@@ -16,6 +19,7 @@ export class MenuButton extends PureComponent<IMenuButtonProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -23,7 +27,7 @@ export class MenuButton extends PureComponent<IMenuButtonProps> {
 		return (
 			<Button
 				{...props}
-				{...stylesheet('button', {}, props)}
+				className={style(classes.button, className)}
 				type='button'
 			>
 				{children}

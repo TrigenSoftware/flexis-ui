@@ -10,7 +10,10 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
-import stylesheet from './FileDrop.st.css';
+import {
+	style,
+	classes
+} from './FileDrop.st.css';
 
 interface ISelfProps {
 	disabled?: boolean;
@@ -46,6 +49,7 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			disabled,
 			children,
 			...props
@@ -57,10 +61,10 @@ export default class FileSelect extends PureComponent<IProps, IState> {
 		return (
 			<div
 				{...omit(props, ['onChange'])}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					disabled,
 					dragOver
-				}, props)}
+				}, className)}
 				onDrag={this.onIgnoredEvent}
 				onDragStart={this.onIgnoredEvent}
 				onDragOver={this.onDragOver}

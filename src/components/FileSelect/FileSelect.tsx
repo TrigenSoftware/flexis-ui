@@ -17,7 +17,10 @@ import {
 	Bind
 } from '../../helpers';
 import isKeyboardClick from '../common/isKeyboardClick';
-import stylesheet from './FileSelect.st.css';
+import {
+	style,
+	classes
+} from './FileSelect.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
@@ -49,8 +52,9 @@ export default class FileSelect extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
-			style,
+			style: styleProp,
 			disabled,
 			children,
 			...props
@@ -58,13 +62,13 @@ export default class FileSelect extends PureComponent<IProps> {
 
 		return (
 			<span
-				{...stylesheet('root', {}, props)}
-				style={style}
+				className={style(classes.root, className)}
+				style={styleProp}
 			>
 				<input
 					ref={elementRef}
 					{...props}
-					{...stylesheet('input')}
+					className={classes.input}
 					tabIndex={-1}
 					type='file'
 					onChange={this.onChange}

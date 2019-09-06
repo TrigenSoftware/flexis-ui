@@ -28,7 +28,10 @@ import CustomFlatSelect, {
 import {
 	isCustomSelectFace
 } from './CustomSelectFace';
-import stylesheet from './CustomSelect.st.css';
+import {
+	style,
+	classes
+} from './CustomSelect.st.css';
 
 export * from './CustomSelectFace';
 export * from './CustomSelectOption';
@@ -79,9 +82,10 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			'aria-labelledby': ariaLabelledBy,
 			'aria-label': ariaLabel,
-			style,
+			style: styleProp,
 			name,
 			placeholder,
 			multiple,
@@ -133,21 +137,21 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 		return (
 			<Dropdown
 				ref={this.onDropdownRef}
-				{...stylesheet('root', {}, props)}
-				style={style}
+				className={style(classes.root, className)}
+				style={styleProp}
 				disabled={disabled}
 			>
 				{this.face(selectFace, label)}
 				<DropdownContent
 					{...ariaLabelProps}
-					{...stylesheet('dropdownContent')}
+					className={classes.dropdownContent}
 					role='region'
 					aria-multiselectable={multiple}
 				>
 					<CustomFlatSelect
 						{...omit(props, ['elementRef'])}
 						{...ariaLabelProps}
-						{...stylesheet('options')}
+						className={classes.options}
 						name={name}
 						multiple={multiple}
 						onClick={this.onDropdownHide}
@@ -180,7 +184,7 @@ export default class CustomSelect extends PureComponent<IProps, IState> {
 			(multiple ? (label as string[]).join(', ') : label)
 			|| placeholder && (
 				<span
-					{...stylesheet('placeholder')}
+					className={classes.placeholder}
 				>
 					{placeholder}
 				</span>

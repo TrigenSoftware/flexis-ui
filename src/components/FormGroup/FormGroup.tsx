@@ -14,7 +14,10 @@ import {
 	AlignSideVariant,
 	AlignSideValues
 } from '../common/types';
-import stylesheet from './FormGroup.st.css';
+import {
+	style,
+	classes
+} from './FormGroup.st.css';
 
 interface ISelfProps {
 	id?: string;
@@ -57,6 +60,7 @@ export default class FormGroup extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			id: idProp,
 			flex,
 			label,
@@ -77,33 +81,35 @@ export default class FormGroup extends PureComponent<IProps> {
 		if (withIcon) {
 			inputIcon = cloneElement(
 				icon,
-				stylesheet('icon', {
-					[`${alignIcon}Align`]: Boolean(alignIcon)
-				}, icon.props)
+				{
+					className: style(classes.icon, {
+						[`${alignIcon}Align`]: Boolean(alignIcon)
+					}, icon.props.className)
+				}
 			);
 		}
 
 		return (
 			<div
 				{...props}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					withIcon
-				}, props)}
+				}, className)}
 			>
 				{cloneElement(
 					child,
 					{
 						id,
-						...stylesheet('input', {
+						className: style(classes.input, {
 							[`${alignIcon}Icon`]: withIcon,
 							flex
-						}, childProps)
+						}, childProps.className)
 					}
 				)}
 				{inputIcon}
 				{label && (
 					<label
-						{...stylesheet('label')}
+						className={classes.label}
 						htmlFor={id}
 					>
 						{label}
@@ -111,7 +117,7 @@ export default class FormGroup extends PureComponent<IProps> {
 				)}
 				{description && (
 					<label
-						{...stylesheet('description')}
+						className={classes.description}
 						htmlFor={id}
 					>
 						{description}

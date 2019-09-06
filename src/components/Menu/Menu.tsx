@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Menu.st.css';
+import {
+	style,
+	classes
+} from './Menu.st.css';
 
 export * from './MenuItem';
 export * from './MenuItemSeparator';
@@ -31,6 +34,7 @@ export default class Menu extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -39,7 +43,7 @@ export default class Menu extends PureComponent<IProps> {
 			<ul
 				role='menu'
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 			>
 				{children}
 			</ul>

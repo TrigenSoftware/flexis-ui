@@ -2,11 +2,13 @@ import React, {
 	Component
 } from 'react';
 import PropTypes from 'prop-types';
+import addClass from 'dom-helpers/addClass';
+import removeClass from 'dom-helpers/removeClass';
 import Transition, {
 	TransitionProps
 } from 'react-transition-group/Transition';
 import {
-	RuntimeStylesheet
+	StateMap
 } from '@stylable/runtime';
 import {
 	CombinePropsAndAttributes,
@@ -25,8 +27,7 @@ export interface ITransitionState {
 }
 
 interface ISelfProps {
-	states: RuntimeStylesheet|ITransitionState;
-	statesElement?: string;
+	states: ((stateMap: StateMap) => string) | ITransitionState;
 }
 
 export type IProps = CombinePropsAndAttributes<
@@ -43,26 +44,22 @@ const defaultStylableStates: ITransitionState = {
 	exitActive:  'exitActive',
 	exitDone:    'exitDone'
 };
+const TransitionStateKeys = Object.keys(defaultStylableStates);
 
 export default class StylableTransition extends Component<IProps> {
 
 	static propTypes = {
 		...(Transition as any).propTypes,
-		states:        PropTypes.oneOfType([
+		states:     PropTypes.oneOfType([
 			PropTypes.func,
 			PropTypes.object
 		]).isRequired,
-		statesElement: PropTypes.string,
-		onEnter:       PropTypes.func,
-		onEntering:    PropTypes.func,
-		onEntered:     PropTypes.func,
-		onExit:        PropTypes.func,
-		onExiting:     PropTypes.func,
-		onExited:      PropTypes.func
-	};
-
-	static defaultProps = {
-		statesElement: 'root'
+		onEnter:    PropTypes.func,
+		onEntering: PropTypes.func,
+		onEntered:  PropTypes.func,
+		onExit:     PropTypes.func,
+		onExiting:  PropTypes.func,
+		onExited:   PropTypes.func
 	};
 
 	private readonly stylableStates: {
@@ -71,24 +68,23 @@ export default class StylableTransition extends Component<IProps> {
 		exit: Record<string, string>
 	};
 
-	constructor(props) {
+	constructor(props: IProps) {
 
 		super(props);
 
 		const {
-			states,
-			statesElement
+			states
 		} = props;
-		const stylableStatesSource = typeof states === 'function'
-			? states(statesElement, defaultStylableStates)
-			: states;
+		const getStateClass = typeof states === 'function'
+			? (state: string) => states({ [state]: true })
+			: (state: string) => states[state];
 		const stylableStates = {
 			active: {},
 			enter:  {},
 			exit:   {}
 		};
 
-		Object.entries(stylableStatesSource).forEach(([value, key]: [string, string]) => {
+		TransitionStateKeys.forEach((key: string) => {
 
 			const [state, phase] = key
 				.replace(/(Active|Done)/, ' $1')
@@ -96,7 +92,7 @@ export default class StylableTransition extends Component<IProps> {
 				.split(' ');
 
 			if (stylableStates.hasOwnProperty(state)) {
-				stylableStates[state][phase || 'state'] = value;
+				stylableStates[state][phase || 'state'] = getStateClass(key);
 			}
 		});
 
@@ -106,8 +102,7 @@ export default class StylableTransition extends Component<IProps> {
 	render() {
 
 		const props: any = omit(this.props, [
-			'states',
-			'statesElement'
+			'states'
 		]);
 
 		return (
@@ -124,14 +119,14 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Bind()
-	private onEnter(node) {
+	private onEnter(node: HTMLElement) {
 
-		const stateAttribute = this.getStateAttribute('enter');
+		const stateClass = this.getStateClass('enter');
 
-		this.removeStateAttributes(node, 'exit');
+		this.removeStateClass(node, 'exit');
 
-		if (stateAttribute) {
-			node.setAttribute(stateAttribute, 'true');
+		if (stateClass) {
+			addClass(node, stateClass);
 		}
 
 		const {
@@ -144,21 +139,21 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Bind()
-	private onEntering(node) {
+	private onEntering(node: HTMLElement) {
 
-		const enterStateAttribute = this.getStateAttribute('enter', 'active');
-		const activeStateAttribute = this.getStateAttribute('active');
+		const enterStateClass = this.getStateClass('enter', 'active');
+		const activeStateClass = this.getStateClass('active');
 
-		if (enterStateAttribute) {
-			this.reflowAndAddStateAttribute(node, enterStateAttribute);
+		if (enterStateClass) {
+			this.reflowAndAddStateClass(node, enterStateClass);
 		}
 
-		if (activeStateAttribute) {
+		if (activeStateClass) {
 
-			if (enterStateAttribute) {
-				node.setAttribute(activeStateAttribute, 'true');
+			if (enterStateClass) {
+				addClass(node, activeStateClass);
 			} else {
-				this.reflowAndAddStateAttribute(node, activeStateAttribute);
+				this.reflowAndAddStateClass(node, activeStateClass);
 			}
 		}
 
@@ -172,14 +167,14 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Bind()
-	private onEntered(node) {
+	private onEntered(node: HTMLElement) {
 
-		const stateAttribute = this.getStateAttribute('enter', 'done');
+		const stateClass = this.getStateClass('enter', 'done');
 
-		this.removeStateAttributes(node, 'enter');
+		this.removeStateClass(node, 'enter');
 
-		if (stateAttribute) {
-			node.setAttribute(stateAttribute, 'true');
+		if (stateClass) {
+			addClass(node, stateClass);
 		}
 
 		const {
@@ -192,15 +187,15 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Bind()
-	private onExit(node) {
+	private onExit(node: HTMLElement) {
 
-		const stateAttribute = this.getStateAttribute('exit');
+		const stateClass = this.getStateClass('exit');
 
-		this.removeStateAttributes(node, 'enter');
-		this.removeStateAttributes(node, 'active');
+		this.removeStateClass(node, 'enter');
+		this.removeStateClass(node, 'active');
 
-		if (stateAttribute) {
-			node.setAttribute(stateAttribute, 'true');
+		if (stateClass) {
+			addClass(node, stateClass);
 		}
 
 		const {
@@ -213,12 +208,12 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Bind()
-	private onExiting(node) {
+	private onExiting(node: HTMLElement) {
 
-		const stateAttribute = this.getStateAttribute('exit', 'active');
+		const stateClass = this.getStateClass('exit', 'active');
 
-		if (stateAttribute) {
-			this.reflowAndAddStateAttribute(node, stateAttribute);
+		if (stateClass) {
+			this.reflowAndAddStateClass(node, stateClass);
 		}
 
 		const {
@@ -231,14 +226,14 @@ export default class StylableTransition extends Component<IProps> {
 	}
 
 	@Bind()
-	private onExited(node) {
+	private onExited(node: HTMLElement) {
 
-		const stateAttribute = this.getStateAttribute('exit', 'done');
+		const stateClass = this.getStateClass('exit', 'done');
 
-		this.removeStateAttributes(node, 'exit');
+		this.removeStateClass(node, 'exit');
 
-		if (stateAttribute) {
-			node.setAttribute(stateAttribute, 'true');
+		if (stateClass) {
+			addClass(node, stateClass);
 		}
 
 		const {
@@ -250,7 +245,7 @@ export default class StylableTransition extends Component<IProps> {
 		}
 	}
 
-	private getStateAttribute(state, phase = 'state') {
+	private getStateClass(state: string, phase = 'state') {
 
 		const phases = this.stylableStates[state];
 
@@ -261,7 +256,7 @@ export default class StylableTransition extends Component<IProps> {
 		return phases[phase] || false;
 	}
 
-	private removeStateAttributes(node, state) {
+	private removeStateClass(node: HTMLElement, state: string) {
 
 		const phases = this.stylableStates[state];
 
@@ -270,31 +265,31 @@ export default class StylableTransition extends Component<IProps> {
 		}
 
 		const {
-			state: stateAttr,
-			active: activePhaseAttr,
-			done: donePhaseAttr
+			state: stateClass,
+			active: activePhaseClass,
+			done: donePhaseClass
 		} = phases;
 
-		if (stateAttr) {
-			node.removeAttribute(stateAttr);
+		if (stateClass) {
+			removeClass(node, stateClass);
 		}
 
-		if (activePhaseAttr) {
-			node.removeAttribute(activePhaseAttr);
+		if (activePhaseClass) {
+			removeClass(node, activePhaseClass);
 		}
 
-		if (donePhaseAttr) {
-			node.removeAttribute(donePhaseAttr);
+		if (donePhaseClass) {
+			removeClass(node, donePhaseClass);
 		}
 	}
 
-	private reflowAndAddStateAttribute(node, stateAttribute) {
+	private reflowAndAddStateClass(node: HTMLElement, stateClass: string) {
 
 		if (node) {
 			// This is for to force a repaint,
 			// which is necessary in order to transition styles when adding a class name.
 			node.scrollTop; // tslint:disable-line
-			node.setAttribute(stateAttribute, 'true');
+			addClass(node, stateClass);
 		}
 	}
 }

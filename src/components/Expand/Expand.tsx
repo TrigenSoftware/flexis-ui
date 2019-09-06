@@ -14,7 +14,10 @@ import {
 	omit,
 	getAriaLabelProps
 } from '../../helpers';
-import stylesheet from './Expand.st.css';
+import {
+	style,
+	classes
+} from './Expand.st.css';
 
 export * from './ExpandTitle';
 export * from './ExpandContent';
@@ -92,6 +95,7 @@ export default class Expand extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			disabled,
 			children,
 			...props
@@ -111,10 +115,10 @@ export default class Expand extends PureComponent<IProps, IState> {
 					'active',
 					'onToggle'
 				])}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					active,
 					disabled
-				}, props)}
+				}, className)}
 				aria-disabled={disabled}
 			>
 				{cloneElement(title, {

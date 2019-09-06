@@ -16,7 +16,10 @@ import {
 } from '../../helpers';
 import FileSelect from '../FileSelect';
 import SROnly from '../SROnly';
-import stylesheet from './ImageSelect.st.css';
+import {
+	style,
+	classes
+} from './ImageSelect.st.css';
 
 export enum DisplayVariant {
 	Img = 'img',
@@ -121,8 +124,9 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			elementRef,
-			style,
+			style: styleProp,
 			previewStyle: previewStyleProp,
 			display,
 			name,
@@ -147,7 +151,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 			} else {
 				previewImg = (
 					<img
-						{...stylesheet('img')}
+						className={classes.img}
 						src={value}
 					/>
 				);
@@ -157,8 +161,8 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 		return (
 			<FileSelect
 				elementRef={elementRef}
-				style={style}
-				{...stylesheet('root', {}, props)}
+				style={styleProp}
+				className={style(classes.root, className)}
 				name={name}
 				onChange={this.onChange}
 				disabled={disabled || readOnly}
@@ -169,7 +173,7 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 						'defaultValue',
 						'value'
 					])}
-					{...stylesheet('preview', {
+					className={style(classes.preview, {
 						[display]: Boolean(display),
 						readOnly,
 						disabled
@@ -179,7 +183,9 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 					{previewImg}
 					{withPlaceholder && cloneElement(
 						placeholder,
-						stylesheet('placeholder', {}, placeholder.props)
+						{
+							className: style(classes.placeholder, placeholder.props.className)
+						}
 					)}
 					<SROnly>
 						<span>{filename}</span>
@@ -188,9 +194,9 @@ export default class ImageSelect extends PureComponent<IProps, IState> {
 				{resetButton && cloneElement(
 					resetButton,
 					{
-						...stylesheet('resetButton', {
+						className: style(classes.resetButton, {
 							hidden: disabled || readOnly || !value
-						}, resetButton.props),
+						}, resetButton.props.className),
 						onClick: this.onReset
 					}
 				)}

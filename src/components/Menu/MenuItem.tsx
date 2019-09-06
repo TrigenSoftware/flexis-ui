@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes
 } from '../../helpers';
-import stylesheet from './Menu.st.css';
+import {
+	style,
+	classes
+} from './Menu.st.css';
 
 interface ISelfProps {
 	children: ReactNode;
@@ -27,6 +30,7 @@ export class MenuItem extends PureComponent<IMenuItemProps> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -35,7 +39,7 @@ export class MenuItem extends PureComponent<IMenuItemProps> {
 			<li
 				role='menuitem'
 				{...props}
-				{...stylesheet('item', {}, props)}
+				className={style(classes.item, className)}
 			>
 				{children}
 			</li>

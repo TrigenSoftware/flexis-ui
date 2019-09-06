@@ -16,7 +16,10 @@ import {
 	AlignSideVariant,
 	AlignSideValues
 } from '../common/types';
-import stylesheet from './Link.st.css';
+import {
+	style,
+	classes
+} from './Link.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<any>;
@@ -61,6 +64,7 @@ export default class Link extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			icon,
 			flexIcon,
@@ -79,9 +83,11 @@ export default class Link extends PureComponent<IProps> {
 		if (typeof icon !== 'undefined') {
 			linkIcon = cloneElement(
 				icon,
-				stylesheet('icon', {
-					[`${alignIcon}Align`]: Boolean(alignIcon) && !iconOnly
-				}, icon.props)
+				{
+					className: style(classes.icon, {
+						[`${alignIcon}Align`]: Boolean(alignIcon) && !iconOnly
+					}, icon.props.className)
+				}
 			);
 		}
 
@@ -89,10 +95,10 @@ export default class Link extends PureComponent<IProps> {
 			<LinkElement
 				ref={elementRef}
 				{...props}
-				{...stylesheet('root', {
+				className={style(classes.root, {
 					withIcon: Boolean(linkIcon),
 					flexIcon
-				}, props)}
+				}, className)}
 				{...linkElementCustomProps}
 				target={target}
 				rel={target === '_blank' && typeof rel === 'undefined'
@@ -102,7 +108,7 @@ export default class Link extends PureComponent<IProps> {
 			>
 				{linkIcon ? (
 					<div
-						{...stylesheet('iconContainer')}
+						className={classes.iconContainer}
 					>
 						{leftAligned && linkIcon}
 						{!iconOnly && (

@@ -11,7 +11,10 @@ import {
 	Bind,
 	omit
 } from '../../helpers';
-import stylesheet from './ScrollArea.st.css';
+import {
+	style,
+	classes
+} from './ScrollArea.st.css';
 
 interface ISelfProps {
 	ignoreTopShadow?: boolean;
@@ -72,6 +75,7 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			ignoreTopShadow,
 			ignoreRightShadow,
 			ignoreBottomShadow,
@@ -91,11 +95,11 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 		return (
 			<div
 				{...omit(props, ['y2xScroll'])}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 			>
 				<div
 					ref={this.onScrollerRef}
-					{...stylesheet('scroller', {
+					className={style(classes.scroller, {
 						hideXScrollbar,
 						hideYScrollbar
 					})}
@@ -105,25 +109,25 @@ export default class ScrollArea extends PureComponent<IProps, IState> {
 					{children}
 				</div>
 				<div
-					{...stylesheet('shadow', {
+					className={style(classes.shadow, {
 						'top':    true,
 						'active': topShadow && !ignoreTopShadow
 					})}
 				/>
 				<div
-					{...stylesheet('shadow', {
+					className={style(classes.shadow, {
 						'right':  true,
 						'active': rightShadow && !ignoreRightShadow
 					})}
 				/>
 				<div
-					{...stylesheet('shadow', {
+					className={style(classes.shadow, {
 						'bottom': true,
 						'active': bottomShadow && !ignoreBottomShadow
 					})}
 				/>
 				<div
-					{...stylesheet('shadow', {
+					className={style(classes.shadow, {
 						'left':   true,
 						'active': leftShadow && !ignoreLeftShadow
 					})}

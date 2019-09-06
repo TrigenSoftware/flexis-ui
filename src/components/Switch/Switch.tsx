@@ -14,7 +14,10 @@ import {
 	InputValue,
 	InputValuePropType
 } from '../common/types';
-import stylesheet from './Switch.st.css';
+import {
+	style,
+	classes
+} from './Switch.st.css';
 
 interface ISelfProps {
 	elementRef?: Ref<HTMLInputElement>;
@@ -43,6 +46,7 @@ export default class Switch extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			elementRef,
 			...props
 		} = this.props;
@@ -51,7 +55,7 @@ export default class Switch extends PureComponent<IProps> {
 			<input
 				ref={elementRef}
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				onChange={this.onChange}
 			/>
 		);

@@ -9,7 +9,10 @@ import {
 import Modal, {
 	IProps as IModalProps
 } from '../Modal';
-import stylesheet from './ConfirmModal.st.css';
+import {
+	style,
+	classes
+} from './ConfirmModal.st.css';
 
 export type IProps = IModalProps;
 
@@ -37,6 +40,7 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 	render() {
 
 		const {
+			className,
 			children,
 			...props
 		} = this.props;
@@ -47,12 +51,12 @@ export default class ConfirmModal extends PureComponent<IProps, IState> {
 		return (
 			<Modal
 				{...props}
-				{...stylesheet('root', {}, props)}
+				className={style(classes.root, className)}
 				onClose={this.onClose}
 				active={active}
 			>
 				<form
-					{...stylesheet('form')}
+					className={classes.form}
 					onSubmit={this.onSubmit}
 					onClick={this.onClick}
 				>

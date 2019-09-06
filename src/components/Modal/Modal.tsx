@@ -14,13 +14,16 @@ import PropTypes from 'prop-types';
 import {
 	CombinePropsAndAttributes,
 	Bind,
-	subscribeEvent,
-	omit
+	subscribeEvent
 } from '../../helpers';
 import toggleScrollBlock from '../common/toggleScrollBlock';
 import toggleAriaHide from '../common/toggleAriaHide';
 import StylableTransition from '../StylableTransition';
-import stylesheet from './Modal.st.css';
+import {
+	style,
+	classes,
+	cssStates
+} from './Modal.st.css';
 
 interface ISelfProps {
 	active?: boolean;
@@ -77,6 +80,7 @@ export default class Modal extends PureComponent<IProps> {
 	render() {
 
 		const {
+			className,
 			onClose,
 			active,
 			centered,
@@ -85,26 +89,24 @@ export default class Modal extends PureComponent<IProps> {
 			transitionDuration,
 			...props
 		} = this.props;
-		const rootStylesheet = stylesheet('root', {}, props);
-		const rootStylesheetPropNames = Object.keys(rootStylesheet);
 
 		return createPortal((
 			<StylableTransition
 				in={active}
-				states={stylesheet}
+				states={cssStates}
 				timeout={transitionDuration}
 				appear
 				unmountOnExit
 			>
 				<div
-					{...rootStylesheet}
+					className={style(classes.root, className)}
 					onClick={onClose}
 				>
 					<div
 						role='dialog'
 						aria-modal
-						{...omit(props, rootStylesheetPropNames)}
-						{...stylesheet('window', {
+						{...props}
+						className={style(classes.window, {
 							centered
 						})}
 						onClick={this.onIgnoredEvent}
@@ -112,8 +114,8 @@ export default class Modal extends PureComponent<IProps> {
 						{closeButton && cloneElement(
 							closeButton,
 							{
-								...stylesheet('closeButton', {}, closeButton.props),
-								onClick: onClose
+								className: style('closeButton', {}, closeButton.props.className),
+								onClick:   onClose
 							}
 						)}
 						{children}
