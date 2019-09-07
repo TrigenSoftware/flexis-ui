@@ -17,14 +17,14 @@
     "lint:scripts": "trigen-scripts lint:scripts",
     "lint": "trigen-scripts lint",
     "jest": "trigen-scripts jest",
-    "test": "SEED=584 npm run build:storybook && trigen-scripts test && npm run build",
-    "artifacts": "trigen-scripts artifacts test/__image_snapshots__/__diff_output__",
+    "test": "npm run build:storybook && trigen-scripts test && npm run build",
+    "artifacts": "trigen-scripts artifacts test/__image_snapshots__",
     "build:docs": "./scripts/generateDocs.sh",
     "start:storybook": "trigen-scripts start:storybook -c .storybook",
     "build:storybook": "trigen-scripts build:storybook -c .storybook",
     "build": "./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
-    "cleanPublish": "npm run build && SEED=584 npm run build:storybook && trigen-scripts cleanPublish"
+    "cleanPublish": "npm run build && npm run build:storybook && trigen-scripts cleanPublish"
   },
   "keywords": [
     "react-components",
