@@ -2073,11 +2073,11 @@
     typescript "3.6.2"
 
 "@trigen/scripts-preset-lib@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-3.1.0.tgz#0f3f0124cacfcfaacb0b7ea882dadf31ac0ad204"
-  integrity sha512-5jy/KHYqmZJiWJ6ucAJKBD8NHZC+i2YUHNzK5MJj25zO60ECdtIDuCj+xReKPV9XlrtO/FkrbGMiZWikWsdPFw==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-lib/-/scripts-preset-lib-3.2.0.tgz#a9026ab605cbb0a99501624ede69a3c4763a0a3a"
+  integrity sha512-qV0ljKFeFhCnkZLhkFxtDovLkxullumx6meW1KCy91V0B3MOfJflx3Bf2aGyke2/If/5W1nqxTo8KRVCcUnTZg==
   dependencies:
-    "@trigen/scripts" "^3.1.0"
+    "@trigen/scripts" "^3.2.0"
     browserslist-config-trigen "^1.1.0"
     clean-publish "^1.1.0"
     coveralls "^3.0.0"
@@ -2139,10 +2139,10 @@
     webpack-hot-middleware "^2.22.3"
     webpack-node-externals "^1.7.2"
 
-"@trigen/scripts@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-3.1.0.tgz#d3919aa37c8c3b00a62052ad01a1d8ea8a6cccb4"
-  integrity sha512-1uxpNpQLozhhtypk3v1iwuYmk7MOOFLvU0I7pRaiRqfyIMrBgqygn3Ubc1GXEQ9wa8CYJkEbZ6Y1At7ZHF5SoA==
+"@trigen/scripts@^3.1.0", "@trigen/scripts@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-3.2.0.tgz#9bc4cb29e56eafa915593f6dca878b5065efb7d9"
+  integrity sha512-bYgqjaaiyWlFqR9lsC58As2+MUhyHJ0T/96/GDbN3TtxAnXWKIRwuy7u6HYOXO9gq3T+HoMy0V6FEIELfnFFZA==
   dependencies:
     "@babel/runtime" "^7.4.2"
     chalk "^2.4.2"
