@@ -51,7 +51,9 @@ let appElement = null;
 
 export function setAppElement(appElementSource) {
 	appElement = typeof appElementSource === 'string'
-		? document.querySelector(appElementSource)
+		? (typeof document === 'undefined'
+			? null
+			: document.querySelector(appElementSource))
 		: appElementSource;
 }
 
