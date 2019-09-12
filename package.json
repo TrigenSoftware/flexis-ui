@@ -17,14 +17,14 @@
     "lint:scripts": "trigen-scripts lint:scripts",
     "lint": "trigen-scripts lint",
     "jest": "trigen-scripts jest",
-    "test": "npm run build:storybook && trigen-scripts test && npm run build",
+    "test": "trigen-scripts test && npm run build",
     "artifacts": "trigen-scripts artifacts test/__image_snapshots__",
     "build:docs": "./scripts/generateDocs.sh",
     "start:storybook": "trigen-scripts start:storybook -c .storybook",
     "build:storybook": "trigen-scripts build:storybook -c .storybook",
     "build": "./scripts/buildPackage.sh",
     "prepublishOnly": "if [ -f .gitignore ]; then exit 1; fi",
-    "cleanPublish": "npm run build && npm run build:storybook && trigen-scripts cleanPublish"
+    "cleanPublish": "npm run build && trigen-scripts cleanPublish"
   },
   "keywords": [
     "react-components",
@@ -52,12 +52,12 @@
     "throttle-debounce": "^2.0.1"
   },
   "devDependencies": {
-    "@trigen/scripts": "^3.1.0",
-    "@trigen/scripts-plugin-babel": "^3.1.0",
-    "@trigen/scripts-plugin-eslint": "^3.1.0",
-    "@trigen/scripts-plugin-typescript": "^3.1.0",
-    "@trigen/scripts-preset-lib": "^3.1.0",
-    "@trigen/scripts-preset-react-app": "^3.1.0",
+    "@trigen/scripts": "^3.2.0",
+    "@trigen/scripts-plugin-babel": "^3.2.0",
+    "@trigen/scripts-plugin-eslint": "^3.2.0",
+    "@trigen/scripts-plugin-typescript": "^3.2.0",
+    "@trigen/scripts-preset-lib": "^3.2.0",
+    "@trigen/scripts-preset-react-app": "^3.3.0",
     "del-cli": "^2.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
