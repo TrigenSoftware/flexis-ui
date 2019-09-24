@@ -220,3 +220,7 @@ export default class Modal extends PureComponent<IProps> {
 		}
 	}
 }
+
+if (typeof document === 'undefined') {
+	Modal.prototype.render = () => null;
+}
