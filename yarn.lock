@@ -2085,9 +2085,9 @@
     lint-staged "^9.2.1"
 
 "@trigen/scripts-preset-react-app@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-3.3.0.tgz#98aaad918406b1709b271e360594f84ad3fa8ac9"
-  integrity sha512-8jvOmepetp1h+S3tPbAUOSNIXg0BZHM6tiODZJCq+g07ao4X3zoqAt7WiaIpTkJhCMwreTArqgUf6vrhsxJ8Hw==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-3.4.0.tgz#d364cbf236dadc4b0c6989e5e17c65a76a96db80"
+  integrity sha512-S9SemuDUBoWsNL+s1mw3Usg4TI3TPYbg4CK2gg/jPscy1pI01I1dyM8NxThfv6BBzh0ST4o5ed/bU6yrg8oZ6Q==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/favicons" "^1.3.4"
