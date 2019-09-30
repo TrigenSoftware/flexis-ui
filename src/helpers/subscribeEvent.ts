@@ -7,7 +7,7 @@
  * @return Unsubscribe from event.
  */
 export function subscribeEvent(
-	element: HTMLElement|Document,
+	element: HTMLElement|Document|Window,
 	eventName: string,
 	listener: (event?: Event) => void,
 	useCapture = false
