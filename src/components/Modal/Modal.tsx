@@ -31,6 +31,7 @@ interface ISelfProps {
 	closeButton?: ReactElement<any>;
 	transitionDuration?: number;
 	children: ReactNode;
+	wrapContent?(content: ReactElement<any>): ReactNode;
 	onClose?(event: SyntheticEvent|KeyboardEvent);
 }
 
@@ -65,7 +66,8 @@ export default class Modal extends PureComponent<IProps> {
 		centered:           PropTypes.bool,
 		closeButton:        PropTypes.element,
 		children:           PropTypes.node.isRequired,
-		transitionDuration: PropTypes.number
+		transitionDuration: PropTypes.number,
+		wrapContent:        PropTypes.func
 	};
 
 	static defaultProps = {
@@ -113,18 +115,35 @@ export default class Modal extends PureComponent<IProps> {
 						})}
 						onClick={this.onIgnoredEvent}
 					>
-						{closeButton && cloneElement(
-							closeButton,
-							{
-								className: style(classes.closeButton, closeButton.props.className),
-								onClick:   onClose
-							}
+						{this.wrapContent(
+							<>
+								{closeButton && cloneElement(
+									closeButton,
+									{
+										className: style(classes.closeButton, closeButton.props.className),
+										onClick:   onClose
+									}
+								)}
+								{children}
+							</>
 						)}
-						{children}
 					</div>
 				</div>
 			</StylableTransition>
 		), document.body);
+	}
+
+	private wrapContent(content: ReactElement<any>) {
+
+		const {
+			wrapContent
+		} = this.props;
+
+		if (typeof wrapContent === 'function') {
+			return wrapContent(content);
+		}
+
+		return content;
 	}
 
 	componentDidMount() {

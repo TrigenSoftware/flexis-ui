@@ -1,6 +1,6 @@
 {
   "name": "@flexis/ui",
-  "version": "1.0.4-beta",
+  "version": "1.1.0-beta",
   "description": "Styleless React Components",
   "author": "dangreen",
   "license": "MIT",
@@ -61,7 +61,8 @@
     "del-cli": "^2.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-focus-lock": "^2.1.0"
   },
   "resolutions": {
     "@stylable/optimizer": "2.1.1"

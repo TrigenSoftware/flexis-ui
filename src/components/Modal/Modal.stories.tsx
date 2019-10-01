@@ -1,4 +1,5 @@
 import React from 'react';
+import FocusLock from 'react-focus-lock';
 import {
 	action
 } from '@storybook/addon-actions';
@@ -96,6 +97,24 @@ export default storiesOf('Modal', module)
 				active={boolean('Active', true)}
 				centered={boolean('Centered', true)}
 				closeButton={<a>x</a>}
+			>
+				Modal content.
+			</Modal>
+		)
+	)
+	.add(
+		'with content wrapper',
+		() => (
+			<Modal
+				{...events}
+				style={{
+					width:     '500px',
+					marginTop: '20px'
+				}}
+				active={boolean('Active', true)}
+				centered={boolean('Centered', true)}
+				// tslint:disable-next-line: jsx-no-lambda
+				wrapContent={_ => <FocusLock>{_}</FocusLock>}
 			>
 				Modal content.
 			</Modal>
