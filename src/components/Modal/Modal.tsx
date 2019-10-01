@@ -94,6 +94,8 @@ export default class Modal extends PureComponent<IProps> {
 			...props
 		} = this.props;
 
+		Reflect.deleteProperty(props, 'wrapContent');
+
 		return createPortal((
 			<StylableTransition
 				in={active}
