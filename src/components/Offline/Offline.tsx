@@ -4,8 +4,8 @@ import {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-	subscribeEvent,
-	Bind
+	Bind,
+	subscribeEvent
 } from '../../helpers';
 
 export interface IProps {
