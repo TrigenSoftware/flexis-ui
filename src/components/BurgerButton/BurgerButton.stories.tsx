@@ -15,7 +15,7 @@ import BurgerButton from './';
 const stylableApi = `
 Stylable API
 ---
-_empty_
+- :active
 `;
 
 export const events = {

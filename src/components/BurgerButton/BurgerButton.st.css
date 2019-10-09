@@ -1,12 +1,11 @@
 
 .root {
 	-st-states: active;
-	position: fixed;
-	border: none;
+	position: relative;
 	background: currentColor;
 	background-clip: content-box;
 	cursor: pointer;
-	padding: 1.1em 0;
+	padding: 1.2em 0;
 	width: 2.4em;
 	height: 2.4em;
 }
