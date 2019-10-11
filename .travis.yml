@@ -7,4 +7,3 @@ cache:
 after_script:
   # - npm run jest -- -u
   - npm run artifacts
-
