@@ -2218,10 +2218,10 @@
     jest "^25.1.0"
     nodemailer "^6.3.0"
 
-"@trigen/scripts-plugin-storybook@^5.0.4-alpha.0":
-  version "5.0.4-alpha.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-5.0.4-alpha.0.tgz#97a58cabd500cd6cd48c218ce59defc59188e1f9"
-  integrity sha512-MzlbL1KZoAFxt9HJAUHxLByh8juWSXmePxAUaNQy/h5anhvMGO/9KC3Max0OqNbO9WYaIUZrt+tp5hwRWG6jjA==
+"@trigen/scripts-plugin-storybook@^5.0.5-alpha.0":
+  version "5.0.5-alpha.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-5.0.5-alpha.0.tgz#3ae9cf1ec94f5db4c8a30f343dddc56e122725b1"
+  integrity sha512-/07NxBOwsHoPqojH5yFQb2uYBogTz5LHwq4XMX3yQApZ0dYJzyPn7oQ2I4iS5zDKA2E6VuTzxJGD7VXqoQ1i1g==
   dependencies:
     "@storybook/addon-a11y" "^5.1.10"
     "@storybook/addon-actions" "^5.0.5"
@@ -2264,10 +2264,10 @@
     husky "^4.0.9"
     lint-staged "^10.0.0"
 
-"@trigen/scripts-preset-react-app@^5.0.4-alpha.0":
-  version "5.0.4-alpha.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.0.4-alpha.0.tgz#b3ed7f6e3efb3c63e929b9d54d037c7bd0aa946a"
-  integrity sha512-+WG5rHJc2qLgWPAYiC6Da8ZUWPcHzllQ4mWeUJv3dBQgQOBvDFjtRBmETHnaLhDQJwG1wavrHdnzSkmI4bL04w==
+"@trigen/scripts-preset-react-app@^5.0.5-alpha.0":
+  version "5.0.5-alpha.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.0.5-alpha.0.tgz#684bcf1b4fd75e2bc7ad44c5faa3a4545cbbd85a"
+  integrity sha512-sZXPghi0rXeBN/tx6X6nEzw1gKGOIFIMSPLwGfyk/1aOFTn51TAJlit+rDiPDG9kQ8mQyBRuLPWf7c5ZXAeDHA==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/favicons" "^1.3.4"
@@ -2278,7 +2278,7 @@
     "@trigen/scripts" "^4.0.0"
     "@trigen/scripts-plugin-babel" "^4.0.0"
     "@trigen/scripts-plugin-jest" "^5.0.0-alpha.0"
-    "@trigen/scripts-plugin-storybook" "^5.0.4-alpha.0"
+    "@trigen/scripts-plugin-storybook" "^5.0.5-alpha.0"
     "@trigen/scripts-plugin-typescript" "^5.0.4-alpha.0"
     autoprefixer "^9.1.3"
     babel-loader "^8.0.0"
