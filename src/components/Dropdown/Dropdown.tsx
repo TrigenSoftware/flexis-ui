@@ -142,7 +142,7 @@ export default class Dropdown extends PureComponent<IProps, IState> {
 			toggler,
 			content,
 			...misc
-		] = Children.toArray<ReactElement<any>>(children);
+		] = Children.toArray(children) as ReactElement<any>[];
 
 		return (
 			<span

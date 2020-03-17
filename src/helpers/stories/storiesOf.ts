@@ -1,8 +1,5 @@
+// tslint:disable: ban-types
 import {
-	Story,
-	DecoratorParameters,
-	RenderFunction,
-	StoryDecorator,
 	storiesOf as storybookStoriesOf
 } from '@storybook/react';
 
@@ -17,13 +14,13 @@ export function storiesOf(name: string, module: NodeModule): ExportableStory {
 	return new ExportableStory(name);
 }
 
-export class ExportableStory implements Story {
+export class ExportableStory {
 
 	kind: string;
-	parameters?: DecoratorParameters = null;
-	decorators?: StoryDecorator[] = [];
-	stories?: Record<string, RenderFunction> = {};
-	storiesParameters?: Record<string, DecoratorParameters> = {};
+	parameters?: Record<string, any> = null;
+	decorators?: Function[] = [];
+	stories?: Record<string, Function> = {};
+	storiesParameters?: Record<string, Record<string, any>> = {};
 
 	constructor(kind: string) {
 		this.kind = kind;

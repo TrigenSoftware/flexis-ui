@@ -1,7 +1,4 @@
 /* tslint:disable no-magic-numbers */
-import {
-	DecoratorParameters
-} from '@storybook/react';
 
 export interface IStylableAPI {
 	values: string[];
@@ -33,7 +30,7 @@ export function buildInfo(stylableApi: IStylableAPI[]): string {
 	).join('\n');
 }
 
-export function extendInfo(params: DecoratorParameters, stylableApi: IStylableAPI[]): DecoratorParameters {
+export function extendInfo(params: Record<string, any>, stylableApi: IStylableAPI[]): Record<string, any> {
 
 	let sourceInfo: string = params.info;
 
