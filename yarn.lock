@@ -2218,10 +2218,10 @@
     jest "^25.1.0"
     nodemailer "^6.3.0"
 
-"@trigen/scripts-plugin-storybook@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-5.1.0.tgz#0e0d827b39f245f74b501d8aedf23c14613f9e0c"
-  integrity sha512-cRrYTQVgEpUkNvjjHb4MgykmJgxnfO57i4eoviVPQ/lnFwxbvEDof7DG+phNNNnJXml+vEE7v7qmB1PmhcGFHw==
+"@trigen/scripts-plugin-storybook@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-5.1.1.tgz#f4bb94c410ea1ef01c005d070d281ec1f6a0e7d1"
+  integrity sha512-tRZd5+hjtcat3xnSeRHkbtPUDVAxBEsYpaNlY4+Ds66XKv3A98YlmJ8vVOB+/T+KNoEK+Qvka5FAHU274xjHRA==
   dependencies:
     "@storybook/addon-a11y" "^5.1.10"
     "@storybook/addon-actions" "^5.0.5"
@@ -2264,10 +2264,10 @@
     husky "^4.0.9"
     lint-staged "^10.0.0"
 
-"@trigen/scripts-preset-react-app@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.1.0.tgz#622874880cbbc7a4865a3766857fa958c6559d2e"
-  integrity sha512-KW0V2+f0yx+zXW0b9J7EJ2aAyL2bn1tonebj54yesbroS1bb7zZ+KPUOl5vT2dygrswf7vmzskC5Afx4YM6CLw==
+"@trigen/scripts-preset-react-app@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.1.1.tgz#4d7ca4ff5bbbb133957e7f732dc2563c85314ad9"
+  integrity sha512-KDqkCTX8RF3TTmiHT5TU4py/U3lWgw+3dZNRv+QjsCbJX6XrJ8oDTHzLstJFUQ2nScnRMlf8UL3fv7KN93Ty9g==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/favicons" "^1.3.4"
@@ -2278,7 +2278,7 @@
     "@trigen/scripts" "^5.1.0"
     "@trigen/scripts-plugin-babel" "^5.1.0"
     "@trigen/scripts-plugin-jest" "^5.1.0"
-    "@trigen/scripts-plugin-storybook" "^5.1.0"
+    "@trigen/scripts-plugin-storybook" "^5.1.1"
     "@trigen/scripts-plugin-typescript" "^5.1.0"
     autoprefixer "^9.1.3"
     babel-loader "^8.0.0"
