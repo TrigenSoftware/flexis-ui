@@ -1,5 +1,8 @@
 {
 	"exclude": "node_modules/**",
+	"ignore": [
+		"**/*.babel.js"
+	],
 	"presets": [
 		[
 			"babel-preset-trigen",
@@ -14,7 +17,7 @@
 	],
 	"overrides": [
 		{
-			"test": "**/*.mjs",
+			"test": "**/*.es.js",
 			"presets": [
 				[
 					"babel-preset-trigen",
