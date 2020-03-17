@@ -21,11 +21,6 @@
 			"dom"
 		]
 	},
-	"atLoaderOptions": {
-		"declaration": false,
-		"declarationMap": false,
-		"inlineSourceMap": false
-	},
 	"exclude": [
 		"package/**/*",
 		"test/**/*"
