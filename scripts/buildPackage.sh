@@ -23,7 +23,7 @@ find package -name "*.jsx" -exec bash -c 'mv "$1" "${1%.jsx}".js' - '{}' \;
 
 # Transpile JS
 NODE_ENV=production babel ./package -d ./package -s inline --keep-file-extension
-del 'package/**/*.jsx' 'package/stylable/**/*.es.js'
+del 'package/**/*.jsx' 'package/stylable/**/*.{es,babel}.js'
 
 # Copy package files
 cp LICENSE package
