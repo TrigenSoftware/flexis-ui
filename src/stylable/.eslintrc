@@ -1,0 +1,6 @@
+{
+	"extends": "trigen/commonjs",
+	"rules": {
+		"no-magic-numbers": "off"
+	}
+}

@@ -1,4 +1,3 @@
-/* eslint-disable import/unambiguous, no-magic-numbers */
 const color = require('color');
 
 function parsePercents(percents) {
