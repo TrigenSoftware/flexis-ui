@@ -9,3 +9,4 @@ export * from './getAriaLabelProps';
 export * from './textTruncate';
 export * from './modulo';
 export * from './CombinePropsAndAttributes';
+export * from './SetImmediate';
