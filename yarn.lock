@@ -2266,9 +2266,9 @@
     lint-staged "^10.0.0"
 
 "@trigen/scripts-preset-react-app@^5.1.2":
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.3.2.tgz#c7821b12fa49abef3d6426c172bd6e30e54552ad"
-  integrity sha512-TXrmxXS2dhr4hlzDxX8sh1yZUYkJLlmCUEWeEBP3ydZAbizboTe/VkfQaPPnYYaPVcs+G5Z+luFtDqCbgm69Fg==
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.4.0.tgz#eb2ecbb27a2409466b1ceb4dc436fcb703aef623"
+  integrity sha512-cJMJepEXm0QzJnI2iK2pE3KN7WsnFgAR5M+wOrZHu8iKZIlKG0FCAgEdJld7j4/jJD3lKRMhIdUD8nfPIf88iw==
   dependencies:
     "@babel/register" "^7.4.0"
     "@flexis/favicons" "^1.3.4"
@@ -2317,7 +2317,7 @@
     svg-sprite-loader "4.2.5"
     svgo "^1.0.5"
     svgo-loader "^2.1.0"
-    ts-loader "^6.2.1"
+    ts-loader "^7.0.1"
     tslint-loader "^3.6.0"
     webpack "^4.26.1"
     webpack-dev-middleware "^3.2.0"
@@ -16755,10 +16755,10 @@ ts-dedent@^1.1.0:
   resolved "https://registry.yarnpkg.com/ts-dedent/-/ts-dedent-1.1.1.tgz#68fad040d7dbd53a90f545b450702340e17d18f3"
   integrity sha512-UGTRZu1evMw4uTPyYF66/KFd22XiU+jMaIuHrkIHQ2GivAXVlLV0v/vHrpOuTRf9BmpNHi/SO7Vd0rLu0y57jg==
 
-ts-loader@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.2.1.tgz#67939d5772e8a8c6bdaf6277ca023a4812da02ef"
-  integrity sha512-Dd9FekWuABGgjE1g0TlQJ+4dFUfYGbYcs52/HQObE0ZmUNjQlmLAS7xXsSzy23AMaMwipsx5sNHvoEpT2CZq1g==
+ts-loader@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-7.0.1.tgz#ac9ae9eb8f5ebd0aa7b78b44db20691b6e31251b"
+  integrity sha512-wdGs9xO8UnwASwbluehzXciBtc9HfGlYA8Aiv856etLmdv8mJfAxCkt3YpS4g7G1IsGxaCVKQ102Qh0zycpeZQ==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
