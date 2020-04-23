@@ -5,5 +5,5 @@ cache:
   directories:
     - node_modules
 after_script:
-  - npm run jest -- -u
+  # - npm run jest -- -u
   - npm run artifacts
