@@ -7,11 +7,9 @@
 		[
 			"babel-preset-trigen",
 			{
+				"env": "lib",
 				"commonjs": true,
-				"react": true,
-				"reactRemovePropTypes": {
-					"mode": "unsafe-wrap"
-				}
+				"react": true
 			}
 		]
 	],
@@ -22,10 +20,8 @@
 				[
 					"babel-preset-trigen",
 					{
-						"react": true,
-						"reactRemovePropTypes": {
-							"mode": "unsafe-wrap"
-						}
+						"env": "lib",
+						"react": true
 					}
 				]
 			]
@@ -37,17 +33,11 @@
 				[
 					"babel-preset-trigen",
 					{
-						"targets": {
-							"node": "current"
-						},
-						"commonjs": true,
+						"env": "jest",
 						"react": true,
 						"typescript": true
 					}
 				]
-			],
-			"plugins": [
-				"require-context-hook"
 			]
 		}
 	}
