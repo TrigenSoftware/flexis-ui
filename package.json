@@ -51,7 +51,7 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@trigen/scripts": "^5.1.0",
+    "@trigen/scripts": "^6.0.0",
     "@trigen/scripts-plugin-babel": "^6.1.0",
     "@trigen/scripts-plugin-eslint": "^6.0.0",
     "@trigen/scripts-plugin-typescript": "^6.0.0",
