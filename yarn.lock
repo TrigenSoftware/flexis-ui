@@ -2483,18 +2483,6 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@trigen/scripts-plugin-babel@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-babel/-/scripts-plugin-babel-5.5.0.tgz#f08b22acb8f0401bc8eab8b0f2621a044799d8d4"
-  integrity sha512-pCMzIH+JxTCr85yTQ5b9e3RgthtcApyfbMxA6JnZlL9ucJQ6S+NqA6Y3fNo7bah94DmByNvrIIEklE3l1lggAg==
-  dependencies:
-    "@babel/cli" "^7.2.3"
-    "@babel/core" "^7.4.0"
-    "@babel/node" "^7.0.0"
-    "@babel/runtime-corejs3" "^7.9.6"
-    "@trigen/scripts" "^5.5.0"
-    babel-preset-trigen "^4.0.0"
-
 "@trigen/scripts-plugin-babel@^6.1.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-babel/-/scripts-plugin-babel-6.1.0.tgz#c92f8a186d847b82c20a411d732d7624b25d3bff"
@@ -2517,25 +2505,25 @@
     eslint "^7.0.0"
     eslint-config-trigen "^3.2.3"
 
-"@trigen/scripts-plugin-jest@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-jest/-/scripts-plugin-jest-5.5.0.tgz#dfe3993ba94a909c3531fd572f486188bba3495a"
-  integrity sha512-DdI/3O/X9H9huoNlHkzYllVacXxsaxiDdSKID4lJvLBuvjsK0Y7ihsVR0+Ka+f25nY6bXLTu6zFR+B1+Xdo2sw==
+"@trigen/scripts-plugin-jest@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-jest/-/scripts-plugin-jest-6.1.0.tgz#33d3018a3bca26aa30383cf2b4a46ba6d4fcf190"
+  integrity sha512-s/g9HWs4QBJ+DCowOTAkqzJf7KUu38tbmm3LA8HeX6a4tCfASTCbAEdDYhQ2Tq1FO682E2YsyAaln3kLojF/aw==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.6"
-    "@trigen/scripts" "^5.5.0"
+    "@trigen/scripts" "^6.0.0"
     "@types/jest" "^25.1.3"
     archiver "^4.0.1"
     babel-jest "^26.0.1"
-    babel-preset-trigen "^4.0.0"
+    babel-preset-trigen "^4.2.1"
     form-data "^3.0.0"
     jest "^25.1.0"
     nodemailer "^6.3.0"
 
-"@trigen/scripts-plugin-storybook@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-5.5.0.tgz#c4cad028204581a79a0eb0e9cf317f51c8f4781f"
-  integrity sha512-ENFBOsW4vx79/mvTdrM+7tsxtZ/pNU0a2ChDl6foK0uduDRfCZTuN/Nz3xAAWdyoAcIRVOS8sxuRSZ2fr03GaQ==
+"@trigen/scripts-plugin-storybook@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-storybook/-/scripts-plugin-storybook-6.1.0.tgz#1e0c33ca8e3c69fdf3082f7dc23f416c1b318dec"
+  integrity sha512-Dr5EB9uEBwrCGzG1jZqdC8XQZtUpLxJ01YOyN88P7GzhzkDqXnhUjvyCIobC9mdsZ30xrK1hr9Kvtfzd7AgyCg==
   dependencies:
     "@babel/runtime-corejs3" "^7.9.6"
     "@storybook/addon-a11y" "^5.1.10"
@@ -2547,26 +2535,12 @@
     "@storybook/addon-storyshots-puppeteer" "^5.1.11"
     "@storybook/addons" "^5.0.5"
     "@storybook/react" "^5.0.5"
-    "@trigen/scripts" "^5.5.0"
-    "@trigen/scripts-plugin-jest" "^5.5.0"
+    "@trigen/scripts" "^6.0.0"
+    "@trigen/scripts-plugin-jest" "^6.1.0"
     "@types/storybook__addon-info" "^5.2.1"
     babel-plugin-require-context-hook "^1.0.0"
     env-ci "^5.0.2"
     react-test-renderer "^16.9.0"
-
-"@trigen/scripts-plugin-typescript@^5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-plugin-typescript/-/scripts-plugin-typescript-5.5.0.tgz#d83402d22c01babe8f63f03d66ada36a62c4a42c"
-  integrity sha512-sjrxkabDrAKcpjrnsyC1gnncemhE7iJ5QOYMTdZyHpijKU6PXbV53hxjXvnIGKiVZFUFElZl9PHw6q93VFHaVg==
-  dependencies:
-    "@babel/runtime-corejs3" "^7.9.6"
-    "@trigen/scripts" "^5.5.0"
-    ts-node-dev "^1.0.0-pre.39"
-    tsconfig-paths "^3.8.0"
-    tslint "^6.0.0"
-    tslint-config-trigen "^3.0.7"
-    typedoc "^0.17.0"
-    typescript "3.9.2"
 
 "@trigen/scripts-plugin-typescript@^6.0.0":
   version "6.0.0"
@@ -2595,10 +2569,10 @@
     husky "^4.0.9"
     lint-staged "^10.0.0"
 
-"@trigen/scripts-preset-react-app@^5.1.2":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-5.5.0.tgz#54157acd45eb3c822d1c1a35248b1516690d614d"
-  integrity sha512-zUnbkeAmqBs1GNBSOq3BcHOSoL0+Sc3MEtDrYXbNJ/cYD4vcRicF2ZJ1lppONjwbGBKsCtBXNtWVMKjg1xg4qQ==
+"@trigen/scripts-preset-react-app@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@trigen/scripts-preset-react-app/-/scripts-preset-react-app-6.1.0.tgz#ff01e2cdf700ee680b0efe7b84cfb0d743994e39"
+  integrity sha512-AcVWuEX4W1tW2qPC+x6e8utYIQ6eeez3Tz4HsNKXmcUjnQ2yD3WWCEhd97e/+QTn4ub5ByzenasejPHYPFkVhA==
   dependencies:
     "@babel/register" "^7.4.0"
     "@babel/runtime-corejs3" "^7.9.6"
@@ -2607,11 +2581,11 @@
     "@flexis/workbox-webpack-plugin" "^1.2.1"
     "@stylable/core" "^2.1.4"
     "@stylable/webpack-plugin" "^2.1.7"
-    "@trigen/scripts" "^5.5.0"
-    "@trigen/scripts-plugin-babel" "^5.5.0"
-    "@trigen/scripts-plugin-jest" "^5.5.0"
-    "@trigen/scripts-plugin-storybook" "^5.5.0"
-    "@trigen/scripts-plugin-typescript" "^5.5.0"
+    "@trigen/scripts" "^6.0.0"
+    "@trigen/scripts-plugin-babel" "^6.1.0"
+    "@trigen/scripts-plugin-jest" "^6.1.0"
+    "@trigen/scripts-plugin-storybook" "^6.1.0"
+    "@trigen/scripts-plugin-typescript" "^6.0.0"
     autoprefixer "^9.1.3"
     babel-loader "^8.0.0"
     bdsl-webpack-plugin "^1.4.0-beta"
@@ -2655,7 +2629,7 @@
     webpack-hot-middleware "^2.22.3"
     webpack-node-externals "^1.7.2"
 
-"@trigen/scripts@^5.1.0", "@trigen/scripts@^5.5.0":
+"@trigen/scripts@^5.1.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@trigen/scripts/-/scripts-5.5.0.tgz#4f45225927fdf373182efcb05d1aa01004b6b75c"
   integrity sha512-HOROslch9W6G+bjD/jRsQLOI4Ns0A0mP/vlwmL+XKwkLzjk/bgyfbtm8eL3OjaUhncnqPdhdGMx6sSEWiKjZWQ==
@@ -4290,7 +4264,7 @@ babel-preset-jest@^26.0.0:
     babel-plugin-transform-undefined-to-void "^6.9.4"
     lodash "^4.17.11"
 
-babel-preset-trigen@^4.0.0, babel-preset-trigen@^4.2.1:
+babel-preset-trigen@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/babel-preset-trigen/-/babel-preset-trigen-4.2.1.tgz#d58073b66c2373de54f703698fec4358a39a37da"
   integrity sha512-s4qJd3AmIwx96t8DpKVAl18ze3ay6smbMLtOUqzQaXeLy7VSik6LEZWXw67kM9rqQxt5OC+6dyyW3HVrnj78dw==
@@ -17567,11 +17541,6 @@ typedoc@^0.17.0:
     progress "^2.0.3"
     shelljs "^0.8.3"
     typedoc-default-themes "^0.8.0"
-
-typescript@3.9.2:
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.2.tgz#64e9c8e9be6ea583c54607677dd4680a1cf35db9"
-  integrity sha512-q2ktq4n/uLuNNShyayit+DTobV2ApPEo/6so68JaD5ojvc/6GClBipedB9zNWYxRSAlZXAe405Rlijzl6qDiSw==
 
 typescript@3.9.3:
   version "3.9.3"
