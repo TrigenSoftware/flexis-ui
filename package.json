@@ -53,7 +53,7 @@
   "devDependencies": {
     "@trigen/scripts": "^5.1.0",
     "@trigen/scripts-plugin-babel": "^6.1.0",
-    "@trigen/scripts-plugin-eslint": "^5.1.0",
+    "@trigen/scripts-plugin-eslint": "^6.0.0",
     "@trigen/scripts-plugin-typescript": "^6.0.0",
     "@trigen/scripts-preset-lib": "^5.1.0",
     "@trigen/scripts-preset-react-app": "^5.1.2",
