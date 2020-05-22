@@ -1,0 +1,43 @@
+
+.root {
+	-st-states: active;
+	position: relative;
+	background: currentColor;
+	background-clip: content-box;
+	cursor: pointer;
+	padding: 1.2em 0;
+	width: 2.4em;
+	height: 2.4em;
+}
+
+.root::before,
+.root::after {
+	display: block;
+	position: absolute;
+	left: 0;
+	background-color: currentColor;
+	width: 100%;
+	height: .2em;
+}
+
+.root::before {
+	top: .5em;
+	content: '';
+}
+
+.root::after {
+	bottom: .5em;
+	content: '';
+}
+
+.root:active {
+	background-color: transparent;
+}
+
+.root:active::before {
+	transform: translateY(.6em) rotate(45deg);
+}
+
+.root:active::after {
+	transform: translateY(-.6em) rotate(-45deg);
+}
