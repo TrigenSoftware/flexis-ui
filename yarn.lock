@@ -2363,10 +2363,15 @@
     "@stylable/core" "^2.1.1"
     postcss "^7.0.17"
 
-"@stylable/runtime@^2.1.3", "@stylable/runtime@^2.5.3":
+"@stylable/runtime@^2.5.3":
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-2.5.3.tgz#9167987530b3c709bf83c7519d19f624f4089a31"
   integrity sha512-mtlY20MsHdOBg45N7QccaeoIdls52hLLJSG8LNe1zLOvkXe/OwpgjXVTniDBosQec5kSUF3BU4ZMi30H9oj+aA==
+
+"@stylable/runtime@^3.6.1":
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/@stylable/runtime/-/runtime-3.6.1.tgz#5abfd027e4f87b0884aabfb4aa00e84272c1e47f"
+  integrity sha512-CMsBVC9urhr/F2bsVSVVdCje5hdcswSx6u/TD8ARNV5vq1gtJsN7PrZxk7ouj2f/LqCcLPH6//o0uelcudc7aw==
 
 "@stylable/webpack-plugin@^2.1.7":
   version "2.5.3"
