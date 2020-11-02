@@ -47,7 +47,7 @@
     "react-input-mask": "^2.0.3",
     "react-transition-group": "^4.3.0",
     "resize-observer": "^1.0.0-alpha.1",
-    "throttle-debounce": "^2.0.1",
+    "throttle-debounce": "^3.0.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
