@@ -12633,9 +12633,9 @@ node-status-codes@^1.0.0:
   integrity sha1-WuVUHQJGRdMqWPzdyc7s6nrjrC8=
 
 nodemailer@^6.3.0:
-  version "6.4.5"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.5.tgz#45614c6454d1a947242105eeddae03df87e29916"
-  integrity sha512-NH7aNVQyZLAvGr2+EOto7znvz+qJ02Cb/xpou98ApUt5tEAUSVUxhvHvgV/8I5dhjKTYqUw0nasoKzLNBJKrDQ==
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.1.tgz#2a05fbf205b897d71bf43884167b5d4d3bd01b99"
+  integrity sha512-1xzFN3gqv+/qJ6YRyxBxfTYstLNt0FCtZaFRvf4Sg9wxNGWbwFmGXVpfSi6ThGK6aRxAo+KjHtYSW8NvCsNSAg==
 
 noop-logger@^0.1.1:
   version "0.1.1"
